@@ -4,17 +4,21 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 // --- COMPONENTS ---
 import Header from './components/Header';
 import Footer from './components/Footer';
-import ScrollHandler from './components/ScrollHandler'; // <--- UPDATED NAME
+import ScrollHandler from './components/ScrollHandler';
 import AIChatWidget from './components/AIChatWidget';
 
 // --- PAGES ---
 import HomePage from './pages/HomePage';
-import ExploreAreas from './pages/ExploreAreas';
-import AreaPage from './pages/AreaPage';
+import ExploreAreas from './pages/ExploreAreas';      // The "Areas" list
+import AreaPage from './pages/AreaPage';              // Single Area Details
+import BuildersPage from './pages/BuildersPage';      // The "Developers" list
+import BuilderDetailsPage from './pages/BuilderDetailsPage'; // Single Developer Details
 import AreaComparison from './pages/AreaComparison';
-import HeatmapView from './pages/Heatmapview';
-import BuildersPage from './pages/BuildersPage';
-import BuilderDetailsPage from './pages/BuilderDetailsPage';
+import HeatmapView from './pages/HeatmapView';
+import MarketPage from './pages/MarketPage';
+import PropertyPage from './pages/PropertyPage';
+import AboutUs from './pages/AboutUs';
+import Blog from './pages/Blog';
 
 function App() {
   return (
@@ -27,17 +31,34 @@ function App() {
         
         <main className="flex-grow">
           <Routes>
+            {/* Core Pages */}
             <Route path="/" element={<HomePage />} />
-            <Route path="/explore" element={<ExploreAreas />} />
+            
+            {/* Areas */}
+            <Route path="/areas" element={<ExploreAreas />} />
             <Route path="/area/:id" element={<AreaPage />} />
-            <Route path="/compare" element={<AreaComparison />} />
-            <Route path="/heatmap" element={<HeatmapView />} />
+            
+            {/* Developers (Builders) */}
             <Route path="/builders" element={<BuildersPage />} />
             <Route path="/builder/:id" element={<BuilderDetailsPage />} />
+            
+            {/* Tools */}
+            <Route path="/compare" element={<AreaComparison />} />
+            <Route path="/heatmap" element={<HeatmapView />} />
+            
+            {/* Market & Properties */}
+            <Route path="/market" element={<MarketPage />} />
+            <Route path="/property/:id" element={<PropertyPage />} />
+            
+            {/* Company */}
+            <Route path="/about" element={<AboutUs />} />
+            <Route path="/blog" element={<Blog />} />
           </Routes>
         </main>
 
         <Footer />
+        
+        {/* AI Widget stays on top of everything */}
         <AIChatWidget />
       </div>
     </Router>
