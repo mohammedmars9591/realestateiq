@@ -12,7 +12,7 @@ import HomePage from './pages/HomePage';
 import ExploreAreas from './pages/ExploreAreas';
 import AreaPage from './pages/AreaPage';
 import AreaComparison from './pages/AreaComparison';
-import HeatmapView from './pages/HeatmapView';
+import HeatmapView from './pages/Heatmapview';
 import BuildersPage from './pages/BuildersPage';
 import BuilderDetailsPage from './pages/BuilderDetailsPage';
 
