@@ -8,7 +8,7 @@ import {
 
 // --- IMPORTS ---
 import { DUBAI_AREAS } from '../data/areaData';
-// REMOVED: propertiesData import (since we are focusing on tools only)
+// REMOVED propertiesData import to fix the error
 
 const AreaPage = () => {
   const { id } = useParams();
@@ -144,9 +144,6 @@ const AreaPage = () => {
 
         </div>
       </div>
-      
-      {/* (Removed the Property Listings section to align with 'Tools Only' request) */}
-
     </div>
   );
 };
