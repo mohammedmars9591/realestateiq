@@ -8,7 +8,7 @@ import {
 
 // --- IMPORTS ---
 import { DUBAI_AREAS } from '../data/areaData';
-// REMOVED propertiesData import to fix the error
+// ERROR FIXED: No import of propertiesData here!
 
 const AreaPage = () => {
   const { id } = useParams();
@@ -23,7 +23,7 @@ const AreaPage = () => {
 
   if (!area) return <div className="p-20 text-center text-slate-500">Area not found.</div>;
 
-  // 2. Fallback Data (Safeguard in case data is missing)
+  // 2. Fallback Data
   const conn = area.connectivity || {
     airport: { name: "DXB Intl", km: "--", mins: "--" },
     school: { name: "Intl School", km: "--", mins: "--" },
