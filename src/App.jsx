@@ -14,7 +14,7 @@ import AreaPage from './pages/AreaPage';              // Single Area Details
 import BuildersPage from './pages/BuildersPage';      // The "Developers" list
 import BuilderDetailsPage from './pages/BuilderDetailsPage'; // Single Developer Details
 import AreaComparison from './pages/AreaComparison';
-import HeatmapView from './pages/Heatmapview';
+import MarketMap from './pages/MarketMap';            // <--- NEW NAME (Fixed)
 import MarketPage from './pages/MarketPage';
 import PropertyPage from './pages/PropertyPage';
 import AboutUs from './pages/AboutUs';
@@ -44,7 +44,7 @@ function App() {
             
             {/* Tools */}
             <Route path="/compare" element={<AreaComparison />} />
-            <Route path="/heatmap" element={<HeatmapView />} />
+            <Route path="/heatmap" element={<MarketMap />} /> {/* <--- UPDATED ROUTE */}
             
             {/* Market & Properties */}
             <Route path="/market" element={<MarketPage />} />

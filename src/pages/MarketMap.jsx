@@ -3,7 +3,7 @@ import { MapContainer, TileLayer, useMap, CircleMarker, Popup } from 'react-leaf
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
 import 'leaflet.heat';
-import { TrendingUp, Activity, ArrowUpRight, Flame, Building2, MapPin, Layers, Clock, Eye, Zap } from 'lucide-react';
+import { TrendingUp, Activity, ArrowUpRight, Flame, Clock, Eye, Zap } from 'lucide-react';
 import SEO from '../components/SEO';
 
 // --- IMPORT REAL DATA ---
@@ -34,27 +34,32 @@ const HeatmapLayer = ({ points }) => {
     });
 
     // Intense Gradient for Light Map
-    const heat = L.heatLayer(points, {
-      radius: 35,
-      blur: 20,
-      maxZoom: 12,
-      minOpacity: 0.5,
-      gradient: { 
-        0.2: '#3b82f6', // Blue (Cool)
-        0.4: '#06b6d4', // Cyan
-        0.6: '#22c55e', // Green (Active)
-        0.8: '#f59e0b', // Orange (Hot)
-        1.0: '#ef4444'  // Red (Very Hot)
-      }
-    });
-    heat.addTo(map);
-    return () => { map.removeLayer(heat); };
+    // Ensure L.heatLayer exists (safeguard)
+    if (L.heatLayer) {
+      const heat = L.heatLayer(points, {
+        radius: 35,
+        blur: 20,
+        maxZoom: 12,
+        minOpacity: 0.5,
+        gradient: { 
+          0.2: '#3b82f6', // Blue (Cool)
+          0.4: '#06b6d4', // Cyan
+          0.6: '#22c55e', // Green (Active)
+          0.8: '#f59e0b', // Orange (Hot)
+          1.0: '#ef4444'  // Red (Very Hot)
+        }
+      });
+      heat.addTo(map);
+      // Mark this layer so we can remove it later
+      heat._heat = true;
+      return () => { map.removeLayer(heat); };
+    }
   }, [map, points]);
   return null;
 };
 
 // --- MAIN PAGE COMPONENT ---
-const Heatmapview = () => {
+const MarketMap = () => {  // <--- RENAMED COMPONENT
   const [activeTab, setActiveTab] = useState('areas');
   const [viewMode, setViewMode] = useState('live');    
   const [mapCenter, setMapCenter] = useState([25.12, 55.20]); 
@@ -140,7 +145,7 @@ const Heatmapview = () => {
   return (
     <div className="max-w-7xl mx-auto px-4 md:px-8 pb-20 fade-in">
       <SEO 
-        title="Interactive ROI Heatmap & 2026 Forecast | EstateIQ" 
+        title="Interactive ROI Market Map & 2026 Forecast | EstateIQ" 
         description="Visualize Dubai's real estate hotspots. Switch between current transaction volume and 2026 future growth predictions."
       />
 
@@ -177,38 +182,39 @@ const Heatmapview = () => {
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
           
           {/* === LEFT: THE MAP === */}
-          {/* Replaced 'border-white' with 'border-slate-200' and removed dark styling */}
           <div className="lg:col-span-3 h-[600px] w-full rounded-3xl overflow-hidden border border-slate-200 shadow-xl relative z-0 bg-slate-100">
-            <MapContainer center={mapCenter} zoom={mapZoom} scrollWheelZoom={false} className="h-full w-full">
-              {/* UPDATED TO LIGHT MAP THEME */}
-              <TileLayer
-                attribution='&copy; <a href="https://carto.com/">CARTO</a>'
-                url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
-              />
-              <MapController center={mapCenter} zoom={mapZoom} />
-              
-              <HeatmapLayer points={viewMode === 'live' ? liveHeatmapPoints : forecastHeatmapPoints} />
-              
-              {/* Markers for Future Areas */}
-              {viewMode === 'future' && trendingAreas2026.map(area => (
-                 <CircleMarker 
-                   key={area.id} 
-                   center={LOCATIONS[area.id]} 
-                   radius={14} 
-                   pathOptions={{ color: 'white', fillColor: '#4f46e5', fillOpacity: 0.9, weight: 2 }}
-                 >
-                    <Popup className="font-bold">
-                      <div className="text-center">
-                        <div className="text-indigo-700 text-sm mb-1">{area.name}</div>
-                        <div className="text-xs text-slate-500">{area.reason}</div>
-                      </div>
-                    </Popup>
-                 </CircleMarker>
-              ))}
+            {/* SAFEGUARD: Only render map if we have browser window (avoids build errors) */}
+            {typeof window !== 'undefined' && (
+              <MapContainer center={mapCenter} zoom={mapZoom} scrollWheelZoom={false} className="h-full w-full">
+                {/* UPDATED TO LIGHT MAP THEME */}
+                <TileLayer
+                  attribution='&copy; <a href="https://carto.com/">CARTO</a>'
+                  url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
+                />
+                <MapController center={mapCenter} zoom={mapZoom} />
+                
+                <HeatmapLayer points={viewMode === 'live' ? liveHeatmapPoints : forecastHeatmapPoints} />
+                
+                {/* Markers for Future Areas */}
+                {viewMode === 'future' && trendingAreas2026.map(area => (
+                   <CircleMarker 
+                     key={area.id} 
+                     center={LOCATIONS[area.id]} 
+                     radius={14} 
+                     pathOptions={{ color: 'white', fillColor: '#4f46e5', fillOpacity: 0.9, weight: 2 }}
+                   >
+                      <Popup className="font-bold">
+                        <div className="text-center">
+                          <div className="text-indigo-700 text-sm mb-1">{area.name}</div>
+                          <div className="text-xs text-slate-500">{area.reason}</div>
+                        </div>
+                      </Popup>
+                   </CircleMarker>
+                ))}
+              </MapContainer>
+            )}
 
-            </MapContainer>
-
-            {/* Map Legend (Light Mode Compatible) */}
+            {/* Map Legend */}
             <div className="absolute bottom-6 right-6 bg-white/95 backdrop-blur text-slate-800 p-4 rounded-xl z-[1000] border border-slate-200 text-xs shadow-xl">
               <div className="font-bold mb-2 uppercase text-slate-400">
                 {viewMode === 'live' ? 'Volume Intensity' : 'Growth Potential'}
@@ -226,7 +232,7 @@ const Heatmapview = () => {
 
           {/* === RIGHT: INTELLIGENCE SIDEBAR === */}
           <div className="lg:col-span-1 flex flex-col h-[600px]">
-             
+              
              {/* SIDEBAR HEADER */}
              <div className="bg-white border border-slate-200 p-4 rounded-xl mb-4 shadow-sm">
                 <h3 className="font-bold text-slate-900 flex items-center gap-2">
@@ -305,4 +311,4 @@ const Heatmapview = () => {
   );
 };
 
-export default Heatmapview;
+export default MarketMap; // <--- CORRECT EXPORT
