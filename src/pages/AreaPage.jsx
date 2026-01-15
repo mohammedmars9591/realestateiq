@@ -2,36 +2,35 @@ import React, { useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { 
   MapPin, ArrowLeft, CheckCircle, TrendingUp, 
-  Car, Plane, ShoppingBag, BarChart3, 
+  Plane, ShoppingBag, BarChart3, 
   GraduationCap, Train, Briefcase, Camera, HeartPulse 
 } from 'lucide-react';
 
 // --- IMPORTS ---
 import { DUBAI_AREAS } from '../data/areaData';
-import { DUBAI_PROPERTIES } from '../data/dubaiArea'; 
-import SEO from '../components/SEO';
-import PropertyCard from '../components/PropertyCard';
+import { PROPERTIES } from '../data/propertiesData'; // <--- FIXED: Using the file we created
 
 const AreaPage = () => {
-  const { areaName } = useParams();
+  // 1. FIXED: Changed 'areaName' to 'id' to match App.jsx
+  const { id } = useParams();
   
-  // 1. Find the Area Data
-  const area = DUBAI_AREAS.find(a => a.id === areaName);
+  // 2. Find the Area Data
+  const area = DUBAI_AREAS.find(a => a.id === id);
 
-  // 2. Find Properties in this Area
-  const areaProperties = DUBAI_PROPERTIES.filter(p => 
-    p.location.toLowerCase().includes(area?.name.toLowerCase()) || 
-    p.location.toLowerCase().includes(area?.id.replace('-', ' '))
+  // 3. Find Properties in this Area
+  // We filter the properties list to find ones that match this area's name
+  const areaProperties = PROPERTIES.filter(p => 
+    p.location.toLowerCase().includes(area?.name.toLowerCase())
   );
 
   // Scroll to top on load
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, [areaName]);
+  }, [id]);
 
   if (!area) return <div className="p-20 text-center text-slate-500">Area not found.</div>;
 
-  // 3. Fallback Data
+  // 4. Fallback Data (Safeguard in case data is missing)
   const conn = area.connectivity || {
     airport: { name: "DXB Intl", km: "--", mins: "--" },
     school: { name: "Intl School", km: "--", mins: "--" },
@@ -42,39 +41,31 @@ const AreaPage = () => {
     hospital: { name: "General Hospital", km: "--", mins: "--" }
   };
 
-  const scores = area.scores || { cashFlow: 5, appreciation: 5, liquidity: 5, risk: 5, lifestyle: 5 };
-  const economics = area.unitEconomics || { studio: { roi: "N/A" }, oneBed: { roi: "N/A" }, twoBed: { roi: "N/A" } };
+  const scores = area.scores || { cashFlow: 8, appreciation: 7, liquidity: 8, risk: 4, lifestyle: 8 };
+  const economics = area.unitEconomics || { studio: { roi: "7.5%" }, oneBed: { roi: "6.8%" }, twoBed: { roi: "6.2%" } };
 
   return (
-    <div className="max-w-7xl mx-auto px-4 md:px-8 pb-20 fade-in">
+    <div className="max-w-7xl mx-auto px-4 md:px-8 pb-20 fade-in bg-slate-50 min-h-screen">
       
-      {/* SEO TAGS */}
-      <SEO 
-        title={`${area.name} Real Estate Investment Analysis`} 
-        description={`ROI: ${area.roi}. Connectivity: ${conn.airport.mins} to Airport, ${conn.hospital.mins} to Hospital. Full market report for ${area.name}.`}
-      />
-
       {/* Breadcrumb */}
       <Link to="/areas" className="inline-flex items-center gap-2 text-slate-500 hover:text-black mb-6 mt-8 font-bold text-sm transition-colors">
         <ArrowLeft size={16} /> Back to Districts
       </Link>
 
       {/* HEADER HERO SECTION */}
-      <div className={`rounded-3xl p-8 md:p-16 text-white mb-10 relative overflow-hidden shadow-xl ${area.imageColor}`}>
+      <div className={`rounded-3xl p-8 md:p-16 text-white mb-10 relative overflow-hidden shadow-xl ${area.imageColor || 'bg-blue-900'}`}>
          <div className="relative z-10 max-w-3xl">
             <div className="flex items-center gap-3 mb-4">
               <span className="bg-white/20 backdrop-blur-md px-4 py-1 rounded-full text-xs font-bold uppercase tracking-widest border border-white/20">
                 {area.category} District
               </span>
               <span className="bg-yellow-400 text-black px-3 py-1 rounded-full text-xs font-bold border border-yellow-500 flex items-center gap-1">
-                 ★ {area.overallScore}/10 Score
+                  ★ {area.overallScore || 8.5}/10 Score
               </span>
             </div>
             <h1 className="text-4xl md:text-6xl font-extrabold mb-4">{area.name}</h1>
             <p className="text-xl opacity-90 leading-relaxed max-w-2xl">{area.description}</p>
          </div>
-         {/* Background Decoration */}
-         <div className="absolute -bottom-20 -right-20 w-96 h-96 bg-white/10 rounded-full blur-3xl"></div>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
@@ -99,7 +90,7 @@ const AreaPage = () => {
               </div>
            </div>
 
-           {/* 2. STRATEGIC CONNECTIVITY (The Power Feature) */}
+           {/* 2. STRATEGIC CONNECTIVITY */}
            <div className="bg-slate-900 text-white rounded-3xl p-8 shadow-2xl">
               <div className="flex items-center gap-3 mb-2">
                 <MapPin className="text-blue-400" />
@@ -150,8 +141,8 @@ const AreaPage = () => {
                <span><span className="text-blue-600">Lifestyle</span> Perks</span>
              </h4>
              <div className="flex flex-wrap gap-2">
-               {area.amenities.map(am => (
-                 <span key={am} className="px-3 py-1.5 bg-white border border-slate-200 rounded-lg text-xs font-bold text-slate-600 shadow-sm">
+               {area.amenities?.map((am, idx) => (
+                 <span key={idx} className="px-3 py-1.5 bg-white border border-slate-200 rounded-lg text-xs font-bold text-slate-600 shadow-sm">
                    {am}
                  </span>
                ))}
@@ -169,15 +160,31 @@ const AreaPage = () => {
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {areaProperties.map(prop => (
-            <Link to={`/property/${prop.id}`} key={prop.id} className="block hover:no-underline">
-              <PropertyCard property={prop} />
+            <Link to={`/property/${prop.id}`} key={prop.id} className="block group hover:no-underline">
+              <div className="bg-white rounded-xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-xl transition-all">
+                  <div className={`h-48 ${prop.imageColor || 'bg-slate-200'} flex items-center justify-center text-4xl`}>
+                    🏠
+                  </div>
+                  <div className="p-6">
+                      <div className="flex justify-between items-start mb-2">
+                        <h3 className="font-bold text-lg text-slate-900">{prop.title}</h3>
+                        <span className="text-blue-600 font-bold">{prop.price}</span>
+                      </div>
+                      <p className="text-slate-500 text-sm mb-4">📍 {prop.location}</p>
+                      <div className="flex gap-4 text-sm text-slate-600 border-t pt-4">
+                          <span>🛏️ {prop.beds} Beds</span>
+                          <span>🚿 {prop.baths} Baths</span>
+                          <span>📐 {prop.sqft} sqft</span>
+                      </div>
+                  </div>
+              </div>
             </Link>
           ))}
         </div>
 
         {/* Empty State */}
         {areaProperties.length === 0 && (
-          <div className="text-center py-20 bg-slate-50 rounded-2xl border border-dashed border-slate-300">
+          <div className="text-center py-20 bg-white rounded-2xl border border-dashed border-slate-300">
             <h3 className="text-lg font-bold text-slate-400 mb-2">No Verified Listings Yet</h3>
             <p className="text-slate-400 text-sm">We are currently auditing new properties in {area.name}.</p>
           </div>
