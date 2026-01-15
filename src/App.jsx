@@ -14,7 +14,7 @@ import AreaPage from './pages/AreaPage';              // Single Area Details
 import BuildersPage from './pages/BuildersPage';      // The "Developers" list
 import BuilderDetailsPage from './pages/BuilderDetailsPage'; // Single Developer Details
 import AreaComparison from './pages/AreaComparison';
-import HeatmapView from './pages/HeatmapView';
+import HeatmapView from './pages/Heatmapview';
 import MarketPage from './pages/MarketPage';
 import PropertyPage from './pages/PropertyPage';
 import AboutUs from './pages/AboutUs';
