@@ -8,20 +8,13 @@ import {
 
 // --- IMPORTS ---
 import { DUBAI_AREAS } from '../data/areaData';
-import { PROPERTIES } from '../data/propertiesData'; // <--- FIXED: Using the file we created
+// REMOVED: propertiesData import (since we are focusing on tools only)
 
 const AreaPage = () => {
-  // 1. FIXED: Changed 'areaName' to 'id' to match App.jsx
   const { id } = useParams();
   
-  // 2. Find the Area Data
+  // 1. Find the Area Data
   const area = DUBAI_AREAS.find(a => a.id === id);
-
-  // 3. Find Properties in this Area
-  // We filter the properties list to find ones that match this area's name
-  const areaProperties = PROPERTIES.filter(p => 
-    p.location.toLowerCase().includes(area?.name.toLowerCase())
-  );
 
   // Scroll to top on load
   useEffect(() => {
@@ -30,7 +23,7 @@ const AreaPage = () => {
 
   if (!area) return <div className="p-20 text-center text-slate-500">Area not found.</div>;
 
-  // 4. Fallback Data (Safeguard in case data is missing)
+  // 2. Fallback Data (Safeguard in case data is missing)
   const conn = area.connectivity || {
     airport: { name: "DXB Intl", km: "--", mins: "--" },
     school: { name: "Intl School", km: "--", mins: "--" },
@@ -151,45 +144,8 @@ const AreaPage = () => {
 
         </div>
       </div>
-
-      {/* === BOTTOM SECTION: AVAILABLE PROPERTIES === */}
-      <div className="border-t border-slate-200 pt-16">
-        <h2 className="text-3xl font-extrabold text-slate-900 mb-8">
-          Verified <span className="text-blue-600">Opportunities</span> in {area.name}
-        </h2>
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {areaProperties.map(prop => (
-            <Link to={`/property/${prop.id}`} key={prop.id} className="block group hover:no-underline">
-              <div className="bg-white rounded-xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-xl transition-all">
-                  <div className={`h-48 ${prop.imageColor || 'bg-slate-200'} flex items-center justify-center text-4xl`}>
-                    🏠
-                  </div>
-                  <div className="p-6">
-                      <div className="flex justify-between items-start mb-2">
-                        <h3 className="font-bold text-lg text-slate-900">{prop.title}</h3>
-                        <span className="text-blue-600 font-bold">{prop.price}</span>
-                      </div>
-                      <p className="text-slate-500 text-sm mb-4">📍 {prop.location}</p>
-                      <div className="flex gap-4 text-sm text-slate-600 border-t pt-4">
-                          <span>🛏️ {prop.beds} Beds</span>
-                          <span>🚿 {prop.baths} Baths</span>
-                          <span>📐 {prop.sqft} sqft</span>
-                      </div>
-                  </div>
-              </div>
-            </Link>
-          ))}
-        </div>
-
-        {/* Empty State */}
-        {areaProperties.length === 0 && (
-          <div className="text-center py-20 bg-white rounded-2xl border border-dashed border-slate-300">
-            <h3 className="text-lg font-bold text-slate-400 mb-2">No Verified Listings Yet</h3>
-            <p className="text-slate-400 text-sm">We are currently auditing new properties in {area.name}.</p>
-          </div>
-        )}
-      </div>
+      
+      {/* (Removed the Property Listings section to align with 'Tools Only' request) */}
 
     </div>
   );
