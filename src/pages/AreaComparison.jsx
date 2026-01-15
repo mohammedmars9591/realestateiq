@@ -6,15 +6,15 @@ import {
 import SEO from '../components/SEO';
 import { DUBAI_AREAS } from '../data/areaData';
 import { BUILDERS } from '../data/buildersData';
-import WhatsAppButton from '../components/WhatsAppButton'; // <--- IMPORT NEW COMPONENT
+import WhatsAppButton from '../components/WhatsAppButton'; 
 
 const AreaComparison = () => {
   // --- STATE MANAGEMENT ---
   const [mode, setMode] = useState('areas'); // 'areas' or 'builders'
   
   // Area State
-  const [area1Id, setArea1Id] = useState('dubai-marina');
-  const [area2Id, setArea2Id] = useState('jvc');
+  const [area1Id, setArea1Id] = useState('jvc'); // Default to IDs that definitely exist
+  const [area2Id, setArea2Id] = useState('dubai-marina');
   
   // Builder State
   const [builder1Id, setBuilder1Id] = useState('emaar');
@@ -23,16 +23,19 @@ const AreaComparison = () => {
   useEffect(() => { window.scrollTo(0, 0); }, []);
 
   // --- HELPER: GET DATA OBJECTS ---
+  // We use Optional Chaining (?.) and Fallbacks (||) to prevent crashes if data is missing
   const item1 = mode === 'areas' 
-    ? DUBAI_AREAS.find(a => a.id === area1Id) || DUBAI_AREAS[0]
-    : BUILDERS.find(b => b.id === builder1Id) || BUILDERS[0];
+    ? (DUBAI_AREAS.find(a => a.id === area1Id) || DUBAI_AREAS[0])
+    : (BUILDERS.find(b => b.id === builder1Id) || BUILDERS[0]);
 
   const item2 = mode === 'areas' 
-    ? DUBAI_AREAS.find(a => a.id === area2Id) || DUBAI_AREAS[1]
-    : BUILDERS.find(b => b.id === builder2Id) || BUILDERS[1];
+    ? (DUBAI_AREAS.find(a => a.id === area2Id) || DUBAI_AREAS[1])
+    : (BUILDERS.find(b => b.id === builder2Id) || BUILDERS[1]);
 
   // --- FUTURESCOPE SIMULATOR (ADAPTIVE) ---
   const simulateGrowth = (item) => {
+    if (!item) return { rate: 0, profit: 0 }; // Safety check
+
     let growthRate = 0;
     const initial = 1000000; // 1M AED Benchmark
 
@@ -40,7 +43,8 @@ const AreaComparison = () => {
       if (item.category === 'High Yield') growthRate = 0.25;
       if (item.category === 'Appreciation') growthRate = 0.45;
       if (item.category === 'Luxury') growthRate = 0.30;
-      growthRate += (item.overallScore - 7) * 0.02;
+      // Add score bonus
+      growthRate += ((item.overallScore || 5) - 7) * 0.02;
     } else {
       // BUILDER LOGIC
       if (item.tier === 'Ultra Luxury') growthRate = 0.40;
@@ -65,7 +69,7 @@ const AreaComparison = () => {
   const winner = Number(sim1.rate) > Number(sim2.rate) ? item1 : item2;
 
   return (
-    <div className="max-w-7xl mx-auto px-4 md:px-8 pb-20 fade-in">
+    <div className="max-w-7xl mx-auto px-4 md:px-8 pb-20 fade-in bg-slate-50 min-h-screen pt-8">
       <SEO 
         title={`Compare Dubai ${mode === 'areas' ? 'Areas' : 'Developers'} | EstateIQ`} 
         description="Head-to-head comparison tool. Analyze ROI, Trust Scores, and Future Growth Potential."
@@ -148,10 +152,8 @@ const AreaComparison = () => {
              {/* AREA METRICS */}
              {mode === 'areas' && (
                <>
-                 <StatRow label="Avg. Price (1-Bed)" val1="AED 1.1M" val2="AED 1.4M" />
+                 <StatRow label="Avg. Price (1-Bed)" val1={item1.avgPrice || "1.1M"} val2={item2.avgPrice || "1.4M"} />
                  <StatRow label="Rental Yield (ROI)" val1={item1.roi} val2={item2.roi} highlight />
-                 <StatRow label="Price per Sq.Ft" val1="AED 1,200" val2="AED 1,450" />
-                 <StatRow label="Occupancy Rate" val1="92%" val2="88%" />
                  <StatRow label="Overall Score" val1={`${item1.overallScore}/10`} val2={`${item2.overallScore}/10`} isScore />
                </>
              )}
@@ -163,7 +165,6 @@ const AreaComparison = () => {
                  <StatRow label="Market Tier" val1={item1.tier} val2={item2.tier} />
                  <StatRow label="Est. Year" val1={item1.established} val2={item2.established} />
                  <StatRow label="Avg. Completion" val1={item1.scores?.delivery || "On Time"} val2={item2.scores?.delivery || "Late"} />
-                 <StatRow label="Resale Liquidity" val1="High" val2="Medium" />
                </>
              )}
           </div>
@@ -242,10 +243,10 @@ const AreaComparison = () => {
                     <div className="text-xs font-bold text-slate-400 uppercase mb-1">Safety First</div>
                     <div className="font-bold text-slate-900 text-sm">
                        Choose <span className="text-green-600">
-                         {mode === 'areas' 
-                           ? (item1.overallScore > item2.overallScore ? item1.name : item2.name)
-                           : (item1.scores?.trust > item2.scores?.trust ? item1.name : item2.name)
-                         }
+                          {mode === 'areas' 
+                            ? (item1.overallScore > item2.overallScore ? item1.name : item2.name)
+                            : (item1.scores?.trust > item2.scores?.trust ? item1.name : item2.name)
+                          }
                        </span>
                     </div>
                  </div>
