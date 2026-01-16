@@ -7,13 +7,14 @@ import {
 } from 'lucide-react';
 
 // --- IMPORTS ---
-import { DUBAI_AREAS } from '../data/areaData';
-// ERROR FIXED: No import of propertiesData here!
+// UPDATED: Import from the new Master File to see all Emirates
+import { DUBAI_AREAS } from '../data/emiratesData'; 
+import WhatsAppButton from '../components/WhatsAppButton'; // Added Button
 
 const AreaPage = () => {
   const { id } = useParams();
   
-  // 1. Find the Area Data
+  // 1. Find the Area Data (Search all Emirates)
   const area = DUBAI_AREAS.find(a => a.id === id);
 
   // Scroll to top on load
@@ -25,9 +26,9 @@ const AreaPage = () => {
 
   // 2. Fallback Data
   const conn = area.connectivity || {
-    airport: { name: "DXB Intl", km: "--", mins: "--" },
+    airport: { name: "Nearest Airport", km: "--", mins: "--" },
     school: { name: "Intl School", km: "--", mins: "--" },
-    tourist: { name: "Downtown", km: "--", mins: "--" },
+    tourist: { name: "City Center", km: "--", mins: "--" },
     metro: { name: "Nearest Stn", km: "--", mins: "--" },
     mall: { name: "Local Mall", km: "--", mins: "--" },
     business: { name: "Business Hub", km: "--", mins: "--" },
@@ -35,7 +36,7 @@ const AreaPage = () => {
   };
 
   const scores = area.scores || { cashFlow: 8, appreciation: 7, liquidity: 8, risk: 4, lifestyle: 8 };
-  const economics = area.unitEconomics || { studio: { roi: "7.5%" }, oneBed: { roi: "6.8%" }, twoBed: { roi: "6.2%" } };
+  const economics = area.unitEconomics || { studio: { roi: "N/A" }, oneBed: { roi: "N/A" }, twoBed: { roi: "N/A" } };
 
   return (
     <div className="max-w-7xl mx-auto px-4 md:px-8 pb-20 fade-in bg-slate-50 min-h-screen">
@@ -96,7 +97,7 @@ const AreaPage = () => {
               <div className="space-y-6">
                 <DistanceRow icon={<Plane />} category="Nearest Airport" data={conn.airport} color="text-purple-300" />
                 <DistanceRow icon={<Briefcase />} category="Business Hub" data={conn.business} color="text-blue-300" />
-                <DistanceRow icon={<Train />} category="Metro Station" data={conn.metro} color="text-green-300" />
+                <DistanceRow icon={<Train />} category="Metro / Transport" data={conn.metro} color="text-green-300" />
                 <DistanceRow icon={<GraduationCap />} category="Top School" data={conn.school} color="text-yellow-300" />
                 <DistanceRow icon={<ShoppingBag />} category="Shopping Mall" data={conn.mall} color="text-pink-300" />
                 <DistanceRow icon={<Camera />} category="Tourist Spot" data={conn.tourist} color="text-orange-300" />
@@ -124,6 +125,11 @@ const AreaPage = () => {
                 <ScoreBar label="Liquidity" value={scores.liquidity} color="bg-indigo-500" />
                 <ScoreBar label="Lifestyle" value={scores.lifestyle} color="bg-amber-500" />
                 <ScoreBar label="Risk (Low is Good)" value={scores.risk} color="bg-red-500" />
+              </div>
+
+              {/* WHATSAPP BUTTON ADDED HERE */}
+              <div className="mt-8 pt-6 border-t border-slate-100">
+                <WhatsAppButton data={area} type="area" />
               </div>
            </div>
 

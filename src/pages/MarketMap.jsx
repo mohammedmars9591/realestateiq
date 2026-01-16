@@ -6,10 +6,10 @@ import 'leaflet.heat';
 import { TrendingUp, Activity, ArrowUpRight, Flame, Clock, Eye, Zap } from 'lucide-react';
 import SEO from '../components/SEO';
 
-// --- IMPORT REAL DATA ---
-import { DUBAI_AREAS } from '../data/areaData';
+// --- IMPORT NATIONAL DATA (ALL 7 EMIRATES) ---
+import { DUBAI_AREAS } from '../data/emiratesData'; 
 
-// --- 1. HELPER: MAP CONTROLLER (HANDLES ZOOM/PAN) ---
+// --- 1. HELPER: MAP CONTROLLER ---
 const MapController = ({ center, zoom }) => {
   const map = useMap();
   useEffect(() => {
@@ -20,11 +20,11 @@ const MapController = ({ center, zoom }) => {
   return null;
 };
 
-// --- 2. HEATMAP LAYER COMPONENT ---
+// --- 2. HEATMAP LAYER ---
 const HeatmapLayer = ({ points }) => {
   const map = useMap();
   useEffect(() => {
-    if (!map) return;
+    if (!map || !L.heatLayer) return;
     
     // Clean up previous layers
     map.eachLayer((layer) => {
@@ -33,120 +33,97 @@ const HeatmapLayer = ({ points }) => {
       }
     });
 
-    // Intense Gradient for Light Map
-    // Ensure L.heatLayer exists (safeguard)
-    if (L.heatLayer) {
-      const heat = L.heatLayer(points, {
-        radius: 35,
-        blur: 20,
-        maxZoom: 12,
-        minOpacity: 0.5,
-        gradient: { 
-          0.2: '#3b82f6', // Blue (Cool)
-          0.4: '#06b6d4', // Cyan
-          0.6: '#22c55e', // Green (Active)
-          0.8: '#f59e0b', // Orange (Hot)
-          1.0: '#ef4444'  // Red (Very Hot)
-        }
-      });
-      heat.addTo(map);
-      // Mark this layer so we can remove it later
-      heat._heat = true;
-      return () => { map.removeLayer(heat); };
-    }
+    const heat = L.heatLayer(points, {
+      radius: 40, // Larger radius for country-wide view
+      blur: 25,
+      maxZoom: 10,
+      minOpacity: 0.4,
+      gradient: { 
+        0.2: '#3b82f6', 
+        0.4: '#06b6d4', 
+        0.6: '#22c55e', 
+        0.8: '#f59e0b', 
+        1.0: '#ef4444' 
+      }
+    });
+    heat.addTo(map);
+    heat._heat = true;
+    return () => { map.removeLayer(heat); };
   }, [map, points]);
   return null;
 };
 
 // --- MAIN PAGE COMPONENT ---
-const MarketMap = () => {  // <--- RENAMED COMPONENT
-  const [activeTab, setActiveTab] = useState('areas');
+const MarketMap = () => {
   const [viewMode, setViewMode] = useState('live');    
-  const [mapCenter, setMapCenter] = useState([25.12, 55.20]); 
-  const [mapZoom, setMapZoom] = useState(11);
+  // Default Center: Zoomed out to see Abu Dhabi -> RAK
+  const [mapCenter, setMapCenter] = useState([25.0, 55.6]); 
+  const [mapZoom, setMapZoom] = useState(9); 
 
   useEffect(() => { window.scrollTo(0, 0); }, []);
 
-  // --- 1. EXPANDED MAP LOCATIONS ---
+  // --- 1. NATIONAL MAP LOCATIONS ---
   const LOCATIONS = {
-    // Core Areas
+    // DUBAI
     'dubai-marina': [25.0805, 55.1403],
-    'downtown-dubai': [25.1972, 55.2744],
     'jvc': [25.0581, 55.2091],
-    'business-bay': [25.1837, 55.2666],
-    'palm-jumeirah': [25.1124, 55.1390],
-    
-    // New Residential Hubs
-    'dubai-hills': [25.1100, 55.2600],
-    'meydan': [25.1600, 55.3000],
-    'damac-hills': [25.0250, 55.2350],
-    'jlt': [25.0700, 55.1450],
-    'al-furjan': [25.0400, 55.1500],
-    'discovery-gardens': [25.0350, 55.1300],
-
-    // Future 2026 Hotspots
+    'downtown-dubai': [25.1972, 55.2744],
     'dubai-south': [24.9450, 55.1200],
-    'creek-harbour': [25.1929, 55.3489],
-    'palm-jebel-ali': [25.0050, 54.9900],
-    'dubai-islands': [25.2900, 55.3300],
-    'expo-city': [24.9600, 55.1500],
+
+    // ABU DHABI
+    'yas-island': [24.4942, 54.6074],
+    'saadiyat-island': [24.5420, 54.4370],
+    'al-reem-island': [24.4960, 54.4050],
+
+    // NORTHERN EMIRATES
+    'al-marjan-island': [25.6667, 55.7500], // RAK
+    'aljada': [25.3130, 55.4590],           // Sharjah
+    'ajman-corniche': [25.4190, 55.4410],
+    'mistral-uaq': [25.5300, 55.5500],
+    'al-aqah': [25.5100, 56.3600],          // Fujairah
   };
 
-  // --- 2. EXPANDED HEATMAP DATASETS ---
+  // --- 2. HEATMAP DATASETS (NATIONAL) ---
   
-  // LIVE: Current Rental/Sales Activity
+  // LIVE: Transaction Activity
   const liveHeatmapPoints = [
-    [25.0805, 55.1403, 1.0], [25.0815, 55.1413, 0.9], // Marina (Hot)
-    [25.1972, 55.2744, 1.0], [25.1982, 55.2754, 1.0], // Downtown (Hot)
-    [25.0581, 55.2091, 0.9], [25.0600, 55.2150, 0.8], // JVC (Very Active)
-    [25.1837, 55.2666, 0.8], [25.1850, 55.2680, 0.8], // Business Bay
-    [25.1100, 55.2600, 0.7], // Dubai Hills (Steady)
-    [25.0700, 55.1450, 0.8], // JLT
-    [25.0350, 55.1300, 0.6], // Discovery Gardens
-    [25.0250, 55.2350, 0.6], // Damac Hills
+    // Dubai
+    [25.0805, 55.1403, 1.0], // Marina (Hot)
+    [25.0581, 55.2091, 0.9], // JVC
+    // Abu Dhabi
+    [24.4942, 54.6074, 0.8], // Yas Island
+    // RAK
+    [25.6667, 55.7500, 1.0], // Al Marjan (Casino hype)
+    // Sharjah
+    [25.3130, 55.4590, 0.7], // Aljada
   ];
 
-  // FUTURE: 2026 Growth Forecast
+  // FUTURE: 2030 Growth Forecast
   const forecastHeatmapPoints = [
-    [24.9450, 55.1200, 1.0], // Dubai South (Explosive - Airport)
-    [25.0050, 54.9900, 0.9], // Palm Jebel Ali (New Prime)
-    [25.1929, 55.3489, 0.9], // Creek Harbour (Peak Delivery)
-    [25.2900, 55.3300, 0.8], // Dubai Islands
-    [25.1600, 55.3000, 0.7], // Meydan (D3 Extension)
-    [25.0400, 55.1500, 0.7], // Al Furjan (Expo Spillover)
-    [24.9600, 55.1500, 0.8], // Expo City
+    [25.6667, 55.7500, 1.0], // RAK (Explosive)
+    [24.9450, 55.1200, 1.0], // Dubai South (Airport)
+    [24.5420, 54.4370, 0.9], // Saadiyat (Culture)
+    [25.0050, 54.9900, 0.9], // Palm Jebel Ali
   ];
 
-  // --- 3. SIDEBAR LISTS ---
-  const liveAreas = [
-    { id: 'jvc', name: "JVC", roi: "8.5%", vol: "High" },
-    { id: 'dubai-marina', name: "Dubai Marina", roi: "6.5%", vol: "Very High" },
-    { id: 'downtown-dubai', name: "Downtown Dubai", roi: "5.8%", vol: "High" },
-    { id: 'jlt', name: "JLT", roi: "7.2%", vol: "Med-High" },
-    { id: 'dubai-hills', name: "Dubai Hills", roi: "6.0%", vol: "Med" },
-    { id: 'discovery-gardens', name: "Discovery Gardens", roi: "9.0%", vol: "High (Budget)" },
-  ];
+  // --- 3. DYNAMIC SIDEBAR LIST ---
+  // Create a quick list of top areas from the imported data
+  const highlightedAreas = DUBAI_AREAS.filter(area => 
+    ['jvc', 'al-marjan-island', 'yas-island', 'dubai-south', 'ajman-corniche'].includes(area.id)
+  );
 
-  const trendingAreas2026 = [
-    { id: 'dubai-south', name: "Dubai South", score: "9.8/10", reason: "Airport Expansion ($35B)", type: "Appreciation" },
-    { id: 'palm-jebel-ali', name: "Palm Jebel Ali", score: "9.5/10", reason: "New Luxury Coastline", type: "Luxury" },
-    { id: 'creek-harbour', name: "Dubai Creek Hrb", score: "9.2/10", reason: "Next Downtown", type: "Growth" },
-    { id: 'meydan', name: "Meydan", score: "8.8/10", reason: "Metro Blue Line", type: "Connectivity" },
-    { id: 'al-furjan', name: "Al Furjan", score: "8.5/10", reason: "Expo City Growth", type: "Value" },
-  ];
-
-  const handleFocus = (coords) => {
-    if (coords) {
-      setMapCenter(coords);
-      setMapZoom(13);
+  const handleFocus = (id) => {
+    if (LOCATIONS[id]) {
+      setMapCenter(LOCATIONS[id]);
+      setMapZoom(12);
     }
   };
 
   return (
     <div className="max-w-7xl mx-auto px-4 md:px-8 pb-20 fade-in">
       <SEO 
-        title="Interactive ROI Market Map & 2026 Forecast | EstateIQ" 
-        description="Visualize Dubai's real estate hotspots. Switch between current transaction volume and 2026 future growth predictions."
+        title="UAE Real Estate Heatmap | EstateIQ" 
+        description="Visualize investment hotspots across Dubai, Abu Dhabi, RAK, and Sharjah."
       />
 
       {/* HEADER */}
@@ -155,26 +132,26 @@ const MarketMap = () => {  // <--- RENAMED COMPONENT
           <div>
             <h1 className="text-3xl md:text-5xl font-extrabold text-slate-900 flex items-center gap-3">
               <Activity className="text-blue-600" size={40} />
-              Market <span className="text-blue-600">Intelligence</span>
+              National <span className="text-blue-600">Intelligence</span>
             </h1>
             <p className="text-slate-500 mt-2">
-              Visualize transaction density. Switch modes to see <strong className="text-red-600">Future 2026 Predictions</strong>.
+              Tracking <strong className="text-slate-900">7 Emirates</strong>. Toggle modes to see 2030 Forecasts.
             </p>
           </div>
 
           {/* VIEW MODE TOGGLE */}
           <div className="bg-white border border-slate-200 p-1.5 rounded-xl flex shadow-sm">
             <button 
-              onClick={() => { setViewMode('live'); setActiveTab('areas'); setMapZoom(11); }}
+              onClick={() => { setViewMode('live'); setMapZoom(9); }}
               className={`px-4 py-2 rounded-lg text-sm font-bold flex items-center gap-2 transition-all ${viewMode === 'live' ? 'bg-blue-600 text-white shadow-md' : 'text-slate-500 hover:bg-slate-50'}`}
             >
               <Flame size={16} /> Live Volume
             </button>
             <button 
-              onClick={() => { setViewMode('future'); setActiveTab('trending'); setMapZoom(10); }}
+              onClick={() => { setViewMode('future'); setMapZoom(8); }}
               className={`px-4 py-2 rounded-lg text-sm font-bold flex items-center gap-2 transition-all ${viewMode === 'future' ? 'bg-indigo-600 text-white shadow-md' : 'text-slate-500 hover:bg-slate-50'}`}
             >
-              <Eye size={16} /> 2026 FutureScope
+              <Eye size={16} /> 2030 Forecast
             </button>
           </div>
         </div>
@@ -183,12 +160,10 @@ const MarketMap = () => {  // <--- RENAMED COMPONENT
           
           {/* === LEFT: THE MAP === */}
           <div className="lg:col-span-3 h-[600px] w-full rounded-3xl overflow-hidden border border-slate-200 shadow-xl relative z-0 bg-slate-100">
-            {/* SAFEGUARD: Only render map if we have browser window (avoids build errors) */}
             {typeof window !== 'undefined' && (
               <MapContainer center={mapCenter} zoom={mapZoom} scrollWheelZoom={false} className="h-full w-full">
-                {/* UPDATED TO LIGHT MAP THEME */}
                 <TileLayer
-                  attribution='&copy; <a href="https://carto.com/">CARTO</a>'
+                  attribution='&copy; CARTO'
                   url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
                 />
                 <MapController center={mapCenter} zoom={mapZoom} />
@@ -196,18 +171,15 @@ const MarketMap = () => {  // <--- RENAMED COMPONENT
                 <HeatmapLayer points={viewMode === 'live' ? liveHeatmapPoints : forecastHeatmapPoints} />
                 
                 {/* Markers for Future Areas */}
-                {viewMode === 'future' && trendingAreas2026.map(area => (
+                {viewMode === 'future' && forecastHeatmapPoints.map((point, idx) => (
                    <CircleMarker 
-                     key={area.id} 
-                     center={LOCATIONS[area.id]} 
+                     key={idx} 
+                     center={[point[0], point[1]]} 
                      radius={14} 
                      pathOptions={{ color: 'white', fillColor: '#4f46e5', fillOpacity: 0.9, weight: 2 }}
                    >
-                      <Popup className="font-bold">
-                        <div className="text-center">
-                          <div className="text-indigo-700 text-sm mb-1">{area.name}</div>
-                          <div className="text-xs text-slate-500">{area.reason}</div>
-                        </div>
+                      <Popup className="font-bold text-center">
+                        <div>High Growth Zone</div>
                       </Popup>
                    </CircleMarker>
                 ))}
@@ -237,7 +209,7 @@ const MarketMap = () => {  // <--- RENAMED COMPONENT
              <div className="bg-white border border-slate-200 p-4 rounded-xl mb-4 shadow-sm">
                 <h3 className="font-bold text-slate-900 flex items-center gap-2">
                   {viewMode === 'live' ? <TrendingUp size={18} className="text-blue-600"/> : <Clock size={18} className="text-indigo-600"/>}
-                  {viewMode === 'live' ? 'Market Movers' : '2026 Watchlist'}
+                  {viewMode === 'live' ? 'Market Movers' : '2030 Watchlist'}
                 </h3>
                 <p className="text-xs text-slate-500 mt-1">
                   {viewMode === 'live' ? 'Top performing areas right now.' : 'Areas predicted to spike in value.'}
@@ -247,46 +219,24 @@ const MarketMap = () => {  // <--- RENAMED COMPONENT
              {/* SCROLLABLE LIST */}
              <div className="flex-1 overflow-y-auto pr-2 space-y-3 custom-scrollbar">
                 
-                {/* MODE 1: LIVE AREAS */}
-                {viewMode === 'live' && liveAreas.map((area, index) => (
+                {highlightedAreas.map((area, index) => (
                   <div 
                     key={area.id} 
-                    onClick={() => handleFocus(LOCATIONS[area.id])}
+                    onClick={() => handleFocus(area.id)}
                     className="bg-white p-4 rounded-xl border border-slate-200 shadow-sm cursor-pointer hover:border-blue-500 hover:shadow-md transition-all group"
                   >
                     <div className="flex justify-between items-start mb-1">
                        <h3 className="font-bold text-slate-900 group-hover:text-blue-600 transition-colors">{area.name}</h3>
-                       <span className="text-[10px] font-bold bg-green-50 text-green-700 px-2 py-0.5 rounded border border-green-100">Live</span>
+                       {viewMode === 'live' && (
+                         <span className="text-[10px] font-bold bg-green-50 text-green-700 px-2 py-0.5 rounded border border-green-100">Live</span>
+                       )}
                     </div>
                     <div className="flex items-center gap-3 text-xs mt-2">
                        <span className="font-bold text-slate-700">{area.roi} Yield</span>
                        <span className="text-slate-300">|</span>
-                       <span className="text-slate-500">Vol: {area.vol}</span>
+                       <span className="text-slate-500">Score: {area.overallScore}</span>
                     </div>
                   </div>
-                ))}
-
-                {/* MODE 2: FUTURE 2026 FORECAST */}
-                {viewMode === 'future' && trendingAreas2026.map((area, index) => (
-                   <div 
-                     key={area.id} 
-                     onClick={() => handleFocus(LOCATIONS[area.id])}
-                     className="bg-indigo-50 p-4 rounded-xl border border-indigo-100 shadow-sm cursor-pointer hover:bg-indigo-100 hover:border-indigo-300 transition-all group"
-                   >
-                     <div className="flex justify-between items-start mb-1">
-                        <h3 className="font-bold text-slate-900 group-hover:text-indigo-700 transition-colors">{area.name}</h3>
-                        <span className="text-[10px] font-bold bg-indigo-600 text-white px-2 py-0.5 rounded">
-                          {area.type}
-                        </span>
-                     </div>
-                     <div className="text-xs text-indigo-800 font-medium mb-2 flex items-center gap-1">
-                       <Zap size={12} fill="currentColor" /> {area.reason}
-                     </div>
-                     <div className="w-full bg-indigo-200 h-1.5 rounded-full overflow-hidden">
-                        <div className="bg-indigo-600 h-full rounded-full" style={{ width: '92%' }}></div>
-                     </div>
-                     <div className="text-[10px] text-indigo-500 text-right mt-1 font-bold">Growth Probability: High</div>
-                   </div>
                 ))}
 
              </div>
@@ -298,8 +248,8 @@ const MarketMap = () => {  // <--- RENAMED COMPONENT
                </div>
                <p className="text-xs text-slate-300 leading-relaxed">
                  {viewMode === 'live' 
-                   ? "JVC and Discovery Gardens are seeing record rental transaction volumes in Q4 due to affordability migration." 
-                   : "Dubai South & Al Furjan are the clear winners for 2026 capital appreciation due to the $35B airport expansion."}
+                   ? "Ras Al Khaimah (Al Marjan) is seeing highest volume growth (+40%) due to casino development." 
+                   : "Dubai South & RAK are the clear winners for 2030 capital appreciation."}
                </p>
              </div>
 
@@ -311,4 +261,4 @@ const MarketMap = () => {  // <--- RENAMED COMPONENT
   );
 };
 
-export default MarketMap; // <--- CORRECT EXPORT
+export default MarketMap;

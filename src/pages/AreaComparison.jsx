@@ -4,7 +4,9 @@ import {
   BarChart3, Zap, Scale, Trophy, AlertTriangle, ArrowUpRight, Swords, Building2, MapPin 
 } from 'lucide-react';
 import SEO from '../components/SEO';
-import { DUBAI_AREAS } from '../data/areaData';
+
+// --- UPDATED IMPORT: Point to the Master Emirates File ---
+import { DUBAI_AREAS } from '../data/emiratesData'; 
 import { BUILDERS } from '../data/buildersData';
 import WhatsAppButton from '../components/WhatsAppButton'; 
 
@@ -12,9 +14,9 @@ const AreaComparison = () => {
   // --- STATE MANAGEMENT ---
   const [mode, setMode] = useState('areas'); // 'areas' or 'builders'
   
-  // Area State
-  const [area1Id, setArea1Id] = useState('jvc'); // Default to IDs that definitely exist
-  const [area2Id, setArea2Id] = useState('dubai-marina');
+  // Area State (Defaults to Dubai & Abu Dhabi for a cool initial comparison)
+  const [area1Id, setArea1Id] = useState('jvc'); 
+  const [area2Id, setArea2Id] = useState('yas-island');
   
   // Builder State
   const [builder1Id, setBuilder1Id] = useState('emaar');
@@ -43,6 +45,7 @@ const AreaComparison = () => {
       if (item.category === 'High Yield') growthRate = 0.25;
       if (item.category === 'Appreciation') growthRate = 0.45;
       if (item.category === 'Luxury') growthRate = 0.30;
+      if (item.category === 'Gaming Resort') growthRate = 0.60; // Bonus for RAK Casino
       // Add score bonus
       growthRate += ((item.overallScore || 5) - 7) * 0.02;
     } else {
@@ -71,8 +74,8 @@ const AreaComparison = () => {
   return (
     <div className="max-w-7xl mx-auto px-4 md:px-8 pb-20 fade-in bg-slate-50 min-h-screen pt-8">
       <SEO 
-        title={`Compare Dubai ${mode === 'areas' ? 'Areas' : 'Developers'} | EstateIQ`} 
-        description="Head-to-head comparison tool. Analyze ROI, Trust Scores, and Future Growth Potential."
+        title={`Compare UAE ${mode === 'areas' ? 'Areas' : 'Developers'} | EstateIQ`} 
+        description="Head-to-head comparison tool. Analyze ROI, Trust Scores, and Future Growth Potential across Dubai, Abu Dhabi, and RAK."
       />
 
       {/* HEADER */}
@@ -81,7 +84,7 @@ const AreaComparison = () => {
           Investment <span className="text-blue-600">Performance Benchmarking</span>
         </h1>
         <p className="text-slate-500 max-w-2xl mx-auto text-lg">
-           A data-driven assessment of Dubai’s top assets. Compare <strong className="text-slate-900">future growth potential</strong> and <strong className="text-slate-900">rental yields</strong> to optimize your portfolio.
+           A data-driven assessment of UAE's top assets. Compare <strong className="text-slate-900">future growth potential</strong> and <strong className="text-slate-900">rental yields</strong> to optimize your portfolio.
         </p>
         
         {/* --- MODE SWITCHER --- */}
@@ -152,7 +155,7 @@ const AreaComparison = () => {
              {/* AREA METRICS */}
              {mode === 'areas' && (
                <>
-                 <StatRow label="Avg. Price (1-Bed)" val1={item1.avgPrice || "1.1M"} val2={item2.avgPrice || "1.4M"} />
+                 <StatRow label="Avg. Price" val1={item1.avgPrice || "N/A"} val2={item2.avgPrice || "N/A"} />
                  <StatRow label="Rental Yield (ROI)" val1={item1.roi} val2={item2.roi} highlight />
                  <StatRow label="Overall Score" val1={`${item1.overallScore}/10`} val2={`${item2.overallScore}/10`} isScore />
                </>
