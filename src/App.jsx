@@ -9,21 +9,16 @@ import AIChatWidget from './components/AIChatWidget';
 
 // --- PAGES ---
 import HomePage from './pages/HomePage';
-import ExploreAreas from './pages/ExploreAreas';      // The "Areas" list
-import AreaPage from './pages/AreaPage';              // Single Area Details
-import BuildersPage from './pages/BuildersPage';      // The "Developers" list
-import BuilderDetailsPage from './pages/BuilderDetailsPage'; // Single Developer Details
-import AreaComparison from './pages/AreaComparison';
-import MarketMap from './pages/MarketMap';            // <--- NEW NAME (Fixed)
-import MarketPage from './pages/MarketPage';
-import PropertyPage from './pages/PropertyPage';
-import AboutUs from './pages/AboutUs';
-import Blog from './pages/Blog';
+import ExploreAreas from './pages/ExploreAreas';      // 1. Area List
+import AreaPage from './pages/AreaPage';              // 1. Area Details
+import BuildersPage from './pages/BuildersPage';      // 2. Builder List
+import BuilderDetailsPage from './pages/BuilderDetailsPage'; // 2. Builder Details
+import AreaComparison from './pages/AreaComparison';  // 3. Comparison Tool
+import MarketMap from './pages/MarketMap';            // 4. Market View (Heatmap)
 
 function App() {
   return (
     <Router>
-      {/* 1. Scroll to top on route change */}
       <ScrollHandler /> 
 
       <div className="flex flex-col min-h-screen bg-slate-50">
@@ -31,34 +26,34 @@ function App() {
         
         <main className="flex-grow">
           <Routes>
-            {/* Core Pages */}
+            {/* Home */}
             <Route path="/" element={<HomePage />} />
             
-            {/* Areas */}
+            {/* Tool 1: Area Intelligence */}
             <Route path="/areas" element={<ExploreAreas />} />
             <Route path="/area/:id" element={<AreaPage />} />
             
-            {/* Developers (Builders) */}
+            {/* Tool 2: Developer Intelligence */}
             <Route path="/builders" element={<BuildersPage />} />
-            <Route path="/builder/:id" element={<BuilderDetailsPage />} />
             
-            {/* Tools */}
+            {/* --- CRITICAL FIX: DUAL ROUTING & PARAMETER NAME --- */}
+            {/* We use :builderId to match the useParams() in your BuilderDetailsPage */}
+            {/* 1. Singular Route (Standard) */}
+            <Route path="/builder/:builderId" element={<BuilderDetailsPage />} />
+            
+            {/* 2. Plural Route (Safety Fallback for typos or old links) */}
+            <Route path="/builders/:builderId" element={<BuilderDetailsPage />} />
+            {/* --------------------------------------------------- */}
+            
+            {/* Tool 3: Comparison Engine */}
             <Route path="/compare" element={<AreaComparison />} />
-            <Route path="/heatmap" element={<MarketMap />} /> {/* <--- UPDATED ROUTE */}
             
-            {/* Market & Properties */}
-            <Route path="/market" element={<MarketPage />} />
-            <Route path="/property/:id" element={<PropertyPage />} />
-            
-            {/* Company */}
-            <Route path="/about" element={<AboutUs />} />
-            <Route path="/blog" element={<Blog />} />
+            {/* Tool 4: Market Heatmap */}
+            <Route path="/heatmap" element={<MarketMap />} />
           </Routes>
         </main>
 
         <Footer />
-        
-        {/* AI Widget stays on top of everything */}
         <AIChatWidget />
       </div>
     </Router>

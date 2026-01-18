@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { 
-  Building2, Award, TrendingUp, Wallet, CheckCircle, 
+  Building2, TrendingUp, Wallet, CheckCircle, 
   Crown, ShieldCheck, Zap, ArrowRight, Heart, Palette, Gem 
 } from 'lucide-react';
 import SEO from '../components/SEO';
@@ -10,7 +10,7 @@ import { BUILDERS } from '../data/buildersData';
 const BuildersPage = () => {
   const [quizResult, setQuizResult] = useState(null);
   
-  // --- 1. EXPANDED QUIZ LOGIC (15 Builders) ---
+  // --- 1. QUIZ LOGIC (Matches User Goal to Developer) ---
   const matchBuilder = (goal) => {
     switch(goal) {
       case 'cheap': 
@@ -61,7 +61,7 @@ const BuildersPage = () => {
         </p>
       </div>
 
-      {/* --- FEATURE: THE ADVANCED BUILDER MATCHER --- */}
+      {/* --- FEATURE: THE BUILDER MATCHER --- */}
       <div className="bg-slate-900 text-white rounded-3xl p-8 md:p-12 mb-20 shadow-2xl relative overflow-hidden">
         <div className="relative z-10 text-center">
           <h2 className="text-3xl font-bold mb-8 flex items-center justify-center gap-3">
@@ -100,6 +100,7 @@ const BuildersPage = () => {
                  </div>
               </div>
 
+              {/* FIX: Use /builder/ (singular) to match App.jsx routing */}
               <Link to={`/builder/${quizResult.id}`} className="inline-flex items-center gap-2 px-8 py-3 bg-slate-900 text-white font-bold rounded-xl hover:bg-slate-800 transition w-full justify-center">
                 Read Full Analysis <ArrowRight size={18} />
               </Link>
@@ -113,6 +114,7 @@ const BuildersPage = () => {
       {/* --- BUILDER GRID (15 Builders) --- */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {BUILDERS.map((builder) => (
+          // FIX: Use /builder/ (singular) here as well
           <Link to={`/builder/${builder.id}`} key={builder.id} className="block hover:no-underline group h-full">
             <div className="bg-white border border-slate-200 rounded-2xl overflow-hidden hover:shadow-2xl transition-all duration-300 h-full flex flex-col transform hover:-translate-y-1">
               
@@ -174,7 +176,7 @@ const BuildersPage = () => {
         ))}
       </div>
 
-      {/* --- 2. UPDATED ANALYST VERDICTS (Covering New Builders) --- */}
+      {/* --- 3. ANALYST VERDICTS (Bottom Section) --- */}
       <div className="mt-24 max-w-5xl mx-auto">
         <h2 className="text-3xl font-bold text-center mb-10 text-slate-900">Analyst Verdicts: 2026 Edition</h2>
         
