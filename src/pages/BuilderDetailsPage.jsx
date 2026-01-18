@@ -18,10 +18,11 @@ const BuilderDetailsPage = () => {
     window.scrollTo(0, 0);
   }, [builderId]);
 
+  // 2. Safety Check: If builder not found, show error instead of crashing
   if (!builder) {
     return (
       <div className="flex flex-col items-center justify-center min-h-[60vh] text-center px-4">
-        <h2 className="text-2xl font-bold text-slate-800 mb-4">Builder Not Found</h2>
+        <h2 className="text-2xl font-bold text-slate-800 mb-4">Developer Not Found</h2>
         <p className="text-slate-500 mb-6">We couldn't find a developer with the ID "{builderId}".</p>
         <Link to="/builders" className="px-6 py-3 bg-blue-600 text-white rounded-xl font-bold hover:bg-blue-700 transition">
           View All Developers
@@ -30,7 +31,8 @@ const BuilderDetailsPage = () => {
     );
   }
 
-  // 2. Safe Data Access (Prevents Crashes)
+  // 3. Safe Data Access (Prevent "White Screen" crashes)
+  // We use || {} and || [] to provide empty fallbacks if data is missing
   const scores = builder.scores || {};
   const perf = builder.marketPerformance || {};
   const trackRecord = builder.deliveryTrackRecord || {};
@@ -39,7 +41,7 @@ const BuilderDetailsPage = () => {
   const notIdealFor = builder.notIdealFor || [];
 
   return (
-    <div className="max-w-6xl mx-auto px-4 md:px-8 pb-20 fade-in">
+    <div className="max-w-6xl mx-auto px-4 md:px-8 pb-20 fade-in bg-slate-50 min-h-screen pt-8">
       <SEO 
         title={`${builder.name} - Developer Review 2026`} 
         description={`${builder.name} Review. Trust Score: ${scores.trust || 'N/A'}/10.`}
@@ -181,7 +183,7 @@ const BuilderDetailsPage = () => {
                     <span key={item} className="px-3 py-1 bg-white border border-slate-200 rounded-lg text-xs font-bold text-slate-700">
                       {item}
                     </span>
-                  )) : <span className="text-xs text-slate-400">Data updating...</span>}
+                  )) : <span className="text-xs text-slate-400">N/A</span>}
                </div>
              </div>
 
@@ -194,7 +196,7 @@ const BuilderDetailsPage = () => {
                     <span key={item} className="px-3 py-1 bg-white border border-slate-200 rounded-lg text-xs font-bold text-slate-700">
                       {item}
                     </span>
-                  )) : <span className="text-xs text-slate-400">None</span>}
+                  )) : <span className="text-xs text-slate-400">N/A</span>}
                </div>
              </div>
            </div>
