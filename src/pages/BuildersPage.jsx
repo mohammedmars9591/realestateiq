@@ -100,7 +100,7 @@ const BuildersPage = () => {
                  </div>
               </div>
 
-              <Link to={`/builders/${quizResult.id}`} className="inline-flex items-center gap-2 px-8 py-3 bg-slate-900 text-white font-bold rounded-xl hover:bg-slate-800 transition w-full justify-center">
+              <Link to={`/builder/${quizResult.id}`} className="inline-flex items-center gap-2 px-8 py-3 bg-slate-900 text-white font-bold rounded-xl hover:bg-slate-800 transition w-full justify-center">
                 Read Full Analysis <ArrowRight size={18} />
               </Link>
             </div>
@@ -113,7 +113,7 @@ const BuildersPage = () => {
       {/* --- BUILDER GRID (15 Builders) --- */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {BUILDERS.map((builder) => (
-          <Link to={`/builders/${builder.id}`} key={builder.id} className="block hover:no-underline group h-full">
+          <Link to={`/builder/${builder.id}`} key={builder.id} className="block hover:no-underline group h-full">
             <div className="bg-white border border-slate-200 rounded-2xl overflow-hidden hover:shadow-2xl transition-all duration-300 h-full flex flex-col transform hover:-translate-y-1">
               
               {/* Colored Header */}
