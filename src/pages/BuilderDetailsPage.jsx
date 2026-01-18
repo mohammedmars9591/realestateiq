@@ -1,28 +1,48 @@
 import React, { useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { 
-  ArrowLeft, Building2, CheckCircle, TrendingUp, AlertTriangle, 
-  Crown, ShieldCheck, Clock, Hammer, Wallet, BarChart 
+  ArrowLeft, CheckCircle, TrendingUp, AlertTriangle, 
+  Crown, Clock, Wallet, BarChart 
 } from 'lucide-react';
 import { BUILDERS } from '../data/buildersData';
 import SEO from '../components/SEO';
-import WhatsAppButton from '../components/WhatsAppButton'; // <--- IMPORTED
+import WhatsAppButton from '../components/WhatsAppButton';
 
 const BuilderDetailsPage = () => {
   const { builderId } = useParams();
+  
+  // 1. Find the builder safely
   const builder = BUILDERS.find(b => b.id === builderId);
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [builderId]);
 
-  if (!builder) return <div className="text-center p-20">Builder Not Found</div>;
+  if (!builder) {
+    return (
+      <div className="flex flex-col items-center justify-center min-h-[60vh] text-center px-4">
+        <h2 className="text-2xl font-bold text-slate-800 mb-4">Builder Not Found</h2>
+        <p className="text-slate-500 mb-6">We couldn't find a developer with the ID "{builderId}".</p>
+        <Link to="/builders" className="px-6 py-3 bg-blue-600 text-white rounded-xl font-bold hover:bg-blue-700 transition">
+          View All Developers
+        </Link>
+      </div>
+    );
+  }
+
+  // 2. Safe Data Access (Prevents Crashes)
+  const scores = builder.scores || {};
+  const perf = builder.marketPerformance || {};
+  const trackRecord = builder.deliveryTrackRecord || {};
+  const plans = builder.paymentFlexibility?.commonPlans || [];
+  const bestFor = builder.bestFor || [];
+  const notIdealFor = builder.notIdealFor || [];
 
   return (
     <div className="max-w-6xl mx-auto px-4 md:px-8 pb-20 fade-in">
       <SEO 
         title={`${builder.name} - Developer Review 2026`} 
-        description={`${builder.name} Review. Trust Score: ${builder.overallDeveloperScore}/10. Delivery Track Record: ${builder.deliveryTrackRecord.onTime} On Time.`}
+        description={`${builder.name} Review. Trust Score: ${scores.trust || 'N/A'}/10.`}
       />
 
       {/* Breadcrumb */}
@@ -35,10 +55,10 @@ const BuilderDetailsPage = () => {
          <div className="relative z-10">
             <div className="flex flex-wrap items-center gap-3 mb-4">
                <span className="bg-white/20 backdrop-blur-md px-4 py-1 rounded-full text-xs font-bold uppercase tracking-widest border border-white/20">
-                 {builder.tier}
+                 {builder.tier || "Developer"}
                </span>
                <div className="flex items-center gap-1 bg-yellow-400 text-black px-3 py-1 rounded-full text-xs font-bold">
-                 <Crown size={14} /> Overall Score: {builder.overallDeveloperScore}/10
+                 <Crown size={14} /> Overall Score: {builder.overallDeveloperScore || "N/A"}/10
                </div>
             </div>
             <h1 className="text-4xl md:text-6xl font-extrabold mb-4">{builder.name}</h1>
@@ -59,11 +79,11 @@ const BuilderDetailsPage = () => {
                <BarChart className="text-blue-600" /> Performance Scores
              </h3>
              <div className="space-y-5">
-               <ScoreBar label="Market Trust & Reputation" value={builder.scores.trust} color="bg-blue-600" />
-               <ScoreBar label="Delivery Reliability (On Time)" value={builder.scores.deliveryReliability} color="bg-green-500" />
-               <ScoreBar label="Construction Quality" value={builder.scores.constructionQuality} color="bg-indigo-500" />
-               <ScoreBar label="Resale Value Retention" value={builder.scores.resaleValue} color="bg-amber-500" />
-               <ScoreBar label="Rental Demand" value={builder.scores.rentalDemand} color="bg-purple-500" />
+               <ScoreBar label="Market Trust & Reputation" value={scores.trust} color="bg-blue-600" />
+               <ScoreBar label="Delivery Reliability (On Time)" value={scores.deliveryReliability} color="bg-green-500" />
+               <ScoreBar label="Construction Quality" value={scores.constructionQuality} color="bg-indigo-500" />
+               <ScoreBar label="Resale Value Retention" value={scores.resaleValue} color="bg-amber-500" />
+               <ScoreBar label="Rental Demand" value={scores.rentalDemand} color="bg-purple-500" />
              </div>
            </div>
 
@@ -74,7 +94,7 @@ const BuilderDetailsPage = () => {
                   <TrendingUp size={16}/> 5-Year Growth
                 </div>
                 <div className="text-4xl font-extrabold text-green-600 mb-1">
-                  {builder.marketPerformance.avgCapitalAppreciation5Y}
+                  {perf.avgCapitalAppreciation5Y || "N/A"}
                 </div>
                 <div className="text-xs text-slate-400">Avg. Capital Appreciation</div>
              </div>
@@ -84,7 +104,7 @@ const BuilderDetailsPage = () => {
                   <Wallet size={16}/> Avg Rental Yield
                 </div>
                 <div className="text-4xl font-extrabold text-blue-600 mb-1">
-                  {builder.marketPerformance.avgRentalYield}
+                  {perf.avgRentalYield || "N/A"}
                 </div>
                 <div className="text-xs text-slate-400">ROI for Investors</div>
              </div>
@@ -97,15 +117,15 @@ const BuilderDetailsPage = () => {
              </h3>
              <div className="flex gap-4 mb-6">
                 <div className="flex-1 bg-green-50 p-4 rounded-xl text-center border border-green-100">
-                   <div className="text-2xl font-bold text-green-700">{builder.deliveryTrackRecord.onTime}</div>
+                   <div className="text-2xl font-bold text-green-700">{trackRecord.onTime || "-"}</div>
                    <div className="text-xs font-bold text-green-600 uppercase">On Time</div>
                 </div>
                 <div className="flex-1 bg-yellow-50 p-4 rounded-xl text-center border border-yellow-100">
-                   <div className="text-2xl font-bold text-yellow-700">{builder.deliveryTrackRecord.delayed}</div>
+                   <div className="text-2xl font-bold text-yellow-700">{trackRecord.delayed || "-"}</div>
                    <div className="text-xs font-bold text-yellow-600 uppercase">Delayed</div>
                 </div>
                 <div className="flex-1 bg-red-50 p-4 rounded-xl text-center border border-red-100">
-                   <div className="text-2xl font-bold text-red-700">{builder.deliveryTrackRecord.cancelled}</div>
+                   <div className="text-2xl font-bold text-red-700">{trackRecord.cancelled || "0"}</div>
                    <div className="text-xs font-bold text-red-600 uppercase">Cancelled</div>
                 </div>
              </div>
@@ -124,19 +144,21 @@ const BuilderDetailsPage = () => {
              <div className="space-y-4 text-sm">
                 <div className="flex justify-between py-2 border-b border-slate-100">
                    <span className="text-slate-500">Established</span>
-                   <span className="font-bold">{builder.established}</span>
+                   <span className="font-bold">{builder.established || "N/A"}</span>
                 </div>
                 <div className="flex justify-between py-2 border-b border-slate-100">
                    <span className="text-slate-500">Origin</span>
-                   <span className="font-bold">{builder.origin}</span>
+                   <span className="font-bold">{builder.origin || "UAE"}</span>
                 </div>
                 <div className="flex justify-between py-2 border-b border-slate-100">
                    <span className="text-slate-500">Total Projects</span>
-                   <span className="font-bold">{builder.portfolio.totalProjects}</span>
+                   <span className="font-bold">{builder.portfolio?.totalProjects || "N/A"}</span>
                 </div>
                 <div className="flex justify-between py-2 border-b border-slate-100">
                    <span className="text-slate-500">Payment Plans</span>
-                   <span className="font-bold text-green-600">{builder.paymentFlexibility.commonPlans.join(", ")}</span>
+                   <span className="font-bold text-green-600 text-right w-1/2">
+                     {plans.length > 0 ? plans.join(", ") : "Standard"}
+                   </span>
                 </div>
              </div>
              
@@ -155,11 +177,11 @@ const BuilderDetailsPage = () => {
                   <CheckCircle size={14}/> Best For
                </div>
                <div className="flex flex-wrap gap-2">
-                  {builder.bestFor.map(item => (
+                  {bestFor.length > 0 ? bestFor.map(item => (
                     <span key={item} className="px-3 py-1 bg-white border border-slate-200 rounded-lg text-xs font-bold text-slate-700">
                       {item}
                     </span>
-                  ))}
+                  )) : <span className="text-xs text-slate-400">Data updating...</span>}
                </div>
              </div>
 
@@ -168,11 +190,11 @@ const BuilderDetailsPage = () => {
                   <AlertTriangle size={14}/> Not Ideal For
                </div>
                <div className="flex flex-wrap gap-2">
-                  {builder.notIdealFor.map(item => (
+                  {notIdealFor.length > 0 ? notIdealFor.map(item => (
                     <span key={item} className="px-3 py-1 bg-white border border-slate-200 rounded-lg text-xs font-bold text-slate-700">
                       {item}
                     </span>
-                  ))}
+                  )) : <span className="text-xs text-slate-400">None</span>}
                </div>
              </div>
            </div>
@@ -180,7 +202,7 @@ const BuilderDetailsPage = () => {
            {/* USP BOX */}
            <div className="bg-slate-900 text-white p-6 rounded-2xl">
              <div className="text-xs font-bold text-yellow-400 uppercase mb-2">Signature Quality</div>
-             <p className="font-medium leading-relaxed">"{builder.usp}"</p>
+             <p className="font-medium leading-relaxed">"{builder.usp || "Premium Quality Development"}"</p>
            </div>
 
         </div>
@@ -195,10 +217,10 @@ const ScoreBar = ({ label, value, color }) => (
   <div>
     <div className="flex justify-between text-sm font-bold text-slate-700 mb-1">
       <span>{label}</span>
-      <span>{value}/10</span>
+      <span>{value || 0}/10</span>
     </div>
     <div className="w-full bg-slate-100 h-2.5 rounded-full overflow-hidden">
-      <div className={`h-full rounded-full ${color}`} style={{ width: `${value * 10}%` }}></div>
+      <div className={`h-full rounded-full ${color}`} style={{ width: `${(value || 0) * 10}%` }}></div>
     </div>
   </div>
 );
