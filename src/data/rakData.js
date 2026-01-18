@@ -246,4 +246,5 @@ export const RAK_AREAS = [
       hospital: { name: "Ibrahim Bin Hamad Hospital", km: "2 km", mins: "5 mins" }
     }
   }
+  
 ];

@@ -1,7 +1,3 @@
-// ==========================================================
-// SHARJAH AREA DATA – SAME STRUCTURE AS DUBAI AREAS
-// ==========================================================
-
 export const SHARJAH_AREAS = [
   {
     id: "al-majaz",
@@ -14,7 +10,7 @@ export const SHARJAH_AREAS = [
     scores: { cashFlow: 8.4, appreciation: 7.2, liquidity: 8.0, risk: 6.5, lifestyle: 8.5 },
     unitEconomics: { studio: { roi: "7.5%" }, oneBed: { roi: "6.9%" }, twoBed: { roi: "5.8%" } },
     overallScore: 8.1,
-    description: "Sharjah’s most popular waterfront family district.",
+    description: "Sharjah most popular waterfront family district.",
     connectivity: {
       airport: { name: "Sharjah Intl Airport", km: "12 km", mins: "15 mins" },
       school: { name: "Al Khan School", km: "2 km", mins: "6 mins" },
