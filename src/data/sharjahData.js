@@ -1,4 +1,4 @@
-export const SHARJAH_AREAS = [
+export const SHARJAH_DATA= [
   {
     id: "al-majaz",
     name: "Al Majaz",

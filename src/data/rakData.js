@@ -1,8 +1,5 @@
-// ==========================================================
-// RAS AL KHAIMAH AREA DATA – SAME STRUCTURE AS DUBAI / SHARJAH
-// ==========================================================
 
-export const RAK_AREAS = [
+export const RAK_DATA = [
   {
     id: "al-marjan-island",
     name: "Al Marjan Island",
@@ -246,5 +243,5 @@ export const RAK_AREAS = [
       hospital: { name: "Ibrahim Bin Hamad Hospital", km: "2 km", mins: "5 mins" }
     }
   }
-  
+
 ];
