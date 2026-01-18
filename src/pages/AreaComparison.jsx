@@ -5,7 +5,7 @@ import {
 } from 'lucide-react';
 import SEO from '../components/SEO';
 
-// --- UPDATED IMPORT: Point to the Master Emirates File ---
+// --- DATA IMPORTS ---
 import { DUBAI_AREAS } from '../data/emiratesData'; 
 import { BUILDERS } from '../data/buildersData';
 import WhatsAppButton from '../components/WhatsAppButton'; 
