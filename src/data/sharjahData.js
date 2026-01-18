@@ -143,7 +143,7 @@ export const SHARJAH_DATA= [
     scores: { cashFlow: 8.7, appreciation: 6.5, liquidity: 7.5, risk: 6.8, lifestyle: 6.8 },
     unitEconomics: { studio: { roi: "7.8%" }, oneBed: { roi: "7.2%" }, twoBed: { roi: "6.0%" } },
     overallScore: 7.9,
-    description: "Affordable central Sharjah with stable occupancy.",
+    description: "Sharjah’s Affordable central Sharjah with stable occupancy.",
     connectivity: {
       airport: { name: "Sharjah Intl Airport", km: "13 km", mins: "18 mins" },
       school: { name: "Al Amaal English School", km: "1 km", mins: "3 mins" },
@@ -165,7 +165,7 @@ export const SHARJAH_DATA= [
     scores: { cashFlow: 9.4, appreciation: 6.2, liquidity: 8.0, risk: 7.2, lifestyle: 6.2 },
     unitEconomics: { studio: { roi: "9.0%" }, oneBed: { roi: "8.3%" }, twoBed: { roi: "6.8%" } },
     overallScore: 8.2,
-    description: "Highest cash-flow district for budget investors.",
+    description: "Sharjah’s Highest cash-flow district for budget investors.",
     connectivity: {
       airport: { name: "Sharjah Intl Airport", km: "14 km", mins: "20 mins" },
       school: { name: "Al Basaer School", km: "1 km", mins: "4 mins" },
