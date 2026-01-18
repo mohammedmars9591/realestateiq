@@ -1,38 +1,271 @@
-export const SHARJAH_DATA = [
+// ==========================================================
+// SHARJAH AREA DATA – SAME STRUCTURE AS DUBAI AREAS
+// ==========================================================
+
+export const SHARJAH_AREAS = [
   {
-    id: "aljada",
-    name: "Aljada (Sharjah)",
-    category: "Modern Living",
-    roi: "6.0%",
-    avgPrice: "AED 850k",
-    imageColor: "bg-orange-500",
-    amenities: ["Madar Complex", "University City", "Tech Hub"],
-    scores: { cashFlow: 6.5, appreciation: 7.5, liquidity: 7.0, risk: 4.5, lifestyle: 8.2 },
-    overallScore: 8.0,
-    description: "Sharjah's new downtown. A massive master community targeting students and professionals.",
-    connectivity: { 
-        airport: { name: "SHJ Airport", km: "5 km", mins: "10 mins" }, 
-        mall: { name: "City Centre Zahia", km: "2 km", mins: "5 mins" },
-        school: { name: "AUS University", km: "1 km", mins: "3 mins" },
-        hospital: { name: "University Hospital", km: "2 km", mins: "5 mins" }
+    id: "al-majaz",
+    name: "Al Majaz",
+    category: "Family / Waterfront",
+    roi: "6.8%",
+    avgPrice: "AED 720k",
+    imageColor: "bg-teal-600",
+    amenities: ["Al Majaz Waterfront", "Parks", "Corniche"],
+    scores: { cashFlow: 8.4, appreciation: 7.2, liquidity: 8.0, risk: 6.5, lifestyle: 8.5 },
+    unitEconomics: { studio: { roi: "7.5%" }, oneBed: { roi: "6.9%" }, twoBed: { roi: "5.8%" } },
+    overallScore: 8.1,
+    description: "Sharjah’s most popular waterfront family district.",
+    connectivity: {
+      airport: { name: "Sharjah Intl Airport", km: "12 km", mins: "15 mins" },
+      school: { name: "Al Khan School", km: "2 km", mins: "6 mins" },
+      tourist: { name: "Al Noor Island", km: "1.5 km", mins: "4 mins" },
+      metro: { name: "Union Metro (Dubai)", km: "18 km", mins: "25 mins" },
+      mall: { name: "City Centre Sharjah", km: "2 km", mins: "6 mins" },
+      business: { name: "Al Qasba", km: "1 km", mins: "3 mins" },
+      hospital: { name: "Zulekha Hospital", km: "3 km", mins: "7 mins" }
     }
   },
   {
-    id: "maryam-island",
-    name: "Maryam Island",
-    category: "Waterfront",
-    roi: "6.5%",
-    avgPrice: "AED 950k",
-    imageColor: "bg-sky-500",
-    amenities: ["Beach Access", "Promenade", "Retail"],
-    scores: { cashFlow: 7.0, appreciation: 6.8, liquidity: 7.2, risk: 5.0, lifestyle: 8.5 },
-    overallScore: 7.8,
-    description: "Sharjah’s first beachfront development offering luxury living at affordable prices.",
-    connectivity: { 
-        airport: { name: "DXB Airport", km: "15 km", mins: "20 mins" }, 
-        mall: { name: "Sahara Centre", km: "5 km", mins: "10 mins" },
-        tourist: { name: "Al Mamzar Beach", km: "3 km", mins: "5 mins" },
-        hospital: { name: "Oriana Hospital", km: "4 km", mins: "8 mins" }
+    id: "al-taawun",
+    name: "Al Taawun",
+    category: "High Yield",
+    roi: "7.6%",
+    avgPrice: "AED 680k",
+    imageColor: "bg-emerald-700",
+    amenities: ["City Centre Al Taawun", "Waterfront", "Gyms"],
+    scores: { cashFlow: 9.0, appreciation: 7.0, liquidity: 8.6, risk: 6.0, lifestyle: 7.8 },
+    unitEconomics: { studio: { roi: "8.2%" }, oneBed: { roi: "7.8%" }, twoBed: { roi: "6.2%" } },
+    overallScore: 8.5,
+    description: "Investor favorite near Dubai border with strong rental demand.",
+    connectivity: {
+      airport: { name: "Sharjah Intl Airport", km: "14 km", mins: "18 mins" },
+      school: { name: "Our Own English High School", km: "3 km", mins: "7 mins" },
+      tourist: { name: "Al Qasba", km: "1 km", mins: "3 mins" },
+      metro: { name: "Stadium Metro", km: "16 km", mins: "22 mins" },
+      mall: { name: "City Centre Al Taawun", km: "0.8 km", mins: "2 mins" },
+      business: { name: "Al Nahda (Dubai)", km: "4 km", mins: "6 mins" },
+      hospital: { name: "NMC Royal Hospital", km: "2 km", mins: "5 mins" }
+    }
+  },
+  {
+    id: "al-nahda-shj",
+    name: "Al Nahda (Sharjah)",
+    category: "Dubai Border / Yield",
+    roi: "7.9%",
+    avgPrice: "AED 650k",
+    imageColor: "bg-lime-600",
+    amenities: ["Sahara Centre", "Parks", "Supermarkets"],
+    scores: { cashFlow: 9.2, appreciation: 6.8, liquidity: 8.8, risk: 6.2, lifestyle: 7.2 },
+    unitEconomics: { studio: { roi: "8.6%" }, oneBed: { roi: "8.0%" }, twoBed: { roi: "6.5%" } },
+    overallScore: 8.6,
+    description: "Highest ROI zone due to proximity to Dubai.",
+    connectivity: {
+      airport: { name: "DXB Intl Airport", km: "10 km", mins: "15 mins" },
+      school: { name: "Delhi Private School", km: "2 km", mins: "5 mins" },
+      tourist: { name: "Al Mamzar Beach", km: "6 km", mins: "10 mins" },
+      metro: { name: "Stadium Metro", km: "8 km", mins: "12 mins" },
+      mall: { name: "Sahara Centre", km: "0.5 km", mins: "2 mins" },
+      business: { name: "Deira", km: "9 km", mins: "14 mins" },
+      hospital: { name: "Zulekha Hospital", km: "3 km", mins: "6 mins" }
+    }
+  },
+  {
+    id: "muwaileh-commercial",
+    name: "Muwaileh Commercial",
+    category: "Student / Family",
+    roi: "7.4%",
+    avgPrice: "AED 620k",
+    imageColor: "bg-sky-600",
+    amenities: ["Universities", "City Centre Zahia", "Restaurants"],
+    scores: { cashFlow: 8.8, appreciation: 7.0, liquidity: 8.2, risk: 6.5, lifestyle: 7.5 },
+    unitEconomics: { studio: { roi: "8.0%" }, oneBed: { roi: "7.5%" }, twoBed: { roi: "6.0%" } },
+    overallScore: 8.3,
+    description: "Strong demand from students and young families.",
+    connectivity: {
+      airport: { name: "Sharjah Intl Airport", km: "8 km", mins: "12 mins" },
+      school: { name: "GEMS Millennium", km: "1 km", mins: "3 mins" },
+      tourist: { name: "University City", km: "2 km", mins: "4 mins" },
+      metro: { name: "Rashidiya Metro", km: "20 km", mins: "28 mins" },
+      mall: { name: "City Centre Zahia", km: "3 km", mins: "6 mins" },
+      business: { name: "Sharjah Industrial Area", km: "6 km", mins: "10 mins" },
+      hospital: { name: "Thumbay Hospital", km: "2 km", mins: "5 mins" }
+    }
+  },
+  {
+    id: "tilal-city",
+    name: "Tilal City",
+    category: "Master Community",
+    roi: "6.2%",
+    avgPrice: "AED 1.2M",
+    imageColor: "bg-indigo-600",
+    amenities: ["Parks", "Villas", "Community Retail"],
+    scores: { cashFlow: 7.2, appreciation: 8.5, liquidity: 7.0, risk: 6.8, lifestyle: 8.0 },
+    unitEconomics: { oneBed: { roi: "6.5%" }, twoBed: { roi: "5.8%" }, villa: { roi: "5.2%" } },
+    overallScore: 8.0,
+    description: "Sharjah’s first fully master-planned mixed-use city.",
+    connectivity: {
+      airport: { name: "Sharjah Intl Airport", km: "10 km", mins: "15 mins" },
+      school: { name: "Victoria International School", km: "4 km", mins: "7 mins" },
+      tourist: { name: "Sharjah Mosque", km: "6 km", mins: "9 mins" },
+      metro: { name: "Centrepoint Metro", km: "22 km", mins: "30 mins" },
+      mall: { name: "Zero 6 Mall", km: "5 km", mins: "8 mins" },
+      business: { name: "Muwaileh", km: "7 km", mins: "10 mins" },
+      hospital: { name: "University Hospital Sharjah", km: "6 km", mins: "9 mins" }
+    }
+  }
+    ,
+  {
+    id: "al-khan",
+    name: "Al Khan",
+    category: "Waterfront / Lifestyle",
+    roi: "6.6%",
+    avgPrice: "AED 750k",
+    imageColor: "bg-cyan-600",
+    amenities: ["Al Khan Beach", "Waterfront Cafes", "Corniche"],
+    scores: { cashFlow: 8.0, appreciation: 7.4, liquidity: 7.8, risk: 6.6, lifestyle: 8.6 },
+    unitEconomics: { studio: { roi: "7.2%" }, oneBed: { roi: "6.7%" }, twoBed: { roi: "5.6%" } },
+    overallScore: 8.0,
+    description: "Beachside living with steady rental demand.",
+    connectivity: {
+      airport: { name: "Sharjah Intl Airport", km: "14 km", mins: "20 mins" },
+      school: { name: "Victoria English School", km: "3 km", mins: "7 mins" },
+      tourist: { name: "Al Khan Beach", km: "0.5 km", mins: "2 mins" },
+      metro: { name: "Stadium Metro", km: "14 km", mins: "20 mins" },
+      mall: { name: "City Centre Sharjah", km: "3 km", mins: "7 mins" },
+      business: { name: "Al Qasba", km: "2 km", mins: "5 mins" },
+      hospital: { name: "Al Qassimi Hospital", km: "4 km", mins: "8 mins" }
+    }
+  },
+  {
+    id: "al-qasimia",
+    name: "Al Qasimia",
+    category: "Central / Budget",
+    roi: "7.1%",
+    avgPrice: "AED 520k",
+    imageColor: "bg-green-700",
+    amenities: ["Local Markets", "Mosques", "Clinics"],
+    scores: { cashFlow: 8.7, appreciation: 6.5, liquidity: 7.5, risk: 6.8, lifestyle: 6.8 },
+    unitEconomics: { studio: { roi: "7.8%" }, oneBed: { roi: "7.2%" }, twoBed: { roi: "6.0%" } },
+    overallScore: 7.9,
+    description: "Affordable central Sharjah with stable occupancy.",
+    connectivity: {
+      airport: { name: "Sharjah Intl Airport", km: "13 km", mins: "18 mins" },
+      school: { name: "Al Amaal English School", km: "1 km", mins: "3 mins" },
+      tourist: { name: "Sharjah Art Museum", km: "2 km", mins: "6 mins" },
+      metro: { name: "Union Metro", km: "20 km", mins: "28 mins" },
+      mall: { name: "Mega Mall", km: "1.5 km", mins: "5 mins" },
+      business: { name: "Rolla", km: "2 km", mins: "5 mins" },
+      hospital: { name: "Kuwait Hospital", km: "2 km", mins: "6 mins" }
+    }
+  },
+  {
+    id: "rolla",
+    name: "Rolla",
+    category: "Ultra High Yield",
+    roi: "8.2%",
+    avgPrice: "AED 480k",
+    imageColor: "bg-rose-700",
+    amenities: ["Rolla Park", "Budget Retail", "Bus Station"],
+    scores: { cashFlow: 9.4, appreciation: 6.2, liquidity: 8.0, risk: 7.2, lifestyle: 6.2 },
+    unitEconomics: { studio: { roi: "9.0%" }, oneBed: { roi: "8.3%" }, twoBed: { roi: "6.8%" } },
+    overallScore: 8.2,
+    description: "Highest cash-flow district for budget investors.",
+    connectivity: {
+      airport: { name: "Sharjah Intl Airport", km: "14 km", mins: "20 mins" },
+      school: { name: "Al Basaer School", km: "1 km", mins: "4 mins" },
+      tourist: { name: "Rolla Square", km: "0.3 km", mins: "1 min" },
+      metro: { name: "Union Metro", km: "22 km", mins: "30 mins" },
+      mall: { name: "Central Souq", km: "1 km", mins: "3 mins" },
+      business: { name: "Sharjah Port", km: "6 km", mins: "10 mins" },
+      hospital: { name: "Kuwait Hospital", km: "2 km", mins: "5 mins" }
+    }
+  },
+  {
+    id: "aljada",
+    name: "Aljada",
+    category: "New Master Community",
+    roi: "6.4%",
+    avgPrice: "AED 1.1M",
+    imageColor: "bg-violet-600",
+    amenities: ["Boulevard", "Family Parks", "Retail"],
+    scores: { cashFlow: 7.5, appreciation: 8.6, liquidity: 7.4, risk: 6.4, lifestyle: 8.8 },
+    unitEconomics: { studio: { roi: "6.9%" }, oneBed: { roi: "6.5%" }, twoBed: { roi: "5.6%" } },
+    overallScore: 8.3,
+    description: "Sharjah’s fastest-growing lifestyle destination.",
+    connectivity: {
+      airport: { name: "Sharjah Intl Airport", km: "10 km", mins: "15 mins" },
+      school: { name: "SABIS Intl School", km: "2 km", mins: "4 mins" },
+      tourist: { name: "Central Hub", km: "0.5 km", mins: "2 mins" },
+      metro: { name: "Centrepoint Metro", km: "24 km", mins: "32 mins" },
+      mall: { name: "City Centre Zahia", km: "4 km", mins: "7 mins" },
+      business: { name: "Muwaileh", km: "3 km", mins: "5 mins" },
+      hospital: { name: "University Hospital Sharjah", km: "5 km", mins: "8 mins" }
+    }
+  },
+  {
+    id: "muwailih-heights",
+    name: "Muwailih Heights",
+    category: "Residential / Family",
+    roi: "7.0%",
+    avgPrice: "AED 700k",
+    imageColor: "bg-blue-700",
+    amenities: ["Schools", "Supermarkets", "Clinics"],
+    scores: { cashFlow: 8.5, appreciation: 7.2, liquidity: 7.9, risk: 6.4, lifestyle: 7.4 },
+    unitEconomics: { studio: { roi: "7.6%" }, oneBed: { roi: "7.1%" }, twoBed: { roi: "6.0%" } },
+    overallScore: 8.0,
+    description: "Popular family zone near University City.",
+    connectivity: {
+      airport: { name: "Sharjah Intl Airport", km: "9 km", mins: "13 mins" },
+      school: { name: "Delhi Private School", km: "1 km", mins: "3 mins" },
+      tourist: { name: "University City", km: "2 km", mins: "4 mins" },
+      metro: { name: "Rashidiya Metro", km: "22 km", mins: "30 mins" },
+      mall: { name: "City Centre Zahia", km: "3 km", mins: "6 mins" },
+      business: { name: "Aljada", km: "2 km", mins: "4 mins" },
+      hospital: { name: "Thumbay Hospital", km: "3 km", mins: "6 mins" }
+    }
+  },
+  {
+    id: "al-sajaah",
+    name: "Al Sajaah",
+    category: "Industrial / Land",
+    roi: "7.3%",
+    avgPrice: "AED 900k",
+    imageColor: "bg-stone-600",
+    amenities: ["Warehouses", "Logistics", "Highways"],
+    scores: { cashFlow: 8.6, appreciation: 7.8, liquidity: 6.8, risk: 6.9, lifestyle: 5.5 },
+    unitEconomics: { warehouse: { roi: "7.8%" }, land: { roi: "7.0%" } },
+    overallScore: 7.6,
+    description: "Industrial investment hotspot near E611.",
+    connectivity: {
+      airport: { name: "Sharjah Intl Airport", km: "18 km", mins: "25 mins" },
+      school: { name: "Al Amaal School", km: "8 km", mins: "12 mins" },
+      tourist: { name: "Sharjah Mosque", km: "10 km", mins: "15 mins" },
+      metro: { name: "Centrepoint Metro", km: "35 km", mins: "45 mins" },
+      mall: { name: "Zero 6 Mall", km: "12 km", mins: "18 mins" },
+      business: { name: "Industrial Area 17", km: "6 km", mins: "10 mins" },
+      hospital: { name: "Al Qassimi Hospital", km: "15 km", mins: "20 mins" }
+    }
+  },
+  {
+    id: "al-yarmook",
+    name: "Al Yarmook",
+    category: "Villa / Local",
+    roi: "6.0%",
+    avgPrice: "AED 1.8M",
+    imageColor: "bg-amber-700",
+    amenities: ["Villas", "Mosques", "Local Parks"],
+    scores: { cashFlow: 6.8, appreciation: 7.5, liquidity: 6.5, risk: 6.3, lifestyle: 7.6 },
+    unitEconomics: { villa: { roi: "6.0%" } },
+    overallScore: 7.5,
+    description: "Low-density villa community for locals.",
+    connectivity: {
+      airport: { name: "Sharjah Intl Airport", km: "11 km", mins: "16 mins" },
+      school: { name: "Al Amaal School", km: "2 km", mins: "5 mins" },
+      tourist: { name: "Sharjah Cricket Stadium", km: "5 km", mins: "9 mins" },
+      metro: { name: "Union Metro", km: "26 km", mins: "35 mins" },
+      mall: { name: "Mega Mall", km: "4 km", mins: "8 mins" },
+      business: { name: "Sharjah City Center", km: "3 km", mins: "6 mins" },
+      hospital: { name: "Al Qassimi Hospital", km: "3 km", mins: "7 mins" }
     }
   }
 ];
