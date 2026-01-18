@@ -6,6 +6,7 @@ import {
 } from 'lucide-react';
 import { BUILDERS } from '../data/buildersData';
 import SEO from '../components/SEO';
+import WhatsAppButton from '../components/WhatsAppButton'; // <--- IMPORTED
 
 const BuilderDetailsPage = () => {
   const { builderId } = useParams();
@@ -25,7 +26,7 @@ const BuilderDetailsPage = () => {
       />
 
       {/* Breadcrumb */}
-      <Link to="/builders" className="inline-flex items-center gap-2 text-slate-500 hover:text-black mb-6 mt-8 font-bold text-sm">
+      <Link to="/builders" className="inline-flex items-center gap-2 text-slate-500 hover:text-black mb-6 mt-8 font-bold text-sm transition-colors">
         <ArrowLeft size={16} /> Back to Developers
       </Link>
 
@@ -91,26 +92,26 @@ const BuilderDetailsPage = () => {
 
            {/* 3. DELIVERY TRACK RECORD */}
            <div className="bg-white border border-slate-200 rounded-2xl p-8 shadow-sm">
-              <h3 className="text-xl font-bold text-slate-900 mb-6 flex items-center gap-2">
-                <Clock className="text-blue-600" /> Delivery Track Record
-              </h3>
-              <div className="flex gap-4 mb-6">
-                 <div className="flex-1 bg-green-50 p-4 rounded-xl text-center border border-green-100">
-                    <div className="text-2xl font-bold text-green-700">{builder.deliveryTrackRecord.onTime}</div>
-                    <div className="text-xs font-bold text-green-600 uppercase">On Time</div>
-                 </div>
-                 <div className="flex-1 bg-yellow-50 p-4 rounded-xl text-center border border-yellow-100">
-                    <div className="text-2xl font-bold text-yellow-700">{builder.deliveryTrackRecord.delayed}</div>
-                    <div className="text-xs font-bold text-yellow-600 uppercase">Delayed</div>
-                 </div>
-                 <div className="flex-1 bg-red-50 p-4 rounded-xl text-center border border-red-100">
-                    <div className="text-2xl font-bold text-red-700">{builder.deliveryTrackRecord.cancelled}</div>
-                    <div className="text-xs font-bold text-red-600 uppercase">Cancelled</div>
-                 </div>
-              </div>
-              <p className="text-sm text-slate-500 italic">
-                *Data based on registered project completions over the last 10 years.
-              </p>
+             <h3 className="text-xl font-bold text-slate-900 mb-6 flex items-center gap-2">
+               <Clock className="text-blue-600" /> Delivery Track Record
+             </h3>
+             <div className="flex gap-4 mb-6">
+                <div className="flex-1 bg-green-50 p-4 rounded-xl text-center border border-green-100">
+                   <div className="text-2xl font-bold text-green-700">{builder.deliveryTrackRecord.onTime}</div>
+                   <div className="text-xs font-bold text-green-600 uppercase">On Time</div>
+                </div>
+                <div className="flex-1 bg-yellow-50 p-4 rounded-xl text-center border border-yellow-100">
+                   <div className="text-2xl font-bold text-yellow-700">{builder.deliveryTrackRecord.delayed}</div>
+                   <div className="text-xs font-bold text-yellow-600 uppercase">Delayed</div>
+                </div>
+                <div className="flex-1 bg-red-50 p-4 rounded-xl text-center border border-red-100">
+                   <div className="text-2xl font-bold text-red-700">{builder.deliveryTrackRecord.cancelled}</div>
+                   <div className="text-xs font-bold text-red-600 uppercase">Cancelled</div>
+                </div>
+             </div>
+             <p className="text-sm text-slate-500 italic">
+               *Data based on registered project completions over the last 10 years.
+             </p>
            </div>
         </div>
 
@@ -138,43 +139,48 @@ const BuilderDetailsPage = () => {
                    <span className="font-bold text-green-600">{builder.paymentFlexibility.commonPlans.join(", ")}</span>
                 </div>
              </div>
+             
+             {/* ADDED WHATSAPP BUTTON HERE */}
+             <div className="mt-6 pt-4 border-t border-slate-100">
+               <WhatsAppButton data={builder} type="builder" />
+             </div>
            </div>
 
            {/* BEST FOR / NOT FOR */}
            <div className="bg-slate-50 border border-slate-200 rounded-2xl p-6">
-              <h3 className="font-bold text-lg mb-4">Investor Verdict</h3>
-              
-              <div className="mb-4">
-                <div className="text-xs font-bold text-green-600 uppercase mb-2 flex items-center gap-1">
-                   <CheckCircle size={14}/> Best For
-                </div>
-                <div className="flex flex-wrap gap-2">
-                   {builder.bestFor.map(item => (
-                     <span key={item} className="px-3 py-1 bg-white border border-slate-200 rounded-lg text-xs font-bold text-slate-700">
-                       {item}
-                     </span>
-                   ))}
-                </div>
-              </div>
+             <h3 className="font-bold text-lg mb-4">Investor Verdict</h3>
+             
+             <div className="mb-4">
+               <div className="text-xs font-bold text-green-600 uppercase mb-2 flex items-center gap-1">
+                  <CheckCircle size={14}/> Best For
+               </div>
+               <div className="flex flex-wrap gap-2">
+                  {builder.bestFor.map(item => (
+                    <span key={item} className="px-3 py-1 bg-white border border-slate-200 rounded-lg text-xs font-bold text-slate-700">
+                      {item}
+                    </span>
+                  ))}
+               </div>
+             </div>
 
-              <div>
-                <div className="text-xs font-bold text-red-500 uppercase mb-2 flex items-center gap-1">
-                   <AlertTriangle size={14}/> Not Ideal For
-                </div>
-                <div className="flex flex-wrap gap-2">
-                   {builder.notIdealFor.map(item => (
-                     <span key={item} className="px-3 py-1 bg-white border border-slate-200 rounded-lg text-xs font-bold text-slate-700">
-                       {item}
-                     </span>
-                   ))}
-                </div>
-              </div>
+             <div>
+               <div className="text-xs font-bold text-red-500 uppercase mb-2 flex items-center gap-1">
+                  <AlertTriangle size={14}/> Not Ideal For
+               </div>
+               <div className="flex flex-wrap gap-2">
+                  {builder.notIdealFor.map(item => (
+                    <span key={item} className="px-3 py-1 bg-white border border-slate-200 rounded-lg text-xs font-bold text-slate-700">
+                      {item}
+                    </span>
+                  ))}
+               </div>
+             </div>
            </div>
 
            {/* USP BOX */}
            <div className="bg-slate-900 text-white p-6 rounded-2xl">
-              <div className="text-xs font-bold text-yellow-400 uppercase mb-2">Signature Quality</div>
-              <p className="font-medium leading-relaxed">"{builder.usp}"</p>
+             <div className="text-xs font-bold text-yellow-400 uppercase mb-2">Signature Quality</div>
+             <p className="font-medium leading-relaxed">"{builder.usp}"</p>
            </div>
 
         </div>
