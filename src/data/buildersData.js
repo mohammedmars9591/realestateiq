@@ -1041,4 +1041,7 @@ export const BUILDERS = [
     records: "40+ years presence",
     description: "Condor delivers dependable mid-market projects in strong locations."
   }
+
+
 ];
+
