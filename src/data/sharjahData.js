@@ -1,7 +1,12 @@
-export const SHARJAH_DATA= [
+// ==========================================================
+// SHARJAH AREA DATA
+// ==========================================================
+
+export const SHARJAH_DATA = [
   {
     id: "al-majaz",
     name: "Al Majaz",
+    emirate: "Sharjah",
     category: "Family / Waterfront",
     roi: "6.8%",
     avgPrice: "AED 720k",
@@ -24,6 +29,7 @@ export const SHARJAH_DATA= [
   {
     id: "al-taawun",
     name: "Al Taawun",
+    emirate: "Sharjah",
     category: "High Yield",
     roi: "7.6%",
     avgPrice: "AED 680k",
@@ -46,6 +52,7 @@ export const SHARJAH_DATA= [
   {
     id: "al-nahda-shj",
     name: "Al Nahda (Sharjah)",
+    emirate: "Sharjah",
     category: "Dubai Border / Yield",
     roi: "7.9%",
     avgPrice: "AED 650k",
@@ -68,6 +75,7 @@ export const SHARJAH_DATA= [
   {
     id: "muwaileh-commercial",
     name: "Muwaileh Commercial",
+    emirate: "Sharjah",
     category: "Student / Family",
     roi: "7.4%",
     avgPrice: "AED 620k",
@@ -90,6 +98,7 @@ export const SHARJAH_DATA= [
   {
     id: "tilal-city",
     name: "Tilal City",
+    emirate: "Sharjah",
     category: "Master Community",
     roi: "6.2%",
     avgPrice: "AED 1.2M",
@@ -108,11 +117,11 @@ export const SHARJAH_DATA= [
       business: { name: "Muwaileh", km: "7 km", mins: "10 mins" },
       hospital: { name: "University Hospital Sharjah", km: "6 km", mins: "9 mins" }
     }
-  }
-    ,
+  },
   {
     id: "al-khan",
     name: "Al Khan",
+    emirate: "Sharjah",
     category: "Waterfront / Lifestyle",
     roi: "6.6%",
     avgPrice: "AED 750k",
@@ -135,6 +144,7 @@ export const SHARJAH_DATA= [
   {
     id: "al-qasimia",
     name: "Al Qasimia",
+    emirate: "Sharjah",
     category: "Central / Budget",
     roi: "7.1%",
     avgPrice: "AED 520k",
@@ -143,7 +153,7 @@ export const SHARJAH_DATA= [
     scores: { cashFlow: 8.7, appreciation: 6.5, liquidity: 7.5, risk: 6.8, lifestyle: 6.8 },
     unitEconomics: { studio: { roi: "7.8%" }, oneBed: { roi: "7.2%" }, twoBed: { roi: "6.0%" } },
     overallScore: 7.9,
-    description: "Sharjah’s Affordable central Sharjah with stable occupancy.",
+    description: " Affordable central Sharjah with stable occupancy.",
     connectivity: {
       airport: { name: "Sharjah Intl Airport", km: "13 km", mins: "18 mins" },
       school: { name: "Al Amaal English School", km: "1 km", mins: "3 mins" },
@@ -157,6 +167,7 @@ export const SHARJAH_DATA= [
   {
     id: "rolla",
     name: "Rolla",
+    emirate: "Sharjah",
     category: "Ultra High Yield",
     roi: "8.2%",
     avgPrice: "AED 480k",
@@ -179,6 +190,7 @@ export const SHARJAH_DATA= [
   {
     id: "aljada",
     name: "Aljada",
+    emirate: "Sharjah",
     category: "New Master Community",
     roi: "6.4%",
     avgPrice: "AED 1.1M",
@@ -201,6 +213,7 @@ export const SHARJAH_DATA= [
   {
     id: "muwailih-heights",
     name: "Muwailih Heights",
+    emirate: "Sharjah",
     category: "Residential / Family",
     roi: "7.0%",
     avgPrice: "AED 700k",
@@ -223,6 +236,7 @@ export const SHARJAH_DATA= [
   {
     id: "al-sajaah",
     name: "Al Sajaah",
+    emirate: "Sharjah",
     category: "Industrial / Land",
     roi: "7.3%",
     avgPrice: "AED 900k",
@@ -245,6 +259,7 @@ export const SHARJAH_DATA= [
   {
     id: "al-yarmook",
     name: "Al Yarmook",
+    emirate: "Sharjah",
     category: "Villa / Local",
     roi: "6.0%",
     avgPrice: "AED 1.8M",
