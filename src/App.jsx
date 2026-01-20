@@ -1,5 +1,6 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import ReactGA from "react-ga4"; // <--- 1. Import GA4
 
 // --- COMPONENTS ---
 import Header from './components/Header';
@@ -16,10 +17,29 @@ import BuilderDetailsPage from './pages/BuilderDetailsPage'; // 2. Builder Detai
 import AreaComparison from './pages/AreaComparison';  // 3. Comparison Tool
 import MarketMap from './pages/MarketMap';            // 4. Market View (Heatmap)
 
+// --- 2. INITIALIZE GOOGLE ANALYTICS ---
+// Replace "G-XXXXXXXXXX" with your actual Measurement ID from Google Analytics
+ReactGA.initialize("G-XXXXXXXXXX");
+
+// --- 3. ANALYTICS TRACKER COMPONENT ---
+// This helper watches for URL changes and sends a pageview event
+const AnalyticsTracker = () => {
+  const location = useLocation();
+
+  useEffect(() => {
+    // Send pageview to Google Analytics whenever the route changes
+    ReactGA.send({ hitType: "pageview", page: location.pathname + location.search });
+  }, [location]);
+
+  return null;
+};
+
 function App() {
   return (
     <Router>
+      {/* 4. ACTIVE COMPONENTS (Scroll & Analytics) */}
       <ScrollHandler /> 
+      <AnalyticsTracker /> {/* <--- Tracks page views automatically */}
 
       <div className="flex flex-col min-h-screen bg-slate-50">
         <Header />
@@ -36,14 +56,13 @@ function App() {
             {/* Tool 2: Developer Intelligence */}
             <Route path="/builders" element={<BuildersPage />} />
             
-            {/* --- CRITICAL FIX: DUAL ROUTING & PARAMETER NAME --- */}
-            {/* We use :builderId to match the useParams() in your BuilderDetailsPage */}
+            {/* --- DUAL ROUTING FOR BUILDERS --- */}
             {/* 1. Singular Route (Standard) */}
             <Route path="/builder/:builderId" element={<BuilderDetailsPage />} />
             
-            {/* 2. Plural Route (Safety Fallback for typos or old links) */}
+            {/* 2. Plural Route (Safety Fallback) */}
             <Route path="/builders/:builderId" element={<BuilderDetailsPage />} />
-            {/* --------------------------------------------------- */}
+            {/* ---------------------------------- */}
             
             {/* Tool 3: Comparison Engine */}
             <Route path="/compare" element={<AreaComparison />} />
