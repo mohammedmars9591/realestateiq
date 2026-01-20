@@ -7,36 +7,17 @@ import {
 import SEO from '../components/SEO';
 import WhatsAppButton from '../components/WhatsAppButton';
 
-// --- IMPORT ALL DATA FILES ---
-import { DUBAI_AREAS } from '../data/areaData';
-import { SHARJAH_DATA } from '../data/sharjahData';
-import { RAK_DATA } from '../data/rakData';
-import { ABUDHABI_DATA } from '../data/abudhabiData';
-import { AJMAN_DATA } from '../data/ajmanData';
-import { FUJAIRAH_DATA } from '../data/fujairahData';
-import { UAQ_DATA } from '../data/uaqData';
-
-// --- COMBINE INTO MASTER DB ---
-const MASTER_DB = [
-  ...(DUBAI_AREAS || []), 
-  ...(SHARJAH_DATA || []), 
-  ...(RAK_DATA || []), 
-  ...(ABUDHABI_DATA || []),
-  ...(AJMAN_DATA || []),
-  ...(FUJAIRAH_DATA || []),
-  ...(UAQ_DATA || [])
-];
+// --- IMPORT THE MASTER DATA FILE ---
+// We only need this ONE import now, because emiratesData.js has everything!
+import { DUBAI_AREAS as MASTER_DB } from '../data/emiratesData'; 
 
 const AreaPage = () => {
   const { id } = useParams();
   
-  // 1. Find the Area Data (Search all Emirates)
+  // 1. Find the Area Data (The Master DB has all 7 Emirates)
   const area = MASTER_DB.find(a => a.id === id);
 
-  // Scroll to top on load
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [id]);
+  useEffect(() => { window.scrollTo(0, 0); }, [id]);
 
   if (!area) {
     return (
@@ -64,18 +45,16 @@ const AreaPage = () => {
 
   return (
     <div className="max-w-7xl mx-auto px-4 md:px-8 pb-20 fade-in bg-slate-50 min-h-screen pt-8">
-      
       <SEO 
         title={`${area.name} Real Estate Analysis | EstateIQ`} 
         description={`Investment analysis for ${area.name}. ROI: ${area.roi}, Avg Price: ${area.avgPrice}.`}
       />
 
-      {/* Breadcrumb */}
       <Link to="/areas" className="inline-flex items-center gap-2 text-slate-500 hover:text-black mb-6 font-bold text-sm transition-colors">
         <ArrowLeft size={16} /> Back to National Map
       </Link>
 
-      {/* HEADER HERO SECTION */}
+      {/* HERO SECTION */}
       <div className={`rounded-3xl p-8 md:p-16 text-white mb-10 relative overflow-hidden shadow-xl ${area.imageColor || 'bg-blue-900'}`}>
          <div className="relative z-10 max-w-3xl">
             <div className="flex items-center gap-3 mb-4">
@@ -89,17 +68,15 @@ const AreaPage = () => {
             <h1 className="text-4xl md:text-6xl font-extrabold mb-4">{area.name}</h1>
             <p className="text-xl opacity-90 leading-relaxed max-w-2xl">{area.description}</p>
          </div>
-         
-         {/* Background Overlay */}
          <div className="absolute inset-0 bg-gradient-to-r from-black/60 to-transparent"></div>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
         
-        {/* === LEFT COLUMN: DEEP DATA ANALYSIS === */}
+        {/* LEFT COLUMN */}
         <div className="lg:col-span-2 space-y-8">
            
-           {/* 1. MARKET PRICING TABLE (New Feature) */}
+           {/* MARKET PRICING */}
            <div className="bg-white border border-slate-200 rounded-3xl p-8 shadow-sm">
              <div className="flex items-center gap-3 mb-6">
                 <Wallet className="text-blue-600" size={24} /> 
@@ -113,7 +90,7 @@ const AreaPage = () => {
              </div>
            </div>
 
-           {/* 2. UNIT ECONOMICS TABLE */}
+           {/* UNIT ECONOMICS */}
            <div className="bg-white border border-slate-200 rounded-3xl p-8 shadow-sm">
               <div className="flex items-center gap-3 mb-2">
                 <BarChart3 className="text-emerald-600" />
@@ -130,7 +107,7 @@ const AreaPage = () => {
               </div>
            </div>
 
-           {/* 3. STRATEGIC CONNECTIVITY */}
+           {/* CONNECTIVITY */}
            <div className="bg-slate-900 text-white rounded-3xl p-8 shadow-2xl">
               <div className="flex items-center gap-3 mb-2">
                 <MapPin className="text-blue-400" />
@@ -152,19 +129,14 @@ const AreaPage = () => {
            </div>
         </div>
 
-        {/* === RIGHT COLUMN: SCORECARD & AMENITIES === */}
+        {/* RIGHT COLUMN */}
         <div className="space-y-8">
-          
-           {/* INVESTMENT SCORECARD */}
            <div className="bg-white border border-slate-200 rounded-3xl p-8 shadow-sm">
               <div className="flex items-center gap-3 mb-2">
                 <TrendingUp className="text-blue-600" />
-                <h3 className="text-xl font-extrabold text-slate-900">
-                  Investment <span className="text-blue-600">Scorecard</span>
-                </h3>
+                <h3 className="text-xl font-extrabold text-slate-900">Scorecard</h3>
               </div>
               <p className="text-slate-500 text-sm mb-6">Analyst ratings out of 10.</p>
-
               <div className="space-y-5">
                 <ScoreBar label="Cash Flow" value={scores.cashFlow} color="bg-green-500" />
                 <ScoreBar label="Appreciation" value={scores.appreciation} color="bg-blue-500" />
@@ -172,36 +144,17 @@ const AreaPage = () => {
                 <ScoreBar label="Lifestyle" value={scores.lifestyle} color="bg-amber-500" />
                 <ScoreBar label="Risk (Low is Good)" value={scores.risk} color="bg-red-500" />
               </div>
-
-              {/* WHATSAPP BUTTON */}
               <div className="mt-8 pt-6 border-t border-slate-100">
                 <WhatsAppButton data={area} type="area" />
               </div>
            </div>
-
-           {/* LIFESTYLE AMENITIES */}
-           <div className="bg-slate-50 border border-slate-200 rounded-3xl p-6">
-             <h4 className="font-extrabold text-slate-900 mb-4 flex items-center gap-2 text-lg">
-               <CheckCircle size={20} className="text-blue-600"/> 
-               <span><span className="text-blue-600">Lifestyle</span> Perks</span>
-             </h4>
-             <div className="flex flex-wrap gap-2">
-               {area.amenities?.map((am, idx) => (
-                 <span key={idx} className="px-3 py-1.5 bg-white border border-slate-200 rounded-lg text-xs font-bold text-slate-600 shadow-sm">
-                   {am}
-                 </span>
-               ))}
-             </div>
-          </div>
-
         </div>
       </div>
     </div>
   );
 };
 
-// --- HELPER SUB-COMPONENTS ---
-
+// --- SUB-COMPONENTS ---
 const UnitBox = ({ label, value, color, bg, border }) => (
   <div className={`p-4 rounded-xl border ${bg} ${border}`}>
     <div className={`text-xs font-bold uppercase mb-1 opacity-60`}>{label}</div>
@@ -209,14 +162,12 @@ const UnitBox = ({ label, value, color, bg, border }) => (
     <div className="text-xs font-medium opacity-50">ROI</div>
   </div>
 );
-
 const PriceBox = ({ label, value }) => (
   <div className="p-4 bg-slate-50 rounded-xl text-center border border-slate-100 hover:border-blue-200 transition-colors">
     <div className="text-xs font-bold text-slate-400 uppercase mb-1">{label}</div>
     <div className="font-bold text-slate-900 text-sm md:text-base">{value || "N/A"}</div>
   </div>
 );
-
 const ScoreBar = ({ label, value, color }) => (
   <div>
     <div className="flex justify-between text-sm font-bold text-slate-700 mb-1">
@@ -228,7 +179,6 @@ const ScoreBar = ({ label, value, color }) => (
     </div>
   </div>
 );
-
 const DistanceRow = ({ icon, category, data, color }) => (
   <div className="flex items-center justify-between pb-4 border-b border-slate-700 last:border-0 last:pb-0 hover:bg-white/5 p-2 rounded-lg transition-colors -mx-2">
     <div className="flex items-center gap-4">
