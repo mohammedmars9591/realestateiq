@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { 
   MapPin, TrendingUp, ArrowRight, Zap, ShieldCheck, Wallet, Gem, 
-  Building2, Palmtree, Sun, Anchor 
+  Building2, Check, Star, Crown, Lock
 } from 'lucide-react';
 import SEO from '../components/SEO';
 
@@ -12,26 +12,17 @@ import { DUBAI_AREAS } from '../data/emiratesData';
 const ExploreAreas = () => {
   const [activeEmirate, setActiveEmirate] = useState('All');
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+  useEffect(() => { window.scrollTo(0, 0); }, []);
 
   // --- 1. SMART CATEGORIZER ---
-  // This helper function assigns an Emirate based on the ID if the data is missing the 'emirate' field
   const getEmirate = (area) => {
-    if (area.emirate) return area.emirate; // Use field if it exists
-    
+    if (area.emirate) return area.emirate;
     const id = area.id.toLowerCase();
     const name = area.name.toLowerCase();
-
-    if (id.includes('rak') || name.includes('rak') || id.includes('marjan') || id.includes('hamra') || id.includes('mina-al-arab') || id.includes('julphar')) return 'Ras Al Khaimah';
-    if (id.includes('yas') || id.includes('saadiyat') || id.includes('reem') || id.includes('aldar')) return 'Abu Dhabi';
-    if (id.includes('sharjah') || id.includes('aljada') || id.includes('maryam')) return 'Sharjah';
-    if (id.includes('ajman') || id.includes('zorah')) return 'Ajman';
-    if (id.includes('fujairah') || id.includes('aqah')) return 'Fujairah';
-    if (id.includes('uaq') || id.includes('mistral')) return 'Umm Al Quwain';
-    
-    return 'Dubai'; // Default to Dubai
+    if (id.includes('rak') || name.includes('rak') || id.includes('marjan')) return 'Ras Al Khaimah';
+    if (id.includes('yas') || id.includes('saadiyat') || id.includes('aldar')) return 'Abu Dhabi';
+    if (id.includes('sharjah') || id.includes('aljada')) return 'Sharjah';
+    return 'Dubai';
   };
 
   // --- 2. FILTER LOGIC ---
@@ -39,55 +30,73 @@ const ExploreAreas = () => {
     ? DUBAI_AREAS 
     : DUBAI_AREAS.filter(area => getEmirate(area) === activeEmirate);
 
-  // --- 3. EMIRATE CARDS DATA ---
+  // --- 3. LUXURY EMIRATE CARDS DATA ---
   const EMIRATES = [
-    { name: 'All', icon: <MapPin />, color: 'bg-slate-800' },
-    { name: 'Dubai', icon: <Building2 />, color: 'bg-blue-600' },
-    { name: 'Abu Dhabi', icon: <ShieldCheck />, color: 'bg-teal-700' },
-    { name: 'Ras Al Khaimah', icon: <Zap />, color: 'bg-purple-600' },
-    { name: 'Sharjah', icon: <Sun />, color: 'bg-orange-500' },
-    { name: 'Ajman', icon: <Wallet />, color: 'bg-emerald-600' },
-    { name: 'Fujairah', icon: <Anchor />, color: 'bg-cyan-700' },
-    { name: 'Umm Al Quwain', icon: <Palmtree />, color: 'bg-lime-600' },
+    { name: 'Dubai', count: '220+ Areas', image: 'bg-blue-900', icon: <Building2 className="text-blue-400" /> },
+    { name: 'Abu Dhabi', count: '90+ Areas', image: 'bg-teal-900', icon: <ShieldCheck className="text-teal-400" /> },
+    { name: 'Ras Al Khaimah', count: '30+ Areas', image: 'bg-purple-900', icon: <Zap className="text-purple-400" /> },
+    { name: 'Sharjah', count: '45+ Areas', image: 'bg-orange-900', icon: <Wallet className="text-orange-400" /> },
   ];
 
   return (
-    <div className="max-w-7xl mx-auto px-4 md:px-8 pb-20 fade-in">
+    <div className="max-w-7xl mx-auto px-4 md:px-8 pb-20 fade-in bg-slate-50">
       <SEO 
-        title="UAE Area Guide 2026 | National Investment Analysis" 
-        description="Compare investment performance across Dubai, Abu Dhabi, RAK, and Sharjah. Validated rental yields and capital growth forecasts."
+        title="UAE Investment Map 2026 | EstateIQ" 
+        description="Explore investment zones across all 7 Emirates. Compare yields, prices, and growth potential."
       />
 
-      {/* --- HEADER SECTION --- */}
-      <div className="py-12 text-center max-w-3xl mx-auto">
+      {/* --- HEADER --- */}
+      <div className="py-16 text-center max-w-3xl mx-auto">
         <h1 className="text-4xl md:text-6xl font-extrabold text-slate-900 mb-6 tracking-tight">
-          Explore UAE's <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">Investment Zones</span>
+          The National <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-700 to-indigo-600">Investment Map</span>
         </h1>
         <p className="text-xl text-slate-500 leading-relaxed">
-          Select an Emirate to analyze local yields, price trends, and future growth hotspots.
+          Navigate the UAE's real estate landscape. From the luxury of Dubai to the high yields of Sharjah.
         </p>
       </div>
 
-      {/* --- EMIRATE SELECTOR CARDS --- */}
-      <div className="flex flex-wrap justify-center gap-4 mb-16">
-        {EMIRATES.map((emirate) => (
+      {/* --- SECTION 1: LUXURY EMIRATE SELECTOR --- */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-16">
+        <button 
+          onClick={() => setActiveEmirate('All')}
+          className={`p-6 rounded-2xl border transition-all duration-300 flex flex-col items-center justify-center gap-2 group
+            ${activeEmirate === 'All' ? 'bg-slate-900 text-white border-slate-900 shadow-xl scale-105' : 'bg-white border-slate-200 hover:border-blue-300 hover:shadow-lg'}
+          `}
+        >
+          <MapPin size={32} className={activeEmirate === 'All' ? "text-white" : "text-slate-400 group-hover:text-blue-500"} />
+          <div className="text-lg font-bold">All Emirates</div>
+          <div className={`text-xs uppercase tracking-widest ${activeEmirate === 'All' ? 'text-slate-400' : 'text-slate-400'}`}>National View</div>
+        </button>
+
+        {EMIRATES.map((item) => (
           <button
-            key={emirate.name}
-            onClick={() => setActiveEmirate(emirate.name)}
+            key={item.name}
+            onClick={() => setActiveEmirate(item.name)}
             className={`
-              flex items-center gap-2 px-5 py-3 rounded-xl font-bold transition-all duration-300 shadow-sm border
-              ${activeEmirate === emirate.name 
-                ? `${emirate.color} text-white border-transparent scale-105 shadow-md` 
-                : 'bg-white text-slate-600 border-slate-200 hover:border-blue-300 hover:bg-slate-50'}
+              relative overflow-hidden p-6 rounded-2xl border text-left transition-all duration-300 group
+              ${activeEmirate === item.name 
+                ? `${item.image} text-white border-transparent shadow-2xl scale-105 ring-2 ring-offset-2 ring-blue-500` 
+                : 'bg-white border-slate-200 hover:shadow-xl hover:-translate-y-1'}
             `}
           >
-            {React.cloneElement(emirate.icon, { size: 18 })}
-            {emirate.name}
+            <div className="relative z-10 flex justify-between items-start">
+              <div>
+                <h3 className={`text-xl font-bold mb-1 ${activeEmirate === item.name ? 'text-white' : 'text-slate-900'}`}>{item.name}</h3>
+                <p className={`text-xs font-medium ${activeEmirate === item.name ? 'text-white/70' : 'text-slate-500'}`}>{item.count}</p>
+              </div>
+              <div className={`p-3 rounded-full ${activeEmirate === item.name ? 'bg-white/10 backdrop-blur-md' : 'bg-slate-50'}`}>
+                {React.cloneElement(item.icon, { size: 20 })}
+              </div>
+            </div>
+            {/* Background Glow for Active State */}
+            {activeEmirate === item.name && (
+              <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full blur-2xl -mr-10 -mt-10"></div>
+            )}
           </button>
         ))}
       </div>
 
-      {/* --- AREAS GRID --- */}
+      {/* --- SECTION 2: AREAS GRID --- */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-24">
         {filteredAreas.length > 0 ? (
           filteredAreas.map((area) => (
@@ -97,15 +106,12 @@ const ExploreAreas = () => {
                 {/* Image Section */}
                 <div className="relative h-64 overflow-hidden">
                   <div className={`absolute inset-0 ${area.imageColor || 'bg-slate-800'} transition-transform duration-700 group-hover:scale-110`}></div>
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent"></div>
                   
-                  {/* Floating Category Badge */}
+                  {/* Floating Badges */}
                   <div className="absolute top-4 left-4 flex gap-2">
                     <span className="bg-white/20 backdrop-blur-md border border-white/20 text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow-lg">
                       {getEmirate(area)}
-                    </span>
-                    <span className="bg-blue-600 text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow-lg">
-                      {area.category}
                     </span>
                   </div>
 
@@ -118,7 +124,7 @@ const ExploreAreas = () => {
                       </span>
                       <span className="w-px h-4 bg-white/30"></span>
                       <span className="text-amber-400 font-bold">
-                         Score: {area.overallScore}/10
+                         {area.avgPrice}
                       </span>
                     </div>
                   </div>
@@ -142,74 +148,97 @@ const ExploreAreas = () => {
           ))
         ) : (
           <div className="col-span-full text-center py-20 bg-slate-50 rounded-3xl border border-dashed border-slate-300">
-            <h3 className="text-xl font-bold text-slate-400">No Areas Found</h3>
-            <p className="text-slate-400">We are currently updating data for {activeEmirate}. Check back soon!</p>
+            <h3 className="text-xl font-bold text-slate-400">Loading Data...</h3>
           </div>
         )}
       </div>
 
-      {/* --- ANALYST VERDICTS SECTION --- */}
-      <div className="border-t border-slate-200 pt-16">
-         <div className="flex flex-col md:flex-row justify-between items-end mb-10 gap-4">
-           <div>
-             <div className="flex items-center gap-2 text-yellow-500 font-bold uppercase tracking-widest text-xs mb-2">
-                <Zap size={16} /> National FutureScope
-             </div>
-             <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900">
-                 Analyst Verdicts: <span className="text-blue-600">2026 Edition</span>
-             </h2>
-           </div>
-         </div>
+      {/* --- SECTION 3: MEMBERSHIP PRICING ("Prising about product") --- */}
+      <div className="border-t border-slate-200 pt-20 pb-10">
+        <div className="text-center mb-16">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-50 text-blue-600 text-xs font-bold uppercase tracking-wider mb-4 border border-blue-100">
+            <Gem size={14} /> EstateIQ Membership
+          </div>
+          <h2 className="text-3xl md:text-5xl font-extrabold text-slate-900 mb-6">
+            Unlock <span className="text-blue-600">Pro Insights</span>
+          </h2>
+          <p className="text-slate-500 max-w-2xl mx-auto text-lg">
+            Choose a plan to access advanced features like 5-Year Forecasts, Developer Risk Scores, and Heatmap Overlays.
+          </p>
+        </div>
 
-         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-           <VerdictBox 
-             icon={<TrendingUp size={24} />}
-             title="Best Appreciation"
-             winner="Al Marjan (RAK)"
-             desc="The Wynn Casino effect is driving +20% annual capital appreciation."
-             color="bg-purple-50 border-purple-100"
-             iconColor="text-purple-600"
-           />
-           <VerdictBox 
-             icon={<ShieldCheck size={24} />}
-             title="Safest Investment"
-             winner="Downtown Dubai"
-             desc="The most liquid asset in the region. Instant resale demand."
-             color="bg-emerald-50 border-emerald-100"
-             iconColor="text-emerald-600"
-           />
-           <VerdictBox 
-             icon={<Wallet size={24} />}
-             title="Best Cash Flow"
-             winner="Ajman Corniche"
-             desc="Unbeatable entry prices with massive 9-10% net rental yields."
-             color="bg-teal-50 border-teal-100"
-             iconColor="text-teal-600"
-           />
-           <VerdictBox 
-             icon={<Gem size={24} />}
-             title="Luxury Pick"
-             winner="Saadiyat Island"
-             desc="The Cultural District. Museums and beaches attract ultra-HNWIs."
-             color="bg-indigo-50 border-indigo-100"
-             iconColor="text-indigo-600"
-           />
-         </div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto px-4">
+          
+          {/* PLAN 1: BASIC */}
+          <div className="bg-white border border-slate-200 rounded-3xl p-8 shadow-sm hover:shadow-xl transition-all relative">
+            <h3 className="text-xl font-bold text-slate-900 mb-2">Basic</h3>
+            <div className="text-4xl font-extrabold text-slate-900 mb-6">Free</div>
+            <p className="text-sm text-slate-500 mb-8 leading-relaxed">Essential market access for casual browsers.</p>
+            
+            <ul className="space-y-4 mb-8 text-sm font-medium text-slate-600">
+              <li className="flex gap-3"><Check size={18} className="text-green-500" /> Access to 50+ Areas</li>
+              <li className="flex gap-3"><Check size={18} className="text-green-500" /> Basic ROI Data</li>
+              <li className="flex gap-3"><Check size={18} className="text-green-500" /> Developer Profiles</li>
+              <li className="flex gap-3 opacity-50"><Lock size={18} /> 5-Year FutureScope™</li>
+              <li className="flex gap-3 opacity-50"><Lock size={18} /> Risk Score Analysis</li>
+            </ul>
+            
+            <button className="w-full py-3 rounded-xl border-2 border-slate-900 text-slate-900 font-bold hover:bg-slate-900 hover:text-white transition-all">
+              Get Started
+            </button>
+          </div>
+
+          {/* PLAN 2: PRO (Highlighted) */}
+          <div className="bg-slate-900 text-white rounded-3xl p-8 shadow-2xl relative transform md:-translate-y-4 border border-slate-800">
+            <div className="absolute top-0 right-0 bg-gradient-to-l from-blue-600 to-indigo-600 text-white text-[10px] font-bold px-3 py-1 rounded-bl-xl rounded-tr-xl uppercase tracking-widest">
+              Most Popular
+            </div>
+            
+            <h3 className="text-xl font-bold text-blue-400 mb-2 flex items-center gap-2">
+              <Star size={20} fill="currentColor" /> Pro Investor
+            </h3>
+            <div className="text-4xl font-extrabold mb-6">$49<span className="text-lg font-medium text-slate-400">/mo</span></div>
+            <p className="text-sm text-slate-300 mb-8 leading-relaxed">For serious investors who need data-backed decisions.</p>
+            
+            <ul className="space-y-4 mb-8 text-sm font-medium text-slate-200">
+              <li className="flex gap-3"><Check size={18} className="text-blue-400" /> Everything in Basic</li>
+              <li className="flex gap-3"><Check size={18} className="text-blue-400" /> <span className="text-white font-bold">FutureScope™ Forecasts</span></li>
+              <li className="flex gap-3"><Check size={18} className="text-blue-400" /> Developer Risk Scores</li>
+              <li className="flex gap-3"><Check size={18} className="text-blue-400" /> Compare 3 Areas at once</li>
+              <li className="flex gap-3"><Check size={18} className="text-blue-400" /> PDF Reports Download</li>
+            </ul>
+            
+            <button className="w-full py-3 rounded-xl bg-blue-600 text-white font-bold hover:bg-blue-700 transition-all shadow-lg shadow-blue-900/50">
+              Upgrade to Pro
+            </button>
+          </div>
+
+          {/* PLAN 3: ELITE */}
+          <div className="bg-white border border-slate-200 rounded-3xl p-8 shadow-sm hover:shadow-xl transition-all relative">
+            <h3 className="text-xl font-bold text-slate-900 mb-2 flex items-center gap-2">
+              <Crown size={20} className="text-yellow-500" /> Elite
+            </h3>
+            <div className="text-4xl font-extrabold text-slate-900 mb-6">$99<span className="text-lg font-medium text-slate-400">/mo</span></div>
+            <p className="text-sm text-slate-500 mb-8 leading-relaxed">Full access for agencies and institutional investors.</p>
+            
+            <ul className="space-y-4 mb-8 text-sm font-medium text-slate-600">
+              <li className="flex gap-3"><Check size={18} className="text-green-500" /> Everything in Pro</li>
+              <li className="flex gap-3"><Check size={18} className="text-green-500" /> API Access</li>
+              <li className="flex gap-3"><Check size={18} className="text-green-500" /> White-Label Reports</li>
+              <li className="flex gap-3"><Check size={18} className="text-green-500" /> Priority Support</li>
+              <li className="flex gap-3"><Check size={18} className="text-green-500" /> 1-on-1 Consultation</li>
+            </ul>
+            
+            <button className="w-full py-3 rounded-xl border-2 border-slate-200 text-slate-900 font-bold hover:border-slate-900 transition-all">
+              Contact Sales
+            </button>
+          </div>
+
+        </div>
       </div>
 
     </div>
   );
 };
-
-const VerdictBox = ({ icon, title, winner, desc, color, iconColor }) => (
-  <div className={`p-6 rounded-2xl border ${color} hover:shadow-lg transition-all hover:-translate-y-1 h-full`}>
-     <div className={`w-12 h-12 rounded-xl bg-white flex items-center justify-center mb-4 shadow-sm ${iconColor}`}>
-       {icon}
-     </div>
-     <div className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">{title}</div>
-     <h3 className="text-xl font-extrabold text-slate-900 mb-2">{winner}</h3>
-     <p className="text-sm text-slate-600 leading-relaxed font-medium opacity-90">"{desc}"</p>
-  </div>
-);
 
 export default ExploreAreas;
