@@ -6,26 +6,10 @@ import {
 } from 'lucide-react';
 import SEO from '../components/SEO';
 
-// --- DATA IMPORTS (ALL 7 EMIRATES) ---
-import { DUBAI_AREAS } from '../data/areaData';     
-import { SHARJAH_DATA } from '../data/sharjahData'; 
-import { RAK_DATA } from '../data/rakData';         
-import { ABUDHABI_DATA } from '../data/abudhabiData';
-import { AJMAN_DATA } from '../data/ajmanData';
-import { FUJAIRAH_DATA } from '../data/fujairahData';
-import { UAQ_DATA } from '../data/uaqData';
-
-// --- MASTER DATABASE ---
-// Combine all data into one super-list
-const MASTER_DB = [
-  ...(DUBAI_AREAS || []), 
-  ...(SHARJAH_DATA || []), 
-  ...(RAK_DATA || []),
-  ...(ABUDHABI_DATA || []),
-  ...(AJMAN_DATA || []),
-  ...(FUJAIRAH_DATA || []),
-  ...(UAQ_DATA || [])
-];
+// --- CRITICAL FIX: IMPORT MASTER DATA ---
+// We import the combined list from your Master File.
+// We rename it to 'MASTER_DB' for clarity in this component.
+import { DUBAI_AREAS as MASTER_DB } from '../data/emiratesData';
 
 const ExploreAreas = () => {
   const [selectedEmirate, setSelectedEmirate] = useState(null);
@@ -33,17 +17,19 @@ const ExploreAreas = () => {
   useEffect(() => { window.scrollTo(0, 0); }, [selectedEmirate]);
 
   // --- FILTER LOGIC ---
+  // If an emirate is selected, we filter the Master DB
+  // This looks for: area.emirate === "Dubai" (or "Sharjah", etc.)
   const currentAreas = selectedEmirate 
-    ? MASTER_DB.filter(area => (area.emirate) === selectedEmirate)
+    ? MASTER_DB.filter(area => area.emirate === selectedEmirate)
     : [];
 
   // --- EMIRATE CARDS DATA ---
   const EMIRATES = [
-    { name: 'Dubai', count: '22 Areas', color: 'bg-blue-900', icon: <Building2 className="text-blue-400" />, desc: "Global business hub & luxury living" },
-    { name: 'Abu Dhabi', count: '9 Areas', color: 'bg-teal-900', icon: <ShieldCheck className="text-teal-400" />, desc: "Capital of UAE, high-income stability" },
-    { name: 'Sharjah', count: '4 Areas', color: 'bg-orange-900', icon: <Wallet className="text-orange-400" />, desc: "Highest rental yields & culture" },
-    { name: 'Ras Al Khaimah', count: '3 Areas', color: 'bg-purple-900', icon: <Zap className="text-purple-400" />, desc: "Gaming resorts & massive appreciation" },
-    { name: 'Ajman', count: '1 Areas', color: 'bg-emerald-900', icon: <Sun className="text-emerald-400" />, desc: "Affordable entry & high occupancy" },
+    { name: 'Dubai', count: '220+ Areas', color: 'bg-blue-900', icon: <Building2 className="text-blue-400" />, desc: "Global business hub & luxury living" },
+    { name: 'Abu Dhabi', count: '90+ Areas', color: 'bg-teal-900', icon: <ShieldCheck className="text-teal-400" />, desc: "Capital of UAE, high-income stability" },
+    { name: 'Sharjah', count: '45+ Areas', color: 'bg-orange-900', icon: <Wallet className="text-orange-400" />, desc: "Highest rental yields & culture" },
+    { name: 'Ras Al Khaimah', count: '30+ Areas', color: 'bg-purple-900', icon: <Zap className="text-purple-400" />, desc: "Gaming resorts & massive appreciation" },
+    { name: 'Ajman', count: '18 Areas', color: 'bg-emerald-900', icon: <Sun className="text-emerald-400" />, desc: "Affordable entry & high occupancy" },
     { name: 'Fujairah', count: '13 Areas', color: 'bg-cyan-900', icon: <Anchor className="text-cyan-400" />, desc: "Port city with strategic growth" },
     { name: 'Umm Al Quwain', count: '10 Areas', color: 'bg-lime-900', icon: <Palmtree className="text-lime-400" />, desc: "Quiet coastal living & value" },
   ];
@@ -79,6 +65,9 @@ const ExploreAreas = () => {
                   <div className="flex justify-between items-start mb-6">
                     <div className="p-3 rounded-2xl bg-white/10 backdrop-blur-md">
                       {React.cloneElement(item.icon, { size: 28 })}
+                    </div>
+                    <div className="px-3 py-1 rounded-full bg-white/20 text-white text-[10px] font-bold uppercase tracking-wider">
+                      {item.count}
                     </div>
                   </div>
                   

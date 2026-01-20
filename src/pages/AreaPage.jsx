@@ -1,34 +1,29 @@
 import React, { useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { 
-  MapPin, ArrowLeft, TrendingUp, Building2, 
-  CheckCircle, Wallet, Plane, Briefcase, Train, GraduationCap, ShoppingBag, Camera, HeartPulse, BarChart3
+  MapPin, ArrowLeft, CheckCircle, TrendingUp, 
+  Plane, ShoppingBag, BarChart3, 
+  GraduationCap, Train, Briefcase, Camera, HeartPulse 
 } from 'lucide-react';
-import SEO from '../components/SEO';
-import WhatsAppButton from '../components/WhatsAppButton';
 
-// --- IMPORT THE MASTER DATA FILE ---
-// We only need this ONE import now, because emiratesData.js has everything!
-import { DUBAI_AREAS as MASTER_DB } from '../data/emiratesData'; 
+// --- CRITICAL IMPORT: MASTER DATA ---
+// We use the combined list so this page works for ALL Emirates.
+import { DUBAI_AREAS as MASTER_DB } from '../data/emiratesData';
 
 const AreaPage = () => {
   const { id } = useParams();
   
-  // 1. Find the Area Data (The Master DB has all 7 Emirates)
+  // 1. Find the Area Data in the Master List
   const area = MASTER_DB.find(a => a.id === id);
 
-  useEffect(() => { window.scrollTo(0, 0); }, [id]);
+  // Scroll to top on load
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [id]);
 
-  if (!area) {
-    return (
-      <div className="min-h-screen flex flex-col items-center justify-center bg-slate-50">
-        <h1 className="text-3xl font-bold text-slate-900 mb-4">Area Not Found</h1>
-        <Link to="/areas" className="text-blue-600 hover:underline">Return to Map</Link>
-      </div>
-    );
-  }
+  if (!area) return <div className="p-20 text-center text-slate-500">Area not found.</div>;
 
-  // 2. Fallback Data
+  // 2. Fallback Data (Safeguard in case data is missing)
   const conn = area.connectivity || {
     airport: { name: "Nearest Airport", km: "--", mins: "--" },
     school: { name: "Intl School", km: "--", mins: "--" },
@@ -41,20 +36,16 @@ const AreaPage = () => {
 
   const scores = area.scores || { cashFlow: 8, appreciation: 7, liquidity: 8, risk: 4, lifestyle: 8 };
   const economics = area.unitEconomics || { studio: { roi: "N/A" }, oneBed: { roi: "N/A" }, twoBed: { roi: "N/A" } };
-  const prices = area.prices || {};
 
   return (
-    <div className="max-w-7xl mx-auto px-4 md:px-8 pb-20 fade-in bg-slate-50 min-h-screen pt-8">
-      <SEO 
-        title={`${area.name} Real Estate Analysis | EstateIQ`} 
-        description={`Investment analysis for ${area.name}. ROI: ${area.roi}, Avg Price: ${area.avgPrice}.`}
-      />
-
-      <Link to="/areas" className="inline-flex items-center gap-2 text-slate-500 hover:text-black mb-6 font-bold text-sm transition-colors">
+    <div className="max-w-7xl mx-auto px-4 md:px-8 pb-20 fade-in bg-slate-50 min-h-screen">
+      
+      {/* Breadcrumb */}
+      <Link to="/areas" className="inline-flex items-center gap-2 text-slate-500 hover:text-black mb-6 mt-8 font-bold text-sm transition-colors">
         <ArrowLeft size={16} /> Back to National Map
       </Link>
 
-      {/* HERO SECTION */}
+      {/* HEADER HERO SECTION */}
       <div className={`rounded-3xl p-8 md:p-16 text-white mb-10 relative overflow-hidden shadow-xl ${area.imageColor || 'bg-blue-900'}`}>
          <div className="relative z-10 max-w-3xl">
             <div className="flex items-center gap-3 mb-4">
@@ -68,34 +59,21 @@ const AreaPage = () => {
             <h1 className="text-4xl md:text-6xl font-extrabold mb-4">{area.name}</h1>
             <p className="text-xl opacity-90 leading-relaxed max-w-2xl">{area.description}</p>
          </div>
+         {/* Gradient Overlay */}
          <div className="absolute inset-0 bg-gradient-to-r from-black/60 to-transparent"></div>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
         
-        {/* LEFT COLUMN */}
+        {/* === LEFT COLUMN: DEEP DATA ANALYSIS === */}
         <div className="lg:col-span-2 space-y-8">
            
-           {/* MARKET PRICING */}
-           <div className="bg-white border border-slate-200 rounded-3xl p-8 shadow-sm">
-             <div className="flex items-center gap-3 mb-6">
-                <Wallet className="text-blue-600" size={24} /> 
-                <h3 className="text-xl font-extrabold text-slate-900">Market Pricing <span className="text-blue-600">(2026 Estimates)</span></h3>
-             </div>
-             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                <PriceBox label="Studio" value={prices.studio} />
-                <PriceBox label="1 Bed" value={prices.oneBed} />
-                <PriceBox label="2 Bed" value={prices.twoBed} />
-                <PriceBox label="3 Bed" value={prices.threeBed || prices.villa} />
-             </div>
-           </div>
-
-           {/* UNIT ECONOMICS */}
-           <div className="bg-white border border-slate-200 rounded-3xl p-8 shadow-sm">
+           {/* 1. UNIT ECONOMICS TABLE */}
+           <div className="bg-white border border-slate-200 rounded-2xl p-8 shadow-sm">
               <div className="flex items-center gap-3 mb-2">
-                <BarChart3 className="text-emerald-600" />
+                <BarChart3 className="text-blue-600" />
                 <h3 className="text-xl font-extrabold text-slate-900">
-                  Rental <span className="text-emerald-600">Yields</span> by Unit
+                  Rental <span className="text-blue-600">Yields</span> by Unit
                 </h3>
               </div>
               <p className="text-slate-500 text-sm mb-6">Net ROI projections based on current rental contracts.</p>
@@ -107,7 +85,7 @@ const AreaPage = () => {
               </div>
            </div>
 
-           {/* CONNECTIVITY */}
+           {/* 2. STRATEGIC CONNECTIVITY */}
            <div className="bg-slate-900 text-white rounded-3xl p-8 shadow-2xl">
               <div className="flex items-center gap-3 mb-2">
                 <MapPin className="text-blue-400" />
@@ -129,14 +107,19 @@ const AreaPage = () => {
            </div>
         </div>
 
-        {/* RIGHT COLUMN */}
+        {/* === RIGHT COLUMN: SCORECARD & AMENITIES === */}
         <div className="space-y-8">
-           <div className="bg-white border border-slate-200 rounded-3xl p-8 shadow-sm">
+          
+           {/* INVESTMENT SCORECARD */}
+           <div className="bg-white border border-slate-200 rounded-2xl p-8 shadow-sm">
               <div className="flex items-center gap-3 mb-2">
                 <TrendingUp className="text-blue-600" />
-                <h3 className="text-xl font-extrabold text-slate-900">Scorecard</h3>
+                <h3 className="text-xl font-extrabold text-slate-900">
+                  Investment <span className="text-blue-600">Scorecard</span>
+                </h3>
               </div>
               <p className="text-slate-500 text-sm mb-6">Analyst ratings out of 10.</p>
+
               <div className="space-y-5">
                 <ScoreBar label="Cash Flow" value={scores.cashFlow} color="bg-green-500" />
                 <ScoreBar label="Appreciation" value={scores.appreciation} color="bg-blue-500" />
@@ -144,17 +127,32 @@ const AreaPage = () => {
                 <ScoreBar label="Lifestyle" value={scores.lifestyle} color="bg-amber-500" />
                 <ScoreBar label="Risk (Low is Good)" value={scores.risk} color="bg-red-500" />
               </div>
-              <div className="mt-8 pt-6 border-t border-slate-100">
-                <WhatsAppButton data={area} type="area" />
-              </div>
            </div>
+
+           {/* LIFESTYLE AMENITIES */}
+           <div className="bg-slate-50 border border-slate-200 rounded-2xl p-6">
+             <h4 className="font-extrabold text-slate-900 mb-4 flex items-center gap-2 text-lg">
+               <CheckCircle size={20} className="text-blue-600"/> 
+               <span><span className="text-blue-600">Lifestyle</span> Perks</span>
+             </h4>
+             <div className="flex flex-wrap gap-2">
+               {area.amenities?.map((am, idx) => (
+                 <span key={idx} className="px-3 py-1.5 bg-white border border-slate-200 rounded-lg text-xs font-bold text-slate-600 shadow-sm">
+                   {am}
+                 </span>
+               ))}
+             </div>
+          </div>
+
         </div>
       </div>
+      
     </div>
   );
 };
 
-// --- SUB-COMPONENTS ---
+// --- HELPER SUB-COMPONENTS ---
+
 const UnitBox = ({ label, value, color, bg, border }) => (
   <div className={`p-4 rounded-xl border ${bg} ${border}`}>
     <div className={`text-xs font-bold uppercase mb-1 opacity-60`}>{label}</div>
@@ -162,12 +160,7 @@ const UnitBox = ({ label, value, color, bg, border }) => (
     <div className="text-xs font-medium opacity-50">ROI</div>
   </div>
 );
-const PriceBox = ({ label, value }) => (
-  <div className="p-4 bg-slate-50 rounded-xl text-center border border-slate-100 hover:border-blue-200 transition-colors">
-    <div className="text-xs font-bold text-slate-400 uppercase mb-1">{label}</div>
-    <div className="font-bold text-slate-900 text-sm md:text-base">{value || "N/A"}</div>
-  </div>
-);
+
 const ScoreBar = ({ label, value, color }) => (
   <div>
     <div className="flex justify-between text-sm font-bold text-slate-700 mb-1">
@@ -179,6 +172,7 @@ const ScoreBar = ({ label, value, color }) => (
     </div>
   </div>
 );
+
 const DistanceRow = ({ icon, category, data, color }) => (
   <div className="flex items-center justify-between pb-4 border-b border-slate-700 last:border-0 last:pb-0 hover:bg-white/5 p-2 rounded-lg transition-colors -mx-2">
     <div className="flex items-center gap-4">
