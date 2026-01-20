@@ -1,4 +1,4 @@
-export const ABU_DHABI_DATA = [
+export const ABUDHABI_DATA = [
   {
     id: "yas-island",
     name: "Yas Island (Abu Dhabi)",
