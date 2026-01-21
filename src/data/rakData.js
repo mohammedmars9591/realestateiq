@@ -1,247 +1,295 @@
+// ==========================================================
+// RAS AL KHAIMAH DATA (Top 10 Investment Areas 2026)
+// ==========================================================
 
 export const RAK_DATA = [
+  // --- 1. AL MARJAN ISLAND ---
   {
     id: "al-marjan-island",
     name: "Al Marjan Island",
-    category: "Luxury / Waterfront",
-    roi: "6.9%",
-    avgPrice: "AED 1.3M",
-    imageColor: "bg-sky-600",
-    amenities: ["Beaches", "Resorts", "Waterfront Promenade"],
-    scores: { cashFlow: 7.8, appreciation: 8.6, liquidity: 7.5, risk: 6.4, lifestyle: 9.0 },
-    unitEconomics: { studio: { roi: "7.4%" }, oneBed: { roi: "6.9%" }, twoBed: { roi: "5.8%" } },
-    overallScore: 8.4,
-    description: "RAK’s prime waterfront destination with strong tourism demand.",
+    emirate: "Ras Al Khaimah",
+    category: "Luxury / Casino",
+    roi: "9.0%", //
+    avgPrice: "AED 1.8M", //
+    imageColor: "bg-purple-600",
+    amenities: ["Wynn Casino", "Private Beaches", "5-Star Hotels"],
+    scores: { cashFlow: 8.5, appreciation: 10.0, liquidity: 9.0, risk: 6.5, lifestyle: 9.5 },
+    unitEconomics: { 
+      studio: { roi: "9.2%", rent: "AED 45k" }, //
+      oneBed: { roi: "8.8%", rent: "AED 75k" }, //
+      twoBed: { roi: "8.0%", rent: "AED 110k" } //
+    },
+    overallScore: 9.6,
+    description: "Home to the upcoming Wynn Resort & Casino. The #1 hotspot for capital appreciation in the UAE.",
     connectivity: {
-      airport: { name: "RAK Intl Airport", km: "30 km", mins: "35 mins" },
-      school: { name: "RAK Academy", km: "18 km", mins: "22 mins" },
-      tourist: { name: "Wynn Al Marjan Island", km: "1 km", mins: "3 mins" },
-      metro: { name: "N/A", km: "—", mins: "—" },
-      mall: { name: "Al Hamra Mall", km: "8 km", mins: "10 mins" },
-      business: { name: "RAK Free Trade Zone", km: "20 km", mins: "25 mins" },
-      hospital: { name: "RAK Hospital", km: "22 km", mins: "28 mins" }
+      airport: { name: "RAK Intl Airport", km: "30 km", mins: "25 mins" },
+      school: { name: "RAK Academy", km: "10 km", mins: "12 mins" },
+      tourist: { name: "Wynn Resort", km: "0.5 km", mins: "2 mins" },
+      metro: { name: "N/A", km: "N/A", mins: "N/A" },
+      mall: { name: "Al Hamra Mall", km: "5 km", mins: "6 mins" },
+      business: { name: "RAK Central", km: "8 km", mins: "10 mins" },
+      hospital: { name: "RAK Hospital", km: "25 km", mins: "25 mins" }
     }
   },
+
+  // --- 2. AL HAMRA VILLAGE ---
   {
     id: "al-hamra-village",
     name: "Al Hamra Village",
-    category: "Golf / Waterfront",
-    roi: "7.2%",
-    avgPrice: "AED 980k",
-    imageColor: "bg-emerald-700",
-    amenities: ["Golf Course", "Marina", "Beach Access"],
-    scores: { cashFlow: 8.3, appreciation: 7.8, liquidity: 7.6, risk: 6.3, lifestyle: 8.7 },
-    unitEconomics: { studio: { roi: "7.8%" }, oneBed: { roi: "7.2%" }, twoBed: { roi: "6.0%" } },
-    overallScore: 8.3,
-    description: "Established expat-friendly community with strong rentals.",
+    emirate: "Ras Al Khaimah",
+    category: "Golf / Marina",
+    roi: "7.5%", //
+    avgPrice: "AED 950k", //
+    imageColor: "bg-emerald-600",
+    amenities: ["Championship Golf Course", "Marina", "Al Hamra Mall"],
+    scores: { cashFlow: 7.8, appreciation: 7.0, liquidity: 8.0, risk: 5.5, lifestyle: 8.5 },
+    unitEconomics: { 
+      studio: { roi: "8.0%", rent: "AED 38k" }, //
+      oneBed: { roi: "7.5%", rent: "AED 55k" }, //
+      twoBed: { roi: "7.0%", rent: "AED 85k" } //
+    },
+    overallScore: 8.4,
+    description: "Established expat community with championship golf course, marina, and 42% villa price growth in 2025.",
     connectivity: {
-      airport: { name: "RAK Intl Airport", km: "25 km", mins: "30 mins" },
-      school: { name: "RAK Academy", km: "12 km", mins: "15 mins" },
-      tourist: { name: "Al Hamra Marina", km: "0.5 km", mins: "2 mins" },
-      metro: { name: "N/A", km: "—", mins: "—" },
-      mall: { name: "Al Hamra Mall", km: "1 km", mins: "3 mins" },
-      business: { name: "RAK Economic Zone", km: "18 km", mins: "22 mins" },
-      hospital: { name: "RAK Hospital", km: "16 km", mins: "20 mins" }
+      airport: { name: "RAK Intl Airport", km: "35 km", mins: "30 mins" },
+      school: { name: "RAK Academy", km: "2 km", mins: "5 mins" },
+      tourist: { name: "Al Marjan Island", km: "5 km", mins: "6 mins" },
+      metro: { name: "N/A", km: "N/A", mins: "N/A" },
+      mall: { name: "Al Hamra Mall", km: "0.5 km", mins: "2 mins" },
+      business: { name: "RAK Free Zone", km: "10 km", mins: "12 mins" },
+      hospital: { name: "Sheikh Khalifa", km: "15 km", mins: "18 mins" }
     }
   },
+
+  // --- 3. MINA AL ARAB ---
   {
     id: "mina-al-arab",
     name: "Mina Al Arab",
-    category: "Master Community",
-    roi: "6.5%",
-    avgPrice: "AED 900k",
+    emirate: "Ras Al Khaimah",
+    category: "Eco-Luxury / Resort",
+    roi: "6.0%", //
+    avgPrice: "AED 1.2M",
     imageColor: "bg-teal-600",
-    amenities: ["Lagoon", "Parks", "Retail"],
-    scores: { cashFlow: 7.5, appreciation: 8.2, liquidity: 7.2, risk: 6.5, lifestyle: 8.5 },
-    unitEconomics: { studio: { roi: "7.0%" }, oneBed: { roi: "6.6%" }, twoBed: { roi: "5.5%" } },
-    overallScore: 8.1,
-    description: "Waterfront community popular with end-users and holiday rentals.",
+    amenities: ["Maldives-style Villas", "Anantara Resort", "Mangroves"],
+    scores: { cashFlow: 6.5, appreciation: 8.5, liquidity: 7.5, risk: 5.0, lifestyle: 9.2 },
+    unitEconomics: { 
+      studio: { roi: "6.5%", rent: "AED 40k" }, 
+      oneBed: { roi: "6.0%", rent: "AED 65k" }, 
+      twoBed: { roi: "5.5%", rent: "AED 95k" } 
+    },
+    overallScore: 8.8,
+    description: "Eco-luxury living featuring Anantara resort and protected wetlands. High demand for waterfront villas.",
     connectivity: {
-      airport: { name: "RAK Intl Airport", km: "27 km", mins: "32 mins" },
-      school: { name: "RAK Academy", km: "14 km", mins: "18 mins" },
-      tourist: { name: "Flamingo Beach", km: "2 km", mins: "5 mins" },
-      metro: { name: "N/A", km: "—", mins: "—" },
-      mall: { name: "Al Hamra Mall", km: "6 km", mins: "8 mins" },
-      business: { name: "RAK Economic Zone", km: "17 km", mins: "22 mins" },
-      hospital: { name: "Ibrahim Bin Hamad Hospital", km: "15 km", mins: "20 mins" }
-    }
-  },
-  {
-    id: "raha-beach",
-    name: "RAK Corniche / Al Nakheel",
-    category: "Central / Family",
-    roi: "7.6%",
-    avgPrice: "AED 620k",
-    imageColor: "bg-indigo-600",
-    amenities: ["Corniche", "Retail", "Restaurants"],
-    scores: { cashFlow: 8.9, appreciation: 7.0, liquidity: 8.0, risk: 6.6, lifestyle: 7.8 },
-    unitEconomics: { studio: { roi: "8.2%" }, oneBed: { roi: "7.6%" }, twoBed: { roi: "6.2%" } },
-    overallScore: 8.2,
-    description: "High-demand central apartments near RAK Corniche.",
-    connectivity: {
-      airport: { name: "RAK Intl Airport", km: "20 km", mins: "25 mins" },
-      school: { name: "Scholars Indian School", km: "3 km", mins: "6 mins" },
-      tourist: { name: "RAK Corniche", km: "0.3 km", mins: "1 min" },
-      metro: { name: "N/A", km: "—", mins: "—" },
-      mall: { name: "Manar Mall", km: "1 km", mins: "3 mins" },
-      business: { name: "RAK City Centre", km: "2 km", mins: "5 mins" },
-      hospital: { name: "Ibrahim Bin Hamad Hospital", km: "2 km", mins: "5 mins" }
-    }
-  },
-  {
-    id: "khuzam",
-    name: "Khuzam",
-    category: "Villa / Local",
-    roi: "6.1%",
-    avgPrice: "AED 1.6M",
-    imageColor: "bg-amber-700",
-    amenities: ["Villas", "Local Parks", "Mosques"],
-    scores: { cashFlow: 6.9, appreciation: 7.4, liquidity: 6.8, risk: 6.3, lifestyle: 7.2 },
-    unitEconomics: { villa: { roi: "6.1%" } },
-    overallScore: 7.6,
-    description: "Low-density villa area popular with local families.",
-    connectivity: {
-      airport: { name: "RAK Intl Airport", km: "18 km", mins: "22 mins" },
-      school: { name: "Indian Public High School", km: "2 km", mins: "5 mins" },
-      tourist: { name: "RAK National Museum", km: "4 km", mins: "8 mins" },
-      metro: { name: "N/A", km: "—", mins: "—" },
-      mall: { name: "Manar Mall", km: "3 km", mins: "6 mins" },
-      business: { name: "RAK Municipality", km: "4 km", mins: "7 mins" },
-      hospital: { name: "RAK Hospital", km: "3 km", mins: "6 mins" }
-    }
-  }
-  ,
-  {
-    id: "al-dhait",
-    name: "Al Dhait",
-    category: "Central / Family",
-    roi: "7.4%",
-    avgPrice: "AED 650k",
-    imageColor: "bg-green-600",
-    amenities: ["Schools", "Clinics", "Local Retail"],
-    scores: { cashFlow: 8.7, appreciation: 7.0, liquidity: 8.1, risk: 6.5, lifestyle: 7.3 },
-    unitEconomics: { studio: { roi: "8.0%" }, oneBed: { roi: "7.5%" }, twoBed: { roi: "6.2%" } },
-    overallScore: 8.1,
-    description: "High-demand residential district close to RAK city center.",
-    connectivity: {
-      airport: { name: "RAK Intl Airport", km: "17 km", mins: "22 mins" },
-      school: { name: "GEMS Westminster School", km: "1.5 km", mins: "4 mins" },
-      tourist: { name: "RAK National Museum", km: "5 km", mins: "8 mins" },
-      metro: { name: "N/A", km: "—", mins: "—" },
-      mall: { name: "Manar Mall", km: "3 km", mins: "6 mins" },
-      business: { name: "RAK Municipality", km: "3 km", mins: "6 mins" },
-      hospital: { name: "Ibrahim Bin Hamad Hospital", km: "2 km", mins: "5 mins" }
-    }
-  },
-  {
-    id: "julphar",
-    name: "Julphar",
-    category: "Mixed Use / Affordable",
-    roi: "7.8%",
-    avgPrice: "AED 580k",
-    imageColor: "bg-emerald-600",
-    amenities: ["Creekside", "Retail", "Mosques"],
-    scores: { cashFlow: 9.0, appreciation: 6.8, liquidity: 8.2, risk: 6.7, lifestyle: 7.0 },
-    unitEconomics: { studio: { roi: "8.5%" }, oneBed: { roi: "7.9%" }, twoBed: { roi: "6.4%" } },
-    overallScore: 8.3,
-    description: "Affordable apartments with strong long-term rental demand.",
-    connectivity: {
-      airport: { name: "RAK Intl Airport", km: "19 km", mins: "25 mins" },
-      school: { name: "Indian Public High School", km: "2 km", mins: "5 mins" },
-      tourist: { name: "RAK Creek", km: "0.8 km", mins: "2 mins" },
-      metro: { name: "N/A", km: "—", mins: "—" },
-      mall: { name: "Manar Mall", km: "2 km", mins: "5 mins" },
-      business: { name: "RAK Industrial Area", km: "4 km", mins: "7 mins" },
-      hospital: { name: "RAK Hospital", km: "3 km", mins: "6 mins" }
-    }
-  },
-  {
-    id: "al-rams",
-    name: "Al Rams",
-    category: "Coastal / Heritage",
-    roi: "6.7%",
-    avgPrice: "AED 720k",
-    imageColor: "bg-cyan-700",
-    amenities: ["Fishing Port", "Beach", "Heritage Sites"],
-    scores: { cashFlow: 7.6, appreciation: 7.5, liquidity: 6.9, risk: 6.8, lifestyle: 7.9 },
-    unitEconomics: { oneBed: { roi: "7.0%" }, twoBed: { roi: "5.8%" }, villa: { roi: "5.5%" } },
-    overallScore: 7.8,
-    description: "Quiet coastal town with long-term appreciation potential.",
-    connectivity: {
-      airport: { name: "RAK Intl Airport", km: "30 km", mins: "35 mins" },
-      school: { name: "Al Rams School", km: "1 km", mins: "3 mins" },
-      tourist: { name: "Al Rams Beach", km: "0.5 km", mins: "2 mins" },
-      metro: { name: "N/A", km: "—", mins: "—" },
-      mall: { name: "Manar Mall", km: "18 km", mins: "22 mins" },
-      business: { name: "RAK Port", km: "5 km", mins: "8 mins" },
+      airport: { name: "RAK Intl Airport", km: "25 km", mins: "22 mins" },
+      school: { name: "St. Mary's School", km: "10 km", mins: "12 mins" },
+      tourist: { name: "Nikki Beach", km: "5 km", mins: "8 mins" },
+      metro: { name: "N/A", km: "N/A", mins: "N/A" },
+      mall: { name: "My City Centre", km: "8 km", mins: "10 mins" },
+      business: { name: "RAK City", km: "20 km", mins: "25 mins" },
       hospital: { name: "RAK Hospital", km: "20 km", mins: "25 mins" }
     }
   },
+
+  // --- 4. HAYAT ISLAND ---
   {
-    id: "seih-al-harf",
-    name: "Seih Al Harf",
-    category: "Industrial / Workforce",
-    roi: "7.9%",
-    avgPrice: "AED 540k",
-    imageColor: "bg-stone-700",
-    amenities: ["Factories", "Worker Housing", "Highways"],
-    scores: { cashFlow: 9.1, appreciation: 6.4, liquidity: 7.8, risk: 7.0, lifestyle: 5.8 },
-    unitEconomics: { studio: { roi: "8.6%" }, oneBed: { roi: "8.0%" } },
-    overallScore: 7.9,
-    description: "Pure cash-flow zone driven by industrial employment.",
-    connectivity: {
-      airport: { name: "RAK Intl Airport", km: "16 km", mins: "20 mins" },
-      school: { name: "RAK School", km: "6 km", mins: "10 mins" },
-      tourist: { name: "RAK Mountains", km: "12 km", mins: "18 mins" },
-      metro: { name: "N/A", km: "—", mins: "—" },
-      mall: { name: "Manar Mall", km: "8 km", mins: "12 mins" },
-      business: { name: "RAK Industrial Area", km: "1 km", mins: "2 mins" },
-      hospital: { name: "RAK Hospital", km: "7 km", mins: "12 mins" }
-    }
-  },
-  {
-    id: "al-jazirah-al-hamra",
-    name: "Al Jazirah Al Hamra",
-    category: "Heritage / Waterfront",
-    roi: "6.9%",
-    avgPrice: "AED 820k",
-    imageColor: "bg-blue-600",
-    amenities: ["Heritage Village", "Beach", "Resorts"],
-    scores: { cashFlow: 7.8, appreciation: 8.0, liquidity: 7.2, risk: 6.5, lifestyle: 8.2 },
-    unitEconomics: { oneBed: { roi: "7.2%" }, twoBed: { roi: "6.0%" }, villa: { roi: "5.6%" } },
-    overallScore: 8.0,
-    description: "Historic waterfront area benefiting from tourism spillover.",
-    connectivity: {
-      airport: { name: "RAK Intl Airport", km: "28 km", mins: "32 mins" },
-      school: { name: "RAK Academy", km: "10 km", mins: "15 mins" },
-      tourist: { name: "Al Jazirah Heritage Village", km: "0.5 km", mins: "2 mins" },
-      metro: { name: "N/A", km: "—", mins: "—" },
-      mall: { name: "Al Hamra Mall", km: "5 km", mins: "7 mins" },
-      business: { name: "Al Hamra Free Zone", km: "6 km", mins: "8 mins" },
-      hospital: { name: "RAK Hospital", km: "18 km", mins: "22 mins" }
-    }
-  },
-  {
-    id: "dafan-al-khor",
-    name: "Dafan Al Khor",
-    category: "Creekside / High Yield",
-    roi: "8.1%",
-    avgPrice: "AED 560k",
-    imageColor: "bg-purple-700",
-    amenities: ["Creek Views", "Retail", "Restaurants"],
-    scores: { cashFlow: 9.3, appreciation: 6.9, liquidity: 8.4, risk: 6.6, lifestyle: 7.4 },
-    unitEconomics: { studio: { roi: "8.8%" }, oneBed: { roi: "8.2%" }, twoBed: { roi: "6.6%" } },
+    id: "hayat-island",
+    name: "Hayat Island",
+    emirate: "Ras Al Khaimah",
+    category: "Resort Living",
+    roi: "7.5%", //
+    avgPrice: "AED 1.1M", //
+    imageColor: "bg-cyan-500",
+    amenities: ["Angel Bay", "Beach Club", "InterContinental"],
+    scores: { cashFlow: 7.8, appreciation: 8.0, liquidity: 7.5, risk: 5.5, lifestyle: 9.0 },
+    unitEconomics: { 
+      studio: { roi: "8.0%", rent: "AED 45k" }, 
+      oneBed: { roi: "7.5%", rent: "AED 70k" }, 
+      twoBed: { roi: "7.0%", rent: "AED 105k" } 
+    },
     overallScore: 8.5,
-    description: "One of RAK’s strongest rental yield corridors.",
+    description: "The 'social hub' of Mina Al Arab. Offers resort-style apartments with direct beach access.",
     connectivity: {
-      airport: { name: "RAK Intl Airport", km: "21 km", mins: "26 mins" },
-      school: { name: "Scholars Indian School", km: "2 km", mins: "5 mins" },
-      tourist: { name: "RAK Creek", km: "0.4 km", mins: "1 min" },
-      metro: { name: "N/A", km: "—", mins: "—" },
-      mall: { name: "Manar Mall", km: "1.5 km", mins: "4 mins" },
-      business: { name: "RAK City Centre", km: "2 km", mins: "5 mins" },
-      hospital: { name: "Ibrahim Bin Hamad Hospital", km: "2 km", mins: "5 mins" }
+      airport: { name: "RAK Intl Airport", km: "25 km", mins: "22 mins" },
+      school: { name: "British School", km: "12 km", mins: "15 mins" },
+      tourist: { name: "Jebel Jais", km: "50 km", mins: "50 mins" },
+      metro: { name: "N/A", km: "N/A", mins: "N/A" },
+      mall: { name: "Lagoon Walk", km: "0.1 km", mins: "1 min" },
+      business: { name: "RAK Central", km: "15 km", mins: "18 mins" },
+      hospital: { name: "Al Zahra", km: "15 km", mins: "18 mins" }
+    }
+  },
+
+  // --- 5. YASMIN VILLAGE ---
+  {
+    id: "yasmin-village",
+    name: "Yasmin Village",
+    emirate: "Ras Al Khaimah",
+    category: "High Yield / Budget",
+    roi: "12.0%", //
+    avgPrice: "AED 450k",
+    imageColor: "bg-orange-600",
+    amenities: ["Mountain Views", "Hiking Trails", "Community Lake"],
+    scores: { cashFlow: 10.0, appreciation: 5.5, liquidity: 7.0, risk: 6.0, lifestyle: 7.0 },
+    unitEconomics: { 
+      studio: { roi: "12.5%", rent: "AED 28k" }, 
+      oneBed: { roi: "11.8%", rent: "AED 42k" }, 
+      twoBed: { roi: "10.5%", rent: "AED 60k" } 
+    },
+    overallScore: 8.2,
+    description: "The highest rental yield hotspot in RAK (up to 12%). Ideal for pure cash-flow investors.",
+    connectivity: {
+      airport: { name: "RAK Intl Airport", km: "15 km", mins: "15 mins" },
+      school: { name: "Scholars", km: "5 km", mins: "8 mins" },
+      tourist: { name: "Dhayah Fort", km: "15 km", mins: "20 mins" },
+      metro: { name: "N/A", km: "N/A", mins: "N/A" },
+      mall: { name: "Manar Mall", km: "10 km", mins: "12 mins" },
+      business: { name: "RAK City", km: "10 km", mins: "12 mins" },
+      hospital: { name: "Saqr Hospital", km: "8 km", mins: "10 mins" }
+    }
+  },
+
+  // --- 6. JULPHAR TOWERS ---
+  {
+    id: "julphar-towers",
+    name: "Julphar Towers",
+    emirate: "Ras Al Khaimah",
+    category: "Business / Views",
+    roi: "7.0%", //
+    avgPrice: "AED 600k",
+    imageColor: "bg-blue-800",
+    amenities: ["Mangrove Views", "City Centre", "Offices"],
+    scores: { cashFlow: 7.5, appreciation: 6.0, liquidity: 8.0, risk: 5.0, lifestyle: 6.5 },
+    unitEconomics: { 
+      studio: { roi: "7.5%", rent: "AED 32k" }, 
+      oneBed: { roi: "7.0%", rent: "AED 48k" }, 
+      twoBed: { roi: "6.5%", rent: "AED 72k" } 
+    },
+    overallScore: 7.9,
+    description: "Iconic twin towers in RAK City offering stunning mangrove views and affordable entry prices.",
+    connectivity: {
+      airport: { name: "RAK Intl Airport", km: "20 km", mins: "18 mins" },
+      school: { name: "Indian Public School", km: "3 km", mins: "5 mins" },
+      tourist: { name: "Corniche", km: "2 km", mins: "4 mins" },
+      metro: { name: "N/A", km: "N/A", mins: "N/A" },
+      mall: { name: "Manar Mall", km: "1 km", mins: "3 mins" },
+      business: { name: "Govt Offices", km: "0.5 km", mins: "2 mins" },
+      hospital: { name: "RAK Hospital", km: "5 km", mins: "8 mins" }
+    }
+  },
+
+  // --- 7. RAK CENTRAL ---
+  {
+    id: "rak-central",
+    name: "RAK Central",
+    emirate: "Ras Al Khaimah",
+    category: "Future CBD",
+    roi: "8.0%", //
+    avgPrice: "AED 800k (Off-plan)",
+    imageColor: "bg-indigo-700",
+    amenities: ["Business Hub", "High-Rise Living", "Retail Plaza"],
+    scores: { cashFlow: 7.5, appreciation: 9.0, liquidity: 7.0, risk: 6.0, lifestyle: 8.0 },
+    unitEconomics: { 
+      studio: { roi: "N/A", rent: "N/A" }, 
+      oneBed: { roi: "8.2% (Proj)", rent: "AED 60k" }, 
+      twoBed: { roi: "7.8% (Proj)", rent: "AED 90k" } 
+    },
+    overallScore: 8.3,
+    description: "The upcoming Central Business District of RAK. Massive growth potential for early investors.",
+    connectivity: {
+      airport: { name: "RAK Intl Airport", km: "15 km", mins: "15 mins" },
+      school: { name: "St. Mary's", km: "8 km", mins: "10 mins" },
+      tourist: { name: "Al Marjan Island", km: "10 km", mins: "12 mins" },
+      metro: { name: "N/A", km: "N/A", mins: "N/A" },
+      mall: { name: "Al Hamra Mall", km: "5 km", mins: "6 mins" },
+      business: { name: "RAK Central", km: "0 km", mins: "0 mins" },
+      hospital: { name: "Sheikh Khalifa", km: "10 km", mins: "12 mins" }
+    }
+  },
+
+  // --- 8. AL RAMS ---
+  {
+    id: "al-rams",
+    name: "Al Rams",
+    emirate: "Ras Al Khaimah",
+    category: "Budget / Heritage",
+    roi: "6.5%",
+    avgPrice: "AED 1.1M (Villa)", //
+    imageColor: "bg-amber-700",
+    amenities: ["Corniche", "Dhayah Fort", "Traditional Souq"],
+    scores: { cashFlow: 7.0, appreciation: 5.5, liquidity: 6.5, risk: 5.5, lifestyle: 6.0 },
+    unitEconomics: { 
+      studio: { roi: "N/A", rent: "N/A" }, 
+      oneBed: { roi: "N/A", rent: "AED 35k" }, 
+      twoBed: { roi: "6.8%", rent: "AED 50k" } 
+    },
+    overallScore: 7.4,
+    description: "Historic area known for pearl diving heritage. Offers spacious traditional villas at low prices.",
+    connectivity: {
+      airport: { name: "RAK Intl Airport", km: "25 km", mins: "25 mins" },
+      school: { name: "Rams School", km: "1 km", mins: "2 mins" },
+      tourist: { name: "Dhayah Fort", km: "3 km", mins: "5 mins" },
+      metro: { name: "N/A", km: "N/A", mins: "N/A" },
+      mall: { name: "Naeem Mall", km: "10 km", mins: "15 mins" },
+      business: { name: "Maritime City", km: "15 km", mins: "20 mins" },
+      hospital: { name: "Ibrahim Obaidullah", km: "12 km", mins: "15 mins" }
+    }
+  },
+
+  // --- 9. AL GHAIL ---
+  {
+    id: "al-ghail",
+    name: "Al Ghail",
+    emirate: "Ras Al Khaimah",
+    category: "Industrial / Staff",
+    roi: "9.5%",
+    avgPrice: "AED 300k (Plot)",
+    imageColor: "bg-slate-700",
+    amenities: ["Industrial Zone", "Staff Accommodation", "Logistics"],
+    scores: { cashFlow: 10.0, appreciation: 5.0, liquidity: 6.0, risk: 6.5, lifestyle: 4.0 },
+    unitEconomics: { 
+      studio: { roi: "10.0%", rent: "AED 20k" }, 
+      oneBed: { roi: "9.2%", rent: "AED 30k" }, 
+      twoBed: { roi: "N/A", rent: "N/A" } 
+    },
+    overallScore: 7.2,
+    description: "Industrial hub ideal for building staff accommodation and warehouses. High niche yields.",
+    connectivity: {
+      airport: { name: "RAK Intl Airport", km: "15 km", mins: "12 mins" },
+      school: { name: "N/A", km: "N/A", mins: "N/A" },
+      tourist: { name: "Jebel Jais", km: "40 km", mins: "45 mins" },
+      metro: { name: "N/A", km: "N/A", mins: "N/A" },
+      mall: { name: "N/A", km: "N/A", mins: "N/A" },
+      business: { name: "Industrial Zone", km: "0 km", mins: "0 mins" },
+      hospital: { name: "Saqr Hospital", km: "20 km", mins: "25 mins" }
+    }
+  },
+
+  // --- 10. JEBEL JAIS / MOUNTAIN RESORTS ---
+  {
+    id: "jebel-jais",
+    name: "Jebel Jais Area",
+    emirate: "Ras Al Khaimah",
+    category: "Tourism / Niche",
+    roi: "8.0%", // Tourism dependent
+    avgPrice: "AED 2.5M (Chalet)",
+    imageColor: "bg-stone-600",
+    amenities: ["Zipline", "Hiking Trails", "Mountain Lodge"],
+    scores: { cashFlow: 8.5, appreciation: 7.5, liquidity: 6.0, risk: 6.5, lifestyle: 9.0 },
+    unitEconomics: { 
+      studio: { roi: "N/A", rent: "AED 300/night" }, 
+      oneBed: { roi: "8.5%", rent: "AED 500/night" }, 
+      twoBed: { roi: "8.0%", rent: "AED 800/night" } 
+    },
+    overallScore: 8.1,
+    description: "The UAE's highest peak. Emerging market for mountain lodges and holiday homes.",
+    connectivity: {
+      airport: { name: "RAK Intl Airport", km: "40 km", mins: "45 mins" },
+      school: { name: "N/A", km: "N/A", mins: "N/A" },
+      tourist: { name: "Jebel Jais Peak", km: "0 km", mins: "0 mins" },
+      metro: { name: "N/A", km: "N/A", mins: "N/A" },
+      mall: { name: "Manar Mall", km: "50 km", mins: "55 mins" },
+      business: { name: "Tourism Authority", km: "45 km", mins: "50 mins" },
+      hospital: { name: "Saqr Hospital", km: "40 km", mins: "45 mins" }
     }
   }
-
 ];

@@ -7,8 +7,6 @@ import {
 import SEO from '../components/SEO';
 
 // --- IMPORT MASTER DATA ---
-// We import the combined list from your Master File.
-// We rename it to 'MASTER_DB' for clarity in this component.
 import { DUBAI_AREAS as MASTER_DB } from '../data/emiratesData';
 
 const ExploreAreas = () => {
@@ -17,21 +15,69 @@ const ExploreAreas = () => {
   useEffect(() => { window.scrollTo(0, 0); }, [selectedEmirate]);
 
   // --- FILTER LOGIC ---
-  // 1. Check if MASTER_DB exists to prevent crashes
-  // 2. Filter by the selected Emirate name (e.g., "Dubai")
   const currentAreas = selectedEmirate && MASTER_DB 
     ? MASTER_DB.filter(area => area.emirate === selectedEmirate)
     : [];
 
+  // --- HELPER: GET AREA COUNT ---
+  // This automatically counts how many areas exist in your data file for each city
+  const getCount = (emirateName) => {
+    if (!MASTER_DB) return 0;
+    return MASTER_DB.filter(area => area.emirate === emirateName).length;
+  };
+
   // --- EMIRATE CARDS CONFIG ---
+  // Now using dynamic counts!
   const EMIRATES = [
-    { name: 'Dubai', count: ' Areas', color: 'bg-blue-900', icon: <Building2 className="text-blue-400" />, desc: "Global business hub & luxury living" },
-    { name: 'Abu Dhabi', count: ' Areas', color: 'bg-teal-900', icon: <ShieldCheck className="text-teal-400" />, desc: "Capital of UAE, high-income stability" },
-    { name: 'Sharjah', count: ' Areas', color: 'bg-orange-900', icon: <Wallet className="text-orange-400" />, desc: "Highest rental yields & culture" },
-    { name: 'Ras Al Khaimah', count: ' Areas', color: 'bg-purple-900', icon: <Zap className="text-purple-400" />, desc: "Gaming resorts & massive appreciation" },
-    { name: 'Ajman', count: ' Areas', color: 'bg-emerald-900', icon: <Sun className="text-emerald-400" />, desc: "Affordable entry & high occupancy" },
-    { name: 'Fujairah', count: ' Areas', color: 'bg-cyan-900', icon: <Anchor className="text-cyan-400" />, desc: "Port city with strategic growth" },
-    { name: 'Umm Al Quwain', count: ' Areas', color: 'bg-lime-900', icon: <Palmtree className="text-lime-400" />, desc: "Quiet coastal living & value" },
+    { 
+      name: 'Dubai', 
+      count: `${getCount('Dubai')} Areas`, 
+      color: 'bg-blue-900', 
+      icon: <Building2 className="text-blue-400" />, 
+      desc: "Global business hub & luxury living" 
+    },
+    { 
+      name: 'Abu Dhabi', 
+      count: `${getCount('Abu Dhabi')} Areas`, 
+      color: 'bg-teal-900', 
+      icon: <ShieldCheck className="text-teal-400" />, 
+      desc: "Capital of UAE, high-income stability" 
+    },
+    { 
+      name: 'Sharjah', 
+      count: `${getCount('Sharjah')} Areas`, 
+      color: 'bg-orange-900', 
+      icon: <Wallet className="text-orange-400" />, 
+      desc: "Highest rental yields & culture" 
+    },
+    { 
+      name: 'Ras Al Khaimah', 
+      count: `${getCount('Ras Al Khaimah')} Areas`, 
+      color: 'bg-purple-900', 
+      icon: <Zap className="text-purple-400" />, 
+      desc: "Gaming resorts & massive appreciation" 
+    },
+    { 
+      name: 'Ajman', 
+      count: `${getCount('Ajman')} Areas`, 
+      color: 'bg-emerald-900', 
+      icon: <Sun className="text-emerald-400" />, 
+      desc: "Affordable entry & high occupancy" 
+    },
+    { 
+      name: 'Fujairah', 
+      count: `${getCount('Fujairah')} Areas`, 
+      color: 'bg-cyan-900', 
+      icon: <Anchor className="text-cyan-400" />, 
+      desc: "Port city with strategic growth" 
+    },
+    { 
+      name: 'Umm Al Quwain', 
+      count: `${getCount('Umm Al Quwain')} Areas`, 
+      color: 'bg-lime-900', 
+      icon: <Palmtree className="text-lime-400" />, 
+      desc: "Quiet coastal living & value" 
+    },
   ];
 
   return (
