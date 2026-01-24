@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { 
   Target, Zap, ShieldCheck, Users, BarChart3, 
-  Cpu, Globe, ArrowRight, BrainCircuit 
+  Cpu, Globe, ArrowRight, BrainCircuit, Map, HardHat
 } from 'lucide-react';
 import SEO from '../components/SEO';
 
@@ -14,8 +14,8 @@ const AboutUs = () => {
   return (
     <div className="fade-in">
       <SEO 
-        title="About EstateIQ | The AI Behind Smart Real Estate" 
-        description="We are revolutionizing Dubai real estate with predictive AI. Learn how our FutureScope engine calculates ROI and capital appreciation."
+        title="About RealEstateIQ | The AI Behind Smart Real Estate" 
+        description="We are revolutionizing UAE real estate with predictive AI. Learn how our FutureScope engine calculates ROI and capital appreciation."
       />
 
       {/* --- HERO SECTION --- */}
@@ -34,7 +34,7 @@ const AboutUs = () => {
             We Decode the <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">Future of Real Estate</span>
           </h1>
           <p className="text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed">
-            EstateIQ is not just a listing platform. We are a data science company building the operating system for smart investors in Dubai.
+            RealEstateIQ is not just a listing platform. We are a data science company building the operating system for smart investors in the UAE.
           </p>
         </div>
       </div>
@@ -43,7 +43,7 @@ const AboutUs = () => {
       <div className="bg-white border-b border-slate-200">
         <div className="max-w-7xl mx-auto px-4 md:px-8 py-12">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-             <StatItem value="15M+" label="Data Points Analyzed" />
+             <StatItem value="7" label="Emirates Covered" />
              <StatItem value="98.2%" label="Forecast Accuracy" />
              <StatItem value="AED 4B+" label="Property Value Tracked" />
              <StatItem value="24/7" label="Market Monitoring" />
@@ -57,10 +57,10 @@ const AboutUs = () => {
           <div>
              <h2 className="text-3xl font-bold text-slate-900 mb-6">The "Black Box" Problem</h2>
              <p className="text-slate-600 text-lg mb-6 leading-relaxed">
-               For decades, Dubai real estate was driven by hype, whatsapp broadcasts, and aggressive sales pitches. Investors were buying based on promises, not data.
+               For decades, UAE real estate was driven by hype, whatsapp broadcasts, and aggressive sales pitches. Investors were buying based on promises, not data.
              </p>
              <p className="text-slate-600 text-lg mb-8 leading-relaxed">
-               We built <strong className="text-slate-900">EstateIQ</strong> to change that. We believe every dirham invested should be backed by rigorous data analysis, not just a glossy brochure.
+               We built <strong className="text-slate-900">RealEstateIQ</strong> to change that. We believe every dirham invested should be backed by rigorous data analysis, not just a glossy brochure.
              </p>
              <div className="flex gap-4">
                <div className="flex items-center gap-2 text-slate-800 font-bold bg-slate-100 px-4 py-2 rounded-lg">
@@ -102,8 +102,8 @@ const AboutUs = () => {
              />
              <TechCard 
                icon={<Globe size={32} className="text-purple-600"/>}
-               title="Infrastructure Impact"
-               desc="Our model factors in government master plans—like the Blue Line Metro and Airport Expansion—before prices react."
+               title="7 Emirates Coverage"
+               desc="From Dubai's luxury towers to RAK's casino boom and Ajman's high yields—we track every major market in the UAE."
              />
              <TechCard 
                icon={<Cpu size={32} className="text-emerald-600"/>}
@@ -132,14 +132,14 @@ const AboutUs = () => {
         <div className="max-w-4xl mx-auto px-4 text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-6">Ready to Invest with Confidence?</h2>
           <p className="text-slate-400 text-lg mb-10">
-            Join thousands of smart investors using EstateIQ to find the best opportunities in Dubai.
+            Join thousands of smart investors using RealEstateIQ to find the best opportunities in the UAE.
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
-            <Link to="/market" className="px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl transition shadow-lg flex items-center justify-center gap-2">
-              Explore Market Data <ArrowRight size={20} />
+            <Link to="/heatmap" className="px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl transition shadow-lg flex items-center justify-center gap-2">
+              View ROI Heatmap <Map size={20} />
             </Link>
-            <Link to="/builders" className="px-8 py-4 bg-transparent border border-slate-600 hover:bg-white/10 text-white font-bold rounded-xl transition">
-              Compare Developers
+            <Link to="/builders" className="px-8 py-4 bg-transparent border border-slate-600 hover:bg-white/10 text-white font-bold rounded-xl transition flex items-center justify-center gap-2">
+              Compare Developers <HardHat size={20} />
             </Link>
           </div>
         </div>
