@@ -1,82 +1,76 @@
-import React, { useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
-import ReactGA from "react-ga4"; // <--- 1. Import GA4
+import React from 'react';
+import { Routes, Route } from 'react-router-dom';
+import { HelmetProvider } from 'react-helmet-async';
 
-// --- COMPONENTS ---
-import Header from './components/Header';
+// --- LAYOUT COMPONENTS ---
+import Navbar from './components/Header';
 import Footer from './components/Footer';
-import ScrollHandler from './components/ScrollHandler';
 import AIChatWidget from './components/AIChatWidget';
+// 🟢 CORRECTED: Using your existing ScrollHandler from components
+import ScrollHandler from './components/ScrollHandler'; 
 
-// --- PAGES ---
+// --- PAGE IMPORTS (MATCHING YOUR FILE STRUCTURE) ---
 import HomePage from './pages/HomePage';
-import ExploreAreas from './pages/ExploreAreas';      // 1. Area List
-import AreaPage from './pages/AreaPage';              // 1. Area Details
-import BuildersPage from './pages/BuildersPage';      // 2. Builder List
-import BuilderDetailsPage from './pages/BuilderDetailsPage'; // 2. Builder Details
-import AreaComparison from './pages/AreaComparison';  // 3. Comparison Tool
-import MarketMap from './pages/MarketMap';            // 4. Market View (Heatmap)
+import AboutUs from './pages/AboutUs';
+import ExploreAreas from './pages/ExploreAreas';
+import AreaPage from './pages/AreaPage';
+import BuildersPage from './pages/BuildersPage';
+import BuilderDetailsPage from './pages/BuilderDetailsPage';
 
-// --- 2. INITIALIZE GOOGLE ANALYTICS ---
-// Replace "G-XXXXXXXXXX" with your actual Measurement ID from Google Analytics
-ReactGA.initialize("G-XXXXXXXXXX");
+// --- TOOLS IMPORTS ---
+import MarketMap from './pages/MarketMap';       // Matches your file structure
+import AreaComparison from './pages/AreaComparison'; // Matches your file structure
 
-// --- 3. ANALYTICS TRACKER COMPONENT ---
-// This helper watches for URL changes and sends a pageview event
-const AnalyticsTracker = () => {
-  const location = useLocation();
-
-  useEffect(() => {
-    // Send pageview to Google Analytics whenever the route changes
-    ReactGA.send({ hitType: "pageview", page: location.pathname + location.search });
-  }, [location]);
-
-  return null;
-};
-
-function App() {
+const App = () => {
   return (
-    <Router>
-      {/* 4. ACTIVE COMPONENTS (Scroll & Analytics) */}
-      <ScrollHandler /> 
-      <AnalyticsTracker /> {/* <--- Tracks page views automatically */}
-
-      <div className="flex flex-col min-h-screen bg-slate-50">
-        <Header />
+    <HelmetProvider>
+      <div className="flex flex-col min-h-screen bg-slate-50 font-sans text-slate-900">
+        {/* Navigation Bar */}
+        <Navbar />
         
+        {/* Scroll Helper: Uses your existing component to scroll top on page change */}
+        <ScrollHandler />
+
+        {/* Main Content Area */}
         <main className="flex-grow">
           <Routes>
-            {/* Home */}
+            {/* --- 1. CORE PAGES --- */}
             <Route path="/" element={<HomePage />} />
-            
-            {/* Tool 1: Area Intelligence */}
+            <Route path="/about" element={<AboutUs />} />
+
+            {/* --- 2. AREAS --- */}
             <Route path="/areas" element={<ExploreAreas />} />
             <Route path="/area/:id" element={<AreaPage />} />
-            
-            {/* Tool 2: Developer Intelligence */}
+
+            {/* --- 3. BUILDERS --- */}
             <Route path="/builders" element={<BuildersPage />} />
-            
-            {/* --- DUAL ROUTING FOR BUILDERS --- */}
-            {/* 1. Singular Route (Standard) */}
-            <Route path="/builder/:builderId" element={<BuilderDetailsPage />} />
-            
-            {/* 2. Plural Route (Safety Fallback) */}
-            <Route path="/builders/:builderId" element={<BuilderDetailsPage />} />
-            {/* ---------------------------------- */}
-            
-            {/* Tool 3: Comparison Engine */}
-            <Route path="/compare" element={<AreaComparison />} />
-            
-            {/* Tool 4: Market Heatmap */}
+            <Route path="/builder/:id" element={<BuilderDetailsPage />} />
+
+            {/* --- 4. INTELLIGENCE TOOLS --- */}
             <Route path="/heatmap" element={<MarketMap />} />
+            <Route path="/compare" element={<AreaComparison />} />
+
+            {/* --- 5. 404 CATCH-ALL --- */}
+            <Route path="*" element={
+              <div className="flex flex-col items-center justify-center min-h-[60vh] text-center px-4">
+                <h1 className="text-6xl font-extrabold text-slate-900 mb-4">404</h1>
+                <p className="text-xl text-slate-500 mb-8">Oops! We couldn't find that page.</p>
+                <a href="/" className="px-6 py-3 bg-blue-600 text-white rounded-xl font-bold hover:bg-blue-700 transition">
+                  Return Home
+                </a>
+              </div>
+            } />
           </Routes>
         </main>
 
+        {/* Footer */}
         <Footer />
+
+        {/* Floating AI Widget - Visible on every page */}
         <AIChatWidget />
       </div>
-    </Router>
+    </HelmetProvider>
   );
-}
+};
 
 export default App;
