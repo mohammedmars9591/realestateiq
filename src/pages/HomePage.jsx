@@ -16,7 +16,7 @@ const HomePage = () => {
   return (
     <div className="fade-in bg-slate-50">
       <SEO 
-        title="EstateIQ | AI Real Estate Investment Tool"
+        title="RealEstateIQ | AI Real Estate Investment Tool"
         description="The intelligent way to invest in Dubai. Verified data, AI ROI predictions, and builder analysis."
       />
 

@@ -2,9 +2,26 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Menu, X, BarChart3, Search, MapPin, HardHat } from 'lucide-react';
 
-// --- DATA IMPORTS (Only Tools Data) ---
+// --- DATA IMPORTS ---
 import { DUBAI_AREAS } from '../data/areaData';
 import { BUILDERS } from '../data/buildersData';
+import { SHARJAH_DATA } from '../data/sharjahData';
+import { AJMAN_DATA } from '../data/ajmanData';
+import { RAK_DATA } from '../data/rakData';
+import { UAQ_DATA } from '../data/uaqData';
+import { ABUDHABI_DATA } from '../data/abudhabiData';
+import { FUJAIRAH_DATA } from '../data/fujairahData';
+
+// --- MERGE ALL DATA FOR GLOBAL SEARCH ---
+const ALL_AREAS = [
+  ...DUBAI_AREAS,
+  ...(SHARJAH_DATA || []),
+  ...(AJMAN_DATA || []),
+  ...(RAK_DATA || []),
+  ...(UAQ_DATA || []),
+  ...(ABUDHABI_DATA || []),
+  ...(FUJAIRAH_DATA || [])
+];
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -24,12 +41,12 @@ const Header = () => {
 
     const lowerQuery = searchQuery.toLowerCase();
 
-    // 1. Search Areas (Districts)
-    const matchedAreas = (DUBAI_AREAS || []).filter(a => 
+    // 1. Search All Areas (Dubai, Shj, RAK, etc.)
+    const matchedAreas = ALL_AREAS.filter(a => 
       a.name?.toLowerCase().includes(lowerQuery)
-    ).slice(0, 3);
+    ).slice(0, 5); // Increased limit to 5
 
-    // 2. Search Builders (Developers)
+    // 2. Search Builders
     const matchedBuilders = (BUILDERS || []).filter(b => 
       b.name?.toLowerCase().includes(lowerQuery)
     ).slice(0, 3);
@@ -65,17 +82,17 @@ const Header = () => {
           <div className="bg-blue-600 text-white p-1.5 rounded-lg">
             <BarChart3 size={24} />
           </div>
-          <span className="hidden md:inline">Estate<span className="text-blue-600">IQ</span></span>
-          <span className="md:hidden">E<span className="text-blue-600">IQ</span></span>
+          <span className="hidden md:inline">RealEstate<span className="text-blue-600">IQ</span></span>
+          <span className="md:hidden">RE<span className="text-blue-600">IQ</span></span>
         </Link>
         
-        {/* --- GLOBAL SEARCH BAR (Areas & Builders Only) --- */}
+        {/* --- GLOBAL SEARCH BAR --- */}
         <div className="flex-1 max-w-md relative" ref={searchRef}>
           <div className="relative">
              <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" size={18} />
              <input 
                type="text" 
-               placeholder="Search for an Area or Developer..." 
+               placeholder="Search Dubai, Sharjah, Abu Dhabi..." 
                className="w-full pl-10 pr-4 py-2 bg-slate-100 border-none rounded-full text-sm font-medium focus:ring-2 focus:ring-blue-500 transition-all outline-none"
                value={searchQuery}
                onChange={(e) => setSearchQuery(e.target.value)}
@@ -90,11 +107,14 @@ const Header = () => {
                {/* Areas Results */}
                {searchResults.areas.length > 0 && (
                  <div className="p-2">
-                   <div className="text-[10px] font-bold text-slate-400 uppercase px-2 mb-1">Districts</div>
+                   <div className="text-[10px] font-bold text-slate-400 uppercase px-2 mb-1">Locations</div>
                    {searchResults.areas.map(a => (
                      <button key={a.id} onClick={() => handleNavigate(`/area/${a.id}`)} className="w-full flex items-center gap-3 p-2 hover:bg-slate-50 rounded-lg text-left transition-colors">
                        <MapPin size={16} className="text-blue-500" />
-                       <span className="text-sm font-bold text-slate-700">{a.name}</span>
+                       <div className="flex flex-col">
+                         <span className="text-sm font-bold text-slate-700 leading-none">{a.name}</span>
+                         <span className="text-[10px] text-slate-400 uppercase mt-0.5">{a.emirate}</span>
+                       </div>
                      </button>
                    ))}
                  </div>

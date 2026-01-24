@@ -15,7 +15,7 @@ const Footer = () => {
               <div className="bg-blue-600 text-white p-1.5 rounded-lg">
                 <BarChart3 size={24} />
               </div>
-              <span>Estate<span className="text-blue-500">IQ</span></span>
+              <span>RealEstate<span className="text-blue-500">IQ</span></span>
             </Link>
             <p className="text-sm text-slate-400 leading-relaxed mb-6">
               The AI-powered intelligence engine for Dubai real estate investors. Verified data, zero hype.
@@ -53,11 +53,11 @@ const Footer = () => {
           <div>
             <h3 className="text-white font-bold mb-4 uppercase tracking-wider text-xs">Developer</h3>
             <div className="bg-slate-800 p-4 rounded-xl border border-slate-700">
-               <p className="text-xs text-slate-400 mb-2">Designed & Built by</p>
-               <div className="text-white font-bold text-lg flex items-center gap-2">
-                 Mohammed <Heart size={16} className="text-red-500 fill-red-500" />
-               </div>
-               <p className="text-xs text-slate-500 mt-2">Full Stack AI Real Estate Project</p>
+                <p className="text-xs text-slate-400 mb-2">Designed & Built by</p>
+                <div className="text-white font-bold text-lg flex items-center gap-2">
+                  Mohammed M# <Heart size={16} className="text-red-500 fill-red-500" />
+                </div>
+                <p className="text-xs text-slate-500 mt-2">Full Stack AI Real Estate Project</p>
             </div>
           </div>
 
@@ -66,7 +66,7 @@ const Footer = () => {
         {/* BOTTOM BAR */}
         <div className="border-t border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-slate-500">
           <div>
-            &copy; 2026 EstateIQ. All rights reserved.
+            &copy; 2026 RealEstateIQ. All rights reserved.
           </div>
           <div className="flex gap-6">
             <a href="#" className="hover:text-white transition">Privacy Policy</a>
