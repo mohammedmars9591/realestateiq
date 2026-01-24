@@ -15,54 +15,39 @@ export const DUBAI_AREAS = [
     imageColor: "bg-emerald-600",
     amenities: ["Circle Mall", "30+ Parks", "Intl. Schools"],
 
-    // === INVESTOR INTELLIGENCE ===
-    investorTags: ["High Cash Flow", "Entry-Level Investment", "Family Rentals", "Low Vacancy Risk"],
+    investorTags: ["High Cash Flow", "Entry-Level", "Family Rentals", "Low Vacancy"],
     aiVerdict: {
-      title: "Best for Monthly Rental Income",
-      summary: "JVC offers one of Dubai’s most stable rental markets with strong tenant demand, affordable entry prices, and consistent yields across all unit sizes."
+      title: "Best for Monthly Income",
+      summary: "Dubai's volume leader for rentals. Offers the perfect balance of affordability and amenities, ensuring near-zero vacancy."
     },
     demandSignals: {
       rentalDemand: "Very High",
       resaleLiquidity: "High",
       tenantProfile: "Young professionals & small families"
     },
-    ownership: {
-      type: "Freehold",
-      eligibleFor: ["All Nationalities"],
-      minDownPayment: "20%"
-    },
+    ownership: { type: "Freehold", eligibleFor: ["All Nationalities"], minDownPayment: "20%" },
 
-    // === SCORES ===
     scores: { cashFlow: 9.1, appreciation: 7.8, liquidity: 8.5, risk: 6.2, lifestyle: 7.0 },
     overallScore: 8.4,
 
-    // === UNIT ECONOMICS ===
     unitEconomics: { 
       studio: { roi: "8.5%", rent: "AED 55k" }, 
       oneBed: { roi: "7.9%", rent: "AED 75k" }, 
       twoBed: { roi: "6.4%", rent: "AED 105k" } 
     },
 
-    // === SHORT TERM RENTAL ===
     shortTermScore: 8.2,
-    shortTermRental: {
-      allowed: true,
-      avgDailyRate: "AED 420",
-      occupancy: "68%",
-      tenantType: "Tourists & short-term professionals"
-    },
+    shortTermRental: { allowed: true, avgDailyRate: "AED 420", occupancy: "68%", tenantType: "Budget Tourists" },
 
-    // === FUTURE INFRASTRUCTURE ===
     futureUpgrades: [
       { name: "Metro Extension (Blue Line)", status: "Planned 2029" },
       { name: "Circle Mall Phase 2", status: "Under Construction" },
       { name: "New Community Parks", status: "Approved" }
     ],
 
-    // === PRICE TREND ===
     priceTrend: { "2022": "AED 720k", "2023": "AED 810k", "2024": "AED 900k", "2025": "AED 950k" },
 
-    description: "Dubai’s strongest mid-market cash flow zone with consistently high rental demand.",
+    description: "Dubai’s top mid-market community offering high rental yields and rapid liquidity.",
     connectivity: {
       airport: { name: "DXB Intl Airport", km: "28 km", mins: "25 mins" },
       school: { name: "JSS Intl School", km: "1.2 km", mins: "4 mins" },
@@ -87,8 +72,8 @@ export const DUBAI_AREAS = [
 
     investorTags: ["Tourism Yields", "Growth Potential", "Affordable Luxury"],
     aiVerdict: {
-      title: "Rising Star for Tourism Rentals",
-      summary: "Located near Miracle Garden, Arjan is becoming a hotspot for holiday homes, offering higher yields than established areas."
+      title: "Rising Star for Short-Term",
+      summary: "Located near Miracle Garden, Arjan is rapidly becoming a holiday home hotspot with yields outperforming established areas."
     },
     demandSignals: { rentalDemand: "High", resaleLiquidity: "Medium", tenantProfile: "Tourists & Healthcare Staff" },
     ownership: { type: "Freehold", eligibleFor: ["All Nationalities"], minDownPayment: "20%" },
@@ -102,7 +87,7 @@ export const DUBAI_AREAS = [
       twoBed: { roi: "6.2%", rent: "AED 95k" } 
     },
 
-    shortTermScore: 8.8, // High due to Miracle Garden
+    shortTermScore: 8.8, 
     shortTermRental: { allowed: true, avgDailyRate: "AED 450", occupancy: "72%", tenantType: "Holiday Makers" },
 
     futureUpgrades: [
@@ -112,7 +97,7 @@ export const DUBAI_AREAS = [
 
     priceTrend: { "2022": "AED 650k", "2023": "AED 720k", "2024": "AED 790k", "2025": "AED 850k" },
 
-    description: "Emerging hotspot with newer buildings and major tourist attractions.",
+    description: "Emerging tourist hotspot near Miracle Garden, ideal for high-yield holiday homes.",
     connectivity: {
       airport: { name: "DXB Intl Airport", km: "29 km", mins: "26 mins" },
       school: { name: "Nord Anglia School", km: "2 km", mins: "5 mins" },
@@ -138,7 +123,7 @@ export const DUBAI_AREAS = [
     investorTags: ["Budget Entry", "Stable Yields", "Active Lifestyle"],
     aiVerdict: {
       title: "Best Value for Money",
-      summary: "Excellent for investors with a lower budget seeking reliable ROI. High demand from fitness-conscious tenants."
+      summary: "Offers one of the lowest entry points in Dubai with reliable ROI driven by fitness-conscious long-term tenants."
     },
     demandSignals: { rentalDemand: "High", resaleLiquidity: "Medium", tenantProfile: "Singles & Active Couples" },
     ownership: { type: "Freehold", eligibleFor: ["All Nationalities"], minDownPayment: "20%" },
@@ -162,7 +147,7 @@ export const DUBAI_AREAS = [
 
     priceTrend: { "2022": "AED 500k", "2023": "AED 580k", "2024": "AED 620k", "2025": "AED 650k" },
 
-    description: "Active lifestyle community with budget entry prices and strong yields.",
+    description: "Budget-friendly active lifestyle community with excellent rental stability.",
     connectivity: {
       airport: { name: "DXB Intl Airport", km: "30 km", mins: "28 mins" },
       school: { name: "Victory Heights", km: "1 km", mins: "3 mins" },
@@ -185,10 +170,10 @@ export const DUBAI_AREAS = [
     imageColor: "bg-indigo-700",
     amenities: ["Dubai Canal", "Metro Station", "Bay Avenue"],
 
-    investorTags: ["Corporate Tenants", "Capital Appreciation", "Luxury Rentals"],
+    investorTags: ["Corporate Tenants", "Appreciation", "Luxury Rentals"],
     aiVerdict: {
-      title: "The Corporate Hub Choice",
-      summary: "Ideal for investors targeting high-income corporate tenants. Significant appreciation expected as waterfront plots develop."
+      title: "The Corporate Hub",
+      summary: "Ideal for targeting high-income executives. Waterfront plots and proximity to Downtown drive consistent capital appreciation."
     },
     demandSignals: { rentalDemand: "Very High", resaleLiquidity: "Very High", tenantProfile: "Executives & Professionals" },
     ownership: { type: "Freehold", eligibleFor: ["All Nationalities"], minDownPayment: "20%" },
@@ -202,17 +187,17 @@ export const DUBAI_AREAS = [
       twoBed: { roi: "5.5%", rent: "AED 160k" } 
     },
 
-    shortTermScore: 9.2, // Very high due to proximity to Downtown
-    shortTermRental: { allowed: true, avgDailyRate: "AED 750", occupancy: "85%", tenantType: "Business Travelers & Tourists" },
+    shortTermScore: 9.2,
+    shortTermRental: { allowed: true, avgDailyRate: "AED 750", occupancy: "85%", tenantType: "Business Travelers" },
 
     futureUpgrades: [
-      { name: "Canal Promenade Completion", status: "Ongoing" },
-      { name: "Marasi Marina Expansion", status: "Planned" }
+      { name: "Canal Promenade", status: "Ongoing" },
+      { name: "Marasi Marina", status: "Planned" }
     ],
 
     priceTrend: { "2022": "AED 1.2M", "2023": "AED 1.4M", "2024": "AED 1.5M", "2025": "AED 1.6M" },
 
-    description: "The corporate heart of Dubai with massive demand from professionals.",
+    description: "Dubai’s central business district offering high-demand corporate and luxury rentals.",
     connectivity: {
       airport: { name: "DXB Intl Airport", km: "15 km", mins: "18 mins" },
       school: { name: "Hartland Intl", km: "5 km", mins: "10 mins" },
@@ -238,7 +223,7 @@ export const DUBAI_AREAS = [
     investorTags: ["Trophy Asset", "Safe Haven", "High Liquidity"],
     aiVerdict: {
       title: "The Gold Standard",
-      summary: "The most prestigious address in the region. Lower yields but unmatched capital preservation and resale liquidity."
+      summary: "The most prestigious address in the region. Offers unmatched capital preservation and liquidity, though yields are lower."
     },
     demandSignals: { rentalDemand: "High", resaleLiquidity: "Excellent", tenantProfile: "Wealthy Expats & Tourists" },
     ownership: { type: "Freehold", eligibleFor: ["All Nationalities"], minDownPayment: "20%" },
@@ -252,17 +237,17 @@ export const DUBAI_AREAS = [
       twoBed: { roi: "5.0%", rent: "AED 240k" } 
     },
 
-    shortTermScore: 9.8, // Best for Airbnb
+    shortTermScore: 9.8,
     shortTermRental: { allowed: true, avgDailyRate: "AED 1200", occupancy: "90%", tenantType: "Luxury Tourists" },
 
     futureUpgrades: [
-      { name: "Dubai Opera District", status: "Completing" },
+      { name: "Opera District", status: "Completing" },
       { name: "Boulevard Expansion", status: "Proposed" }
     ],
 
     priceTrend: { "2022": "AED 1.8M", "2023": "AED 2.0M", "2024": "AED 2.1M", "2025": "AED 2.2M" },
 
-    description: "The most prestigious square kilometer in the world. Safe, liquid, and iconic.",
+    description: "The world's most prestigious square kilometer, offering unmatched capital preservation.",
     connectivity: {
       airport: { name: "DXB Intl Airport", km: "14 km", mins: "15 mins" },
       school: { name: "Hartland Intl", km: "5 km", mins: "10 mins" },
@@ -312,7 +297,7 @@ export const DUBAI_AREAS = [
 
     priceTrend: { "2022": "AED 1.4M", "2023": "AED 1.6M", "2024": "AED 1.7M", "2025": "AED 1.8M" },
 
-    description: "The world's largest man-made marina. High occupancy and premium resale values.",
+    description: "The world's largest man-made marina, offering premium waterfront living and high liquidity.",
     connectivity: {
       airport: { name: "DXB Intl Airport", km: "32 km", mins: "28 mins" },
       school: { name: "Emirates Intl School", km: "3 km", mins: "8 mins" },
@@ -362,7 +347,7 @@ export const DUBAI_AREAS = [
 
     priceTrend: { "2022": "AED 1.5M", "2023": "AED 1.7M", "2024": "AED 1.8M", "2025": "AED 1.9M" },
 
-    description: "The 'New Downtown'. Massive capital appreciation potential as master plan matures.",
+    description: "The 'New Downtown' of Dubai, promising massive capital growth as the master plan completes.",
     connectivity: {
       airport: { name: "DXB Intl Airport", km: "10 km", mins: "12 mins" },
       school: { name: "Swiss Intl School", km: "4 km", mins: "8 mins" },
@@ -388,7 +373,7 @@ export const DUBAI_AREAS = [
     investorTags: ["Family Centric", "Green Living", "Premium Yields"],
     aiVerdict: {
       title: "Top Choice for Families",
-      summary: "The most successful master community by Emaar. High demand from families ensures very low vacancy rates."
+      summary: "Emaar's most successful family community. High demand from wealthy families ensures very low vacancy rates."
     },
     demandSignals: { rentalDemand: "Very High", resaleLiquidity: "High", tenantProfile: "Wealthy Families & Expats" },
     ownership: { type: "Freehold", eligibleFor: ["All Nationalities"], minDownPayment: "20%" },
@@ -412,7 +397,7 @@ export const DUBAI_AREAS = [
 
     priceTrend: { "2022": "AED 1.3M", "2023": "AED 1.5M", "2024": "AED 1.6M", "2025": "AED 1.7M" },
 
-    description: "The 'Green Heart of Dubai'. Extremely popular with families and expats.",
+    description: "Dubai's 'Green Heart', offering a premium lifestyle that attracts high-net-worth families.",
     connectivity: {
       airport: { name: "DXB Intl Airport", km: "22 km", mins: "20 mins" },
       school: { name: "GEMS Wellington", km: "1 km", mins: "3 mins" },
@@ -462,7 +447,7 @@ export const DUBAI_AREAS = [
 
     priceTrend: { "2022": "AED 700k", "2023": "AED 800k", "2024": "AED 850k", "2025": "AED 900k" },
 
-    description: "Strategic location near Expo City and Metro line with excellent value.",
+    description: "Strategically located near Expo City and the Metro, offering excellent value and connectivity.",
     connectivity: {
       airport: { name: "DXB Intl Airport", km: "35 km", mins: "30 mins" },
       school: { name: "Arbor School", km: "1 km", mins: "3 mins" },
@@ -503,7 +488,7 @@ export const DUBAI_AREAS = [
     },
 
     shortTermScore: 8.0,
-    shortTermRental: { allowed: true, avgDailyRate: "AED 600", occupancy: "70%", tenantType: "Event Tourists (Racecourse)" },
+    shortTermRental: { allowed: true, avgDailyRate: "AED 600", occupancy: "70%", tenantType: "Event Tourists" },
 
     futureUpgrades: [
       { name: "Meydan One Mall", status: "Under Construction" },
@@ -512,7 +497,7 @@ export const DUBAI_AREAS = [
 
     priceTrend: { "2022": "AED 1.1M", "2023": "AED 1.25M", "2024": "AED 1.35M", "2025": "AED 1.4M" },
 
-    description: "Upscale living with crystal lagoons and proximity to Downtown.",
+    description: "A premium lifestyle destination featuring crystal lagoons and proximity to Downtown Dubai.",
     connectivity: {
       airport: { name: "DXB Intl Airport", km: "18 km", mins: "16 mins" },
       school: { name: "Hartland Intl", km: "2 km", mins: "4 mins" },

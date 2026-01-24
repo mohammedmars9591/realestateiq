@@ -4,7 +4,7 @@ import {
   MapPin, ArrowLeft, CheckCircle, TrendingUp, 
   Plane, ShoppingBag, BarChart3, Construction,
   GraduationCap, Train, Briefcase, Camera, HeartPulse,
-  Tags, Building, Download, Loader2
+  Tags, Building, Download, Loader2, Flame, Users, DollarSign
 } from 'lucide-react';
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
@@ -15,7 +15,7 @@ import { DUBAI_AREAS as MASTER_DB } from '../data/emiratesData';
 
 const AreaPage = () => {
   const { id } = useParams();
-  const reportRef = useRef(); // Reference for the PDF capture
+  const reportRef = useRef(); 
   const [isGeneratingPdf, setIsGeneratingPdf] = useState(false);
 
   const area = MASTER_DB.find(a => a.id === id);
@@ -29,19 +29,16 @@ const AreaPage = () => {
     </div>
   );
 
-  // --- PDF GENERATION FUNCTION ---
+  // --- PDF GENERATION ---
   const handleDownloadPDF = async () => {
     setIsGeneratingPdf(true);
     const element = reportRef.current;
-    
     try {
       const canvas = await html2canvas(element, { scale: 2 });
       const imgData = canvas.toDataURL('image/png');
-      
       const pdf = new jsPDF('p', 'mm', 'a4');
       const pdfWidth = pdf.internal.pageSize.getWidth();
       const pdfHeight = (canvas.height * pdfWidth) / canvas.width;
-      
       pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
       pdf.save(`${area.name}_Investment_Summary.pdf`);
     } catch (err) {
@@ -51,18 +48,21 @@ const AreaPage = () => {
     }
   };
 
-  // --- DATA DEFAULTS ---
+  // --- SAFE DATA DEFAULTS ---
+  // These ensure the page works even if some data is missing
   const conn = area.connectivity || {};
   const scores = area.scores || { cashFlow: 5, appreciation: 5, liquidity: 5, risk: 5, lifestyle: 5 };
   const economics = area.unitEconomics || { studio: {}, oneBed: {}, twoBed: {} };
+  
+  // New Investor Data Fields with Fallbacks
   const strScore = area.shortTermScore || ((scores.cashFlow + scores.lifestyle) / 2).toFixed(1);
-  const investorTags = area.investorTags || ["Cash Flow", "Long-Term Hold"];
-  const futureInfra = area.futureUpgrades || [
-    { name: "Metro Line Extension", status: "Proposed 2029" },
-    { name: "Community Mall Expansion", status: "Under Construction" }
-  ];
+  const investorTags = area.investorTags || ["High Yield", "Growth Potential"];
+  const futureInfra = area.futureUpgrades || [{ name: "Infrastructure Upgrade", status: "Planned" }];
+  const verdict = area.aiVerdict || { title: "Solid Investment Choice", summary: area.description };
+  const demand = area.demandSignals || { tenantProfile: "Professionals & Families", rentalDemand: "High" };
+  const strData = area.shortTermRental || { avgDailyRate: "N/A", occupancy: "N/A" };
 
-  // --- FORECAST LOGIC ---
+  // --- FORECAST LOGIC (Projected 5 Years) ---
   const baseGrowthRate = (scores.appreciation || 5) * 1.2; 
   const currentYear = 2026;
   const forecastData = Array.from({ length: 5 }, (_, i) => {
@@ -74,17 +74,15 @@ const AreaPage = () => {
   return (
     <div className="max-w-7xl mx-auto px-4 md:px-8 pb-20 fade-in bg-slate-50 min-h-screen pt-8">
       <SEO 
-        title={`${area.name} Investment Profile | EstateIQ`} 
-        description={`Download the ${area.name} Investment Summary PDF. ROI Forecast and Market Analysis.`}
+        title={`${area.name} Investment Analysis | EstateIQ`} 
+        description={`Why invest in ${area.name}? ROI: ${area.roi}, Rent: ${economics.oneBed?.rent}, Growth Forecast.`}
       />
 
-      {/* TOP NAVIGATION BAR */}
+      {/* TOP NAV & DOWNLOAD */}
       <div className="flex justify-between items-center mb-6">
         <Link to="/areas" className="inline-flex items-center gap-2 text-slate-500 hover:text-black font-bold text-sm transition-colors">
           <ArrowLeft size={16} /> Back to National Map
         </Link>
-        
-        {/* DOWNLOAD PDF BUTTON */}
         <button 
           onClick={handleDownloadPDF}
           disabled={isGeneratingPdf}
@@ -95,7 +93,7 @@ const AreaPage = () => {
         </button>
       </div>
 
-      {/* --- PRINTABLE REPORT AREA START --- */}
+      {/* --- PRINTABLE REPORT WRAPPER --- */}
       <div ref={reportRef} className="bg-slate-50 p-1 md:p-4 rounded-3xl"> 
         
         {/* HERO SECTION */}
@@ -117,7 +115,7 @@ const AreaPage = () => {
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
           
-          {/* === LEFT COLUMN === */}
+          {/* === LEFT COLUMN: DATA & CHARTS === */}
           <div className="lg:col-span-2 space-y-8">
              
              {/* UNIT ECONOMICS */}
@@ -137,7 +135,7 @@ const AreaPage = () => {
                 </div>
              </div>
 
-             {/* 5-YEAR ROI FORECAST */}
+             {/* 5-YEAR FORECAST */}
              <div className="bg-slate-900 text-white rounded-3xl p-8 shadow-2xl overflow-hidden relative">
                 <div className="flex justify-between items-start mb-8 relative z-10">
                   <div>
@@ -151,45 +149,34 @@ const AreaPage = () => {
                     {forecastData[4].growth} by 2030
                   </div>
                 </div>
-
                 <div className="grid grid-cols-5 gap-4 items-end h-40 relative z-10">
                   {forecastData.map((item, index) => {
                     const height = 40 + (index * 15); 
                     return (
                       <div key={item.year} className="flex flex-col items-center gap-2">
                         <div className="text-xs font-bold text-blue-300 mb-1">{item.growth}</div>
-                        <div 
-                          className="w-full bg-gradient-to-t from-blue-600 to-blue-400 rounded-t-lg relative"
-                          style={{ height: `${height}%` }}
-                        ></div>
+                        <div className="w-full bg-gradient-to-t from-blue-600 to-blue-400 rounded-t-lg relative" style={{ height: `${height}%` }}></div>
                         <div className="text-xs font-bold text-slate-500">{item.year}</div>
                       </div>
                     );
                   })}
                 </div>
-                <div className="absolute top-0 right-0 w-64 h-64 bg-blue-600/10 rounded-full blur-3xl -mr-16 -mt-16 pointer-events-none"></div>
              </div>
 
              {/* FUTURE INFRASTRUCTURE */}
              <div className="bg-white border border-slate-200 rounded-3xl p-8 shadow-sm">
                 <div className="flex items-center gap-3 mb-6">
                   <Construction className="text-orange-500" />
-                  <h3 className="text-xl font-extrabold text-slate-900">
-                    Future <span className="text-orange-500">Infrastructure</span>
-                  </h3>
+                  <h3 className="text-xl font-extrabold text-slate-900">Future <span className="text-orange-500">Infrastructure</span></h3>
                 </div>
                 <div className="space-y-4">
                   {futureInfra.map((item, idx) => (
                     <div key={idx} className="flex items-center justify-between p-4 bg-slate-50 rounded-xl border border-slate-100">
                       <div className="flex items-center gap-3">
-                        <div className="p-2 bg-white rounded-lg border border-slate-200 text-slate-400">
-                          <Building size={18} />
-                        </div>
+                        <div className="p-2 bg-white rounded-lg border border-slate-200 text-slate-400"><Building size={18} /></div>
                         <span className="font-bold text-slate-700">{item.name}</span>
                       </div>
-                      <span className="text-[10px] font-bold bg-white border border-slate-200 px-3 py-1 rounded-full text-slate-500 uppercase tracking-wide">
-                        {item.status}
-                      </span>
+                      <span className="text-[10px] font-bold bg-white border border-slate-200 px-3 py-1 rounded-full text-slate-500 uppercase tracking-wide">{item.status}</span>
                     </div>
                   ))}
                 </div>
@@ -207,15 +194,42 @@ const AreaPage = () => {
                   <DistanceRow icon={<Train />} category="Metro / Transport" data={conn.metro} color="text-green-600" />
                   <DistanceRow icon={<GraduationCap />} category="Top School" data={conn.school} color="text-yellow-600" />
                   <DistanceRow icon={<ShoppingBag />} category="Shopping Mall" data={conn.mall} color="text-pink-600" />
-                  <DistanceRow icon={<Camera />} category="Tourist Spot" data={conn.tourist} color="text-orange-600" />
                   <DistanceRow icon={<HeartPulse />} category="Healthcare" data={conn.hospital} color="text-red-600" />
                 </div>
              </div>
           </div>
 
-          {/* === RIGHT COLUMN === */}
+          {/* === RIGHT COLUMN: INTELLIGENCE & SCORECARD === */}
           <div className="space-y-8">
              
+             {/* 🔥 WHY INVEST HERE? (Dynamic Data) */}
+             <div className="bg-white border border-slate-200 rounded-3xl p-6 shadow-sm relative overflow-hidden ring-4 ring-slate-50">
+               <div className="absolute top-0 right-0 p-4 opacity-5">
+                 <Flame size={64} className="text-red-600" />
+               </div>
+               <h4 className="font-extrabold text-slate-900 mb-2 flex items-center gap-2">
+                 <span className="text-red-500">🔥</span> {verdict.title}
+               </h4>
+               <p className="text-xs text-slate-500 mb-4 leading-relaxed">{verdict.summary}</p>
+               
+               <div className="space-y-3">
+                 <div className="flex items-center gap-3 p-3 bg-slate-50 rounded-xl border border-slate-100">
+                    <div className="bg-white p-2 rounded-lg text-blue-600 shadow-sm"><Users size={16}/></div>
+                    <div>
+                      <div className="text-[10px] uppercase font-bold text-slate-400">Tenant Profile</div>
+                      <div className="text-sm font-bold text-slate-900">{demand.tenantProfile}</div>
+                    </div>
+                 </div>
+                 <div className="flex items-center gap-3 p-3 bg-slate-50 rounded-xl border border-slate-100">
+                    <div className="bg-white p-2 rounded-lg text-emerald-600 shadow-sm"><DollarSign size={16}/></div>
+                    <div>
+                      <div className="text-[10px] uppercase font-bold text-slate-400">Rental Demand</div>
+                      <div className="text-sm font-bold text-slate-900">{demand.rentalDemand}</div>
+                    </div>
+                 </div>
+               </div>
+             </div>
+
              {/* INVESTOR FIT TAGS */}
              <div className="bg-slate-50 border border-slate-200 rounded-3xl p-6">
                 <div className="flex items-center gap-2 mb-4">
@@ -232,19 +246,29 @@ const AreaPage = () => {
              </div>
 
              {/* SCORECARD */}
-             <div className="bg-white border border-slate-200 rounded-3xl p-8 shadow-sm">
+             <div className="bg-white border border-slate-200 rounded-3xl p-8 shadow-sm sticky top-8">
                 <div className="flex items-center gap-3 mb-6">
                   <TrendingUp className="text-blue-600" />
                   <h3 className="text-xl font-extrabold text-slate-900">Scorecard</h3>
                 </div>
                 
-                {/* SHORT TERM RENTAL SCORE */}
-                <div className="mb-8 p-4 bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-100 rounded-2xl flex items-center justify-between">
-                   <div>
-                     <div className="text-xs font-bold uppercase text-blue-400 mb-1">Short-Term Rental</div>
-                     <div className="font-extrabold text-slate-900">Airbnb Potential</div>
+                {/* STR INTELLIGENCE BOX */}
+                <div className="mb-8 p-4 bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-100 rounded-2xl">
+                   <div className="flex justify-between items-center mb-2">
+                     <div>
+                       <div className="text-xs font-bold uppercase text-blue-400">Airbnb Potential</div>
+                       <div className="font-extrabold text-slate-900 text-lg">{strScore}/10</div>
+                     </div>
+                     <div className="text-right">
+                       <div className="text-xs font-bold uppercase text-blue-400">Daily Rate</div>
+                       <div className="font-extrabold text-slate-900">{strData.avgDailyRate}</div>
+                     </div>
                    </div>
-                   <div className="text-2xl font-black text-blue-600">{strScore}/10</div>
+                   {strData.occupancy !== "N/A" && (
+                     <div className="w-full bg-white/50 h-1.5 rounded-full overflow-hidden mt-1">
+                        <div className="bg-blue-500 h-full rounded-full" style={{ width: strData.occupancy }}></div>
+                     </div>
+                   )}
                 </div>
 
                 <div className="space-y-5">
@@ -255,7 +279,7 @@ const AreaPage = () => {
                   <ScoreBar label="Risk (Low is Good)" value={scores.risk} color="bg-red-500" />
                 </div>
                 
-                {/* WHATSAPP (Hidden during print to keep PDF clean) */}
+                {/* WHATSAPP */}
                 <div data-html2canvas-ignore className="mt-8 pt-6 border-t border-slate-100">
                   <h4 className="font-bold text-slate-900 mb-2">Interested in {area.name}?</h4>
                   <p className="text-xs text-slate-500 mb-4">Get the full investment report and active listings.</p>
@@ -274,17 +298,13 @@ const AreaPage = () => {
                </h4>
                <div className="flex flex-wrap gap-2">
                  {area.amenities?.map((am, idx) => (
-                   <span key={idx} className="px-3 py-1.5 bg-slate-50 border border-slate-100 rounded-lg text-xs font-bold text-slate-600">
-                     {am}
-                   </span>
+                   <span key={idx} className="px-3 py-1.5 bg-slate-50 border border-slate-100 rounded-lg text-xs font-bold text-slate-600">{am}</span>
                  ))}
                </div>
             </div>
           </div>
         </div>
       </div>
-      {/* --- PRINTABLE REPORT AREA END --- */}
-
     </div>
   );
 };
