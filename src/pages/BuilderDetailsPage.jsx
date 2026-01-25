@@ -1,28 +1,30 @@
 import React, { useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { 
-  ArrowLeft, CheckCircle, TrendingUp, AlertTriangle, 
-  Crown, Clock, Wallet, BarChart, ShieldCheck, Building2, MapPin 
+  ArrowLeft, TrendingUp, AlertTriangle, 
+  Crown, Clock, Wallet, BarChart, ShieldCheck, Building2, MapPin, CheckCircle
 } from 'lucide-react';
 import { BUILDERS } from '../data/buildersData';
 import SEO from '../components/SEO';
 import WhatsAppButton from '../components/WhatsAppButton';
 
 const BuilderDetailsPage = () => {
-  const { builderId } = useParams();
+  // 🟢 FIXED: Changed 'builderId' to 'id' to match App.jsx
+  const { id } = useParams(); 
   
-  // 1. Find the builder
-  const builder = BUILDERS.find(b => b.id === builderId);
+  // 1. Find the builder using the correct ID
+  const builder = BUILDERS.find(b => b.id === id);
 
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, [builderId]);
+  }, [id]);
 
   // 2. Safety Check
   if (!builder) {
     return (
-      <div className="flex flex-col items-center justify-center min-h-[60vh] text-center px-4">
-        <h2 className="text-2xl font-bold text-slate-800 mb-4">Developer Not Found</h2>
+      <div className="flex flex-col items-center justify-center min-h-[60vh] text-center px-4 bg-slate-50">
+        <h2 className="text-3xl font-bold text-slate-900 mb-4">Developer Not Found</h2>
+        <p className="text-slate-500 mb-8">We couldn't find the developer with ID: <span className="font-mono text-red-500 bg-red-50 px-2 py-1 rounded">{id}</span></p>
         <Link to="/builders" className="px-6 py-3 bg-blue-600 text-white rounded-xl font-bold hover:bg-blue-700 transition">
           View All Developers
         </Link>
@@ -117,48 +119,48 @@ const BuilderDetailsPage = () => {
 
            {/* 3. DELIVERY & RISK */}
            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {/* Delivery Stats */}
-              <div className="bg-white border border-slate-200 p-6 rounded-2xl shadow-sm">
-                 <h4 className="font-bold text-slate-900 mb-4 flex items-center gap-2">
-                    <Clock size={16} className="text-blue-500"/> Delivery Record
-                 </h4>
-                 <div className="space-y-3">
-                    <div className="flex justify-between text-sm">
-                       <span className="text-slate-500">On Time</span>
-                       <span className="font-bold text-green-600">{trackRecord.onTime}</span>
-                    </div>
-                    <div className="flex justify-between text-sm">
-                       <span className="text-slate-500">Delayed</span>
-                       <span className="font-bold text-yellow-600">{trackRecord.delayed}</span>
-                    </div>
-                    <div className="w-full bg-slate-100 h-2 rounded-full overflow-hidden mt-2">
-                       <div className="bg-green-500 h-full" style={{ width: trackRecord.onTime }}></div>
-                    </div>
-                 </div>
-              </div>
+             {/* Delivery Stats */}
+             <div className="bg-white border border-slate-200 p-6 rounded-2xl shadow-sm">
+                <h4 className="font-bold text-slate-900 mb-4 flex items-center gap-2">
+                   <Clock size={16} className="text-blue-500"/> Delivery Record
+                </h4>
+                <div className="space-y-3">
+                   <div className="flex justify-between text-sm">
+                      <span className="text-slate-500">On Time</span>
+                      <span className="font-bold text-green-600">{trackRecord.onTime}</span>
+                   </div>
+                   <div className="flex justify-between text-sm">
+                      <span className="text-slate-500">Delayed</span>
+                      <span className="font-bold text-yellow-600">{trackRecord.delayed}</span>
+                   </div>
+                   <div className="w-full bg-slate-100 h-2 rounded-full overflow-hidden mt-2">
+                      <div className="bg-green-500 h-full" style={{ width: trackRecord.onTime }}></div>
+                   </div>
+                </div>
+             </div>
 
-              {/* Risk Profile */}
-              <div className="bg-slate-900 text-white p-6 rounded-2xl shadow-sm">
-                 <h4 className="font-bold mb-4 flex items-center gap-2">
-                    <ShieldCheck size={16} className="text-emerald-400"/> Risk Profile
-                 </h4>
-                 <div className="space-y-4 text-sm">
-                    <div className="flex justify-between border-b border-white/10 pb-2">
-                       <span className="opacity-70">Off-Plan Risk</span>
-                       <span className={`font-bold ${risk.offPlanRisk === 'Zero' || risk.offPlanRisk === 'Very Low' ? 'text-emerald-400' : 'text-yellow-400'}`}>
-                         {risk.offPlanRisk}
-                       </span>
-                    </div>
-                    <div className="flex justify-between border-b border-white/10 pb-2">
-                       <span className="opacity-70">Handover Risk</span>
-                       <span className="font-bold text-white">{risk.handoverRisk}</span>
-                    </div>
-                    <div className="flex justify-between pt-1">
-                       <span className="opacity-70">Resale Liquidity</span>
-                       <span className="font-bold text-blue-300">{perf.resaleLiquidity}</span>
-                    </div>
-                 </div>
-              </div>
+             {/* Risk Profile */}
+             <div className="bg-slate-900 text-white p-6 rounded-2xl shadow-sm">
+                <h4 className="font-bold mb-4 flex items-center gap-2">
+                   <ShieldCheck size={16} className="text-emerald-400"/> Risk Profile
+                </h4>
+                <div className="space-y-4 text-sm">
+                   <div className="flex justify-between border-b border-white/10 pb-2">
+                      <span className="opacity-70">Off-Plan Risk</span>
+                      <span className={`font-bold ${risk.offPlanRisk === 'Zero' || risk.offPlanRisk === 'Very Low' ? 'text-emerald-400' : 'text-yellow-400'}`}>
+                        {risk.offPlanRisk}
+                      </span>
+                   </div>
+                   <div className="flex justify-between border-b border-white/10 pb-2">
+                      <span className="opacity-70">Handover Risk</span>
+                      <span className="font-bold text-white">{risk.handoverRisk}</span>
+                   </div>
+                   <div className="flex justify-between pt-1">
+                      <span className="opacity-70">Resale Liquidity</span>
+                      <span className="font-bold text-blue-300">{perf.resaleLiquidity}</span>
+                   </div>
+                </div>
+             </div>
            </div>
 
         </div>
@@ -168,9 +170,9 @@ const BuilderDetailsPage = () => {
            
            {/* WHATSAPP CTA */}
            <div className="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm text-center">
-              <h3 className="font-bold text-slate-900 mb-2">Interested in {builder.name}?</h3>
-              <p className="text-xs text-slate-500 mb-4">Get the latest brochure and inventory list.</p>
-              <WhatsAppButton data={builder} type="builder" />
+             <h3 className="font-bold text-slate-900 mb-2">Interested in {builder.name}?</h3>
+             <p className="text-xs text-slate-500 mb-4">Get the latest brochure and inventory list.</p>
+             <WhatsAppButton text="Get Inventory List" message={`Hi, I'm interested in projects by ${builder.name}.`} />
            </div>
 
            {/* VERDICT */}
@@ -206,22 +208,22 @@ const BuilderDetailsPage = () => {
 
            {/* INFO SPECS */}
            <div className="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm space-y-4">
-              <div>
+             <div>
                  <span className="text-xs font-bold text-slate-400 uppercase">Signature Project</span>
                  <div className="font-bold text-slate-900">{builder.signatureProject}</div>
-              </div>
-              <div>
+             </div>
+             <div>
                  <span className="text-xs font-bold text-slate-400 uppercase">Key Communities</span>
                  <div className="font-medium text-slate-700 text-sm mt-1">
                     {builder.flagshipCommunities?.join(", ")}
                  </div>
-              </div>
-              <div>
+             </div>
+             <div>
                  <span className="text-xs font-bold text-slate-400 uppercase">Payment Plans</span>
                  <div className="font-medium text-blue-600 text-sm mt-1">
                     {payment.commonPlans?.join(" | ")}
                  </div>
-              </div>
+             </div>
            </div>
 
            {/* USP */}

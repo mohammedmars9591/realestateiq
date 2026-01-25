@@ -44,6 +44,7 @@ const App = () => {
 
             {/* --- 3. BUILDERS --- */}
             <Route path="/builders" element={<BuildersPage />} />
+            {/* 🟢 IMPORTANT: This :id must match the useParams() in BuilderDetailsPage */}
             <Route path="/builder/:id" element={<BuilderDetailsPage />} />
 
             {/* --- 4. INTELLIGENCE TOOLS --- */}

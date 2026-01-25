@@ -5,10 +5,10 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   plugins: [react()],
   build: {
-    // 1. Increase the warning limit to 1000kb (1MB) to silence false alarms
-    chunkSizeWarningLimit: 1000, 
+    // 1. Increase the warning limit so it stops complaining about 500kb
+    chunkSizeWarningLimit: 1600, 
     
-    // 2. Tell Vite to split "vendor" (libraries) from your main code
+    // 2. (Optional) Split code into smaller pieces for better loading
     rollupOptions: {
       output: {
         manualChunks(id) {
