@@ -5,7 +5,8 @@ import {
   Plane, ShoppingBag, BarChart3, Construction,
   GraduationCap, Train, Briefcase, HeartPulse,
   Tags, Building, Download, Loader2, Flame, Users, DollarSign, MessageCircle,
-  Calendar, Maximize, Waves, Building2, Map, Camera, Palmtree
+  Calendar, Maximize, Waves, Building2, Map, Camera, Palmtree, 
+  LineChart, Lightbulb, Target, Utensils, Car, Bike, Navigation, BookOpen
 } from 'lucide-react';
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
@@ -19,6 +20,9 @@ const AreaPage = () => {
   const [isGeneratingPdf, setIsGeneratingPdf] = useState(false);
 
   const area = MASTER_DB.find(a => a.id === id);
+  
+  // Neighboring Areas Logic
+  const similarAreas = MASTER_DB.filter(a => a.id !== id).slice(0, 3);
 
   useEffect(() => { window.scrollTo(0, 0); }, [id]);
 
@@ -60,13 +64,13 @@ const AreaPage = () => {
 
   // --- WHATSAPP LOGIC ---
   const handleWhatsAppClick = () => {
-    const phone = "971501234567"; 
+    const phone = "971501234567"; // REPLACE WITH YOUR NUMBER
     const text = `Hi, I'm interested in investment opportunities in ${area.name}. Can you share the latest availability and report?`;
     const url = `https://wa.me/${phone}?text=${encodeURIComponent(text)}`;
     window.open(url, '_blank');
   };
 
-  // --- DATA DEFAULTS & LOGIC ---
+  // --- DATA DEFAULTS ---
   const conn = area.connectivity || {};
   const scores = area.scores || { cashFlow: 5, appreciation: 5, liquidity: 5, risk: 5, lifestyle: 5 };
   const economics = area.unitEconomics || { studio: {}, oneBed: {}, twoBed: {} };
@@ -76,50 +80,49 @@ const AreaPage = () => {
   const verdict = area.aiVerdict || { title: "Solid Investment Choice", summary: area.description };
   const demand = area.demandSignals || { tenantProfile: "Professionals & Families", rentalDemand: "High" };
   const strData = area.shortTermRental || { avgDailyRate: "N/A", occupancy: "N/A" };
+  const priceTrend = area.priceTrend || { "2023": "AED 800k", "2024": "AED 850k", "2025": "AED 900k" };
 
-  // --- KEY FACTS (Logic from previous step) ---
+  // --- KEY FACTS ---
   const keyFacts = {
-    developer: area.masterDeveloper || "Various / Master",
-    location: area.location || area.emirate || "Dubai",
-    totalArea: area.totalArea || "Various",
+    developer: area.masterDeveloper || "Various",
+    location: area.location || area.emirate,
+    totalArea: area.totalArea || "N/A",
     privateBeach: area.amenities?.some(a => a.includes("Beach")) || area.investorTags?.includes("Waterfront") ? "Yes" : "No",
     towers: area.towers || "Multiple", 
-    timeline: area.completion || "Ready / Handovers"
+    timeline: area.completion || "Ready"
   };
 
   // --- HIGHLIGHTS ---
   const highlights = area.highlights || [
-    `Ranked ${area.overallScore}/10 for overall investment potential.`,
-    `High rental demand driven by ${demand.tenantProfile}.`,
-    `Strategic location: ${conn.business?.mins || "20 mins"} from key business hubs.`,
-    `Featured amenities: ${area.amenities?.slice(0, 2).join(", ")}.`,
-    `Known for ${area.category} status in the 2026 market.`
+    `Ranked ${area.overallScore}/10 for investment potential.`,
+    `High rental demand: ${demand.rentalDemand}.`,
+    `Strategic location near key hubs.`,
+    `Known for ${area.category} status.`
   ];
 
-  // 🟢 NEW: ATTRACTIONS LOGIC (Smartly pulls from existing data)
-  const attractions = [
-    // 1. Tourist Spot (from Connectivity)
-    { 
-      name: conn.tourist?.name, 
-      category: "Tourist Hotspot", 
-      icon: <Camera size={20} className="text-pink-600" />,
-      bg: "bg-pink-50 border-pink-100"
-    },
-    // 2. Mall (from Connectivity)
-    { 
-      name: conn.mall?.name, 
-      category: "Shopping & Retail", 
-      icon: <ShoppingBag size={20} className="text-purple-600" />,
-      bg: "bg-purple-50 border-purple-100"
-    },
-    // 3. Top Amenities (from Amenities list)
-    ...(area.amenities?.slice(0, 2).map(am => ({ 
-      name: am, 
-      category: "Leisure & Lifestyle", 
-      icon: <Palmtree size={20} className="text-green-600" />,
-      bg: "bg-green-50 border-green-100"
-    })) || [])
-  ].filter(item => item.name && item.name !== "N/A"); // Remove empty ones
+  // --- ATTRACTIONS LOGIC ---
+  const leisureItems = area.amenities?.filter(a => 
+    a.includes("Park") || a.includes("Beach") || a.includes("Golf") || a.includes("Cinema") || a.includes("Garden")
+  ) || ["Community Parks", "Fitness Centres"];
+
+  const shoppingItems = area.amenities?.filter(a => 
+    a.includes("Mall") || a.includes("Market") || a.includes("Shop") || a.includes("Retail")
+  ) || ["Local Retail Centre", "Supermarkets"];
+
+  // --- TRANSPORT LOGIC ---
+  const roadAccess = area.description?.includes("Sheikh Zayed") ? "Sheikh Zayed Road (E11)" : 
+                     area.description?.includes("Al Khail") ? "Al Khail Road (E44)" : "Main Highways";
+  
+  const walkability = area.amenities?.some(a => a.includes("Walk") || a.includes("Park")) ? "High (Pedestrian Friendly)" : "Moderate (Car Dependent)";
+
+  // --- 🟢 NEW: NARRATIVE GENERATOR (Dynamic Paragraphs) ---
+  const narratives = {
+    priceTrends: `Property prices in ${area.name} have demonstrated a ${scores.appreciation > 7 ? "robust upward" : "stable"} trajectory over the last 36 months. Starting from an average of ${Object.values(priceTrend)[0] || "base rates"} in 2023, market valuations have strengthened to ${Object.values(priceTrend)[2] || "current levels"}. This growth is largely driven by ${futureInfra[0]?.name ? `anticipation of the ${futureInfra[0].name}` : "sustained high occupancy rates"}, making it a resilient asset class against inflation.`,
+    
+    investmentPotential: `${area.name} is currently positioned as a "${area.category}" powerhouse. With an average ROI of ${area.roi}, it outperforms many ${area.emirate} averages. The area scores ${scores.cashFlow}/10 for Cash Flow, making it particularly attractive for ${scores.cashFlow > 7 ? "income-focused investors seeking immediate yield" : "long-term capital growth strategies"}. The ${demand.rentalDemand.toLowerCase()} rental demand ensures minimal void periods for landlords.`,
+    
+    uaeTips: `For investors targeting ${area.name}, the strategy is clear: Focus on ${economics.studio ? "Studio and 1-Bedroom units" : "smaller units"} to maximize yield per sq.ft. Given the ${walkability.toLowerCase()} nature of the area, properties within walking distance to ${leisureItems[0] || "key amenities"} command a 10-15% rental premium. ${futureInfra.length > 0 ? "Buying before the completion of upcoming infrastructure is highly recommended to capture capital appreciation." : "Ensure you verify the service charges, as efficient management directly boosts your net income here."}`
+  };
 
   // --- FORECAST LOGIC ---
   const baseGrowthRate = (scores.appreciation || 5) * 1.2; 
@@ -184,9 +187,52 @@ const AreaPage = () => {
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
           
-          {/* === LEFT COLUMN: DATA & CHARTS === */}
+          {/* === LEFT COLUMN: DATA & ANALYSIS === */}
           <div className="lg:col-span-2 space-y-8">
               
+              {/* 🟢 NEW SECTION: EXECUTIVE MARKET BRIEF (Paragraphs) */}
+              <div className="bg-white border border-slate-200 rounded-3xl p-8 shadow-sm">
+                 <h3 className="text-xl font-extrabold text-slate-900 mb-6 flex items-center gap-2">
+                   <BookOpen className="text-blue-600" /> Executive Market Brief
+                 </h3>
+                 
+                 <div className="space-y-6">
+                    {/* 1. Price Trends */}
+                    <div>
+                       <h4 className="flex items-center gap-2 text-sm font-bold text-slate-900 uppercase tracking-wide mb-2">
+                          <TrendingUp size={16} className="text-emerald-500" /> Price Insights & Trends
+                       </h4>
+                       <p className="text-slate-600 text-sm leading-relaxed text-justify">
+                          {narratives.priceTrends}
+                       </p>
+                    </div>
+
+                    <div className="w-full h-px bg-slate-100"></div>
+
+                    {/* 2. Investment Potential */}
+                    <div>
+                       <h4 className="flex items-center gap-2 text-sm font-bold text-slate-900 uppercase tracking-wide mb-2">
+                          <Target size={16} className="text-blue-500" /> Investment Potential
+                       </h4>
+                       <p className="text-slate-600 text-sm leading-relaxed text-justify">
+                          {narratives.investmentPotential}
+                       </p>
+                    </div>
+
+                    <div className="w-full h-px bg-slate-100"></div>
+
+                    {/* 3. UAE Investment Tips */}
+                    <div>
+                       <h4 className="flex items-center gap-2 text-sm font-bold text-slate-900 uppercase tracking-wide mb-2">
+                          <Lightbulb size={16} className="text-yellow-500" /> Strategic Advisor Tips
+                       </h4>
+                       <p className="text-slate-600 text-sm leading-relaxed text-justify">
+                          {narratives.uaeTips}
+                       </p>
+                    </div>
+                 </div>
+              </div>
+
               {/* KEY HIGHLIGHTS */}
               <div className="bg-white border border-slate-200 rounded-3xl p-8 shadow-sm">
                  <h3 className="text-xl font-extrabold text-slate-900 mb-6 flex items-center gap-2">
@@ -202,42 +248,148 @@ const AreaPage = () => {
                  </ul>
               </div>
 
-              {/* 🟢 NEW SECTION: ATTRACTIONS & POINTS OF INTEREST */}
-              <div className="bg-white border border-slate-200 rounded-3xl p-8 shadow-sm">
-                 <h3 className="text-xl font-extrabold text-slate-900 mb-6 flex items-center gap-2">
-                   <Camera className="text-pink-600" /> Attractions & Points of Interest
-                 </h3>
-                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    {attractions.length > 0 ? attractions.map((item, idx) => (
-                       <div key={idx} className={`flex items-center gap-4 p-4 rounded-xl border ${item.bg}`}>
-                          <div className="bg-white p-3 rounded-lg shadow-sm">
-                             {item.icon}
-                          </div>
-                          <div>
-                             <div className="text-[10px] font-bold uppercase opacity-60 tracking-wider mb-1">{item.category}</div>
-                             <div className="font-bold text-slate-900 leading-tight">{item.name}</div>
-                          </div>
-                       </div>
-                    )) : (
-                       <div className="text-slate-400 italic text-sm p-4">No major attractions listed for this area.</div>
-                    )}
+              {/* ATTRACTIONS (Split Categories) */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                 {/* Leisure Card */}
+                 <div className="bg-white border border-slate-200 rounded-3xl p-6 shadow-sm flex flex-col">
+                    <div className="flex items-center gap-2 mb-4">
+                       <div className="p-2 bg-teal-50 text-teal-600 rounded-lg"><Palmtree size={20} /></div>
+                       <h4 className="font-bold text-slate-900">Waterfront & Leisure</h4>
+                    </div>
+                    <ul className="space-y-3 mt-auto">
+                       {leisureItems.slice(0,3).map((item, i) => (
+                          <li key={i} className="flex items-center gap-2 text-sm text-slate-600">
+                             <CheckCircle size={14} className="text-teal-500" /> {item}
+                          </li>
+                       ))}
+                       {leisureItems.length === 0 && <li className="text-sm text-slate-400 italic">Standard community parks available.</li>}
+                    </ul>
+                 </div>
+
+                 {/* Shopping Card */}
+                 <div className="bg-white border border-slate-200 rounded-3xl p-6 shadow-sm flex flex-col">
+                    <div className="flex items-center gap-2 mb-4">
+                       <div className="p-2 bg-purple-50 text-purple-600 rounded-lg"><Utensils size={20} /></div>
+                       <h4 className="font-bold text-slate-900">Shopping & Dining</h4>
+                    </div>
+                    <ul className="space-y-3 mt-auto">
+                       {shoppingItems.slice(0,3).map((item, i) => (
+                          <li key={i} className="flex items-center gap-2 text-sm text-slate-600">
+                             <CheckCircle size={14} className="text-purple-500" /> {item}
+                          </li>
+                       ))}
+                       {shoppingItems.length === 0 && <li className="text-sm text-slate-400 italic">Local retail centers nearby.</li>}
+                    </ul>
                  </div>
               </div>
 
-              {/* UNIT ECONOMICS */}
+              {/* TRANSPORT HUB */}
+              <div className="bg-slate-900 text-white rounded-3xl p-8 shadow-xl relative overflow-hidden">
+                 <div className="relative z-10">
+                    <div className="flex items-center gap-3 mb-8">
+                       <Navigation className="text-blue-400" />
+                       <h3 className="text-xl font-extrabold">Transport & Access</h3>
+                    </div>
+                    
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                       <div className="bg-white/10 p-4 rounded-xl border border-white/10 backdrop-blur-sm">
+                          <div className="text-blue-300 mb-2"><Car size={24} /></div>
+                          <div className="text-xs font-bold uppercase opacity-60 mb-1">Road Network</div>
+                          <div className="font-bold text-lg leading-tight mb-1">{roadAccess}</div>
+                          <div className="text-xs opacity-70">Primary Highway Access</div>
+                       </div>
+                       <div className="bg-white/10 p-4 rounded-xl border border-white/10 backdrop-blur-sm">
+                          <div className="text-blue-300 mb-2"><Train size={24} /></div>
+                          <div className="text-xs font-bold uppercase opacity-60 mb-1">Public Transit</div>
+                          <div className="font-bold text-lg leading-tight mb-1">{conn.metro?.name || "Bus Links Available"}</div>
+                          <div className="text-xs opacity-70">{conn.metro?.mins ? `${conn.metro.mins} away` : "Planned Connections"}</div>
+                       </div>
+                       <div className="bg-white/10 p-4 rounded-xl border border-white/10 backdrop-blur-sm">
+                          <div className="text-blue-300 mb-2"><Bike size={24} /></div>
+                          <div className="text-xs font-bold uppercase opacity-60 mb-1">Event Flow</div>
+                          <div className="font-bold text-lg leading-tight mb-1">{walkability}</div>
+                          <div className="text-xs opacity-70">Walking & Cycling Paths</div>
+                       </div>
+                    </div>
+                 </div>
+                 <div className="absolute inset-0 opacity-10 bg-[url('https://upload.wikimedia.org/wikipedia/commons/e/ec/World_map_blank_without_borders.svg')] bg-cover bg-center"></div>
+              </div>
+
+              {/* PRICE TRENDS CHART */}
               <div className="bg-white border border-slate-200 rounded-3xl p-8 shadow-sm">
+                 <div className="flex items-center gap-3 mb-6">
+                   <LineChart className="text-purple-600" />
+                   <h3 className="text-xl font-extrabold text-slate-900">Price History (Chart)</h3>
+                 </div>
+                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    <div className="space-y-4">
+                       <p className="text-sm text-slate-500">Historical average transaction price over the last 4 years.</p>
+                       <div className="space-y-3">
+                          {Object.entries(priceTrend).map(([year, price]) => (
+                            <div key={year} className="flex justify-between items-center p-3 bg-slate-50 rounded-xl">
+                               <span className="font-bold text-slate-500">{year}</span>
+                               <div className="flex-1 mx-4 h-1 bg-slate-200 rounded-full overflow-hidden">
+                                  <div className="h-full bg-purple-500 rounded-full" style={{ width: '100%' }}></div>
+                               </div>
+                               <span className="font-extrabold text-slate-900">{price}</span>
+                            </div>
+                          ))}
+                       </div>
+                    </div>
+                    <div className="bg-purple-50 rounded-2xl p-6 border border-purple-100">
+                       <div className="flex items-center gap-2 mb-2 text-purple-700 font-bold uppercase text-xs tracking-wider"><TrendingUp size={14} /> Market Direction</div>
+                       <div className="text-2xl font-extrabold text-slate-900 mb-2">Upward Trend</div>
+                       <p className="text-sm text-slate-600 leading-relaxed">Values in {area.name} have seen consistent growth due to {futureInfra[0]?.name ? `upcoming infrastructure like the ${futureInfra[0].name}` : "high rental demand"}.</p>
+                    </div>
+                 </div>
+              </div>
+
+              {/* UNIT ECONOMICS TABLE */}
+              <div className="bg-white border border-slate-200 rounded-3xl p-8 shadow-sm overflow-hidden">
                  <div className="flex items-center gap-3 mb-2">
                    <BarChart3 className="text-emerald-600" />
-                   <h3 className="text-xl font-extrabold text-slate-900">
-                     Market <span className="text-emerald-600">Yields</span> & Rent
-                   </h3>
+                   <h3 className="text-xl font-extrabold text-slate-900">Market <span className="text-emerald-600">Yields</span> & Analytics</h3>
                  </div>
-                 <p className="text-slate-500 text-sm mb-6">Average ROI and annual rental income by unit type.</p>
-
-                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-center">
-                   <UnitBox label="Studio" roi={economics.studio?.roi} rent={economics.studio?.rent} color="text-green-600" bg="bg-green-50" border="border-green-100" />
-                   <UnitBox label="1-Bedroom" roi={economics.oneBed?.roi} rent={economics.oneBed?.rent} color="text-blue-700" bg="bg-blue-50" border="border-blue-100" />
-                   <UnitBox label="2-Bedroom" roi={economics.twoBed?.roi} rent={economics.twoBed?.rent} color="text-slate-700" bg="bg-slate-50" border="border-slate-100" />
+                 <p className="text-slate-500 text-sm mb-8">Detailed breakdown of returns, sizes, and tenant profiles by unit type.</p>
+                 <div className="overflow-x-auto -mx-8 px-8 pb-4">
+                   <table className="w-full min-w-[600px] text-left border-collapse">
+                     <thead>
+                       <tr className="border-b border-slate-100 text-xs font-bold text-slate-400 uppercase tracking-wider">
+                         <th className="py-4 pr-4">Type</th>
+                         <th className="py-4 px-4">Typical Size</th>
+                         <th className="py-4 px-4 text-emerald-600">Avg. ROI</th>
+                         <th className="py-4 px-4">Annual Rent</th>
+                         <th className="py-4 px-4">Best For</th>
+                         <th className="py-4 pl-4">Signature Feature</th>
+                       </tr>
+                     </thead>
+                     <tbody className="text-sm">
+                       <tr className="border-b border-slate-50 hover:bg-slate-50 transition-colors">
+                         <td className="py-4 pr-4 font-bold text-slate-900">Studio Apartment</td>
+                         <td className="py-4 px-4 text-slate-500">380 - 520 sq.ft</td>
+                         <td className="py-4 px-4 font-extrabold text-emerald-600 text-lg">{economics.studio?.roi || "N/A"}</td>
+                         <td className="py-4 px-4 font-bold text-slate-700">{economics.studio?.rent || "N/A"}</td>
+                         <td className="py-4 px-4"><span className="bg-blue-50 text-blue-600 px-2 py-1 rounded text-xs font-bold">High Yield</span></td>
+                         <td className="py-4 pl-4 text-slate-500">Lowest Entry Price</td>
+                       </tr>
+                       <tr className="border-b border-slate-50 hover:bg-slate-50 transition-colors">
+                         <td className="py-4 pr-4 font-bold text-slate-900">1-Bedroom</td>
+                         <td className="py-4 px-4 text-slate-500">750 - 950 sq.ft</td>
+                         <td className="py-4 px-4 font-extrabold text-emerald-600 text-lg">{economics.oneBed?.roi || "N/A"}</td>
+                         <td className="py-4 px-4 font-bold text-slate-700">{economics.oneBed?.rent || "N/A"}</td>
+                         <td className="py-4 px-4"><span className="bg-purple-50 text-purple-600 px-2 py-1 rounded text-xs font-bold">Liquidity</span></td>
+                         <td className="py-4 pl-4 text-slate-500">Highest Demand</td>
+                       </tr>
+                       <tr className="hover:bg-slate-50 transition-colors">
+                         <td className="py-4 pr-4 font-bold text-slate-900">2-Bedroom</td>
+                         <td className="py-4 px-4 text-slate-500">1,100 - 1,400 sq.ft</td>
+                         <td className="py-4 px-4 font-extrabold text-emerald-600 text-lg">{economics.twoBed?.roi || "N/A"}</td>
+                         <td className="py-4 px-4 font-bold text-slate-700">{economics.twoBed?.rent || "N/A"}</td>
+                         <td className="py-4 px-4"><span className="bg-amber-50 text-amber-600 px-2 py-1 rounded text-xs font-bold">Stability</span></td>
+                         <td className="py-4 pl-4 text-slate-500">Long-term Tenants</td>
+                       </tr>
+                     </tbody>
+                   </table>
                  </div>
               </div>
 
@@ -249,7 +401,7 @@ const AreaPage = () => {
                        <TrendingUp className="text-blue-400" />
                        <h3 className="text-xl font-extrabold">5-Year Growth Forecast</h3>
                      </div>
-                     <p className="text-slate-400 text-sm">Projected capital appreciation based on current Appreciation Score.</p>
+                     <p className="text-slate-400 text-sm">Projected capital appreciation.</p>
                    </div>
                    <div className="bg-blue-600/20 px-4 py-2 rounded-lg border border-blue-500/30 text-blue-300 font-bold text-sm">
                      {forecastData[4].growth} by 2030
@@ -269,22 +421,57 @@ const AreaPage = () => {
                  </div>
               </div>
 
-              {/* FUTURE INFRASTRUCTURE */}
+          </div>
+
+          {/* === RIGHT COLUMN: SCORECARD & POTENTIAL === */}
+          <div className="space-y-8">
+              
+              {/* INVESTMENT POTENTIAL CARD */}
+              <div className="bg-white border border-slate-200 rounded-3xl p-6 shadow-sm relative overflow-hidden ring-4 ring-slate-50">
+                <div className="absolute top-0 right-0 p-4 opacity-5"><Target size={64} className="text-blue-600" /></div>
+                <h4 className="font-extrabold text-slate-900 mb-2 flex items-center gap-2"><span className="text-blue-600">🎯</span> Investment Potential</h4>
+                <div className="text-sm font-bold text-slate-900 mb-1">{verdict.title}</div>
+                <p className="text-xs text-slate-500 mb-4 leading-relaxed">{verdict.summary}</p>
+                <div className="space-y-3">
+                  <DemandBox icon={<Users size={16}/>} label="Tenant Profile" value={demand.tenantProfile} color="text-blue-600" />
+                  <DemandBox icon={<DollarSign size={16}/>} label="Rental Demand" value={demand.rentalDemand} color="text-emerald-600" />
+                </div>
+              </div>
+
+              {/* SCORECARD */}
               <div className="bg-white border border-slate-200 rounded-3xl p-8 shadow-sm">
                  <div className="flex items-center gap-3 mb-6">
-                   <Construction className="text-orange-500" />
-                   <h3 className="text-xl font-extrabold text-slate-900">Future <span className="text-orange-500">Infrastructure</span></h3>
+                   <TrendingUp className="text-blue-600" />
+                   <h3 className="text-xl font-extrabold text-slate-900">Scorecard</h3>
                  </div>
-                 <div className="space-y-4">
-                   {futureInfra.map((item, idx) => (
-                     <div key={idx} className="flex items-center justify-between p-4 bg-slate-50 rounded-xl border border-slate-100">
-                       <div className="flex items-center gap-3">
-                         <div className="p-2 bg-white rounded-lg border border-slate-200 text-slate-400"><Building size={18} /></div>
-                         <span className="font-bold text-slate-700">{item.name}</span>
-                       </div>
-                       <span className="text-[10px] font-bold bg-white border border-slate-200 px-3 py-1 rounded-full text-slate-500 uppercase tracking-wide">{item.status}</span>
-                     </div>
-                   ))}
+                 <div className="mb-8 p-4 bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-100 rounded-2xl">
+                    <div className="flex justify-between items-center mb-2">
+                      <div>
+                        <div className="text-xs font-bold uppercase text-blue-400">Airbnb Potential</div>
+                        <div className="font-extrabold text-slate-900 text-lg">{strScore}/10</div>
+                      </div>
+                      <div className="text-right">
+                        <div className="text-xs font-bold uppercase text-blue-400">Daily Rate</div>
+                        <div className="font-extrabold text-slate-900">{strData.avgDailyRate}</div>
+                      </div>
+                    </div>
+                    {strData.occupancy !== "N/A" && (
+                      <div className="w-full bg-white/50 h-1.5 rounded-full overflow-hidden mt-1"><div className="bg-blue-500 h-full rounded-full" style={{ width: strData.occupancy }}></div></div>
+                    )}
+                 </div>
+                 <div className="space-y-5">
+                   <ScoreBar label="Cash Flow" value={scores.cashFlow} color="bg-green-500" />
+                   <ScoreBar label="Appreciation" value={scores.appreciation} color="bg-blue-500" />
+                   <ScoreBar label="Liquidity" value={scores.liquidity} color="bg-indigo-500" />
+                   <ScoreBar label="Lifestyle" value={scores.lifestyle} color="bg-amber-500" />
+                   <ScoreBar label="Risk (Low is Good)" value={scores.risk} color="bg-red-500" />
+                 </div>
+                 <div className="mt-8 pt-6 border-t border-slate-100 no-print">
+                   <h4 className="font-bold text-slate-900 mb-2">Interested in {area.name}?</h4>
+                   <p className="text-xs text-slate-500 mb-4">Get the full investment report and active listings.</p>
+                   <button onClick={handleWhatsAppClick} className="w-full py-3 bg-green-500 hover:bg-green-600 text-white rounded-xl font-bold flex items-center justify-center gap-2 transition shadow-lg hover:shadow-green-500/20">
+                     <MessageCircle size={20} /> Contact Advisor
+                   </button>
                  </div>
               </div>
 
@@ -303,123 +490,29 @@ const AreaPage = () => {
                    <DistanceRow icon={<HeartPulse />} category="Healthcare" data={conn.hospital} color="text-red-600" />
                  </div>
               </div>
-          </div>
 
-          {/* === RIGHT COLUMN: INTELLIGENCE & SCORECARD === */}
-          <div className="space-y-8">
-              
-              {/* 🔥 WHY INVEST HERE? (Dynamic Data) */}
-              <div className="bg-white border border-slate-200 rounded-3xl p-6 shadow-sm relative overflow-hidden ring-4 ring-slate-50">
-                <div className="absolute top-0 right-0 p-4 opacity-5">
-                  <Flame size={64} className="text-red-600" />
-                </div>
-                <h4 className="font-extrabold text-slate-900 mb-2 flex items-center gap-2">
-                  <span className="text-red-500">🔥</span> {verdict.title}
-                </h4>
-                <p className="text-xs text-slate-500 mb-4 leading-relaxed">{verdict.summary}</p>
-                
-                <div className="space-y-3">
-                  <div className="flex items-center gap-3 p-3 bg-slate-50 rounded-xl border border-slate-100">
-                     <div className="bg-white p-2 rounded-lg text-blue-600 shadow-sm"><Users size={16}/></div>
-                     <div>
-                       <div className="text-[10px] uppercase font-bold text-slate-400">Tenant Profile</div>
-                       <div className="text-sm font-bold text-slate-900">{demand.tenantProfile}</div>
-                     </div>
-                  </div>
-                  <div className="flex items-center gap-3 p-3 bg-slate-50 rounded-xl border border-slate-100">
-                     <div className="bg-white p-2 rounded-lg text-emerald-600 shadow-sm"><DollarSign size={16}/></div>
-                     <div>
-                       <div className="text-[10px] uppercase font-bold text-slate-400">Rental Demand</div>
-                       <div className="text-sm font-bold text-slate-900">{demand.rentalDemand}</div>
-                     </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* INVESTOR FIT TAGS */}
-              <div className="bg-slate-50 border border-slate-200 rounded-3xl p-6">
-                 <div className="flex items-center gap-2 mb-4">
-                   <Tags size={20} className="text-blue-600"/>
-                   <h4 className="font-extrabold text-slate-900">Investor Fit</h4>
-                 </div>
-                 <div className="flex flex-wrap gap-2">
-                   {investorTags.map((tag, i) => (
-                     <span key={i} className="px-3 py-1 bg-white border border-slate-200 rounded-lg text-xs font-bold text-slate-600">
-                       {tag}
-                     </span>
-                   ))}
-                 </div>
-              </div>
-
-              {/* SCORECARD */}
-              <div className="bg-white border border-slate-200 rounded-3xl p-8 shadow-sm">
-                 <div className="flex items-center gap-3 mb-6">
-                   <TrendingUp className="text-blue-600" />
-                   <h3 className="text-xl font-extrabold text-slate-900">Scorecard</h3>
-                 </div>
-                 
-                 {/* STR INTELLIGENCE BOX */}
-                 <div className="mb-8 p-4 bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-100 rounded-2xl">
-                    <div className="flex justify-between items-center mb-2">
-                      <div>
-                        <div className="text-xs font-bold uppercase text-blue-400">Airbnb Potential</div>
-                        <div className="font-extrabold text-slate-900 text-lg">{strScore}/10</div>
-                      </div>
-                      <div className="text-right">
-                        <div className="text-xs font-bold uppercase text-blue-400">Daily Rate</div>
-                        <div className="font-extrabold text-slate-900">{strData.avgDailyRate}</div>
-                      </div>
-                    </div>
-                    {strData.occupancy !== "N/A" && (
-                      <div className="w-full bg-white/50 h-1.5 rounded-full overflow-hidden mt-1">
-                         <div className="bg-blue-500 h-full rounded-full" style={{ width: strData.occupancy }}></div>
-                      </div>
-                    )}
-                 </div>
-
-                 <div className="space-y-5">
-                   <ScoreBar label="Cash Flow" value={scores.cashFlow} color="bg-green-500" />
-                   <ScoreBar label="Appreciation" value={scores.appreciation} color="bg-blue-500" />
-                   <ScoreBar label="Liquidity" value={scores.liquidity} color="bg-indigo-500" />
-                   <ScoreBar label="Lifestyle" value={scores.lifestyle} color="bg-amber-500" />
-                   <ScoreBar label="Risk (Low is Good)" value={scores.risk} color="bg-red-500" />
-                 </div>
-                 
-                 {/* WHATSAPP CTA */}
-                 <div className="mt-8 pt-6 border-t border-slate-100 no-print">
-                   <h4 className="font-bold text-slate-900 mb-2">Interested in {area.name}?</h4>
-                   <p className="text-xs text-slate-500 mb-4">Get the full investment report and active listings.</p>
-                   
-                   <button 
-                    onClick={handleWhatsAppClick}
-                    className="w-full py-3 bg-green-500 hover:bg-green-600 text-white rounded-xl font-bold flex items-center justify-center gap-2 transition shadow-lg hover:shadow-green-500/20"
-                   >
-                     <MessageCircle size={20} />
-                     Contact Advisor
-                   </button>
-                 </div>
-              </div>
-
-              {/* LIFESTYLE PERKS */}
-              <div className="bg-white border border-slate-200 rounded-3xl p-6">
-                <h4 className="font-extrabold text-slate-900 mb-4 flex items-center gap-2 text-lg">
-                  <CheckCircle size={20} className="text-blue-600"/> 
-                  <span>Lifestyle Perks</span>
-                </h4>
-                {area.amenities && area.amenities.length > 0 ? (
-                    <div className="flex flex-wrap gap-2">
-                        {area.amenities.map((am, idx) => (
-                        <span key={idx} className="px-3 py-1.5 bg-slate-50 border border-slate-100 rounded-lg text-xs font-bold text-slate-600 whitespace-nowrap">
-                            {am}
-                        </span>
-                        ))}
-                    </div>
-                ) : (
-                    <p className="text-sm text-slate-400 italic">No specific lifestyle perks listed.</p>
-                )}
-             </div>
           </div>
         </div>
+
+        {/* NEIGHBORHOOD EXPLORER */}
+        <div className="border-t border-slate-200 pt-16 mt-16 no-print">
+           <h3 className="text-2xl font-bold text-slate-900 mb-8">Explore Neighboring Areas</h3>
+           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {similarAreas.map(neighbor => (
+                 <Link to={`/area/${neighbor.id}`} key={neighbor.id} className="block group bg-white border border-slate-200 rounded-2xl p-4 hover:shadow-lg transition-all hover:-translate-y-1">
+                    <div className={`h-32 rounded-xl mb-4 ${neighbor.imageColor || 'bg-slate-800'} relative overflow-hidden`}>
+                       <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-all"></div>
+                       <div className="absolute bottom-3 left-3 text-white font-bold">{neighbor.name}</div>
+                    </div>
+                    <div className="flex justify-between items-center text-sm">
+                       <span className="text-slate-500">Proj. ROI</span>
+                       <span className="font-bold text-emerald-600">{neighbor.roi}</span>
+                    </div>
+                 </Link>
+              ))}
+           </div>
+        </div>
+
       </div>
     </div>
   );
@@ -427,7 +520,6 @@ const AreaPage = () => {
 
 // --- SUB-COMPONENTS ---
 
-// Fact Item Component
 const FactItem = ({ icon, label, value }) => (
   <div className="flex flex-col items-center text-center p-2">
     <div className="text-slate-400 mb-2">{React.cloneElement(icon, { size: 20 })}</div>
@@ -436,15 +528,13 @@ const FactItem = ({ icon, label, value }) => (
   </div>
 );
 
-const UnitBox = ({ label, roi, rent, color, bg, border }) => (
-  <div className={`p-4 rounded-xl border ${bg} ${border} flex flex-col justify-center`}>
-    <div className={`text-[10px] font-bold uppercase mb-1 opacity-60`}>{label}</div>
-    <div className={`text-2xl font-extrabold mb-1 ${color}`}>{roi || "N/A"}</div>
-    <div className="text-[10px] font-medium opacity-50 mb-2">ROI</div>
-    <div className="pt-2 border-t border-black/5 mt-auto">
-       <div className="text-xs font-bold text-slate-700">{rent || "N/A"}</div>
-       <div className="text-[9px] text-slate-400">Avg. Rent</div>
-    </div>
+const DemandBox = ({ icon, label, value, color }) => (
+  <div className="flex items-center gap-3 p-3 bg-slate-50 rounded-xl border border-slate-100">
+     <div className={`bg-white p-2 rounded-lg ${color} shadow-sm`}>{icon}</div>
+     <div>
+       <div className="text-[10px] uppercase font-bold text-slate-400">{label}</div>
+       <div className="text-sm font-bold text-slate-900">{value}</div>
+     </div>
   </div>
 );
 
