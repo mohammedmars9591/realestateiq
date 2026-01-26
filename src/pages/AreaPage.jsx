@@ -6,7 +6,7 @@ import {
   GraduationCap, Train, Briefcase, HeartPulse,
   Tags, Building, Download, Loader2, Flame, Users, DollarSign, MessageCircle,
   Calendar, Maximize, Waves, Building2, Map, Camera, Palmtree, 
-  LineChart, Lightbulb, Target, Utensils, Car, Bike, Navigation, BookOpen
+  LineChart, Lightbulb, Target, Utensils, Car, Bike, Navigation, BookOpen, Home
 } from 'lucide-react';
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
@@ -115,7 +115,7 @@ const AreaPage = () => {
   
   const walkability = area.amenities?.some(a => a.includes("Walk") || a.includes("Park")) ? "High (Pedestrian Friendly)" : "Moderate (Car Dependent)";
 
-  // --- 🟢 NEW: NARRATIVE GENERATOR (Dynamic Paragraphs) ---
+  // --- NARRATIVE GENERATOR ---
   const narratives = {
     priceTrends: `Property prices in ${area.name} have demonstrated a ${scores.appreciation > 7 ? "robust upward" : "stable"} trajectory over the last 36 months. Starting from an average of ${Object.values(priceTrend)[0] || "base rates"} in 2023, market valuations have strengthened to ${Object.values(priceTrend)[2] || "current levels"}. This growth is largely driven by ${futureInfra[0]?.name ? `anticipation of the ${futureInfra[0].name}` : "sustained high occupancy rates"}, making it a resilient asset class against inflation.`,
     
@@ -190,45 +190,34 @@ const AreaPage = () => {
           {/* === LEFT COLUMN: DATA & ANALYSIS === */}
           <div className="lg:col-span-2 space-y-8">
               
-              {/* 🟢 NEW SECTION: EXECUTIVE MARKET BRIEF (Paragraphs) */}
+              {/* EXECUTIVE MARKET BRIEF */}
               <div className="bg-white border border-slate-200 rounded-3xl p-8 shadow-sm">
                  <h3 className="text-xl font-extrabold text-slate-900 mb-6 flex items-center gap-2">
                    <BookOpen className="text-blue-600" /> Executive Market Brief
                  </h3>
-                 
                  <div className="space-y-6">
-                    {/* 1. Price Trends */}
+                    {/* Price Trends */}
                     <div>
                        <h4 className="flex items-center gap-2 text-sm font-bold text-slate-900 uppercase tracking-wide mb-2">
                           <TrendingUp size={16} className="text-emerald-500" /> Price Insights & Trends
                        </h4>
-                       <p className="text-slate-600 text-sm leading-relaxed text-justify">
-                          {narratives.priceTrends}
-                       </p>
+                       <p className="text-slate-600 text-sm leading-relaxed text-justify">{narratives.priceTrends}</p>
                     </div>
-
                     <div className="w-full h-px bg-slate-100"></div>
-
-                    {/* 2. Investment Potential */}
+                    {/* Investment Potential */}
                     <div>
                        <h4 className="flex items-center gap-2 text-sm font-bold text-slate-900 uppercase tracking-wide mb-2">
                           <Target size={16} className="text-blue-500" /> Investment Potential
                        </h4>
-                       <p className="text-slate-600 text-sm leading-relaxed text-justify">
-                          {narratives.investmentPotential}
-                       </p>
+                       <p className="text-slate-600 text-sm leading-relaxed text-justify">{narratives.investmentPotential}</p>
                     </div>
-
                     <div className="w-full h-px bg-slate-100"></div>
-
-                    {/* 3. UAE Investment Tips */}
+                    {/* UAE Tips */}
                     <div>
                        <h4 className="flex items-center gap-2 text-sm font-bold text-slate-900 uppercase tracking-wide mb-2">
                           <Lightbulb size={16} className="text-yellow-500" /> Strategic Advisor Tips
                        </h4>
-                       <p className="text-slate-600 text-sm leading-relaxed text-justify">
-                          {narratives.uaeTips}
-                       </p>
+                       <p className="text-slate-600 text-sm leading-relaxed text-justify">{narratives.uaeTips}</p>
                     </div>
                  </div>
               </div>
@@ -265,7 +254,6 @@ const AreaPage = () => {
                        {leisureItems.length === 0 && <li className="text-sm text-slate-400 italic">Standard community parks available.</li>}
                     </ul>
                  </div>
-
                  {/* Shopping Card */}
                  <div className="bg-white border border-slate-200 rounded-3xl p-6 shadow-sm flex flex-col">
                     <div className="flex items-center gap-2 mb-4">
@@ -290,7 +278,6 @@ const AreaPage = () => {
                        <Navigation className="text-blue-400" />
                        <h3 className="text-xl font-extrabold">Transport & Access</h3>
                     </div>
-                    
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                        <div className="bg-white/10 p-4 rounded-xl border border-white/10 backdrop-blur-sm">
                           <div className="text-blue-300 mb-2"><Car size={24} /></div>
@@ -301,8 +288,8 @@ const AreaPage = () => {
                        <div className="bg-white/10 p-4 rounded-xl border border-white/10 backdrop-blur-sm">
                           <div className="text-blue-300 mb-2"><Train size={24} /></div>
                           <div className="text-xs font-bold uppercase opacity-60 mb-1">Public Transit</div>
-                          <div className="font-bold text-lg leading-tight mb-1">{conn.metro?.name || "Bus Links Available"}</div>
-                          <div className="text-xs opacity-70">{conn.metro?.mins ? `${conn.metro.mins} away` : "Planned Connections"}</div>
+                          <div className="font-bold text-lg leading-tight mb-1">{conn.metro?.name || "Bus Links"}</div>
+                          <div className="text-xs opacity-70">{conn.metro?.mins ? `${conn.metro.mins} away` : "Planned"}</div>
                        </div>
                        <div className="bg-white/10 p-4 rounded-xl border border-white/10 backdrop-blur-sm">
                           <div className="text-blue-300 mb-2"><Bike size={24} /></div>
@@ -344,50 +331,73 @@ const AreaPage = () => {
                  </div>
               </div>
 
-              {/* UNIT ECONOMICS TABLE */}
+              {/* 🟢 NEW: PROPERTY CONFIGURATION TABLE (APARTMENT / TOWNHOUSE / VILLA) */}
               <div className="bg-white border border-slate-200 rounded-3xl p-8 shadow-sm overflow-hidden">
-                 <div className="flex items-center gap-3 mb-2">
-                   <BarChart3 className="text-emerald-600" />
-                   <h3 className="text-xl font-extrabold text-slate-900">Market <span className="text-emerald-600">Yields</span> & Analytics</h3>
+                 <div className="flex items-center gap-3 mb-4">
+                   <Home className="text-emerald-600" />
+                   <h3 className="text-xl font-extrabold text-slate-900">Property Configurations & Market Analytics</h3>
                  </div>
-                 <p className="text-slate-500 text-sm mb-8">Detailed breakdown of returns, sizes, and tenant profiles by unit type.</p>
+                 <p className="text-slate-500 text-sm mb-8">Detailed breakdown of typical sizes, ROI potential, and rental income by property type.</p>
                  <div className="overflow-x-auto -mx-8 px-8 pb-4">
-                   <table className="w-full min-w-[600px] text-left border-collapse">
+                   <table className="w-full min-w-[700px] text-left border-collapse">
                      <thead>
-                       <tr className="border-b border-slate-100 text-xs font-bold text-slate-400 uppercase tracking-wider">
+                       <tr className="border-b-2 border-slate-100 text-xs font-extrabold text-slate-500 uppercase tracking-wider">
                          <th className="py-4 pr-4">Type</th>
                          <th className="py-4 px-4">Typical Size</th>
-                         <th className="py-4 px-4 text-emerald-600">Avg. ROI</th>
-                         <th className="py-4 px-4">Annual Rent</th>
+                         <th className="py-4 px-4">Signature Features</th>
                          <th className="py-4 px-4">Best For</th>
-                         <th className="py-4 pl-4">Signature Feature</th>
+                         <th className="py-4 px-4 text-emerald-600">Avg. ROI</th>
+                         <th className="py-4 pl-4">Avg. Rent</th>
                        </tr>
                      </thead>
-                     <tbody className="text-sm">
-                       <tr className="border-b border-slate-50 hover:bg-slate-50 transition-colors">
-                         <td className="py-4 pr-4 font-bold text-slate-900">Studio Apartment</td>
+                     <tbody className="text-sm font-medium text-slate-700">
+                       
+                       {/* APARTMENTS */}
+                       <tr className="border-b border-slate-50 hover:bg-blue-50/30 transition-colors group">
+                         <td className="py-4 pr-4 font-bold text-slate-900 group-hover:text-blue-600">Studio Apartment</td>
                          <td className="py-4 px-4 text-slate-500">380 - 520 sq.ft</td>
-                         <td className="py-4 px-4 font-extrabold text-emerald-600 text-lg">{economics.studio?.roi || "N/A"}</td>
-                         <td className="py-4 px-4 font-bold text-slate-700">{economics.studio?.rent || "N/A"}</td>
+                         <td className="py-4 px-4">Open plan, Low maintenance</td>
                          <td className="py-4 px-4"><span className="bg-blue-50 text-blue-600 px-2 py-1 rounded text-xs font-bold">High Yield</span></td>
-                         <td className="py-4 pl-4 text-slate-500">Lowest Entry Price</td>
+                         <td className="py-4 px-4 font-extrabold text-emerald-600">{economics.studio?.roi || "N/A"}</td>
+                         <td className="py-4 pl-4">{economics.studio?.rent || "N/A"}</td>
                        </tr>
-                       <tr className="border-b border-slate-50 hover:bg-slate-50 transition-colors">
-                         <td className="py-4 pr-4 font-bold text-slate-900">1-Bedroom</td>
+                       <tr className="border-b border-slate-50 hover:bg-blue-50/30 transition-colors group">
+                         <td className="py-4 pr-4 font-bold text-slate-900 group-hover:text-blue-600">1-Bedroom Apt</td>
                          <td className="py-4 px-4 text-slate-500">750 - 950 sq.ft</td>
-                         <td className="py-4 px-4 font-extrabold text-emerald-600 text-lg">{economics.oneBed?.roi || "N/A"}</td>
-                         <td className="py-4 px-4 font-bold text-slate-700">{economics.oneBed?.rent || "N/A"}</td>
+                         <td className="py-4 px-4">Balcony, Separate Living</td>
                          <td className="py-4 px-4"><span className="bg-purple-50 text-purple-600 px-2 py-1 rounded text-xs font-bold">Liquidity</span></td>
-                         <td className="py-4 pl-4 text-slate-500">Highest Demand</td>
+                         <td className="py-4 px-4 font-extrabold text-emerald-600">{economics.oneBed?.roi || "N/A"}</td>
+                         <td className="py-4 pl-4">{economics.oneBed?.rent || "N/A"}</td>
                        </tr>
-                       <tr className="hover:bg-slate-50 transition-colors">
-                         <td className="py-4 pr-4 font-bold text-slate-900">2-Bedroom</td>
+                       <tr className="border-b border-slate-50 hover:bg-blue-50/30 transition-colors group">
+                         <td className="py-4 pr-4 font-bold text-slate-900 group-hover:text-blue-600">2-Bedroom Apt</td>
                          <td className="py-4 px-4 text-slate-500">1,100 - 1,400 sq.ft</td>
-                         <td className="py-4 px-4 font-extrabold text-emerald-600 text-lg">{economics.twoBed?.roi || "N/A"}</td>
-                         <td className="py-4 px-4 font-bold text-slate-700">{economics.twoBed?.rent || "N/A"}</td>
+                         <td className="py-4 px-4">En-suite, Closed Kitchen</td>
                          <td className="py-4 px-4"><span className="bg-amber-50 text-amber-600 px-2 py-1 rounded text-xs font-bold">Stability</span></td>
-                         <td className="py-4 pl-4 text-slate-500">Long-term Tenants</td>
+                         <td className="py-4 px-4 font-extrabold text-emerald-600">{economics.twoBed?.roi || "N/A"}</td>
+                         <td className="py-4 pl-4">{economics.twoBed?.rent || "N/A"}</td>
                        </tr>
+
+                       {/* TOWNHOUSE (Conditional / Placeholder logic if specific data missing) */}
+                       <tr className="border-b border-slate-50 hover:bg-emerald-50/30 transition-colors group">
+                         <td className="py-4 pr-4 font-bold text-slate-900 group-hover:text-emerald-600">Townhouse (3-Bed)</td>
+                         <td className="py-4 px-4 text-slate-500">2,100 - 2,500 sq.ft</td>
+                         <td className="py-4 px-4">Private Garden, Maid's Room</td>
+                         <td className="py-4 px-4"><span className="bg-teal-50 text-teal-600 px-2 py-1 rounded text-xs font-bold">Families</span></td>
+                         <td className="py-4 px-4 font-extrabold text-emerald-600">~6.0-6.5%</td>
+                         <td className="py-4 pl-4">AED 130k+</td>
+                       </tr>
+
+                       {/* VILLA */}
+                       <tr className="hover:bg-emerald-50/30 transition-colors group">
+                         <td className="py-4 pr-4 font-bold text-slate-900 group-hover:text-emerald-600">Villa (4-Bed+)</td>
+                         <td className="py-4 px-4 text-slate-500">3,500+ sq.ft</td>
+                         <td className="py-4 px-4">Private Pool, Large Plot</td>
+                         <td className="py-4 px-4"><span className="bg-indigo-50 text-indigo-600 px-2 py-1 rounded text-xs font-bold">Luxury</span></td>
+                         <td className="py-4 px-4 font-extrabold text-emerald-600">~5.5%</td>
+                         <td className="py-4 pl-4">AED 200k+</td>
+                       </tr>
+
                      </tbody>
                    </table>
                  </div>
