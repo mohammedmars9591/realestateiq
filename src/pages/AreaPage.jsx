@@ -4,14 +4,14 @@ import {
   MapPin, ArrowLeft, CheckCircle, TrendingUp, 
   Plane, ShoppingBag, BarChart3, Construction,
   GraduationCap, Train, Briefcase, HeartPulse,
-  Tags, Building, Download, Loader2, Flame, Users, DollarSign, MessageCircle
+  Tags, Building, Download, Loader2, Flame, Users, DollarSign, MessageCircle,
+  Calendar, Maximize, Waves, Building2, Map, Camera, Palmtree
 } from 'lucide-react';
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
 
 import SEO from '../components/SEO';
-// import WhatsAppButton from '../components/WhatsAppButton'; // Replaced with direct logic below
-import { DUBAI_AREAS as MASTER_DB } from '../data/emiratesData';
+import { DUBAI_AREAS as MASTER_DB } from '../data/areaData'; 
 
 const AreaPage = () => {
   const { id } = useParams();
@@ -29,19 +29,18 @@ const AreaPage = () => {
     </div>
   );
 
-  // --- PDF GENERATION FIX ---
+  // --- PDF GENERATION ---
   const handleDownloadPDF = async () => {
     setIsGeneratingPdf(true);
     const element = reportRef.current;
     
     try {
-      // Added useCORS and scroll options to fix blank/cut-off PDFs
       const canvas = await html2canvas(element, { 
         scale: 2,
         useCORS: true, 
         scrollY: -window.scrollY,
         windowWidth: document.documentElement.offsetWidth,
-        ignoreElements: (node) => node.classList.contains('no-print') // Ignores buttons
+        ignoreElements: (node) => node.classList.contains('no-print') 
       });
 
       const imgData = canvas.toDataURL('image/png');
@@ -61,13 +60,13 @@ const AreaPage = () => {
 
   // --- WHATSAPP LOGIC ---
   const handleWhatsAppClick = () => {
-    const phone = "971501234567"; // REPLACE WITH YOUR NUMBER
+    const phone = "971501234567"; 
     const text = `Hi, I'm interested in investment opportunities in ${area.name}. Can you share the latest availability and report?`;
     const url = `https://wa.me/${phone}?text=${encodeURIComponent(text)}`;
     window.open(url, '_blank');
   };
 
-  // --- SAFE DATA DEFAULTS ---
+  // --- DATA DEFAULTS & LOGIC ---
   const conn = area.connectivity || {};
   const scores = area.scores || { cashFlow: 5, appreciation: 5, liquidity: 5, risk: 5, lifestyle: 5 };
   const economics = area.unitEconomics || { studio: {}, oneBed: {}, twoBed: {} };
@@ -77,6 +76,50 @@ const AreaPage = () => {
   const verdict = area.aiVerdict || { title: "Solid Investment Choice", summary: area.description };
   const demand = area.demandSignals || { tenantProfile: "Professionals & Families", rentalDemand: "High" };
   const strData = area.shortTermRental || { avgDailyRate: "N/A", occupancy: "N/A" };
+
+  // --- KEY FACTS (Logic from previous step) ---
+  const keyFacts = {
+    developer: area.masterDeveloper || "Various / Master",
+    location: area.location || area.emirate || "Dubai",
+    totalArea: area.totalArea || "Various",
+    privateBeach: area.amenities?.some(a => a.includes("Beach")) || area.investorTags?.includes("Waterfront") ? "Yes" : "No",
+    towers: area.towers || "Multiple", 
+    timeline: area.completion || "Ready / Handovers"
+  };
+
+  // --- HIGHLIGHTS ---
+  const highlights = area.highlights || [
+    `Ranked ${area.overallScore}/10 for overall investment potential.`,
+    `High rental demand driven by ${demand.tenantProfile}.`,
+    `Strategic location: ${conn.business?.mins || "20 mins"} from key business hubs.`,
+    `Featured amenities: ${area.amenities?.slice(0, 2).join(", ")}.`,
+    `Known for ${area.category} status in the 2026 market.`
+  ];
+
+  // 🟢 NEW: ATTRACTIONS LOGIC (Smartly pulls from existing data)
+  const attractions = [
+    // 1. Tourist Spot (from Connectivity)
+    { 
+      name: conn.tourist?.name, 
+      category: "Tourist Hotspot", 
+      icon: <Camera size={20} className="text-pink-600" />,
+      bg: "bg-pink-50 border-pink-100"
+    },
+    // 2. Mall (from Connectivity)
+    { 
+      name: conn.mall?.name, 
+      category: "Shopping & Retail", 
+      icon: <ShoppingBag size={20} className="text-purple-600" />,
+      bg: "bg-purple-50 border-purple-100"
+    },
+    // 3. Top Amenities (from Amenities list)
+    ...(area.amenities?.slice(0, 2).map(am => ({ 
+      name: am, 
+      category: "Leisure & Lifestyle", 
+      icon: <Palmtree size={20} className="text-green-600" />,
+      bg: "bg-green-50 border-green-100"
+    })) || [])
+  ].filter(item => item.name && item.name !== "N/A"); // Remove empty ones
 
   // --- FORECAST LOGIC ---
   const baseGrowthRate = (scores.appreciation || 5) * 1.2; 
@@ -113,7 +156,7 @@ const AreaPage = () => {
       <div ref={reportRef} className="bg-slate-50 p-1 md:p-4 rounded-3xl"> 
         
         {/* HERO SECTION */}
-        <div className={`rounded-3xl p-8 md:p-16 text-white mb-10 relative overflow-hidden shadow-xl ${area.imageColor || 'bg-blue-900'}`}>
+        <div className={`rounded-3xl p-8 md:p-16 text-white mb-6 relative overflow-hidden shadow-xl ${area.imageColor || 'bg-blue-900'}`}>
            <div className="relative z-10 max-w-3xl">
               <div className="flex items-center gap-3 mb-4">
                 <span className="bg-white/20 backdrop-blur-md px-4 py-1 rounded-full text-xs font-bold uppercase tracking-widest border border-white/20">
@@ -129,11 +172,58 @@ const AreaPage = () => {
            <div className="absolute inset-0 bg-gradient-to-r from-black/60 to-transparent"></div>
         </div>
 
+        {/* KEY FACTS BAR */}
+        <div className="bg-white border border-slate-200 rounded-2xl p-6 mb-8 shadow-sm grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+           <FactItem icon={<Building2 />} label="Developer" value={keyFacts.developer} />
+           <FactItem icon={<Map />} label="Location" value={keyFacts.location} />
+           <FactItem icon={<Maximize />} label="Total Area" value={keyFacts.totalArea} />
+           <FactItem icon={<Waves />} label="Private Beach" value={keyFacts.privateBeach} />
+           <FactItem icon={<Building />} label="Towers" value={keyFacts.towers} />
+           <FactItem icon={<Calendar />} label="Timeline" value={keyFacts.timeline} />
+        </div>
+
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
           
           {/* === LEFT COLUMN: DATA & CHARTS === */}
           <div className="lg:col-span-2 space-y-8">
               
+              {/* KEY HIGHLIGHTS */}
+              <div className="bg-white border border-slate-200 rounded-3xl p-8 shadow-sm">
+                 <h3 className="text-xl font-extrabold text-slate-900 mb-6 flex items-center gap-2">
+                   <CheckCircle className="text-blue-600" /> Key Highlights
+                 </h3>
+                 <ul className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                   {highlights.map((item, idx) => (
+                     <li key={idx} className="flex items-start gap-3 p-3 bg-slate-50 rounded-xl border border-slate-100">
+                       <div className="mt-1 min-w-[6px] h-[6px] rounded-full bg-blue-500"></div>
+                       <span className="text-sm font-medium text-slate-700 leading-relaxed">{item}</span>
+                     </li>
+                   ))}
+                 </ul>
+              </div>
+
+              {/* 🟢 NEW SECTION: ATTRACTIONS & POINTS OF INTEREST */}
+              <div className="bg-white border border-slate-200 rounded-3xl p-8 shadow-sm">
+                 <h3 className="text-xl font-extrabold text-slate-900 mb-6 flex items-center gap-2">
+                   <Camera className="text-pink-600" /> Attractions & Points of Interest
+                 </h3>
+                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    {attractions.length > 0 ? attractions.map((item, idx) => (
+                       <div key={idx} className={`flex items-center gap-4 p-4 rounded-xl border ${item.bg}`}>
+                          <div className="bg-white p-3 rounded-lg shadow-sm">
+                             {item.icon}
+                          </div>
+                          <div>
+                             <div className="text-[10px] font-bold uppercase opacity-60 tracking-wider mb-1">{item.category}</div>
+                             <div className="font-bold text-slate-900 leading-tight">{item.name}</div>
+                          </div>
+                       </div>
+                    )) : (
+                       <div className="text-slate-400 italic text-sm p-4">No major attractions listed for this area.</div>
+                    )}
+                 </div>
+              </div>
+
               {/* UNIT ECONOMICS */}
               <div className="bg-white border border-slate-200 rounded-3xl p-8 shadow-sm">
                  <div className="flex items-center gap-3 mb-2">
@@ -295,7 +385,7 @@ const AreaPage = () => {
                    <ScoreBar label="Risk (Low is Good)" value={scores.risk} color="bg-red-500" />
                  </div>
                  
-                 {/* WHATSAPP FIX */}
+                 {/* WHATSAPP CTA */}
                  <div className="mt-8 pt-6 border-t border-slate-100 no-print">
                    <h4 className="font-bold text-slate-900 mb-2">Interested in {area.name}?</h4>
                    <p className="text-xs text-slate-500 mb-4">Get the full investment report and active listings.</p>
@@ -310,7 +400,7 @@ const AreaPage = () => {
                  </div>
               </div>
 
-              {/* LIFESTYLE PERKS FIX */}
+              {/* LIFESTYLE PERKS */}
               <div className="bg-white border border-slate-200 rounded-3xl p-6">
                 <h4 className="font-extrabold text-slate-900 mb-4 flex items-center gap-2 text-lg">
                   <CheckCircle size={20} className="text-blue-600"/> 
@@ -336,6 +426,15 @@ const AreaPage = () => {
 };
 
 // --- SUB-COMPONENTS ---
+
+// Fact Item Component
+const FactItem = ({ icon, label, value }) => (
+  <div className="flex flex-col items-center text-center p-2">
+    <div className="text-slate-400 mb-2">{React.cloneElement(icon, { size: 20 })}</div>
+    <div className="text-[10px] font-bold text-slate-400 uppercase tracking-wide mb-1">{label}</div>
+    <div className="text-sm font-bold text-slate-900 leading-tight">{value}</div>
+  </div>
+);
 
 const UnitBox = ({ label, roi, rent, color, bg, border }) => (
   <div className={`p-4 rounded-xl border ${bg} ${border} flex flex-col justify-center`}>
