@@ -65,7 +65,7 @@ const HomePage = () => {
             </Link>
           </div>
 
-          {/* Trust Badge */}
+          {/* Trust Badge (Updated Luxury Look) */}
           <div className="mt-12 pt-8 border-t border-slate-100 flex flex-col items-center">
              <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-4">Intelligence Powered By</p>
              <div className="flex gap-8 opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
@@ -285,16 +285,18 @@ const ToolCard = ({ to, icon, label, color }) => (
 );
 
 const LuxuryFeatureCard = ({ step, title, desc, icon, color }) => (
-   <div className="bg-white border border-slate-100 p-8 rounded-3xl hover:shadow-2xl transition-all duration-300 group hover:-translate-y-2 relative overflow-hidden">
-      <div className={`absolute top-0 right-0 w-24 h-24 bg-gradient-to-br ${color} opacity-10 rounded-bl-[4rem] transition-opacity`}></div>
-      <div className="flex justify-between items-start mb-6 relative z-10">
-         <div className={`w-14 h-14 rounded-2xl flex items-center justify-center shadow-lg bg-gradient-to-br ${color}`}>
+   <div className={`relative overflow-hidden p-8 rounded-3xl bg-gradient-to-br ${color} text-white shadow-xl hover:shadow-2xl transition-all duration-300 group hover:-translate-y-2`}>
+      <div className="absolute top-0 right-0 opacity-10 transform translate-x-4 -translate-y-4">
+         <div className="w-32 h-32 rounded-full bg-white blur-2xl"></div>
+      </div>
+      <div className="relative z-10">
+         <div className="w-14 h-14 bg-white/20 backdrop-blur-md rounded-2xl flex items-center justify-center mb-6 shadow-inner border border-white/10">
             {icon}
          </div>
-         <span className="text-6xl font-serif font-bold text-slate-100 group-hover:text-slate-200 transition-colors">{step}</span>
+         <span className="absolute top-6 right-6 text-6xl font-serif font-bold text-white/10">{step}</span>
+         <h3 className="text-xl font-bold mb-3">{title}</h3>
+         <p className="text-blue-50 text-sm leading-relaxed opacity-90">{desc}</p>
       </div>
-      <h3 className="text-xl font-bold text-slate-900 mb-3 group-hover:text-blue-700 transition-colors">{title}</h3>
-      <p className="text-slate-500 text-sm leading-relaxed">{desc}</p>
    </div>
 );
 
