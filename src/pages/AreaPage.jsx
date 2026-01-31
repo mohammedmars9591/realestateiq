@@ -84,8 +84,15 @@ const AreaPage = () => {
   const roadAccess = area.description?.includes("Sheikh Zayed") ? "Sheikh Zayed Road (E11)" : area.description?.includes("Al Khail") ? "Al Khail Road (E44)" : "Main Highways";
   const walkability = area.amenities?.some(a => a.includes("Walk") || a.includes("Park")) ? "High (Pedestrian Friendly)" : "Moderate (Car Dependent)";
 
-  // --- EXECUTIVE REAL ESTATE BRIEF ---
-  const realEstateBrief = `${area.name} represents a distinct segment of the Dubai real estate market, primarily characterized by its ${area.category.toLowerCase()} positioning. The area has witnessed a steady ${priceTrend["2025"] ? "price appreciation" : "value retention"} over the last 24 months, driven largely by ${demand.tenantProfile.toLowerCase()}. With an average entry price of ${area.avgPrice} and ROI hovering around ${area.roi}, it remains a top contender for investors seeking ${scores.cashFlow > 7 ? "immediate cash flow" : "long-term capital gains"}. The current market sentiment indicates a ${demand.rentalDemand.toLowerCase()} demand cycle, reducing vacancy risks significantly.`;
+  // --- DYNAMIC CONTENT GENERATION FOR NEW SECTIONS ---
+  const realEstateDesc = `${area.name} is a master-planned residential community in ${area.emirate}, spanning over vast square feet. Developed by ${keyFacts.developer}, it offers a mix of apartments, townhouses, and villas, many with views of key landmarks. The community provides residents with amenities such as parks, sports facilities, and retail outlets, and is strategically located with access to major highways like ${roadAccess}, facilitating connectivity to key areas in ${area.emirate}.`;
+
+  const marketReadData = [
+    { factor: "Buyer Mix", read: "The community attracts a diverse mix of end-users and investors, including expatriate families and high-net-worth individuals seeking luxury properties." },
+    { factor: "Rental Demand", read: `Rental demand remains strong, with ${economics.twoBed ? "villas and townhouses" : "apartments"} achieving yields between ${area.roi} and higher.` },
+    { factor: "Price Drivers", read: `Proximity to ${leisureItems[0] || "key attractions"}, extensive green spaces, and access to major highways enhance property values.` },
+    { factor: "Liquidity", read: `Properties in ${area.name} are highly liquid, with consistent sales volumes and investor confidence supported by the developer's reputation and community amenities.` }
+  ];
 
   // --- BUYER INTELLIGENCE DATA ---
   const buyerPsychology = {
@@ -158,15 +165,38 @@ const AreaPage = () => {
           {/* === LEFT COLUMN: DATA & ANALYSIS === */}
           <div className="lg:col-span-2 space-y-8">
               
-              {/* EXECUTIVE REAL ESTATE BRIEF */}
+              {/* 🟢 NEW SECTION: Real Estate in {Area}, {Emirate}, UAE */}
               <div className="bg-white border border-slate-200 rounded-3xl p-8 shadow-sm">
-                 <h3 className="text-xl font-serif font-bold text-slate-900 mb-4 flex items-center gap-2">
-                   <BookOpen className="text-blue-600" /> Executive Real Estate Brief
+                 <h3 className="text-2xl font-serif font-bold text-slate-900 mb-4 border-b border-slate-200 pb-2">
+                   Real Estate in {area.name}, {area.emirate}, UAE
                  </h3>
-                 <div className="p-6 bg-slate-50 rounded-2xl border-l-4 border-blue-600">
-                    <p className="text-slate-700 text-sm leading-8 text-justify font-serif">
-                       {realEstateBrief}
-                    </p>
+                 <p className="text-slate-700 text-sm leading-8 text-justify font-serif">
+                    {realEstateDesc}
+                 </p>
+              </div>
+
+              {/* 🟢 NEW SECTION: Property Market Overview Table */}
+              <div className="bg-white border border-slate-200 rounded-3xl p-8 shadow-sm">
+                 <h3 className="text-xl font-serif font-bold text-slate-900 mb-6 flex items-center gap-2">
+                    Property Market Overview in {area.name}, {area.emirate}, UAE
+                 </h3>
+                 <div className="overflow-hidden rounded-xl border border-slate-200">
+                    <table className="w-full text-left border-collapse">
+                       <thead>
+                          <tr className="bg-red-900 text-white text-xs font-bold uppercase tracking-wider">
+                             <th className="py-4 px-6 w-1/4">Factor</th>
+                             <th className="py-4 px-6">Market Read</th>
+                          </tr>
+                       </thead>
+                       <tbody className="text-sm">
+                          {marketReadData.map((item, index) => (
+                             <tr key={index} className={`border-b border-slate-100 ${index % 2 === 0 ? 'bg-white' : 'bg-slate-50'}`}>
+                                <td className="py-4 px-6 font-bold text-slate-800 align-top">{item.factor}</td>
+                                <td className="py-4 px-6 text-slate-600 leading-relaxed">{item.read}</td>
+                             </tr>
+                          ))}
+                       </tbody>
+                    </table>
                  </div>
               </div>
 
@@ -227,7 +257,19 @@ const AreaPage = () => {
                  </div>
               </div>
 
-              {/* 🟢 NEW: ATTRACTIONS & POINTS OF INTEREST (Luxury UI) */}
+              {/* EXECUTIVE MARKET BRIEF (Analysis) */}
+              <div className="bg-white border border-slate-200 rounded-3xl p-8 shadow-sm">
+                 <h3 className="text-xl font-extrabold text-slate-900 mb-6 flex items-center gap-2"><BookOpen className="text-blue-600"/> Market Analysis Details</h3>
+                 <div className="space-y-6">
+                    <div><h4 className="flex items-center gap-2 text-sm font-bold text-slate-900 uppercase tracking-wide mb-2"><TrendingUp size={16} className="text-emerald-500"/> Price Insights</h4><p className="text-slate-600 text-sm leading-relaxed text-justify">{narratives.priceTrends}</p></div>
+                    <div className="w-full h-px bg-slate-100"></div>
+                    <div><h4 className="flex items-center gap-2 text-sm font-bold text-slate-900 uppercase tracking-wide mb-2"><Target size={16} className="text-blue-500"/> Investment Potential</h4><p className="text-slate-600 text-sm leading-relaxed text-justify">{narratives.investmentPotential}</p></div>
+                    <div className="w-full h-px bg-slate-100"></div>
+                    <div><h4 className="flex items-center gap-2 text-sm font-bold text-slate-900 uppercase tracking-wide mb-2"><Lightbulb size={16} className="text-yellow-500"/> Advisor Tips</h4><p className="text-slate-600 text-sm leading-relaxed text-justify">{narratives.uaeTips}</p></div>
+                 </div>
+              </div>
+
+              {/* ATTRACTIONS & POINTS OF INTEREST (Luxury UI) */}
               <div className="space-y-6">
                  <h3 className="text-2xl font-serif font-bold text-slate-900 border-b border-slate-200 pb-4">Attractions & Points of Interest in {area.name}</h3>
                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
