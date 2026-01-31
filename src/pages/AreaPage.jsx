@@ -261,6 +261,47 @@ const AreaPage = () => {
                  </div>
               </div>
 
+              {/* 🟢 NEW: TRANSPORT & ACCESS (Dark Theme Card) */}
+              <div className="bg-slate-900 text-white rounded-3xl p-8 shadow-xl relative overflow-hidden">
+                 <div className="relative z-10">
+                    <div className="flex items-center gap-3 mb-8">
+                       <Navigation className="text-blue-400" />
+                       <h3 className="text-xl font-extrabold">Transport & Access</h3>
+                    </div>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                       {/* Road Network */}
+                       <div className="bg-white/10 p-5 rounded-2xl border border-white/10 backdrop-blur-sm hover:bg-white/20 transition-colors">
+                          <div className="text-blue-300 mb-3"><Car size={28} /></div>
+                          <div className="text-[10px] font-bold uppercase opacity-60 tracking-wider mb-1">ROAD NETWORK</div>
+                          <div className="font-bold text-lg leading-tight mb-2">{roadAccess}</div>
+                          <p className="text-xs text-slate-400 leading-relaxed">
+                             Seamless connectivity via major arterial highways, ensuring rapid commute times to key business districts and leisure hubs across the city.
+                          </p>
+                       </div>
+                       {/* Public Transit */}
+                       <div className="bg-white/10 p-5 rounded-2xl border border-white/10 backdrop-blur-sm hover:bg-white/20 transition-colors">
+                          <div className="text-blue-300 mb-3"><Train size={28} /></div>
+                          <div className="text-[10px] font-bold uppercase opacity-60 tracking-wider mb-1">PUBLIC TRANSIT</div>
+                          <div className="font-bold text-lg leading-tight mb-2">{conn.metro?.name || "Bus Links"}</div>
+                          <p className="text-xs text-slate-400 leading-relaxed">
+                             Well-integrated public transport network featuring metro access and bus routes, providing affordable and eco-friendly travel options for residents.
+                          </p>
+                       </div>
+                       {/* Event Flow */}
+                       <div className="bg-white/10 p-5 rounded-2xl border border-white/10 backdrop-blur-sm hover:bg-white/20 transition-colors">
+                          <div className="text-blue-300 mb-3"><Bike size={28} /></div>
+                          <div className="text-[10px] font-bold uppercase opacity-60 tracking-wider mb-1">EVENT FLOW</div>
+                          <div className="font-bold text-lg leading-tight mb-2">{walkability}</div>
+                          <p className="text-xs text-slate-400 leading-relaxed">
+                             Designed for an active lifestyle with pedestrian-friendly pathways, cycling tracks, and easy access to community events and outdoor recreational areas.
+                          </p>
+                       </div>
+                    </div>
+                 </div>
+                 {/* Map Pattern BG */}
+                 <div className="absolute inset-0 opacity-10 bg-[url('https://upload.wikimedia.org/wikipedia/commons/e/ec/World_map_blank_without_borders.svg')] bg-cover bg-center"></div>
+              </div>
+
               {/* PRICE TRENDS */}
               <div className="bg-white border border-slate-200 rounded-3xl p-8 shadow-sm">
                  <div className="flex items-center gap-3 mb-6"><LineChart className="text-purple-600" /><h3 className="text-xl font-extrabold text-slate-900">Price History</h3></div>
@@ -274,7 +315,7 @@ const AreaPage = () => {
                  </div>
               </div>
 
-              {/* 🟢 UPDATED: PROPERTY CONFIGURATION TABLE (Based on Image Request) */}
+              {/* PROPERTY CONFIG TABLE */}
               <div className="bg-white border border-slate-200 rounded-3xl p-8 shadow-sm overflow-hidden">
                  <div className="flex items-center gap-3 mb-4"><Home className="text-emerald-600" /><h3 className="text-xl font-extrabold text-slate-900">Property Configurations & Market Analytics</h3></div>
                  <div className="overflow-x-auto -mx-8 px-8 pb-4">
@@ -290,7 +331,6 @@ const AreaPage = () => {
                        </tr>
                      </thead>
                      <tbody className="text-sm font-medium text-slate-700">
-                       {/* STUDIO */}
                        <tr className="border-b border-slate-50 hover:bg-slate-50 transition-colors">
                          <td className="py-4 pr-4 font-bold text-slate-900">Studio Apartment</td>
                          <td className="py-4 px-4 text-slate-500">380 - 520 sq.ft</td>
@@ -299,7 +339,6 @@ const AreaPage = () => {
                          <td className="py-4 px-4 font-extrabold text-emerald-600">{economics.studio?.roi || "N/A"}</td>
                          <td className="py-4 pl-4 text-slate-900 font-bold">{economics.studio?.rent || "N/A"}</td>
                        </tr>
-                       {/* 1 BED */}
                        <tr className="border-b border-slate-50 hover:bg-slate-50 transition-colors">
                          <td className="py-4 pr-4 font-bold text-slate-900">1-Bedroom Apt</td>
                          <td className="py-4 px-4 text-slate-500">750 - 950 sq.ft</td>
@@ -308,7 +347,6 @@ const AreaPage = () => {
                          <td className="py-4 px-4 font-extrabold text-emerald-600">{economics.oneBed?.roi || "N/A"}</td>
                          <td className="py-4 pl-4 text-slate-900 font-bold">{economics.oneBed?.rent || "N/A"}</td>
                        </tr>
-                       {/* 2 BED */}
                        <tr className="border-b border-slate-50 hover:bg-slate-50 transition-colors">
                          <td className="py-4 pr-4 font-bold text-slate-900">2-Bedroom Apt</td>
                          <td className="py-4 px-4 text-slate-500">1,100 - 1,400 sq.ft</td>
@@ -317,7 +355,6 @@ const AreaPage = () => {
                          <td className="py-4 px-4 font-extrabold text-emerald-600">{economics.twoBed?.roi || "N/A"}</td>
                          <td className="py-4 pl-4 text-slate-900 font-bold">{economics.twoBed?.rent || "N/A"}</td>
                        </tr>
-                       {/* TOWNHOUSE */}
                        <tr className="border-b border-slate-50 hover:bg-slate-50 transition-colors">
                          <td className="py-4 pr-4 font-bold text-slate-900">Townhouse (3-Bed)</td>
                          <td className="py-4 px-4 text-slate-500">2,100 - 2,500 sq.ft</td>
@@ -326,7 +363,6 @@ const AreaPage = () => {
                          <td className="py-4 px-4 font-extrabold text-emerald-600">~6.5%</td>
                          <td className="py-4 pl-4 text-slate-900 font-bold">AED 130k+</td>
                        </tr>
-                       {/* VILLA */}
                        <tr className="hover:bg-slate-50 transition-colors">
                          <td className="py-4 pr-4 font-bold text-slate-900">Villa (4-Bed+)</td>
                          <td className="py-4 px-4 text-slate-500">3,500+ sq.ft</td>
@@ -390,14 +426,13 @@ const AreaPage = () => {
                  </div>
               </div>
 
-              {/* 🟢 UPDATED: CONNECTIVITY (Matching Image Request) */}
+              {/* CONNECTIVITY */}
               <div className="bg-white border border-slate-200 rounded-3xl p-8 shadow-sm">
                  <div className="flex items-center gap-3 mb-6">
                    <MapPin className="text-blue-600" />
                    <h3 className="text-xl font-extrabold text-slate-900">Strategic Connectivity</h3>
                  </div>
                  <div className="space-y-6">
-                   {/* Airport */}
                    <div className="flex items-center justify-between group">
                       <div className="flex items-center gap-4">
                          <div className="bg-purple-50 text-purple-600 p-3 rounded-2xl group-hover:bg-purple-100 transition-colors"><Plane size={20} /></div>
@@ -405,7 +440,6 @@ const AreaPage = () => {
                       </div>
                       <div className="text-right"><div className="text-lg font-mono font-bold text-purple-600">{conn.airport?.mins || "25 mins"}</div><div className="text-[10px] text-slate-400">{conn.airport?.km || "28 km"}</div></div>
                    </div>
-                   {/* Business Hub */}
                    <div className="flex items-center justify-between group">
                       <div className="flex items-center gap-4">
                          <div className="bg-blue-50 text-blue-600 p-3 rounded-2xl group-hover:bg-blue-100 transition-colors"><Briefcase size={20} /></div>
@@ -413,7 +447,6 @@ const AreaPage = () => {
                       </div>
                       <div className="text-right"><div className="text-lg font-mono font-bold text-blue-600">{conn.business?.mins || "20 mins"}</div><div className="text-[10px] text-slate-400">{conn.business?.km || "18 km"}</div></div>
                    </div>
-                   {/* Metro */}
                    <div className="flex items-center justify-between group">
                       <div className="flex items-center gap-4">
                          <div className="bg-emerald-50 text-emerald-600 p-3 rounded-2xl group-hover:bg-emerald-100 transition-colors"><Train size={20} /></div>
@@ -421,7 +454,6 @@ const AreaPage = () => {
                       </div>
                       <div className="text-right"><div className="text-lg font-mono font-bold text-emerald-600">{conn.metro?.mins || "14 mins"}</div><div className="text-[10px] text-slate-400">{conn.metro?.km || "10 km"}</div></div>
                    </div>
-                   {/* School */}
                    <div className="flex items-center justify-between group">
                       <div className="flex items-center gap-4">
                          <div className="bg-amber-50 text-amber-500 p-3 rounded-2xl group-hover:bg-amber-100 transition-colors"><GraduationCap size={20} /></div>
@@ -429,7 +461,6 @@ const AreaPage = () => {
                       </div>
                       <div className="text-right"><div className="text-lg font-mono font-bold text-amber-500">{conn.school?.mins || "4 mins"}</div><div className="text-[10px] text-slate-400">{conn.school?.km || "1.2 km"}</div></div>
                    </div>
-                   {/* Shopping */}
                    <div className="flex items-center justify-between group">
                       <div className="flex items-center gap-4">
                          <div className="bg-pink-50 text-pink-600 p-3 rounded-2xl group-hover:bg-pink-100 transition-colors"><ShoppingBag size={20} /></div>
@@ -437,7 +468,6 @@ const AreaPage = () => {
                       </div>
                       <div className="text-right"><div className="text-lg font-mono font-bold text-pink-600">{conn.mall?.mins || "2 mins"}</div><div className="text-[10px] text-slate-400">{conn.mall?.km || "0.5 km"}</div></div>
                    </div>
-                   {/* Healthcare */}
                    <div className="flex items-center justify-between group">
                       <div className="flex items-center gap-4">
                          <div className="bg-red-50 text-red-600 p-3 rounded-2xl group-hover:bg-red-100 transition-colors"><HeartPulse size={20} /></div>
