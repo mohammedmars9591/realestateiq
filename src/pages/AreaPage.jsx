@@ -7,7 +7,7 @@ import {
   Tags, Building, Download, Loader2, Flame, Users, DollarSign, MessageCircle,
   Calendar, Maximize, Waves, Building2, Map, Camera, Palmtree, 
   LineChart, Lightbulb, Target, Utensils, Car, Bike, Navigation, BookOpen, Home,
-  Key, BrainCircuit, HardHat, Crown, ArrowRight, Star
+  Key, BrainCircuit, HardHat, Crown, ArrowRight
 } from 'lucide-react';
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
@@ -137,8 +137,8 @@ const AreaPage = () => {
                 <span className="bg-white/20 backdrop-blur-md px-4 py-1 rounded-full text-xs font-bold uppercase tracking-widest border border-white/20">{area.emirate || "UAE"}</span>
                 <span className="bg-yellow-400 text-black px-3 py-1 rounded-full text-xs font-bold border border-yellow-500 flex items-center gap-1">★ {area.overallScore}/10 Score</span>
               </div>
-              <h1 className="text-4xl md:text-6xl font-serif font-extrabold mb-4 tracking-tight">{area.name}</h1>
-              <p className="text-xl opacity-90 leading-relaxed max-w-2xl font-light">{area.description}</p>
+              <h1 className="text-4xl md:text-6xl font-extrabold mb-4">{area.name}</h1>
+              <p className="text-xl opacity-90 leading-relaxed max-w-2xl">{area.description}</p>
            </div>
            <div className="absolute inset-0 bg-gradient-to-r from-black/60 to-transparent"></div>
         </div>
@@ -160,21 +160,19 @@ const AreaPage = () => {
               
               {/* EXECUTIVE REAL ESTATE BRIEF */}
               <div className="bg-white border border-slate-200 rounded-3xl p-8 shadow-sm">
-                 <h3 className="text-xl font-serif font-bold text-slate-900 mb-4 flex items-center gap-2">
+                 <h3 className="text-xl font-extrabold text-slate-900 mb-4 flex items-center gap-2">
                    <BookOpen className="text-blue-600" /> Executive Real Estate Brief
                  </h3>
-                 <div className="p-6 bg-slate-50 rounded-2xl border-l-4 border-blue-600">
-                    <p className="text-slate-700 text-sm leading-8 text-justify font-serif">
-                       {realEstateBrief}
-                    </p>
-                 </div>
+                 <p className="text-slate-600 text-sm leading-7 text-justify border-l-4 border-blue-500 pl-4 bg-blue-50/50 py-2 rounded-r-lg">
+                    {realEstateBrief}
+                 </p>
               </div>
 
               {/* RENTAL MARKET INTELLIGENCE */}
               <div className="bg-white border border-slate-200 rounded-3xl p-8 shadow-sm">
                  <div className="flex items-center gap-3 mb-6">
                    <Key className="text-emerald-600" />
-                   <h3 className="text-xl font-serif font-bold text-slate-900">Rental Market Intelligence</h3>
+                   <h3 className="text-xl font-extrabold text-slate-900">Rental Market Intelligence</h3>
                  </div>
                  <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                     <div className="p-4 bg-emerald-50 rounded-2xl border border-emerald-100 text-center">
@@ -202,7 +200,7 @@ const AreaPage = () => {
                     <div className="flex justify-between items-start mb-6">
                        <div className="flex items-center gap-3">
                           <HardHat className="text-amber-400" />
-                          <h3 className="text-xl font-serif font-bold">Supply Pipeline</h3>
+                          <h3 className="text-xl font-extrabold">Supply Pipeline</h3>
                        </div>
                        <div className="px-3 py-1 bg-amber-500/20 text-amber-400 border border-amber-500/30 rounded-full text-[10px] font-bold uppercase tracking-wider">Institutional Data</div>
                     </div>
@@ -227,50 +225,48 @@ const AreaPage = () => {
                  </div>
               </div>
 
-              {/* 🟢 NEW: ATTRACTIONS & POINTS OF INTEREST (Luxury UI) */}
-              <div className="space-y-6">
-                 <h3 className="text-2xl font-serif font-bold text-slate-900 border-b border-slate-200 pb-4">Attractions & Points of Interest</h3>
-                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    {/* Waterfront & Leisure Card */}
-                    <div className="bg-gradient-to-br from-white to-slate-50 border border-slate-100 rounded-3xl p-8 shadow-sm hover:shadow-md transition-shadow">
-                       <div className="flex items-center gap-3 mb-6">
-                          <div className="p-3 bg-teal-50 text-teal-700 rounded-2xl"><Palmtree size={24} /></div>
-                          <h4 className="text-xl font-serif font-bold text-slate-800">Waterfront & Leisure</h4>
-                       </div>
-                       <ul className="space-y-4">
-                          {leisureItems.slice(0,3).map((item, i) => (
-                             <li key={i} className="flex items-start gap-3 group">
-                                <div className="mt-1 w-1.5 h-1.5 rounded-full bg-teal-400 group-hover:scale-125 transition-transform"></div>
-                                <span className="text-sm text-slate-600 font-medium leading-relaxed">{item}</span>
-                             </li>
-                          ))}
-                       </ul>
-                    </div>
-
-                    {/* Shopping & Dining Card */}
-                    <div className="bg-gradient-to-br from-white to-slate-50 border border-slate-100 rounded-3xl p-8 shadow-sm hover:shadow-md transition-shadow">
-                       <div className="flex items-center gap-3 mb-6">
-                          <div className="p-3 bg-purple-50 text-purple-700 rounded-2xl"><Utensils size={24} /></div>
-                          <h4 className="text-xl font-serif font-bold text-slate-800">Shopping & Dining</h4>
-                       </div>
-                       <ul className="space-y-4">
-                          {shoppingItems.slice(0,3).map((item, i) => (
-                             <li key={i} className="flex items-start gap-3 group">
-                                <div className="mt-1 w-1.5 h-1.5 rounded-full bg-purple-400 group-hover:scale-125 transition-transform"></div>
-                                <span className="text-sm text-slate-600 font-medium leading-relaxed">{item}</span>
-                             </li>
-                          ))}
-                       </ul>
-                    </div>
+              {/* EXECUTIVE MARKET BRIEF (Analysis) */}
+              <div className="bg-white border border-slate-200 rounded-3xl p-8 shadow-sm">
+                 <h3 className="text-xl font-extrabold text-slate-900 mb-6 flex items-center gap-2"><BookOpen className="text-blue-600"/> Market Analysis Details</h3>
+                 <div className="space-y-6">
+                    <div><h4 className="flex items-center gap-2 text-sm font-bold text-slate-900 uppercase tracking-wide mb-2"><TrendingUp size={16} className="text-emerald-500"/> Price Insights</h4><p className="text-slate-600 text-sm leading-relaxed text-justify">{narratives.priceTrends}</p></div>
+                    <div className="w-full h-px bg-slate-100"></div>
+                    <div><h4 className="flex items-center gap-2 text-sm font-bold text-slate-900 uppercase tracking-wide mb-2"><Target size={16} className="text-blue-500"/> Investment Potential</h4><p className="text-slate-600 text-sm leading-relaxed text-justify">{narratives.investmentPotential}</p></div>
+                    <div className="w-full h-px bg-slate-100"></div>
+                    <div><h4 className="flex items-center gap-2 text-sm font-bold text-slate-900 uppercase tracking-wide mb-2"><Lightbulb size={16} className="text-yellow-500"/> Advisor Tips</h4><p className="text-slate-600 text-sm leading-relaxed text-justify">{narratives.uaeTips}</p></div>
                  </div>
               </div>
 
-              {/* TRANSPORT & ACCESS */}
+              {/* KEY HIGHLIGHTS */}
+              <div className="bg-white border border-slate-200 rounded-3xl p-8 shadow-sm">
+                 <h3 className="text-xl font-extrabold text-slate-900 mb-6 flex items-center gap-2"><CheckCircle className="text-blue-600"/> Key Highlights</h3>
+                 <ul className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                   {highlights.map((item, idx) => (
+                     <li key={idx} className="flex items-start gap-3 p-3 bg-slate-50 rounded-xl border border-slate-100">
+                       <div className="mt-1 min-w-[6px] h-[6px] rounded-full bg-blue-500"></div><span className="text-sm font-medium text-slate-700 leading-relaxed">{item}</span>
+                     </li>
+                   ))}
+                 </ul>
+              </div>
+
+              {/* ATTRACTIONS */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                 <div className="bg-white border border-slate-200 rounded-3xl p-6 shadow-sm flex flex-col">
+                    <div className="flex items-center gap-2 mb-4"><div className="p-2 bg-teal-50 text-teal-600 rounded-lg"><Palmtree size={20} /></div><h4 className="font-bold text-slate-900">Waterfront & Leisure</h4></div>
+                    <ul className="space-y-3 mt-auto">{leisureItems.slice(0,3).map((item, i) => (<li key={i} className="flex items-center gap-2 text-sm text-slate-600"><CheckCircle size={14} className="text-teal-500" /> {item}</li>))}</ul>
+                 </div>
+                 <div className="bg-white border border-slate-200 rounded-3xl p-6 shadow-sm flex flex-col">
+                    <div className="flex items-center gap-2 mb-4"><div className="p-2 bg-purple-50 text-purple-600 rounded-lg"><Utensils size={20} /></div><h4 className="font-bold text-slate-900">Shopping & Dining</h4></div>
+                    <ul className="space-y-3 mt-auto">{shoppingItems.slice(0,3).map((item, i) => (<li key={i} className="flex items-center gap-2 text-sm text-slate-600"><CheckCircle size={14} className="text-purple-500" /> {item}</li>))}</ul>
+                 </div>
+              </div>
+
+              {/* 🟢 NEW: TRANSPORT & ACCESS (Dark Theme Card) */}
               <div className="bg-slate-900 text-white rounded-3xl p-8 shadow-xl relative overflow-hidden">
                  <div className="relative z-10">
                     <div className="flex items-center gap-3 mb-8">
                        <Navigation className="text-blue-400" />
-                       <h3 className="text-xl font-serif font-bold">Transport & Access</h3>
+                       <h3 className="text-xl font-extrabold">Transport & Access</h3>
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                        {/* Road Network */}
@@ -279,7 +275,7 @@ const AreaPage = () => {
                           <div className="text-[10px] font-bold uppercase opacity-60 tracking-wider mb-1">ROAD NETWORK</div>
                           <div className="font-bold text-lg leading-tight mb-2">{roadAccess}</div>
                           <p className="text-xs text-slate-400 leading-relaxed">
-                             Seamless connectivity via major arterial highways, ensuring rapid commute times to key business districts.
+                             Seamless connectivity via major arterial highways, ensuring rapid commute times to key business districts and leisure hubs across the city.
                           </p>
                        </div>
                        {/* Public Transit */}
@@ -288,7 +284,7 @@ const AreaPage = () => {
                           <div className="text-[10px] font-bold uppercase opacity-60 tracking-wider mb-1">PUBLIC TRANSIT</div>
                           <div className="font-bold text-lg leading-tight mb-2">{conn.metro?.name || "Bus Links"}</div>
                           <p className="text-xs text-slate-400 leading-relaxed">
-                             Well-integrated public transport network providing affordable and eco-friendly travel options.
+                             Well-integrated public transport network featuring metro access and bus routes, providing affordable and eco-friendly travel options for residents.
                           </p>
                        </div>
                        {/* Event Flow */}
@@ -297,7 +293,7 @@ const AreaPage = () => {
                           <div className="text-[10px] font-bold uppercase opacity-60 tracking-wider mb-1">EVENT FLOW</div>
                           <div className="font-bold text-lg leading-tight mb-2">{walkability}</div>
                           <p className="text-xs text-slate-400 leading-relaxed">
-                             Designed for an active lifestyle with pedestrian-friendly pathways and cycling tracks.
+                             Designed for an active lifestyle with pedestrian-friendly pathways, cycling tracks, and easy access to community events and outdoor recreational areas.
                           </p>
                        </div>
                     </div>
@@ -308,10 +304,10 @@ const AreaPage = () => {
 
               {/* PRICE TRENDS */}
               <div className="bg-white border border-slate-200 rounded-3xl p-8 shadow-sm">
-                 <div className="flex items-center gap-3 mb-6"><LineChart className="text-purple-600" /><h3 className="text-xl font-serif font-bold text-slate-900">Price History</h3></div>
+                 <div className="flex items-center gap-3 mb-6"><LineChart className="text-purple-600" /><h3 className="text-xl font-extrabold text-slate-900">Price History</h3></div>
                  <div className="space-y-3">
                     {Object.entries(priceTrend).map(([year, price]) => (
-                      <div key={year} className="flex justify-between items-center p-3 bg-slate-50 rounded-xl hover:bg-slate-100 transition-colors">
+                      <div key={year} className="flex justify-between items-center p-3 bg-slate-50 rounded-xl">
                          <span className="font-bold text-slate-500">{year}</span>
                          <span className="font-extrabold text-slate-900">{price}</span>
                       </div>
@@ -321,7 +317,7 @@ const AreaPage = () => {
 
               {/* PROPERTY CONFIG TABLE */}
               <div className="bg-white border border-slate-200 rounded-3xl p-8 shadow-sm overflow-hidden">
-                 <div className="flex items-center gap-3 mb-4"><Home className="text-emerald-600" /><h3 className="text-xl font-serif font-bold text-slate-900">Property Configurations</h3></div>
+                 <div className="flex items-center gap-3 mb-4"><Home className="text-emerald-600" /><h3 className="text-xl font-extrabold text-slate-900">Property Configurations & Market Analytics</h3></div>
                  <div className="overflow-x-auto -mx-8 px-8 pb-4">
                    <table className="w-full min-w-[700px] text-left border-collapse">
                      <thead>
@@ -383,7 +379,7 @@ const AreaPage = () => {
               {/* 5-YEAR FORECAST */}
               <div className="bg-slate-900 text-white rounded-3xl p-8 shadow-2xl relative overflow-hidden">
                  <div className="flex justify-between items-start mb-8 relative z-10">
-                   <div><div className="flex items-center gap-2 mb-2"><TrendingUp className="text-blue-400" /><h3 className="text-xl font-serif font-bold">5-Year Growth</h3></div><p className="text-slate-400 text-sm">Projected appreciation.</p></div>
+                   <div><div className="flex items-center gap-2 mb-2"><TrendingUp className="text-blue-400" /><h3 className="text-xl font-extrabold">5-Year Growth</h3></div><p className="text-slate-400 text-sm">Projected appreciation.</p></div>
                    <div className="bg-blue-600/20 px-4 py-2 rounded-lg border border-blue-500/30 text-blue-300 font-bold text-sm">{forecastData[4].growth} by 2030</div>
                  </div>
                  <div className="grid grid-cols-5 gap-4 items-end h-40 relative z-10">
@@ -401,7 +397,7 @@ const AreaPage = () => {
               {/* BUYER INTELLIGENCE */}
               <div className="bg-gradient-to-br from-indigo-900 to-slate-900 text-white rounded-3xl p-6 shadow-xl relative overflow-hidden ring-4 ring-indigo-50">
                 <div className="absolute top-0 right-0 p-4 opacity-10"><BrainCircuit size={80} /></div>
-                <h4 className="font-serif font-bold text-lg mb-4 flex items-center gap-2"><BrainCircuit size={20} className="text-indigo-400"/> Buyer Intelligence</h4>
+                <h4 className="font-extrabold text-lg mb-4 flex items-center gap-2"><BrainCircuit size={20} className="text-indigo-400"/> Buyer Intelligence</h4>
                 <div className="space-y-4">
                    <div className="bg-white/10 backdrop-blur-md p-4 rounded-xl border border-white/10"><div className="text-[10px] uppercase font-bold text-indigo-300 mb-1">Primary Archetype</div><div className="font-bold text-white text-lg">{buyerPsychology.archetype}</div></div>
                    <div className="bg-white/10 backdrop-blur-md p-4 rounded-xl border border-white/10"><div className="text-[10px] uppercase font-bold text-indigo-300 mb-1">Psychological Trigger</div><div className="font-bold text-white text-sm leading-relaxed">"{buyerPsychology.trigger}"</div></div>
@@ -411,7 +407,7 @@ const AreaPage = () => {
 
               {/* SCORECARD */}
               <div className="bg-white border border-slate-200 rounded-3xl p-8 shadow-sm">
-                 <h3 className="text-xl font-serif font-bold text-slate-900 mb-6 flex items-center gap-2"><TrendingUp className="text-blue-600"/> Scorecard</h3>
+                 <h3 className="text-xl font-extrabold text-slate-900 mb-6 flex items-center gap-2"><TrendingUp className="text-blue-600"/> Scorecard</h3>
                  <div className="mb-8 p-4 bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-100 rounded-2xl">
                     <div className="flex justify-between items-center mb-2"><div><div className="text-xs font-bold uppercase text-blue-400">Airbnb Potential</div><div className="font-extrabold text-slate-900 text-lg">{strScore}/10</div></div><div className="text-right"><div className="text-xs font-bold uppercase text-blue-400">Daily Rate</div><div className="font-extrabold text-slate-900">{strData.avgDailyRate}</div></div></div>
                     {strData.occupancy !== "N/A" && (<div className="w-full bg-white/50 h-1.5 rounded-full overflow-hidden mt-1"><div className="bg-blue-500 h-full rounded-full" style={{ width: strData.occupancy }}></div></div>)}
@@ -430,11 +426,11 @@ const AreaPage = () => {
                  </div>
               </div>
 
-              {/* STRATEGIC CONNECTIVITY */}
+              {/* CONNECTIVITY */}
               <div className="bg-white border border-slate-200 rounded-3xl p-8 shadow-sm">
                  <div className="flex items-center gap-3 mb-6">
                    <MapPin className="text-blue-600" />
-                   <h3 className="text-xl font-serif font-bold text-slate-900">Strategic Connectivity</h3>
+                   <h3 className="text-xl font-extrabold text-slate-900">Strategic Connectivity</h3>
                  </div>
                  <div className="space-y-6">
                    <div className="flex items-center justify-between group">
@@ -484,7 +480,7 @@ const AreaPage = () => {
           </div>
         </div>
 
-        {/* NEIGHBORHOOD EXPLORER (LUXURY CARDS) */}
+        {/* NEIGHBORHOOD EXPLORER (LUXURY) */}
         <div className="border-t border-slate-200 pt-16 mt-16 no-print">
            <h3 className="text-3xl font-serif font-bold text-slate-900 mb-10">Explore Neighboring Areas</h3>
            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -522,5 +518,6 @@ const AreaPage = () => {
 const FactItem = ({ icon, label, value }) => (<div className="flex flex-col items-center text-center p-2"><div className="text-slate-400 mb-2">{React.cloneElement(icon, { size: 20 })}</div><div className="text-[10px] font-bold text-slate-400 uppercase tracking-wide mb-1">{label}</div><div className="text-sm font-bold text-slate-900 leading-tight">{value}</div></div>);
 const DemandBox = ({ icon, label, value, color }) => (<div className="flex items-center gap-3 p-3 bg-slate-50 rounded-xl border border-slate-100"><div className={`bg-white p-2 rounded-lg ${color} shadow-sm`}>{icon}</div><div><div className="text-[10px] uppercase font-bold text-slate-400">{label}</div><div className="text-sm font-bold text-slate-900">{value}</div></div></div>);
 const ScoreBar = ({ label, value, color }) => (<div><div className="flex justify-between text-sm font-bold text-slate-700 mb-1"><span>{label}</span><span>{value}/10</span></div><div className="w-full bg-slate-100 h-2.5 rounded-full overflow-hidden"><div className={`h-full rounded-full ${color}`} style={{ width: `${value * 10}%` }}></div></div></div>);
+// Note: DistanceRow is now rendered directly in the main component for the specific custom layout requested.
 
 export default AreaPage;
