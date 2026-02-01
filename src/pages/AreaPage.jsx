@@ -94,6 +94,7 @@ const AreaPage = () => {
     { factor: "Liquidity", read: `Properties in ${area.name} are highly liquid, with consistent sales volumes and investor confidence supported by the developer's reputation and community amenities.` }
   ];
 
+  // --- RENTAL & SALE ANALYSIS TEXTS ---
   const rentalAnalysisPoints = [
     `${economics.twoBed ? "Villas and townhouses" : "Apartments"} in ${area.name} offer competitive rental yields, averaging up to ${area.roi}.`,
     "High demand for family-friendly units contributes to strong occupancy rates year-round.",
@@ -119,6 +120,12 @@ const AreaPage = () => {
     handedOver: "85%",
     underConstruction: "15%",
     nextDelivery: "Q4 2026"
+  };
+
+  const narratives = {
+    priceTrends: `Property prices in ${area.name} have demonstrated a ${scores.appreciation > 7 ? "robust upward" : "stable"} trajectory over the last 36 months. Starting from an average of ${Object.values(priceTrend)[0] || "base rates"} in 2023, market valuations have strengthened to ${Object.values(priceTrend)[2] || "current levels"}.`,
+    investmentPotential: `${area.name} is currently positioned as a "${area.category}" powerhouse. With an average ROI of ${area.roi}, it outperforms many ${area.emirate} averages. The area scores ${scores.cashFlow}/10 for Cash Flow.`,
+    uaeTips: `Focus on ${economics.studio ? "Studio and 1-Bedroom units" : "smaller units"} to maximize yield per sq.ft. Given the ${walkability.toLowerCase()} nature of the area, properties within walking distance to amenities command a premium.`
   };
 
   const baseGrowthRate = (scores.appreciation || 5) * 1.2; 
@@ -173,23 +180,26 @@ const AreaPage = () => {
               
               {/* REAL ESTATE IN AREA */}
               <div className="bg-white border border-slate-200 rounded-3xl p-8 shadow-sm">
-                 <h3 className="text-2xl font-serif font-bold text-slate-900 mb-4 border-b border-slate-200 pb-2">
-                   Real Estate in {area.name}, {area.emirate}, UAE
+                 <h3 className="text-2xl font-serif font-bold text-slate-900 mb-4 border-b border-slate-200 pb-4">
+                   Real Estate in {area.name}, Dubai
                  </h3>
-                 <p className="text-slate-700 text-sm leading-8 text-justify font-serif">
-                    {realEstateDesc}
-                 </p>
+                 <div className="p-6 bg-slate-50 rounded-2xl border-l-4 border-blue-600">
+                    <p className="text-slate-700 text-sm leading-8 text-justify font-serif">
+                       {realEstateDesc}
+                    </p>
+                 </div>
               </div>
 
-              {/* PROPERTY MARKET OVERVIEW TABLE */}
+              {/* PROPERTY MARKET OVERVIEW TABLE (Unified Theme) */}
               <div className="bg-white border border-slate-200 rounded-3xl p-8 shadow-sm">
                  <h3 className="text-xl font-serif font-bold text-slate-900 mb-6 flex items-center gap-2">
-                    Property Market Overview in {area.name}, {area.emirate}, UAE
+                    Property Market Overview
                  </h3>
                  <div className="overflow-hidden rounded-xl border border-slate-200">
                     <table className="w-full text-left border-collapse">
                        <thead>
-                          <tr className="bg-red-900 text-white text-xs font-bold uppercase tracking-wider">
+                          {/* Changed from Red to Slate/Dark Blue to match theme */}
+                          <tr className="bg-slate-900 text-white text-xs font-bold uppercase tracking-wider">
                              <th className="py-4 px-6 w-1/4">Factor</th>
                              <th className="py-4 px-6">Market Read</th>
                           </tr>
@@ -206,37 +216,41 @@ const AreaPage = () => {
                  </div>
               </div>
 
-              {/* RENTAL & SALES PRICES ANALYSIS */}
+              {/* RENTAL & SALES PRICES ANALYSIS (Unified Theme) */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                 {/* Rental Prices Card */}
-                 <div className="bg-gradient-to-br from-orange-50 to-white border border-orange-100 rounded-3xl p-6 shadow-sm">
-                    <h4 className="text-lg font-serif font-bold text-slate-900 mb-4 text-orange-900 border-b border-orange-200 pb-2">
-                       Rental Prices in {area.name}, Dubai
+                 {/* Rental Prices Card - Blue Theme */}
+                 <div className="bg-gradient-to-br from-blue-50 to-white border border-blue-100 rounded-3xl p-6 shadow-sm">
+                    <h4 className="text-lg font-serif font-bold text-slate-900 mb-4 text-blue-900 border-b border-blue-200 pb-2">
+                       Rental Prices in {area.name}
                     </h4>
                     <ul className="space-y-3">
                        {rentalAnalysisPoints.map((point, i) => (
                           <li key={i} className="flex items-start gap-3 text-sm text-slate-700 leading-relaxed">
-                             <div className="mt-1.5 w-1.5 h-1.5 rounded-full bg-orange-400 flex-shrink-0"></div>
+                             <div className="mt-1.5 w-1.5 h-1.5 rounded-full bg-blue-500 flex-shrink-0"></div>
                              <span>{point}</span>
                           </li>
                        ))}
                     </ul>
                  </div>
 
-                 {/* Sales Prices Card */}
-                 <div className="bg-gradient-to-br from-orange-50 to-white border border-orange-100 rounded-3xl p-6 shadow-sm">
-                    <h4 className="text-lg font-serif font-bold text-slate-900 mb-4 text-orange-900 border-b border-orange-200 pb-2">
-                       Sale Prices in {area.name}, Dubai
+                 {/* Sales Prices Card - Emerald Theme */}
+                 <div className="bg-gradient-to-br from-emerald-50 to-white border border-emerald-100 rounded-3xl p-6 shadow-sm">
+                    <h4 className="text-lg font-serif font-bold text-slate-900 mb-4 text-emerald-900 border-b border-emerald-200 pb-2">
+                       Sale Prices in {area.name}
                     </h4>
                     <ul className="space-y-3">
                        {salesAnalysisPoints.map((point, i) => (
                           <li key={i} className="flex items-start gap-3 text-sm text-slate-700 leading-relaxed">
-                             <div className="mt-1.5 w-1.5 h-1.5 rounded-full bg-orange-400 flex-shrink-0"></div>
+                             <div className="mt-1.5 w-1.5 h-1.5 rounded-full bg-emerald-500 flex-shrink-0"></div>
                              <span>{point}</span>
                           </li>
                        ))}
                     </ul>
                  </div>
+              </div>
+              <div className="bg-amber-50/50 p-4 rounded-xl border border-amber-100 text-xs text-slate-600 italic flex items-center gap-2">
+                 <Lightbulb size={16} className="text-amber-500"/>
+                 <span><strong>Investor Tip:</strong> Investing in off-plan properties with flexible payment plans can offer significant capital appreciation potential in this district.</span>
               </div>
 
               {/* RENTAL MARKET INTELLIGENCE */}
@@ -265,48 +279,143 @@ const AreaPage = () => {
                  </div>
               </div>
 
-              {/* 🟢 NEW: TRANSPORT & ACCESS (Dark Theme Card) */}
+              {/* SUPPLY PIPELINE */}
+              <div className="bg-slate-900 text-white rounded-3xl p-8 shadow-xl relative overflow-hidden">
+                 <div className="relative z-10">
+                    <div className="flex justify-between items-start mb-6">
+                       <div className="flex items-center gap-3">
+                          <HardHat className="text-amber-400" />
+                          <h3 className="text-xl font-serif font-bold">Supply Pipeline</h3>
+                       </div>
+                       <div className="px-3 py-1 bg-amber-500/20 text-amber-400 border border-amber-500/30 rounded-full text-[10px] font-bold uppercase tracking-wider">Institutional Data</div>
+                    </div>
+                    <div className="space-y-6">
+                       <div className="flex justify-between text-sm font-medium text-slate-300 mb-1">
+                          <span>Project Status</span>
+                          <span>{supplyStats.handedOver} Complete</span>
+                       </div>
+                       <div className="w-full h-4 bg-slate-800 rounded-full overflow-hidden flex">
+                          <div className="h-full bg-emerald-500" style={{ width: '85%' }}></div>
+                          <div className="h-full bg-amber-500" style={{ width: '15%' }}></div>
+                       </div>
+                       <div className="flex gap-6 text-xs mt-2">
+                          <div className="flex items-center gap-2"><div className="w-2 h-2 rounded-full bg-emerald-500"></div> Handed Over</div>
+                          <div className="flex items-center gap-2"><div className="w-2 h-2 rounded-full bg-amber-500"></div> Under Construction</div>
+                       </div>
+                       <div className="grid grid-cols-2 gap-4 mt-4 pt-4 border-t border-slate-800">
+                          <div><div className="text-slate-400 text-xs">Total Units</div><div className="text-xl font-bold">{supplyStats.totalUnits}</div></div>
+                          <div><div className="text-slate-400 text-xs">Next Major Delivery</div><div className="text-xl font-bold text-amber-400">{supplyStats.nextDelivery}</div></div>
+                       </div>
+                    </div>
+                 </div>
+              </div>
+
+              {/* FUTURE UPGRADES & MASTER PLAN */}
+              <div className="bg-slate-900 text-white rounded-3xl p-8 shadow-xl relative overflow-hidden">
+                 <div className="relative z-10">
+                    <div className="flex justify-between items-start mb-6">
+                       <div className="flex items-center gap-3">
+                          <Construction className="text-amber-400" />
+                          <h3 className="text-xl font-serif font-bold">Future Upgrades & Master Plan</h3>
+                       </div>
+                       <div className="px-3 py-1 bg-amber-500/20 text-amber-400 border border-amber-500/30 rounded-full text-[10px] font-bold uppercase tracking-wider">Vision 2030</div>
+                    </div>
+                    
+                    <div className="grid grid-cols-1 gap-4">
+                       {futureInfra.map((upgrade, index) => (
+                          <div key={index} className="flex items-center justify-between p-4 bg-white/10 rounded-xl border border-white/5 backdrop-blur-sm hover:bg-white/15 transition-colors">
+                             <div className="flex items-center gap-3">
+                                <div className="w-2 h-2 bg-amber-500 rounded-full animate-pulse"></div>
+                                <span className="font-bold text-sm text-slate-100">{upgrade.name}</span>
+                             </div>
+                             <span className="text-xs font-mono text-amber-400 border border-amber-500/30 px-2 py-1 rounded bg-amber-500/10">
+                                {upgrade.status}
+                             </span>
+                          </div>
+                       ))}
+                    </div>
+
+                    <div className="mt-6 pt-6 border-t border-white/10">
+                       <div className="flex justify-between items-center text-xs text-slate-400">
+                          <span>Infrastructure Impact Score</span>
+                          <span className="text-amber-400 font-bold">High</span>
+                       </div>
+                       <div className="w-full h-1.5 bg-slate-800 rounded-full mt-2 overflow-hidden">
+                          <div className="h-full bg-gradient-to-r from-amber-500 to-yellow-300" style={{ width: '85%' }}></div>
+                       </div>
+                    </div>
+                 </div>
+                 <div className="absolute inset-0 opacity-10 bg-[url('https://upload.wikimedia.org/wikipedia/commons/e/ec/World_map_blank_without_borders.svg')] bg-cover bg-center"></div>
+              </div>
+
+              {/* ATTRACTIONS & POINTS OF INTEREST */}
+              <div className="space-y-6">
+                 <h3 className="text-2xl font-serif font-bold text-slate-900 border-b border-slate-200 pb-4">Attractions & Points of Interest</h3>
+                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    {/* Waterfront & Leisure Card */}
+                    <div className="bg-gradient-to-br from-white to-slate-50 border border-slate-100 rounded-3xl p-8 shadow-sm hover:shadow-md transition-shadow">
+                       <div className="flex items-center gap-3 mb-6">
+                          <h4 className="text-xl font-serif font-bold text-slate-800 text-teal-900">Waterfront & Leisure</h4>
+                       </div>
+                       <ul className="space-y-4">
+                          {leisureItems.slice(0,3).map((item, i) => (
+                             <li key={i} className="flex items-start gap-3 group">
+                                <div className="mt-1 w-1.5 h-1.5 rounded-full bg-teal-400 group-hover:scale-125 transition-transform"></div>
+                                <span className="text-sm text-slate-600 font-medium leading-relaxed">{item}</span>
+                             </li>
+                          ))}
+                       </ul>
+                    </div>
+
+                    {/* Shopping & Dining Card */}
+                    <div className="bg-gradient-to-br from-white to-slate-50 border border-slate-100 rounded-3xl p-8 shadow-sm hover:shadow-md transition-shadow">
+                       <div className="flex items-center gap-3 mb-6">
+                          <h4 className="text-xl font-serif font-bold text-slate-800 text-purple-900">Shopping & Dining</h4>
+                       </div>
+                       <ul className="space-y-4">
+                          {shoppingItems.slice(0,3).map((item, i) => (
+                             <li key={i} className="flex items-start gap-3 group">
+                                <div className="mt-1 w-1.5 h-1.5 rounded-full bg-purple-400 group-hover:scale-125 transition-transform"></div>
+                                <span className="text-sm text-slate-600 font-medium leading-relaxed">{item}</span>
+                             </li>
+                          ))}
+                       </ul>
+                    </div>
+                 </div>
+              </div>
+
+              {/* TRANSPORT & ACCESS */}
               <div className="bg-slate-900 text-white rounded-3xl p-8 shadow-xl relative overflow-hidden">
                  <div className="relative z-10">
                     <div className="flex items-center gap-3 mb-8">
                        <Navigation className="text-blue-400" />
-                       <h3 className="text-xl font-serif font-bold">Public Transport in {area.name}</h3>
+                       <h3 className="text-xl font-serif font-bold">Public Transport</h3>
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                       {/* Road Network */}
                        <div className="bg-white/10 p-5 rounded-2xl border border-white/10 backdrop-blur-sm hover:bg-white/20 transition-colors">
                           <div className="text-blue-300 mb-3"><Car size={28} /></div>
                           <div className="text-[10px] font-bold uppercase opacity-60 tracking-wider mb-1">ROAD NETWORK</div>
                           <div className="font-bold text-lg leading-tight mb-2">{roadAccess}</div>
-                          <p className="text-xs text-slate-400 leading-relaxed">
-                             Seamless connectivity via major arterial highways, ensuring rapid commute times to key business districts.
-                          </p>
+                          <p className="text-xs text-slate-400 leading-relaxed">Seamless connectivity via major arterial highways.</p>
                        </div>
-                       {/* Public Transit */}
                        <div className="bg-white/10 p-5 rounded-2xl border border-white/10 backdrop-blur-sm hover:bg-white/20 transition-colors">
                           <div className="text-blue-300 mb-3"><Train size={28} /></div>
                           <div className="text-[10px] font-bold uppercase opacity-60 tracking-wider mb-1">PUBLIC TRANSIT</div>
                           <div className="font-bold text-lg leading-tight mb-2">{conn.metro?.name || "Bus Links"}</div>
-                          <p className="text-xs text-slate-400 leading-relaxed">
-                             Well-integrated public transport network providing affordable and eco-friendly travel options.
-                          </p>
+                          <p className="text-xs text-slate-400 leading-relaxed">Well-integrated public transport network.</p>
                        </div>
-                       {/* Event Flow */}
                        <div className="bg-white/10 p-5 rounded-2xl border border-white/10 backdrop-blur-sm hover:bg-white/20 transition-colors">
                           <div className="text-blue-300 mb-3"><Bike size={28} /></div>
                           <div className="text-[10px] font-bold uppercase opacity-60 tracking-wider mb-1">EVENT FLOW</div>
                           <div className="font-bold text-lg leading-tight mb-2">{walkability}</div>
-                          <p className="text-xs text-slate-400 leading-relaxed">
-                             Designed for an active lifestyle with pedestrian-friendly pathways and cycling tracks.
-                          </p>
+                          <p className="text-xs text-slate-400 leading-relaxed">Designed for an active lifestyle.</p>
                        </div>
                     </div>
                  </div>
-                 {/* Map Pattern BG */}
                  <div className="absolute inset-0 opacity-10 bg-[url('https://upload.wikimedia.org/wikipedia/commons/e/ec/World_map_blank_without_borders.svg')] bg-cover bg-center"></div>
               </div>
 
-              {/* 🟢 NEW: PRICE TRENDS (Updated UI) */}
+              {/* PRICE TRENDS */}
               <div className="bg-white border border-slate-200 rounded-3xl p-8 shadow-sm">
                  <div className="flex items-center gap-3 mb-6"><LineChart className="text-purple-600" /><h3 className="text-xl font-serif font-bold text-slate-900">Price History</h3></div>
                  <div className="space-y-3">
@@ -319,93 +428,29 @@ const AreaPage = () => {
                  </div>
               </div>
 
-              {/* 🟢 NEW: PROPERTY CONFIG TABLE (Updated UI) */}
+              {/* PROPERTY CONFIG TABLE */}
               <div className="bg-white border border-slate-200 rounded-3xl p-8 shadow-sm overflow-hidden">
                  <div className="flex items-center gap-3 mb-4"><Home className="text-emerald-600" /><h3 className="text-xl font-serif font-bold text-slate-900">Property Configurations</h3></div>
                  <div className="overflow-x-auto -mx-8 px-8 pb-4">
                    <table className="w-full min-w-[700px] text-left border-collapse">
                      <thead>
                        <tr className="border-b-2 border-slate-100 text-xs font-extrabold text-slate-500 uppercase tracking-wider">
-                         <th className="py-4 pr-4 w-1/5">TYPE</th>
-                         <th className="py-4 px-4 w-1/5">TYPICAL SIZE</th>
-                         <th className="py-4 px-4 w-1/4">SIGNATURE FEATURES</th>
-                         <th className="py-4 px-4 w-1/6">BEST FOR</th>
-                         <th className="py-4 px-4 text-emerald-600 w-1/12">AVG. ROI</th>
-                         <th className="py-4 pl-4 w-1/12">AVG. RENT</th>
+                         <th className="py-4 pr-4 w-1/5">TYPE</th><th className="py-4 px-4 w-1/5">SIZE</th><th className="py-4 px-4 w-1/4">FEATURES</th><th className="py-4 px-4 w-1/6">BEST FOR</th><th className="py-4 px-4 text-emerald-600 w-1/12">ROI</th><th className="py-4 pl-4 w-1/12">RENT</th>
                        </tr>
                      </thead>
                      <tbody className="text-sm font-medium text-slate-700">
-                       <tr className="border-b border-slate-50 hover:bg-slate-50 transition-colors">
-                         <td className="py-4 pr-4 font-bold text-slate-900">Studio Apartment</td>
-                         <td className="py-4 px-4 text-slate-500">380 - 520 sq.ft</td>
-                         <td className="py-4 px-4 text-slate-600 text-xs">Open plan, Low maintenance</td>
-                         <td className="py-4 px-4"><span className="bg-blue-50 text-blue-600 px-2 py-1 rounded text-[10px] font-bold uppercase tracking-wide">High Yield</span></td>
-                         <td className="py-4 px-4 font-extrabold text-emerald-600">{economics.studio?.roi || "N/A"}</td>
-                         <td className="py-4 pl-4 text-slate-900 font-bold">{economics.studio?.rent || "N/A"}</td>
-                       </tr>
-                       <tr className="border-b border-slate-50 hover:bg-slate-50 transition-colors">
-                         <td className="py-4 pr-4 font-bold text-slate-900">1-Bedroom Apt</td>
-                         <td className="py-4 px-4 text-slate-500">750 - 950 sq.ft</td>
-                         <td className="py-4 px-4 text-slate-600 text-xs">Balcony, Separate Living</td>
-                         <td className="py-4 px-4"><span className="bg-purple-50 text-purple-600 px-2 py-1 rounded text-[10px] font-bold uppercase tracking-wide">Liquidity</span></td>
-                         <td className="py-4 px-4 font-extrabold text-emerald-600">{economics.oneBed?.roi || "N/A"}</td>
-                         <td className="py-4 pl-4 text-slate-900 font-bold">{economics.oneBed?.rent || "N/A"}</td>
-                       </tr>
-                       <tr className="border-b border-slate-50 hover:bg-slate-50 transition-colors">
-                         <td className="py-4 pr-4 font-bold text-slate-900">2-Bedroom Apt</td>
-                         <td className="py-4 px-4 text-slate-500">1,100 - 1,400 sq.ft</td>
-                         <td className="py-4 px-4 text-slate-600 text-xs">En-suite, Closed Kitchen</td>
-                         <td className="py-4 px-4"><span className="bg-amber-50 text-amber-600 px-2 py-1 rounded text-[10px] font-bold uppercase tracking-wide">Stability</span></td>
-                         <td className="py-4 px-4 font-extrabold text-emerald-600">{economics.twoBed?.roi || "N/A"}</td>
-                         <td className="py-4 pl-4 text-slate-900 font-bold">{economics.twoBed?.rent || "N/A"}</td>
-                       </tr>
-                       <tr className="border-b border-slate-50 hover:bg-slate-50 transition-colors">
-                         <td className="py-4 pr-4 font-bold text-slate-900">Townhouse (3-Bed)</td>
-                         <td className="py-4 px-4 text-slate-500">2,100 - 2,500 sq.ft</td>
-                         <td className="py-4 px-4 text-slate-600 text-xs">Private Garden, Maid's Room</td>
-                         <td className="py-4 px-4"><span className="bg-teal-50 text-teal-600 px-2 py-1 rounded text-[10px] font-bold uppercase tracking-wide">Families</span></td>
-                         <td className="py-4 px-4 font-extrabold text-emerald-600">~6.5%</td>
-                         <td className="py-4 pl-4 text-slate-900 font-bold">AED 130k+</td>
-                       </tr>
-                       <tr className="hover:bg-slate-50 transition-colors">
-                         <td className="py-4 pr-4 font-bold text-slate-900">Villa (4-Bed+)</td>
-                         <td className="py-4 px-4 text-slate-500">3,500+ sq.ft</td>
-                         <td className="py-4 px-4 text-slate-600 text-xs">Private Pool, Large Plot</td>
-                         <td className="py-4 px-4"><span className="bg-indigo-50 text-indigo-600 px-2 py-1 rounded text-[10px] font-bold uppercase tracking-wide">Luxury</span></td>
-                         <td className="py-4 px-4 font-extrabold text-emerald-600">~5.5%</td>
-                         <td className="py-4 pl-4 text-slate-900 font-bold">AED 200k+</td>
-                       </tr>
+                       <tr className="border-b border-slate-50 hover:bg-slate-50 transition-colors"><td className="py-4 pr-4 font-bold text-slate-900">Studio Apartment</td><td className="py-4 px-4 text-slate-500">380 sq.ft</td><td className="py-4 px-4 text-slate-600 text-xs">Open plan</td><td className="py-4 px-4"><span className="bg-blue-50 text-blue-600 px-2 py-1 rounded text-[10px] font-bold uppercase tracking-wide">High Yield</span></td><td className="py-4 px-4 font-extrabold text-emerald-600">{economics.studio?.roi}</td><td className="py-4 pl-4 text-slate-900 font-bold">{economics.studio?.rent}</td></tr>
+                       <tr className="border-b border-slate-50 hover:bg-slate-50 transition-colors"><td className="py-4 pr-4 font-bold text-slate-900">1-Bedroom Apt</td><td className="py-4 px-4 text-slate-500">750 sq.ft</td><td className="py-4 px-4 text-slate-600 text-xs">Balcony</td><td className="py-4 px-4"><span className="bg-purple-50 text-purple-600 px-2 py-1 rounded text-[10px] font-bold uppercase tracking-wide">Liquidity</span></td><td className="py-4 px-4 font-extrabold text-emerald-600">{economics.oneBed?.roi}</td><td className="py-4 pl-4 text-slate-900 font-bold">{economics.oneBed?.rent}</td></tr>
+                       <tr className="hover:bg-slate-50 transition-colors"><td className="py-4 pr-4 font-bold text-slate-900">2-Bedroom Apt</td><td className="py-4 px-4 text-slate-500">1,100 sq.ft</td><td className="py-4 px-4 text-slate-600 text-xs">En-suite</td><td className="py-4 px-4"><span className="bg-amber-50 text-amber-600 px-2 py-1 rounded text-[10px] font-bold uppercase tracking-wide">Stability</span></td><td className="py-4 px-4 font-extrabold text-emerald-600">{economics.twoBed?.roi}</td><td className="py-4 pl-4 text-slate-900 font-bold">{economics.twoBed?.rent}</td></tr>
                      </tbody>
                    </table>
-                 </div>
-              </div>
-
-              {/* 🟢 NEW: 5-YEAR GROWTH FORECAST (Dark Card UI) */}
-              <div className="bg-slate-900 text-white rounded-3xl p-8 shadow-2xl relative overflow-hidden">
-                 <div className="flex justify-between items-start mb-8 relative z-10">
-                   <div>
-                      <div className="flex items-center gap-2 mb-2"><TrendingUp className="text-blue-400" /><h3 className="text-xl font-serif font-bold">5-Year Growth</h3></div>
-                      <p className="text-slate-400 text-sm">Projected capital appreciation based on market trends.</p>
-                   </div>
-                   <div className="bg-blue-600/20 px-4 py-2 rounded-lg border border-blue-500/30 text-blue-300 font-bold text-sm">{forecastData[4].growth} by 2030</div>
-                 </div>
-                 <div className="grid grid-cols-5 gap-4 items-end h-40 relative z-10">
-                   {forecastData.map((item, index) => {
-                     const height = 40 + (index * 15); 
-                     return (
-                        <div key={item.year} className="flex flex-col items-center gap-2 group">
-                           <div className="text-xs font-bold text-blue-300 mb-1 group-hover:text-white transition-colors">{item.growth}</div>
-                           <div className="w-full bg-gradient-to-t from-blue-600 to-blue-400 rounded-t-lg relative group-hover:from-blue-500 group-hover:to-blue-300 transition-all duration-500" style={{ height: `${height}%` }}></div>
-                           <div className="text-xs font-bold text-slate-500 group-hover:text-slate-300 transition-colors">{item.year}</div>
-                        </div>
-                     );
-                   })}
                  </div>
               </div>
           </div>
 
           {/* === RIGHT COLUMN === */}
           <div className="space-y-8">
+              
               {/* BUYER INTELLIGENCE */}
               <div className="bg-gradient-to-br from-indigo-900 to-slate-900 text-white rounded-3xl p-6 shadow-xl relative overflow-hidden ring-4 ring-indigo-50">
                 <div className="absolute top-0 right-0 p-4 opacity-10"><BrainCircuit size={80} /></div>
@@ -438,42 +483,6 @@ const AreaPage = () => {
                  </div>
               </div>
 
-              {/* ATTRACTIONS & POINTS OF INTEREST (Luxury UI) */}
-              <div className="space-y-6">
-                 <h3 className="text-2xl font-serif font-bold text-slate-900 border-b border-slate-200 pb-4">Attractions & Points of Interest in {area.name}</h3>
-                 <div className="grid grid-cols-1 gap-6">
-                    {/* Waterfront & Leisure Card */}
-                    <div className="bg-gradient-to-br from-white to-slate-50 border border-slate-100 rounded-3xl p-8 shadow-sm hover:shadow-md transition-shadow">
-                       <div className="flex items-center gap-3 mb-6">
-                          <h4 className="text-xl font-serif font-bold text-slate-800 text-red-900">Waterfront & Leisure</h4>
-                       </div>
-                       <ul className="space-y-4">
-                          {leisureItems.slice(0,3).map((item, i) => (
-                             <li key={i} className="flex items-start gap-3 group">
-                                <div className="mt-1 w-1.5 h-1.5 rounded-full bg-teal-400 group-hover:scale-125 transition-transform"></div>
-                                <span className="text-sm text-slate-600 font-medium leading-relaxed">{item}</span>
-                             </li>
-                          ))}
-                       </ul>
-                    </div>
-
-                    {/* Shopping & Dining Card */}
-                    <div className="bg-gradient-to-br from-white to-slate-50 border border-slate-100 rounded-3xl p-8 shadow-sm hover:shadow-md transition-shadow">
-                       <div className="flex items-center gap-3 mb-6">
-                          <h4 className="text-xl font-serif font-bold text-slate-800 text-red-900">Shopping & Dining</h4>
-                       </div>
-                       <ul className="space-y-4">
-                          {shoppingItems.slice(0,3).map((item, i) => (
-                             <li key={i} className="flex items-start gap-3 group">
-                                <div className="mt-1 w-1.5 h-1.5 rounded-full bg-purple-400 group-hover:scale-125 transition-transform"></div>
-                                <span className="text-sm text-slate-600 font-medium leading-relaxed">{item}</span>
-                             </li>
-                          ))}
-                       </ul>
-                    </div>
-                 </div>
-              </div>
-
               {/* STRATEGIC CONNECTIVITY */}
               <div className="bg-white border border-slate-200 rounded-3xl p-8 shadow-sm">
                  <div className="flex items-center gap-3 mb-6">
@@ -482,45 +491,27 @@ const AreaPage = () => {
                  </div>
                  <div className="space-y-6">
                    <div className="flex items-center justify-between group">
-                      <div className="flex items-center gap-4">
-                         <div className="bg-purple-50 text-purple-600 p-3 rounded-2xl group-hover:bg-purple-100 transition-colors"><Plane size={20} /></div>
-                         <div><div className="text-[10px] text-slate-400 font-bold uppercase tracking-wider mb-0.5">Nearest Airport</div><div className="font-bold text-slate-900">{conn.airport?.name || "DXB Intl Airport"}</div></div>
-                      </div>
+                      <div className="flex items-center gap-4"><div className="bg-purple-50 text-purple-600 p-3 rounded-2xl group-hover:bg-purple-100 transition-colors"><Plane size={20} /></div><div><div className="text-[10px] text-slate-400 font-bold uppercase tracking-wider mb-0.5">Nearest Airport</div><div className="font-bold text-slate-900">{conn.airport?.name || "DXB Intl Airport"}</div></div></div>
                       <div className="text-right"><div className="text-lg font-mono font-bold text-purple-600">{conn.airport?.mins || "25 mins"}</div><div className="text-[10px] text-slate-400">{conn.airport?.km || "28 km"}</div></div>
                    </div>
                    <div className="flex items-center justify-between group">
-                      <div className="flex items-center gap-4">
-                         <div className="bg-blue-50 text-blue-600 p-3 rounded-2xl group-hover:bg-blue-100 transition-colors"><Briefcase size={20} /></div>
-                         <div><div className="text-[10px] text-slate-400 font-bold uppercase tracking-wider mb-0.5">Business Hub</div><div className="font-bold text-slate-900">{conn.business?.name || "Business Bay"}</div></div>
-                      </div>
+                      <div className="flex items-center gap-4"><div className="bg-blue-50 text-blue-600 p-3 rounded-2xl group-hover:bg-blue-100 transition-colors"><Briefcase size={20} /></div><div><div className="text-[10px] text-slate-400 font-bold uppercase tracking-wider mb-0.5">Business Hub</div><div className="font-bold text-slate-900">{conn.business?.name || "Business Bay"}</div></div></div>
                       <div className="text-right"><div className="text-lg font-mono font-bold text-blue-600">{conn.business?.mins || "20 mins"}</div><div className="text-[10px] text-slate-400">{conn.business?.km || "18 km"}</div></div>
                    </div>
                    <div className="flex items-center justify-between group">
-                      <div className="flex items-center gap-4">
-                         <div className="bg-emerald-50 text-emerald-600 p-3 rounded-2xl group-hover:bg-emerald-100 transition-colors"><Train size={20} /></div>
-                         <div><div className="text-[10px] text-slate-400 font-bold uppercase tracking-wider mb-0.5">Metro / Transport</div><div className="font-bold text-slate-900">{conn.metro?.name || "Mall of Emirates"}</div></div>
-                      </div>
+                      <div className="flex items-center gap-4"><div className="bg-emerald-50 text-emerald-600 p-3 rounded-2xl group-hover:bg-emerald-100 transition-colors"><Train size={20} /></div><div><div className="text-[10px] text-slate-400 font-bold uppercase tracking-wider mb-0.5">Metro / Transport</div><div className="font-bold text-slate-900">{conn.metro?.name || "Mall of Emirates"}</div></div></div>
                       <div className="text-right"><div className="text-lg font-mono font-bold text-emerald-600">{conn.metro?.mins || "14 mins"}</div><div className="text-[10px] text-slate-400">{conn.metro?.km || "10 km"}</div></div>
                    </div>
                    <div className="flex items-center justify-between group">
-                      <div className="flex items-center gap-4">
-                         <div className="bg-amber-50 text-amber-500 p-3 rounded-2xl group-hover:bg-amber-100 transition-colors"><GraduationCap size={20} /></div>
-                         <div><div className="text-[10px] text-slate-400 font-bold uppercase tracking-wider mb-0.5">Top School</div><div className="font-bold text-slate-900">{conn.school?.name || "JSS Intl School"}</div></div>
-                      </div>
+                      <div className="flex items-center gap-4"><div className="bg-amber-50 text-amber-500 p-3 rounded-2xl group-hover:bg-amber-100 transition-colors"><GraduationCap size={20} /></div><div><div className="text-[10px] text-slate-400 font-bold uppercase tracking-wider mb-0.5">Top School</div><div className="font-bold text-slate-900">{conn.school?.name || "JSS Intl School"}</div></div></div>
                       <div className="text-right"><div className="text-lg font-mono font-bold text-amber-500">{conn.school?.mins || "4 mins"}</div><div className="text-[10px] text-slate-400">{conn.school?.km || "1.2 km"}</div></div>
                    </div>
                    <div className="flex items-center justify-between group">
-                      <div className="flex items-center gap-4">
-                         <div className="bg-pink-50 text-pink-600 p-3 rounded-2xl group-hover:bg-pink-100 transition-colors"><ShoppingBag size={20} /></div>
-                         <div><div className="text-[10px] text-slate-400 font-bold uppercase tracking-wider mb-0.5">Shopping Mall</div><div className="font-bold text-slate-900">{conn.mall?.name || "Circle Mall"}</div></div>
-                      </div>
+                      <div className="flex items-center gap-4"><div className="bg-pink-50 text-pink-600 p-3 rounded-2xl group-hover:bg-pink-100 transition-colors"><ShoppingBag size={20} /></div><div><div className="text-[10px] text-slate-400 font-bold uppercase tracking-wider mb-0.5">Shopping Mall</div><div className="font-bold text-slate-900">{conn.mall?.name || "Circle Mall"}</div></div></div>
                       <div className="text-right"><div className="text-lg font-mono font-bold text-pink-600">{conn.mall?.mins || "2 mins"}</div><div className="text-[10px] text-slate-400">{conn.mall?.km || "0.5 km"}</div></div>
                    </div>
                    <div className="flex items-center justify-between group">
-                      <div className="flex items-center gap-4">
-                         <div className="bg-red-50 text-red-600 p-3 rounded-2xl group-hover:bg-red-100 transition-colors"><HeartPulse size={20} /></div>
-                         <div><div className="text-[10px] text-slate-400 font-bold uppercase tracking-wider mb-0.5">Healthcare</div><div className="font-bold text-slate-900">{conn.hospital?.name || "Mediclinic Parkview"}</div></div>
-                      </div>
+                      <div className="flex items-center gap-4"><div className="bg-red-50 text-red-600 p-3 rounded-2xl group-hover:bg-red-100 transition-colors"><HeartPulse size={20} /></div><div><div className="text-[10px] text-slate-400 font-bold uppercase tracking-wider mb-0.5">Healthcare</div><div className="font-bold text-slate-900">{conn.hospital?.name || "Mediclinic Parkview"}</div></div></div>
                       <div className="text-right"><div className="text-lg font-mono font-bold text-red-600">{conn.hospital?.mins || "8 mins"}</div><div className="text-[10px] text-slate-400">{conn.hospital?.km || "5 km"}</div></div>
                    </div>
                  </div>
