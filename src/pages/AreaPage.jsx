@@ -94,6 +94,19 @@ const AreaPage = () => {
     { factor: "Liquidity", read: `Properties in ${area.name} are highly liquid, with consistent sales volumes and investor confidence supported by the developer's reputation and community amenities.` }
   ];
 
+  // 🟢 NEW: RENTAL & SALE ANALYSIS TEXTS
+  const rentalAnalysisPoints = [
+    `${economics.twoBed ? "Villas and townhouses" : "Apartments"} in ${area.name} offer competitive rental yields, averaging up to ${area.roi}.`,
+    "High demand for family-friendly units contributes to strong occupancy rates year-round.",
+    `Proximity to schools like ${conn.school?.name || "local academies"} and leisure facilities enhances overall rental appeal.`
+  ];
+
+  const salesAnalysisPoints = [
+    `Off-plan properties in ${area.name} are gaining popularity due to flexible payment plans and potential for capital appreciation.`,
+    "The community's mature infrastructure and amenities drive strong demand for resale properties.",
+    "Limited new supply in the area supports sustained price growth and value retention."
+  ];
+
   // --- BUYER INTELLIGENCE DATA ---
   const buyerPsychology = {
     trigger: scores.cashFlow > 8 ? "Passive Income Generation" : "Lifestyle & Prestige",
@@ -165,7 +178,7 @@ const AreaPage = () => {
           {/* === LEFT COLUMN: DATA & ANALYSIS === */}
           <div className="lg:col-span-2 space-y-8">
               
-              {/* NEW SECTION: Real Estate in {Area}, {Emirate}, UAE */}
+              {/* REAL ESTATE IN AREA */}
               <div className="bg-white border border-slate-200 rounded-3xl p-8 shadow-sm">
                  <h3 className="text-2xl font-serif font-bold text-slate-900 mb-4 border-b border-slate-200 pb-2">
                    Real Estate in {area.name}, {area.emirate}, UAE
@@ -175,7 +188,7 @@ const AreaPage = () => {
                  </p>
               </div>
 
-              {/* NEW SECTION: Property Market Overview Table */}
+              {/* PROPERTY MARKET OVERVIEW TABLE */}
               <div className="bg-white border border-slate-200 rounded-3xl p-8 shadow-sm">
                  <h3 className="text-xl font-serif font-bold text-slate-900 mb-6 flex items-center gap-2">
                     Property Market Overview in {area.name}, {area.emirate}, UAE
@@ -198,6 +211,42 @@ const AreaPage = () => {
                        </tbody>
                     </table>
                  </div>
+              </div>
+
+              {/* 🟢 NEW SECTION: RENTAL & SALES PRICES ANALYSIS */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                 {/* Rental Prices Card */}
+                 <div className="bg-gradient-to-br from-orange-50 to-white border border-orange-100 rounded-3xl p-6 shadow-sm">
+                    <h4 className="text-lg font-serif font-bold text-slate-900 mb-4 text-orange-900 border-b border-orange-200 pb-2">
+                       Rental Prices in {area.name}, Dubai
+                    </h4>
+                    <ul className="space-y-3">
+                       {rentalAnalysisPoints.map((point, i) => (
+                          <li key={i} className="flex items-start gap-3 text-sm text-slate-700 leading-relaxed">
+                             <div className="mt-1.5 w-1.5 h-1.5 rounded-full bg-orange-400 flex-shrink-0"></div>
+                             <span>{point}</span>
+                          </li>
+                       ))}
+                    </ul>
+                 </div>
+
+                 {/* Sales Prices Card */}
+                 <div className="bg-gradient-to-br from-orange-50 to-white border border-orange-100 rounded-3xl p-6 shadow-sm">
+                    <h4 className="text-lg font-serif font-bold text-slate-900 mb-4 text-orange-900 border-b border-orange-200 pb-2">
+                       Sale Prices in {area.name}, Dubai
+                    </h4>
+                    <ul className="space-y-3">
+                       {salesAnalysisPoints.map((point, i) => (
+                          <li key={i} className="flex items-start gap-3 text-sm text-slate-700 leading-relaxed">
+                             <div className="mt-1.5 w-1.5 h-1.5 rounded-full bg-orange-400 flex-shrink-0"></div>
+                             <span>{point}</span>
+                          </li>
+                       ))}
+                    </ul>
+                 </div>
+              </div>
+              <div className="bg-orange-50/50 p-4 rounded-xl border border-orange-100 text-xs text-slate-600 italic">
+                 <strong>Tip:</strong> Investing in off-plan properties with flexible payment plans can offer significant capital appreciation potential in this district.
               </div>
 
               {/* RENTAL MARKET INTELLIGENCE */}
@@ -224,44 +273,6 @@ const AreaPage = () => {
                        <div className="text-2xl font-extrabold text-slate-900">3.2 Yrs</div>
                     </div>
                  </div>
-              </div>
-
-              {/* 🟢 NEW: FUTURE UPGRADES & MASTER PLAN (Institutional Feature) */}
-              <div className="bg-slate-900 text-white rounded-3xl p-8 shadow-xl relative overflow-hidden">
-                 <div className="relative z-10">
-                    <div className="flex justify-between items-start mb-6">
-                       <div className="flex items-center gap-3">
-                          <Construction className="text-amber-400" />
-                          <h3 className="text-xl font-serif font-bold">Future Upgrades & Master Plan</h3>
-                       </div>
-                       <div className="px-3 py-1 bg-amber-500/20 text-amber-400 border border-amber-500/30 rounded-full text-[10px] font-bold uppercase tracking-wider">Vision 2030</div>
-                    </div>
-                    
-                    <div className="grid grid-cols-1 gap-4">
-                       {futureInfra.map((upgrade, index) => (
-                          <div key={index} className="flex items-center justify-between p-4 bg-white/10 rounded-xl border border-white/5 backdrop-blur-sm hover:bg-white/15 transition-colors">
-                             <div className="flex items-center gap-3">
-                                <div className="w-2 h-2 bg-amber-500 rounded-full animate-pulse"></div>
-                                <span className="font-bold text-sm text-slate-100">{upgrade.name}</span>
-                             </div>
-                             <span className="text-xs font-mono text-amber-400 border border-amber-500/30 px-2 py-1 rounded bg-amber-500/10">
-                                {upgrade.status}
-                             </span>
-                          </div>
-                       ))}
-                    </div>
-
-                    <div className="mt-6 pt-6 border-t border-white/10">
-                       <div className="flex justify-between items-center text-xs text-slate-400">
-                          <span>Infrastructure Impact Score</span>
-                          <span className="text-amber-400 font-bold">High</span>
-                       </div>
-                       <div className="w-full h-1.5 bg-slate-800 rounded-full mt-2 overflow-hidden">
-                          <div className="h-full bg-gradient-to-r from-amber-500 to-yellow-300" style={{ width: '85%' }}></div>
-                       </div>
-                    </div>
-                 </div>
-                 <div className="absolute inset-0 opacity-10 bg-[url('https://upload.wikimedia.org/wikipedia/commons/e/ec/World_map_blank_without_borders.svg')] bg-cover bg-center"></div>
               </div>
 
               {/* SUPPLY PIPELINE */}
