@@ -331,7 +331,7 @@ const AreaPage = () => {
                  </div>
               </div>
 
-              {/* PROPERTY CONFIGURATIONS TABLE */}
+              {/* PROPERTY CONFIGURATIONS TABLE - EDITED PER IMAGE UI */}
               <div className="bg-white border border-slate-200 rounded-3xl p-10 shadow-sm overflow-hidden">
                  <div className="flex items-center gap-3 mb-8">
                     <Home className="text-slate-900" size={28} />
@@ -350,6 +350,7 @@ const AreaPage = () => {
                           </tr>
                        </thead>
                        <tbody className="text-sm">
+                          {/* Studio */}
                           <tr className="border-b border-slate-50">
                              <td className="py-6 font-bold text-slate-900">Studio Apartment</td>
                              <td className="py-6 text-slate-500 font-medium">380 - 520 sq.ft</td>
@@ -358,6 +359,7 @@ const AreaPage = () => {
                              <td className="py-6 font-black text-emerald-600 text-base">{economics.studio?.roi || "7.8%"}</td>
                              <td className="py-6 font-bold text-slate-900">AED {economics.studio?.rent || "65k"}</td>
                           </tr>
+                          {/* 1BR */}
                           <tr className="border-b border-slate-50">
                              <td className="py-6 font-bold text-slate-900">1-Bedroom Apt</td>
                              <td className="py-6 text-slate-500 font-medium">750 - 950 sq.ft</td>
@@ -366,6 +368,7 @@ const AreaPage = () => {
                              <td className="py-6 font-black text-emerald-600 text-base">{economics.oneBed?.roi || "7.2%"}</td>
                              <td className="py-6 font-bold text-slate-900">AED {economics.oneBed?.rent || "95k"}</td>
                           </tr>
+                          {/* 2BR */}
                           <tr className="border-b border-slate-50">
                              <td className="py-6 font-bold text-slate-900">2-Bedroom Apt</td>
                              <td className="py-6 text-slate-500 font-medium">1,100 - 1,400 sq.ft</td>
@@ -374,6 +377,49 @@ const AreaPage = () => {
                              <td className="py-6 font-black text-emerald-600 text-base">{economics.twoBed?.roi || "6.5%"}</td>
                              <td className="py-6 font-bold text-slate-900">AED {economics.twoBed?.rent || "140k"}</td>
                           </tr>
+                          {/* Townhouse */}
+                          <tr className="border-b border-slate-50">
+                             <td className="py-6 font-bold text-slate-900">Townhouse (3-Bed)</td>
+                             <td className="py-6 text-slate-500 font-medium">2,100 - 2,500 sq.ft</td>
+                             <td className="py-6 text-slate-500 text-xs">Private Garden, Maid's Room</td>
+                             <td className="py-6"><span className="bg-emerald-50 text-emerald-600 px-3 py-1 rounded-md text-[10px] font-black uppercase tracking-wider">Families</span></td>
+                             <td className="py-6 font-black text-emerald-600 text-base">~6.5%</td>
+                             <td className="py-6 font-bold text-slate-900">AED 130k+</td>
+                          </tr>
+                          {/* Villa */}
+                          <tr>
+                             <td className="py-6 font-bold text-slate-900">Villa (4-Bed+)</td>
+                             <td className="py-6 text-slate-500 font-medium">3,500+ sq.ft</td>
+                             <td className="py-6 text-slate-500 text-xs">Private Pool, Large Plot</td>
+                             <td className="py-6"><span className="bg-indigo-50 text-indigo-600 px-3 py-1 rounded-md text-[10px] font-black uppercase tracking-wider">Luxury</span></td>
+                             <td className="py-6 font-black text-emerald-600 text-base">~5.5%</td>
+                             <td className="py-6 font-bold text-slate-900">AED 200k+</td>
+                          </tr>
+                       </tbody>
+                    </table>
+                 </div>
+              </div>
+
+              {/* PROPERTY MARKET OVERVIEW TABLE */}
+              <div className="bg-white border border-slate-200 rounded-3xl p-8 shadow-sm">
+                 <h3 className="text-xl font-serif font-bold text-slate-900 mb-6 flex items-center gap-2">
+                    Property Market Overview
+                 </h3>
+                 <div className="overflow-hidden rounded-xl border border-slate-200">
+                    <table className="w-full text-left border-collapse">
+                       <thead>
+                          <tr className="bg-slate-900 text-white text-xs font-bold uppercase tracking-wider">
+                             <th className="py-4 px-6 w-1/4">Factor</th>
+                             <th className="py-4 px-6">Market Read</th>
+                          </tr>
+                       </thead>
+                       <tbody className="text-sm">
+                          {marketReadData.map((item, index) => (
+                             <tr key={index} className={`border-b border-slate-100 ${index % 2 === 0 ? 'bg-white' : 'bg-slate-50'}`}>
+                                <td className="py-4 px-6 font-bold text-slate-800 align-top">{item.factor}</td>
+                                <td className="py-4 px-6 text-slate-600 leading-relaxed">{item.read}</td>
+                             </tr>
+                          ))}
                        </tbody>
                     </table>
                  </div>
