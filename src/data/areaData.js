@@ -3,259 +3,680 @@
 // ==========================================================
 
 export const DUBAI_AREAS = [
-  // --- 1. JUMEIRAH VILLAGE CIRCLE (JVC) ---
+// --- DUBAI: AL BARARI ---
   {
-    id: "jvc",
-    name: "Jumeirah Village Circle",
+    id: "al-barari",
+    name: "Al Barari",
     emirate: "Dubai",
-    category: "High Yield",
+    category: "Ultra-Luxury / Green Living",
     
-    roi: "7.8%",
-    avgPrice: "AED 950k",
-    imageColor: "bg-emerald-600",
-    amenities: ["Circle Mall", "30+ Parks", "Intl. Schools"],
+    // 🟢 REAL MARKET METRICS (2025/26 Data)
+    roi: "5.8%",
+    avgPrice: "AED 12.5M",
+    imageColor: "bg-emerald-800", // Deep Green/Nature
+    
+    // 🟢 KEY FACTS
+    masterDeveloper: "Al Barari Development",
+    location: "Nad Al Sheba / Sheikh Mohammed Bin Zayed Rd",
+    totalArea: "15.3 Million sq. ft.",
+    towers: "Low-rise (7th Heaven/Ashjar) & Villas",
+    completion: "Mature / Expansion Phase",
+    privateBeach: "No (Man-made Lakes & Streams)",
 
-    investorTags: ["High Cash Flow", "Entry-Level", "Family Rentals", "Low Vacancy"],
+    // 🟢 HIGHLIGHTS
+    highlights: [
+      "Dubai's greenest community with 60% of the area dedicated to botanical gardens and lakes.",
+      "Home to 'The Farm', one of Dubai's most famous organic dining destinations.",
+      "Exclusive, low-density living favored by HNWIs seeking privacy and wellness.",
+      "Unique micro-climate; typically 2-3 degrees cooler than the rest of Dubai due to greenery."
+    ],
+
+    // 🟢 LIFESTYLE & ATTRACTIONS
+    amenities: [
+      "The Farm (Dining)", 
+      "Body Language Health Club (Wellness)", 
+      "Heart & Soul Spa (Wellness)", 
+      "Open-air Cinema (Leisure)", 
+      "Themed Botanical Gardens (Nature)",
+      "Waitrose Supermarket (Retail)",
+      "7th Heaven Retail District (Shopping)"
+    ],
+
+    // 🟢 SUPPLY PIPELINE
+    supplyStats: {
+      totalUnits: "2,500+ (Villas & Apts)",
+      handedOver: "85%",
+      underConstruction: "15%",
+      nextDelivery: "Q4 2026 (IXORA / Chorisia II)"
+    },
+
+    // 🟢 TRANSPORT & CONNECTIVITY
+    transport: {
+      metro: { name: "N/A", mins: "--", status: "Car Dependent" },
+      roadAccess: ["Sheikh Mohammed Bin Zayed Road (E311)"],
+      walkability: "High (Within gardens & paths)",
+      cycling: "Scenic community tracks"
+    },
+
     aiVerdict: {
-      title: "Best for Monthly Income",
-      summary: "Dubai's volume leader for rentals. Offers the perfect balance of affordability and amenities, ensuring near-zero vacancy."
+      title: "The Ultimate Sanctuary",
+      summary: "Al Barari is an 'end-user' paradise. While rental yields (5-6%) are lower than mass-market areas, the capital appreciation on its limited villa stock is exceptional. It is immune to market oversupply due to its unique 'botanical' niche."
     },
-    demandSignals: {
-      rentalDemand: "Very High",
-      resaleLiquidity: "High",
-      tenantProfile: "Young professionals & small families"
-    },
-    ownership: { type: "Freehold", eligibleFor: ["All Nationalities"], minDownPayment: "20%" },
 
-    scores: { cashFlow: 9.1, appreciation: 7.8, liquidity: 8.5, risk: 6.2, lifestyle: 7.0 },
+    // 🟢 PRICE HISTORY
+    priceTrend: { 
+      "2023": "AED 9.5M", 
+      "2024": "AED 11.0M", 
+      "2025": "AED 12.5M",
+      "2026 (Proj)": "AED 13.8M" 
+    },
+
+    demandSignals: { 
+      rentalDemand: "High (Niche Luxury)", 
+      resaleLiquidity: "Moderate (High Ticket)", 
+      tenantProfile: "CEOs, Celebrities & Nature Lovers" 
+    },
+    ownership: { type: "Freehold", eligibleFor: ["All Nationalities"], minDownPayment: "25%" },
+
+    scores: { cashFlow: 6.5, appreciation: 9.2, liquidity: 6.8, risk: 4.5, lifestyle: 10.0 },
+    overallScore: 8.9,
+
+    // 🟢 UNIT ECONOMICS (Real Rents)
+    unitEconomics: { 
+      studio: { roi: "N/A", rent: "N/A" }, 
+      oneBed: { roi: "6.2%", rent: "AED 160k" }, // 7th Heaven / Ashjar
+      twoBed: { roi: "5.9%", rent: "AED 240k" }  // 7th Heaven / Ashjar
+    },
+
+    shortTermScore: 6.0,
+    shortTermRental: { allowed: true, avgDailyRate: "AED 1,500+", occupancy: "65%", tenantType: "Wellness Retreats" },
+
+    futureUpgrades: [
+      { name: "Al Barari Playground", status: "Completed" },
+      { name: "Lunaria Villas", status: "Handing Over" },
+      { name: "Community Mall Expansion", status: "Planned" }
+    ],
+
+    // 🟢 REAL ESTATE IN AL BARARI
+    description: "Al Barari is a unique destination in Dubai, famously known as the 'Green Heart' of the city. It is an eco-conscious development that integrates luxury homes with nature. Unlike the skyscraper-heavy districts, Al Barari features 60% green space, including themed gardens, natural lakes, and freshwater streams. The real estate mix includes palatial villas (The Residences, The Reserve), contemporary villas (The Nest, Chorisia), and luxury low-rise apartments (Ashjar, 7th Heaven), catering to an elite demographic.",
+    
+    // 🟢 PROPERTY MARKET OVERVIEW
+    marketReadData: [
+      { factor: "Buyer Mix", read: "Predominantly wealthy end-users (families) looking for a permanent residence. Low speculator activity compared to off-plan hotspots." },
+      { factor: "Rental Demand", read: "Steady demand for the unique apartments in Ashjar and 7th Heaven from professionals seeking a 'resort-like' daily life." },
+      { factor: "Price Drivers", read: "Scarcity of true 'green' communities in Dubai drives the premium. The limited number of plots ensures values remain protected." },
+      { factor: "Liquidity", read: "Sales cycles can be longer due to high price points (AED 10M+), but properties retain value exceptionally well during downturns." }
+    ],
+
+    // 🟢 RENTAL PRICES ANALYSIS
+    rentalAnalysisPoints: [
+      "1-Bedroom apartments in Ashjar start from AED 150k, significantly higher than the Dubai average due to size and finish.",
+      "Luxury 6-bedroom villas can command rents upwards of AED 1.2 Million per year.",
+      "Tenant retention is extremely high, with many tenants eventually converting to buyers."
+    ],
+
+    // 🟢 SALE PRICES ANALYSIS
+    salesAnalysisPoints: [
+      "Entry-level apartments (1-bed) trade around AED 2.2M - 2.5M.",
+      "Mid-range villas (The Nest/Chorisia) range from AED 10M to 15M.",
+      "Bespoke mansions in 'The Reserve' trade between AED 30M to AED 100M+ depending on customization."
+    ],
+
+    // 🟢 INVESTOR TIP
+    investorTip: "For ROI, look at 'Ashjar' or '7th Heaven' apartments. For capital preservation and prestige, 'The Nest' or 'Chorisia' villas are unbeatable.",
+
+    connectivity: {
+      airport: { name: "DXB Intl Airport", km: "18 km", mins: "20 mins" },
+      school: { name: "Dunecrest American", km: "1 km", mins: "2 mins" },
+      tourist: { name: "Global Village", km: "4 km", mins: "8 mins" },
+      metro: { name: "N/A", km: "--", mins: "--" },
+      mall: { name: "Cityland Mall", km: "5 km", mins: "9 mins" },
+      business: { name: "DIFC", km: "15 km", mins: "18 mins" },
+      hospital: { name: "Mediclinic Parkview", km: "12 km", mins: "15 mins" }
+    },
+
+    buyerPsychology: {
+      trigger: "Wellness & Exclusivity",
+      archetype: "The Nature Connoisseur",
+      motivation: "Buyers choose Al Barari to escape the concrete jungle. They are motivated by air quality, privacy, and the prestige of living in Dubai's most exclusive green address."
+    }
+  },
+
+ // --- DUBAI: AL BARSHA (1, 2, 3) ---
+  {
+    id: "al-barsha",
+    name: "Al Barsha (1, 2, 3)",
+    emirate: "Dubai",
+    category: "Central / Family / Mixed",
+    
+    // 🟢 REAL MARKET METRICS (2025/26 Data)
+    roi: "6.8%",
+    avgPrice: "AED 4.5M (Villas)",
+    imageColor: "bg-blue-600", // Corporate/Central
+    
+    // 🟢 KEY FACTS
+    masterDeveloper: "Private Developers / TECOM",
+    location: "Sheikh Zayed Road / Hessa Street",
+    totalArea: "Large District (Zones 1, 2, 3, South)",
+    towers: "Mid-rise Apts (Barsha 1) & Villas (2/3)",
+    completion: "Established / Fully Developed",
+    privateBeach: "No (15 mins to Jumeirah Beach)",
+
+    // 🟢 HIGHLIGHTS
+    highlights: [
+      "Home to the iconic Mall of the Emirates and Ski Dubai.",
+      "Barsha 1 is a high-density apartment zone; Barsha 2 & 3 are quiet, upscale villa communities.",
+      "Unmatched connectivity: bounded by Sheikh Zayed Rd (E11) and Al Khail Rd (E44).",
+      "Top-tier schooling district with gems like Dubai American Academy and Kings' School."
+    ],
+
+    // 🟢 LIFESTYLE & ATTRACTIONS
+    amenities: [
+      "Mall of the Emirates (Shopping)", 
+      "Ski Dubai (Leisure)", 
+      "Al Barsha Pond Park (Nature)", 
+      "Dubai Community Theatre (Culture)", 
+      "Al Barsha Mall (Shopping)",
+      "High-end Restaurants (Dining)"
+    ],
+
+    // 🟢 SUPPLY PIPELINE
+    supplyStats: {
+      totalUnits: "Mature Market",
+      handedOver: "98%",
+      underConstruction: "2%",
+      nextDelivery: "Limited Infill Plots"
+    },
+
+    // 🟢 TRANSPORT & CONNECTIVITY
+    transport: {
+      metro: { name: "Mall of Emirates / Mashreq", mins: "Direct Access", status: "Active (Red Line)" },
+      roadAccess: ["Sheikh Zayed Road (E11)", "Al Khail Road (E44)"],
+      walkability: "High (Barsha 1) / Moderate (Barsha 2/3)",
+      cycling: "Tracks in Pond Park"
+    },
+
+    aiVerdict: {
+      title: "The Central Hub",
+      summary: "Ideally located for families and commuters. Barsha 1 offers solid apartment yields due to metro access. Barsha 2 & 3 villas are 'forever homes' with capital growth driven by land value and scarcity."
+    },
+
+    // 🟢 PRICE HISTORY
+    priceTrend: { 
+      "2023": "AED 3.8M (Villa)", 
+      "2024": "AED 4.2M (Villa)", 
+      "2025": "AED 4.5M (Villa)",
+      "2026 (Proj)": "AED 4.8M (Villa)" 
+    },
+
+    demandSignals: { 
+      rentalDemand: "Very High", 
+      resaleLiquidity: "High", 
+      tenantProfile: "Families & Professionals" 
+    },
+    ownership: { type: "Mixed (Freehold in Barsha South / Leasehold in 1,2,3)", eligibleFor: ["GCC / Expats (South)"], minDownPayment: "20%" },
+
+    scores: { cashFlow: 7.5, appreciation: 6.8, liquidity: 8.5, risk: 4.0, lifestyle: 8.5 },
     overallScore: 8.4,
 
+    // 🟢 UNIT ECONOMICS (Barsha 1 Apts / Barsha South)
     unitEconomics: { 
-      studio: { roi: "8.5%", rent: "AED 55k" }, 
-      oneBed: { roi: "7.9%", rent: "AED 75k" }, 
-      twoBed: { roi: "6.4%", rent: "AED 105k" } 
+      studio: { roi: "7.2%", rent: "AED 60k" }, 
+      oneBed: { roi: "6.8%", rent: "AED 85k" }, 
+      twoBed: { roi: "6.5%", rent: "AED 125k" } 
     },
 
-    shortTermScore: 8.2,
-    shortTermRental: { allowed: true, avgDailyRate: "AED 420", occupancy: "68%", tenantType: "Budget Tourists" },
+    shortTermScore: 8.5,
+    shortTermRental: { allowed: true, avgDailyRate: "AED 550", occupancy: "82%", tenantType: "Shoppers/Tourists" },
 
     futureUpgrades: [
-      { name: "Metro Extension (Blue Line)", status: "Planned 2029" },
-      { name: "Circle Mall Phase 2", status: "Under Construction" },
-      { name: "New Community Parks", status: "Approved" }
+      { name: "Mall of Emirates Expansion", status: "Ongoing" },
+      { name: "Hessa Street Improvement", status: "Under Construction" },
+      { name: "New Local Parks", status: "Planned" }
     ],
 
-    priceTrend: { "2022": "AED 720k", "2023": "AED 810k", "2024": "AED 900k", "2025": "AED 950k" },
+    // 🟢 REAL ESTATE IN AL BARSHA
+    description: "Al Barsha is one of Dubai's most established and diverse districts. It is divided into sub-communities: Al Barsha 1 (bustling commercial/apartment hub near the Metro), and Al Barsha 2 & 3 (quiet, affluent villa neighborhoods). It is famous for housing the Mall of the Emirates. The area is a favorite for families due to the wide roads, large plot sizes, and high concentration of top-rated international schools.",
+    
+    // 🟢 PROPERTY MARKET OVERVIEW
+    marketReadData: [
+      { factor: "Buyer Mix", read: "Barsha 2 & 3 are heavily GCC/Local dominated for villas. Barsha South (Arjan/Science Park) attracts expat investors." },
+      { factor: "Rental Demand", read: "Extremely consistent. Barsha 1 attracts workers needing Metro access. Barsha 2/3 attract senior execs with families." },
+      { factor: "Price Drivers", read: "Location is the #1 driver. Being equidistant to Marina and Downtown makes it the 'center of gravity' for Dubai." },
+      { factor: "Liquidity", read: "High demand for rentals ensures low vacancy. Sales liquidity is lower for leasehold plots but high for freehold zones nearby." }
+    ],
 
-    description: "Dubai’s top mid-market community offering high rental yields and rapid liquidity.",
+    // 🟢 RENTAL PRICES ANALYSIS
+    rentalAnalysisPoints: [
+      "1-Bedroom apartments in Barsha 1 command AED 75k-95k, driven by MOE workers and tourists.",
+      "4-5 Bedroom independent villas in Barsha 2/3 rent for AED 350k - 500k+ annually.",
+      "Short-term rentals near the Mall are highly lucrative, capitalizing on shopping tourism."
+    ],
+
+    // 🟢 SALE PRICES ANALYSIS
+    salesAnalysisPoints: [
+      "Apartment prices in freehold zones (Barsha South) start from AED 800k for 1-beds.",
+      "Villas in Barsha 2/3 are often traded as land value + structure, ranging from AED 8M to 25M.",
+      "Renovated resale villas fetch a 15-20% premium over older, original condition units."
+    ],
+
+    // 🟢 INVESTOR TIP
+    investorTip: "Check ownership laws carefully. Barsha 1, 2, 3 are largely Leasehold (GCC Only). For Expat Freehold, target 'Al Barsha South' or 'Villa Lantana'.",
+
+    connectivity: {
+      airport: { name: "DXB Intl Airport", km: "25 km", mins: "22 mins" },
+      school: { name: "Dubai American Academy", km: "1 km", mins: "3 mins" },
+      tourist: { name: "Ski Dubai", km: "0.5 km", mins: "2 mins" },
+      metro: { name: "MOE Metro Station", km: "0.2 km", mins: "1 min" },
+      mall: { name: "Mall of the Emirates", km: "0.1 km", mins: "1 min" },
+      business: { name: "Media City", km: "6 km", mins: "8 mins" },
+      hospital: { name: "Saudi German Hospital", km: "2 km", mins: "4 mins" }
+    },
+
+    buyerPsychology: {
+      trigger: "Convenience & Education",
+      archetype: "The Family Pragmatist",
+      motivation: "Buyers and tenants choose Barsha for logistics. The ability to do the school run, get to work, and visit a major mall all within 10 minutes is the primary driver."
+    }
+  },
+// --- DUBAI: AL BARSHA SOUTH (Arjan, Science Park, Miracle Garden) ---
+  {
+    id: "al-barsha-south",
+    name: "Al Barsha South",
+    emirate: "Dubai",
+    category: "High Yield / Affordable",
+    
+    // 🟢 REAL MARKET METRICS (2025/26 Data)
+    roi: "8.2%",
+    avgPrice: "AED 950k",
+    imageColor: "bg-orange-600", // Vibrant/Family
+    
+    // 🟢 KEY FACTS
+    masterDeveloper: "Tecom / Dubai Properties",
+    location: "Umm Suqeim Road / Sheikh Mohammed Bin Zayed Rd",
+    totalArea: "High-density Residential Zone",
+    towers: "Mid-rise (G+10 to G+30)",
+    completion: "Developing / High Activity",
+    privateBeach: "No",
+
+    // 🟢 HIGHLIGHTS
+    highlights: [
+      "Home to Dubai Miracle Garden and Butterfly Garden (Major Tourist Spots).",
+      "Contains 'Dubai Science Park' – a growing hub for pharma and tech professionals.",
+      "One of the highest rental yield zones in Dubai (consistently topping 8%).",
+      "Excellent connectivity to Hessa Street and Umm Suqeim Road."
+    ],
+
+    // 🟢 LIFESTYLE & ATTRACTIONS
+    amenities: [
+      "Dubai Miracle Garden (Leisure)", 
+      "Dubai Butterfly Garden (Nature)", 
+      "My City Centre Al Barsha (Shopping)", 
+      "High-Street Retail Strips (Dining)", 
+      "Safa Community School (Education)",
+      "Mediclinic Parkview Hospital (Healthcare)"
+    ],
+
+    // 🟢 SUPPLY PIPELINE
+    supplyStats: {
+      totalUnits: "40,000+",
+      handedOver: "65%",
+      underConstruction: "35%",
+      nextDelivery: "Q3 2026 (Binghatti / Danube Projects)"
+    },
+
+    // 🟢 TRANSPORT & CONNECTIVITY
+    transport: {
+      metro: { name: "Planned (Blue Line)", mins: "Future", status: "Under Planning" },
+      roadAccess: ["Umm Suqeim St (D63)", "SMBZ Road (E311)"],
+      walkability: "Moderate (Community Parks)",
+      cycling: "Developing Network"
+    },
+
+    aiVerdict: {
+      title: "The Yield King",
+      summary: "Al Barsha South (specifically Arjan and Science Park) is the current king of gross rental yields for apartments. Entry prices are low, and rental demand is massive from mid-income professionals. Capital appreciation is steady as infrastructure improves."
+    },
+
+    // 🟢 PRICE HISTORY
+    priceTrend: { 
+      "2023": "AED 750k", 
+      "2024": "AED 850k", 
+      "2025": "AED 950k",
+      "2026 (Proj)": "AED 1.05M" 
+    },
+
+    demandSignals: { 
+      rentalDemand: "Extremely High", 
+      resaleLiquidity: "High", 
+      tenantProfile: "Teachers, Healthcare & Tech Workers" 
+    },
+    ownership: { type: "Freehold", eligibleFor: ["All Nationalities"], minDownPayment: "20%" },
+
+    scores: { cashFlow: 9.5, appreciation: 7.8, liquidity: 8.2, risk: 6.0, lifestyle: 7.5 },
+    overallScore: 8.8,
+
+    // 🟢 UNIT ECONOMICS
+    unitEconomics: { 
+      studio: { roi: "8.8%", rent: "AED 55k" }, 
+      oneBed: { roi: "8.2%", rent: "AED 78k" }, 
+      twoBed: { roi: "7.5%", rent: "AED 110k" } 
+    },
+
+    shortTermScore: 7.8,
+    shortTermRental: { allowed: true, avgDailyRate: "AED 400", occupancy: "75%", tenantType: "Budget Tourists/Families" },
+
+    futureUpgrades: [
+      { name: "Dubai Metro Blue Line", status: "Approved" },
+      { name: "New Regional Mall", status: "Planned" },
+      { name: "Hessa Street Upgrade", status: "Under Construction" }
+    ],
+
+    description: "Al Barsha South has evolved from a quiet suburb into a bustling residential district. It comprises Arjan, Dubai Science Park, and Barsha South 1, 2, & 3. It is famous for housing the Miracle Garden. The area is a magnet for investors due to its affordability and the high number of new, modern building launches with resort-style amenities.",
+    
+    // 🟢 PROPERTY MARKET OVERVIEW
+    marketReadData: [
+      { factor: "Buyer Mix", read: "Heavy investor presence (70%+) focusing on buy-to-let apartments. End-users are increasing as schools and hospitals open." },
+      { factor: "Rental Demand", read: "Vacancy is near zero in Science Park due to the influx of professionals working in the free zone." },
+      { factor: "Price Drivers", read: "The upcoming Metro Blue Line station is the single biggest catalyst for future price growth here." },
+      { factor: "Liquidity", read: "Small ticket sizes (under AED 1M) make these units very easy to sell in the secondary market." }
+    ],
+
+    rentalAnalysisPoints: [
+      "Studios in Science Park can achieve net yields of 7-8% due to high corporate demand.",
+      "2-Bedroom units in Arjan are popular with families due to proximity to Safa Community School.",
+      "Rents have risen 15% year-on-year due to the spillover effect from pricier neighboring areas."
+    ],
+
+    salesAnalysisPoints: [
+      "Off-plan payment plans here are among the most aggressive (1% monthly), attracting first-time buyers.",
+      "Resale premiums are modest (5-10%), making it a volume market rather than a high-margin flip market.",
+      "Fully furnished units command a significant price per sq.ft premium."
+    ],
+
+    investorTip: "Buy near the proposed Metro Blue Line stations in Arjan/Science Park. Once construction starts, capital values will jump.",
+
     connectivity: {
       airport: { name: "DXB Intl Airport", km: "28 km", mins: "25 mins" },
-      school: { name: "JSS Intl School", km: "1.2 km", mins: "4 mins" },
-      tourist: { name: "Miracle Garden", km: "6 km", mins: "9 mins" },
-      metro: { name: "Mall of Emirates", km: "10 km", mins: "14 mins" },
-      mall: { name: "Circle Mall", km: "0.5 km", mins: "2 mins" },
-      business: { name: "Business Bay", km: "18 km", mins: "20 mins" },
-      hospital: { name: "Mediclinic Parkview", km: "5 km", mins: "8 mins" }
+      school: { name: "Safa Community School", km: "1 km", mins: "2 mins" },
+      tourist: { name: "Miracle Garden", km: "0.5 km", mins: "1 min" },
+      metro: { name: "MOE (Current Nearest)", km: "8 km", mins: "12 mins" },
+      mall: { name: "My City Centre", km: "1 km", mins: "3 mins" },
+      business: { name: "Dubai Science Park", km: "0 km", mins: "0 mins" },
+      hospital: { name: "Mediclinic Parkview", km: "1 km", mins: "2 mins" }
+    },
+
+    buyerPsychology: {
+      trigger: "Value & Future Growth",
+      archetype: "The Smart Entry-Level Investor",
+      motivation: "Driven by the numbers. They want the highest possible rental return for the lowest entry price, betting on the future metro connectivity."
     }
   },
 
-  // --- 2. ARJAN ---
+  // --- DUBAI: AL GARHOUD ---
   {
-    id: "arjan",
-    name: "Arjan",
+    id: "al-garhoud",
+    name: "Al Garhoud",
     emirate: "Dubai",
-    category: "High Yield",
-    roi: "7.2%",
-    avgPrice: "AED 850k",
-    imageColor: "bg-teal-600",
-    amenities: ["Miracle Garden", "Butterfly Garden", "Parkview Hospital"],
+    category: "Leasehold / Aviation Hub",
+    
+    // 🟢 REAL MARKET METRICS (Rental Focus)
+    roi: "N/A (Leasehold)",
+    avgPrice: "N/A (Rental Market)",
+    imageColor: "bg-slate-700", // Corporate/Old Dubai
+    
+    // 🟢 KEY FACTS
+    masterDeveloper: "Private / Government",
+    location: "Near DXB Airport / Deira",
+    totalArea: "Established District",
+    towers: "Low-rise & Mid-rise Legacy Buildings",
+    completion: "Fully Developed",
+    privateBeach: "No (Creek Views)",
 
-    investorTags: ["Tourism Yields", "Growth Potential", "Affordable Luxury"],
-    aiVerdict: {
-      title: "Rising Star for Short-Term",
-      summary: "Located near Miracle Garden, Arjan is rapidly becoming a holiday home hotspot with yields outperforming established areas."
-    },
-    demandSignals: { rentalDemand: "High", resaleLiquidity: "Medium", tenantProfile: "Tourists & Healthcare Staff" },
-    ownership: { type: "Freehold", eligibleFor: ["All Nationalities"], minDownPayment: "20%" },
-
-    scores: { cashFlow: 8.5, appreciation: 7.5, liquidity: 6.5, risk: 6.0, lifestyle: 6.5 },
-    overallScore: 7.9,
-
-    unitEconomics: { 
-      studio: { roi: "7.8%", rent: "AED 50k" }, 
-      oneBed: { roi: "7.0%", rent: "AED 70k" }, 
-      twoBed: { roi: "6.2%", rent: "AED 95k" } 
-    },
-
-    shortTermScore: 8.8, 
-    shortTermRental: { allowed: true, avgDailyRate: "AED 450", occupancy: "72%", tenantType: "Holiday Makers" },
-
-    futureUpgrades: [
-      { name: "New School Complex", status: "Proposed" },
-      { name: "Hospital Expansion", status: "Under Construction" }
+    // 🟢 HIGHLIGHTS
+    highlights: [
+      "The aviation capital of Dubai, adjacent to DXB Airport and Emirates Headquarters.",
+      "Famous for 'The Irish Village' and the Dubai Tennis Stadium.",
+      "Primarily a Leasehold area (GCC/Local ownership), meaning it's a rental-only market for most expats.",
+      "Charming 'Old Dubai' feel with leafy streets and established villas."
     ],
 
-    priceTrend: { "2022": "AED 650k", "2023": "AED 720k", "2024": "AED 790k", "2025": "AED 850k" },
-
-    description: "Emerging tourist hotspot near Miracle Garden, ideal for high-yield holiday homes.",
-    connectivity: {
-      airport: { name: "DXB Intl Airport", km: "29 km", mins: "26 mins" },
-      school: { name: "Nord Anglia School", km: "2 km", mins: "5 mins" },
-      tourist: { name: "Butterfly Garden", km: "1 km", mins: "2 mins" },
-      metro: { name: "Mall of Emirates", km: "11 km", mins: "15 mins" },
-      mall: { name: "Dubai Hills Mall", km: "6 km", mins: "9 mins" },
-      business: { name: "Business Bay", km: "19 km", mins: "22 mins" },
-      hospital: { name: "Mediclinic Parkview", km: "0.5 km", mins: "2 mins" }
-    }
-  },
-
-  // --- 3. DUBAI SPORTS CITY ---
-  {
-    id: "dubai-sports-city",
-    name: "Dubai Sports City",
-    emirate: "Dubai",
-    category: "High Yield",
-    roi: "7.4%",
-    avgPrice: "AED 650k",
-    imageColor: "bg-lime-700",
-    amenities: ["Cricket Stadium", "Els Golf Club", "Fit Republik"],
-
-    investorTags: ["Budget Entry", "Stable Yields", "Active Lifestyle"],
-    aiVerdict: {
-      title: "Best Value for Money",
-      summary: "Offers one of the lowest entry points in Dubai with reliable ROI driven by fitness-conscious long-term tenants."
-    },
-    demandSignals: { rentalDemand: "High", resaleLiquidity: "Medium", tenantProfile: "Singles & Active Couples" },
-    ownership: { type: "Freehold", eligibleFor: ["All Nationalities"], minDownPayment: "20%" },
-
-    scores: { cashFlow: 8.2, appreciation: 6.0, liquidity: 7.0, risk: 5.5, lifestyle: 7.0 },
-    overallScore: 7.5,
-
-    unitEconomics: { 
-      studio: { roi: "8.0%", rent: "AED 42k" }, 
-      oneBed: { roi: "7.2%", rent: "AED 60k" }, 
-      twoBed: { roi: "6.0%", rent: "AED 85k" } 
-    },
-
-    shortTermScore: 6.5,
-    shortTermRental: { allowed: true, avgDailyRate: "AED 300", occupancy: "60%", tenantType: "Sports Tourists" },
-
-    futureUpgrades: [
-      { name: "Stadium Renovation", status: "Planned" },
-      { name: "Canal Walk Extension", status: "Concept" }
+    // 🟢 LIFESTYLE & ATTRACTIONS
+    amenities: [
+      "The Irish Village (Dining/Nightlife)", 
+      "Dubai Tennis Stadium (Events)", 
+      "Century Village (Dining)", 
+      "Le Meridien Hotel (Hospitality)", 
+      "Emirates Aviation College (Education)",
+      "Dubai Creek Golf & Yacht Club (Leisure)"
     ],
 
-    priceTrend: { "2022": "AED 500k", "2023": "AED 580k", "2024": "AED 620k", "2025": "AED 650k" },
+    // 🟢 SUPPLY PIPELINE
+    supplyStats: {
+      totalUnits: "Stable Supply",
+      handedOver: "100%",
+      underConstruction: "0%",
+      nextDelivery: "No Major New Inventory"
+    },
 
-    description: "Budget-friendly active lifestyle community with excellent rental stability.",
+    // 🟢 TRANSPORT & CONNECTIVITY
+    transport: {
+      metro: { name: "GGICO / Airport T1", mins: "Direct Access", status: "Active (Red Line)" },
+      roadAccess: ["Sheikh Zayed Road (E11)", "Airport Road"],
+      walkability: "Moderate (Around Century Village)",
+      cycling: "Limited"
+    },
+
+    aiVerdict: {
+      title: "The Pilot's Choice",
+      summary: "Al Garhoud is a rental-heavy district dominated by Emirates Airline staff and families who love the 'Old Dubai' charm. For investors, this area is not for buying (Leasehold), but for tenants, it offers unbeatable convenience."
+    },
+
+    // 🟢 PRICE HISTORY (Rentals)
+    priceTrend: { 
+      "2023": "AED 85k (Rent - 2B)", 
+      "2024": "AED 95k (Rent - 2B)", 
+      "2025": "AED 110k (Rent - 2B)",
+      "2026 (Proj)": "AED 115k (Rent - 2B)" 
+    },
+
+    demandSignals: { 
+      rentalDemand: "High (Airline Staff)", 
+      resaleLiquidity: "N/A (Leasehold)", 
+      tenantProfile: "Pilots, Cabin Crew, Families" 
+    },
+    ownership: { type: "Leasehold (Non-Freehold)", eligibleFor: ["GCC / Locals"], minDownPayment: "N/A" },
+
+    scores: { cashFlow: 0, appreciation: 0, liquidity: 0, risk: 0, lifestyle: 8.5 }, // Scores N/A for investment
+    overallScore: 7.5, // Lifestyle score
+
+    // 🟢 UNIT ECONOMICS (Rents)
+    unitEconomics: { 
+      studio: { roi: "N/A", rent: "AED 50k" }, 
+      oneBed: { roi: "N/A", rent: "AED 75k" }, 
+      twoBed: { roi: "N/A", rent: "AED 110k" } 
+    },
+
+    shortTermScore: 5.0,
+    shortTermRental: { allowed: true, avgDailyRate: "AED 350", occupancy: "60%", tenantType: "Transit Passengers" },
+
+    futureUpgrades: [
+      { name: "Airport Expansion Support", status: "Ongoing" },
+      { name: "Century Village Revamp", status: "Proposed" }
+    ],
+
+    description: "Al Garhoud is one of Dubai's most distinct neighborhoods, blending commercial activity with quiet residential pockets. It sits practically on the runway of Dubai International Airport, making it the preferred home for thousands of aviation professionals. The area is character-rich, hosting some of Dubai's oldest and most loved social venues.",
+    
+    // 🟢 PROPERTY MARKET OVERVIEW
+    marketReadData: [
+      { factor: "Buyer Mix", read: "N/A - This market is predominantly for tenants. Ownership is restricted to UAE/GCC nationals." },
+      { factor: "Rental Demand", read: "Inelastic demand from the aviation sector. Vacancy rates are tied directly to Emirates Airlines hiring cycles." },
+      { factor: "Price Drivers", read: "Rents are driven by the convenience of the commute to DXB and the quality of the older, larger apartments." },
+      { factor: "Liquidity", read: "N/A" }
+    ],
+
+    rentalAnalysisPoints: [
+      "Apartments here are significantly larger than new Dubai builds (e.g., 2-beds often 1,600+ sq.ft).",
+      "Rents are stable and less volatile than Marina or Downtown.",
+      "Villas in Garhoud are rare and often rented by senior executives or diplomats."
+    ],
+
+    salesAnalysisPoints: [
+      "Sales data is negligible for expatriate investors due to ownership restrictions.",
+      "GCC investors focus on land plots or full building acquisitions.",
+      "The area holds value due to its irreplaceable location."
+    ],
+
+    investorTip: "This is not an investment zone for expats. Look here if you want to rent a spacious home with a garden near the airport.",
+
     connectivity: {
-      airport: { name: "DXB Intl Airport", km: "30 km", mins: "28 mins" },
-      school: { name: "Victory Heights", km: "1 km", mins: "3 mins" },
-      tourist: { name: "Dubai Autodrome", km: "3 km", mins: "6 mins" },
-      metro: { name: "DMCC Metro", km: "12 km", mins: "16 mins" },
-      mall: { name: "City Centre Meaisem", km: "4 km", mins: "7 mins" },
-      business: { name: "Media City", km: "14 km", mins: "18 mins" },
-      hospital: { name: "Mediclinic Parkview", km: "6 km", mins: "9 mins" }
+      airport: { name: "DXB Intl Airport", km: "1 km", mins: "2 mins" },
+      school: { name: "The Indian High School", km: "0.5 km", mins: "2 mins" },
+      tourist: { name: "Irish Village", km: "0.2 km", mins: "1 min" },
+      metro: { name: "GGICO Station", km: "0.5 km", mins: "2 mins" },
+      mall: { name: "Deira City Centre", km: "2 km", mins: "5 mins" },
+      business: { name: "Airport Freezone", km: "1 km", mins: "3 mins" },
+      hospital: { name: "Mediclinic Welcare", km: "0.5 km", mins: "1 min" }
+    },
+
+    buyerPsychology: {
+      trigger: "N/A (Rental Market)",
+      archetype: "The Aviation Professional",
+      motivation: "Tenants choose Garhoud for one reason: Zero commute to the airport and a vibrant, established social scene."
     }
   },
 
-  // --- 4. BUSINESS BAY ---
+  // --- DUBAI: AL JADDAF (Culture Village) ---
   {
-    id: "business-bay",
-    name: "Business Bay",
+    id: "al-jaddaf",
+    name: "Al Jaddaf / Culture Village",
     emirate: "Dubai",
-    category: "Prime / Corporate",
+    category: "Waterfront / Cultural",
+    
+    // 🟢 REAL MARKET METRICS (2025/26 Data)
     roi: "6.5%",
-    avgPrice: "AED 1.6M",
-    imageColor: "bg-indigo-700",
-    amenities: ["Dubai Canal", "Metro Station", "Bay Avenue"],
+    avgPrice: "AED 1.4M",
+    imageColor: "bg-indigo-600", // Cultural/Arts
+    
+    // 🟢 KEY FACTS
+    masterDeveloper: "Dubai Holding",
+    location: "Dubai Creek / Near Business Bay",
+    totalArea: "Waterfront District",
+    towers: "Luxury Mid-rise (Palazzo Versace, D1)",
+    completion: "Developing / Partially Ready",
+    privateBeach: "No (Creek Promenade)",
 
-    investorTags: ["Corporate Tenants", "Appreciation", "Luxury Rentals"],
-    aiVerdict: {
-      title: "The Corporate Hub",
-      summary: "Ideal for targeting high-income executives. Waterfront plots and proximity to Downtown drive consistent capital appreciation."
-    },
-    demandSignals: { rentalDemand: "Very High", resaleLiquidity: "Very High", tenantProfile: "Executives & Professionals" },
-    ownership: { type: "Freehold", eligibleFor: ["All Nationalities"], minDownPayment: "20%" },
-
-    scores: { cashFlow: 7.8, appreciation: 8.5, liquidity: 9.2, risk: 6.2, lifestyle: 9.0 },
-    overallScore: 9.0,
-
-    unitEconomics: { 
-      studio: { roi: "7.0%", rent: "AED 85k" }, 
-      oneBed: { roi: "6.5%", rent: "AED 115k" }, 
-      twoBed: { roi: "5.5%", rent: "AED 160k" } 
-    },
-
-    shortTermScore: 9.2,
-    shortTermRental: { allowed: true, avgDailyRate: "AED 750", occupancy: "85%", tenantType: "Business Travelers" },
-
-    futureUpgrades: [
-      { name: "Canal Promenade", status: "Ongoing" },
-      { name: "Marasi Marina", status: "Planned" }
+    // 🟢 HIGHLIGHTS
+    highlights: [
+      "Strategically located between Old and New Dubai, on the banks of the Creek.",
+      "Home to the ultra-luxury Palazzo Versace Hotel and D1 Tower.",
+      "Developing into a cultural and arts hub with the Jameel Arts Centre.",
+      "Direct Metro access (Green Line) and easy access to Al Khail Road."
     ],
 
-    priceTrend: { "2022": "AED 1.2M", "2023": "AED 1.4M", "2024": "AED 1.5M", "2025": "AED 1.6M" },
-
-    description: "Dubai’s central business district offering high-demand corporate and luxury rentals.",
-    connectivity: {
-      airport: { name: "DXB Intl Airport", km: "15 km", mins: "18 mins" },
-      school: { name: "Hartland Intl", km: "5 km", mins: "10 mins" },
-      tourist: { name: "Burj Khalifa", km: "2 km", mins: "5 mins" },
-      metro: { name: "Business Bay Stn", km: "0.5 km", mins: "2 mins" },
-      mall: { name: "Dubai Mall", km: "2 km", mins: "5 mins" },
-      business: { name: "DIFC", km: "4 km", mins: "8 mins" },
-      hospital: { name: "Emirates Hospital", km: "3 km", mins: "6 mins" }
-    }
-  },
-
-  // --- 5. DOWNTOWN DUBAI ---
-  {
-    id: "downtown-dubai",
-    name: "Downtown Dubai",
-    emirate: "Dubai",
-    category: "Ultra Prime",
-    roi: "5.8%",
-    avgPrice: "AED 2.2M",
-    imageColor: "bg-gray-800",
-    amenities: ["Burj Khalifa", "Dubai Mall", "Dubai Opera"],
-
-    investorTags: ["Trophy Asset", "Safe Haven", "High Liquidity"],
-    aiVerdict: {
-      title: "The Gold Standard",
-      summary: "The most prestigious address in the region. Offers unmatched capital preservation and liquidity, though yields are lower."
-    },
-    demandSignals: { rentalDemand: "High", resaleLiquidity: "Excellent", tenantProfile: "Wealthy Expats & Tourists" },
-    ownership: { type: "Freehold", eligibleFor: ["All Nationalities"], minDownPayment: "20%" },
-
-    scores: { cashFlow: 6.5, appreciation: 9.0, liquidity: 9.8, risk: 4.5, lifestyle: 10.0 },
-    overallScore: 9.5,
-
-    unitEconomics: { 
-      studio: { roi: "6.2%", rent: "AED 105k" }, 
-      oneBed: { roi: "5.8%", rent: "AED 150k" }, 
-      twoBed: { roi: "5.0%", rent: "AED 240k" } 
-    },
-
-    shortTermScore: 9.8,
-    shortTermRental: { allowed: true, avgDailyRate: "AED 1200", occupancy: "90%", tenantType: "Luxury Tourists" },
-
-    futureUpgrades: [
-      { name: "Opera District", status: "Completing" },
-      { name: "Boulevard Expansion", status: "Proposed" }
+    // 🟢 LIFESTYLE & ATTRACTIONS
+    amenities: [
+      "Jameel Arts Centre (Culture)", 
+      "Palazzo Versace (Luxury Dining)", 
+      "Al Jaddaf Waterfront (Leisure)", 
+      "Zabeel Stadium (Sports)", 
+      "Latifa Hospital (Healthcare)",
+      "Dubai Creek Boardwalk (Nature)"
     ],
 
-    priceTrend: { "2022": "AED 1.8M", "2023": "AED 2.0M", "2024": "AED 2.1M", "2025": "AED 2.2M" },
+    // 🟢 SUPPLY PIPELINE
+    supplyStats: {
+      totalUnits: "12,000+",
+      handedOver: "60%",
+      underConstruction: "40%",
+      nextDelivery: "Q1 2027 (Kempinski Residences)"
+    },
 
-    description: "The world's most prestigious square kilometer, offering unmatched capital preservation.",
+    // 🟢 TRANSPORT & CONNECTIVITY
+    transport: {
+      metro: { name: "Al Jadaf Station", mins: "Direct Access", status: "Active (Green Line)" },
+      roadAccess: ["Al Khail Road (E44)"],
+      walkability: "High (Along the Creek)",
+      cycling: "Waterfront tracks"
+    },
+
+    aiVerdict: {
+      title: "The Silent Performer",
+      summary: "Al Jaddaf is undervalued compared to Business Bay. With its waterfront location, metro access, and proximity to Downtown (10 mins), it offers a 'luxury for less' proposition. Strong potential for capital growth as the 'Culture Village' vision matures."
+    },
+
+    // 🟢 PRICE HISTORY
+    priceTrend: { 
+      "2023": "AED 1.1M", 
+      "2024": "AED 1.25M", 
+      "2025": "AED 1.4M",
+      "2026 (Proj)": "AED 1.55M" 
+    },
+
+    demandSignals: { 
+      rentalDemand: "Moderate-High", 
+      resaleLiquidity: "Moderate", 
+      tenantProfile: "Healthcare Professionals & Creatives" 
+    },
+    ownership: { type: "Freehold (Culture Village)", eligibleFor: ["All Nationalities"], minDownPayment: "20%" },
+
+    scores: { cashFlow: 7.0, appreciation: 8.0, liquidity: 6.5, risk: 5.0, lifestyle: 8.8 },
+    overallScore: 8.2,
+
+    // 🟢 UNIT ECONOMICS
+    unitEconomics: { 
+      studio: { roi: "6.8%", rent: "AED 60k" }, 
+      oneBed: { roi: "6.5%", rent: "AED 90k" }, 
+      twoBed: { roi: "5.9%", rent: "AED 130k" } 
+    },
+
+    shortTermScore: 7.2,
+    shortTermRental: { allowed: true, avgDailyRate: "AED 500", occupancy: "70%", tenantType: "Medical Tourists/Business" },
+
+    futureUpgrades: [
+      { name: "Culture Village Completion", status: "Ongoing" },
+      { name: "New Pedestrian Bridges", status: "Planned" },
+      { name: "Water Transport Expansion", status: "Active" }
+    ],
+
+    description: "Al Jaddaf is Dubai's bridge between the past and the future. Situated on the Creek, it hosts traditional dhow building yards alongside the neo-classical luxury of the Palazzo Versace. The area is rapidly gentrifying, attracting investors who recognize the value of waterfront freehold land just minutes from the Burj Khalifa.",
+    
+    // 🟢 PROPERTY MARKET OVERVIEW
+    marketReadData: [
+      { factor: "Buyer Mix", read: "A mix of GCC nationals appreciating the cultural heritage and smart investors spotting the price gap vs. Business Bay." },
+      { factor: "Rental Demand", read: "Driven by staff from the massive Healthcare City nearby and creatives working in the Design District (d3)." },
+      { factor: "Price Drivers", read: "Waterfront views are the primary value driver. Units facing the Creek command a 20% premium." },
+      { factor: "Liquidity", read: "Moderate. It is not yet as liquid as Marina, but patient sellers realize good gains." }
+    ],
+
+    rentalAnalysisPoints: [
+      "1-Bedroom apartments in 'D1 Tower' or 'Versace' rent for AED 110k+, offering luxury yields.",
+      "Standard units in Al Jaddaf waterfront rent for AED 80k-90k, offering affordability near Downtown.",
+      "High demand from medical tourists due to proximity to Latifa Hospital and Healthcare City."
+    ],
+
+    salesAnalysisPoints: [
+      "Entry prices for luxury waterfront apartments are 30% cheaper than Business Bay.",
+      "Branded residences (Versace, Kempinski) hold their value well during market fluctuations.",
+      "Off-plan supply is limited compared to JVC, protecting resale values."
+    ],
+
+    investorTip: "Look for 'Creek-facing' units. The view is protected and will always command a premium over back-facing units.",
+
     connectivity: {
-      airport: { name: "DXB Intl Airport", km: "14 km", mins: "15 mins" },
-      school: { name: "Hartland Intl", km: "5 km", mins: "10 mins" },
-      tourist: { name: "Dubai Fountain", km: "0.5 km", mins: "2 mins" },
-      metro: { name: "Dubai Mall Metro", km: "1 km", mins: "3 mins" },
-      mall: { name: "Dubai Mall", km: "0.1 km", mins: "1 min" },
-      business: { name: "DIFC", km: "3 km", mins: "6 mins" },
-      hospital: { name: "Mediclinic Dubai Mall", km: "0.5 km", mins: "2 mins" }
+      airport: { name: "DXB Intl Airport", km: "6 km", mins: "8 mins" },
+      school: { name: "Swiss Scientific School", km: "2 km", mins: "4 mins" },
+      tourist: { name: "Jameel Arts Centre", km: "0.5 km", mins: "1 min" },
+      metro: { name: "Al Jadaf Station", km: "0.2 km", mins: "1 min" },
+      mall: { name: "Dubai Festival City", km: "3 km", mins: "5 mins" },
+      business: { name: "DIFC", km: "6 km", mins: "9 mins" },
+      hospital: { name: "Latifa Hospital", km: "1 km", mins: "2 mins" }
+    },
+
+    buyerPsychology: {
+      trigger: "Culture & Class",
+      archetype: "The Sophisticated Investor",
+      motivation: "Buyers here want the 'Versace' lifestyle or the artsy vibe of the waterfront without the chaos of Downtown traffic. They value the serenity of the Creek."
     }
   },
 
