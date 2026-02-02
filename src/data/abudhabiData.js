@@ -14,47 +14,57 @@ export const ABUDHABI_DATA = [
     avgPrice: "AED 1.8M",
     imageColor: "bg-rose-600", // Vibrant/Entertainment
     
+    // 🟢 KEY FACTS
     masterDeveloper: "Aldar Properties",
     location: "Yas Island, Abu Dhabi",
     totalArea: "25 sq. km",
     towers: "Low-rise & Mid-rise Communities",
     completion: "Developed / Expansion Phase",
+    privateBeach: "Yes (Yas Beach)",
 
+    // 🟢 HIGHLIGHTS (Bullet Points for Key Highlights Section)
     highlights: [
-      "The UAE's premier entertainment hub (F1, Ferrari World, SeaWorld).",
-      "Extremely high demand for Short-Term Rentals (Airbnb).",
-      "Freehold zone available for all nationalities.",
-      "Home to the Yas Creative Hub, attracting media professionals."
+      "The UAE's premier entertainment hub featuring F1, Ferrari World, and SeaWorld.",
+      "Highest short-term rental (Airbnb) occupancy rates in Abu Dhabi due to year-round events.",
+      "Designated 'Investment Zone' allowing 100% freehold ownership for all nationalities.",
+      "Home to the Yas Creative Hub, attracting thousands of media and tech professionals."
     ],
 
+    // 🟢 LIFESTYLE & ATTRACTIONS (Split for Luxury Cards)
     amenities: [
       "Yas Mall (Shopping)", 
       "Ferrari World (Leisure)", 
       "Yas Marina Circuit (Sport)", 
       "Yas Bay Waterfront (Dining)", 
       "SeaWorld Abu Dhabi (Leisure)",
-      "Etihad Arena (Events)"
+      "Etihad Arena (Events)",
+      "Yas Beach (Leisure)",
+      "Warner Bros. World (Leisure)"
     ],
 
+    // 🟢 SUPPLY PIPELINE (Institutional Data)
     supplyStats: {
       totalUnits: "18,000+",
       handedOver: "75%",
       underConstruction: "25%",
-      nextDelivery: "Q2 2026 (Gardenia Bay)"
+      nextDelivery: "Q2 2026 (Gardenia Bay & Perla)"
     },
 
+    // 🟢 TRANSPORT & CONNECTIVITY (Dark Card UI)
     transport: {
-      metro: { name: "N/A", mins: "--", status: "Yas Express Bus Network" },
+      metro: { name: "Yas Express", mins: "Free Shuttle", status: "Network Active" },
       roadAccess: ["Sheikh Khalifa Highway (E12)", "Yas Tunnel"],
       walkability: "High (Yas Bay & Waterfront)",
       cycling: "Dedicated 10km+ Cycle Tracks"
     },
 
+    // 🟢 AI VERDICT
     aiVerdict: {
       title: "The Airbnb Capital",
       summary: "Unbeatable for short-term rental yields due to year-round events (F1, UFC, Concerts). Long-term capital growth is fueled by its status as a global tourism destination."
     },
 
+    // 🟢 PRICE TRENDS
     priceTrend: { 
       "2023": "AED 1.5M", 
       "2024": "AED 1.65M", 
@@ -87,16 +97,44 @@ export const ABUDHABI_DATA = [
       { name: "New Light Rail Link", status: "Proposed" }
     ],
 
-    description: "Abu Dhabi's adrenaline-fueled entertainment district, offering high-yield investment opportunities in the tourism sector.",
+    // 🟢 REAL ESTATE BRIEF (Long Description)
+    description: "Yas Island represents the pinnacle of Abu Dhabi's leisure and entertainment sector. Spanning 25 square kilometers, this master-planned island is developed primarily by Aldar Properties. It offers a unique mix of waterfront apartments, luxury villas, and golf course estates. The community provides residents with world-class amenities including the Formula 1 circuit, theme parks, and the largest mall in Abu Dhabi. Strategically located with direct access to the Sheikh Khalifa Highway, it ensures seamless connectivity to both downtown Abu Dhabi and Dubai.",
     
+    // 🟢 CONNECTIVITY
     connectivity: {
       airport: { name: "AUH Intl Airport", km: "10 km", mins: "12 mins" },
       school: { name: "SABIS School", km: "3 km", mins: "5 mins" },
       tourist: { name: "Ferrari World", km: "1 km", mins: "2 mins" },
-      metro: { name: "N/A", km: "--", mins: "--" },
+      metro: { name: "Yas Express Hub", km: "0.5 km", mins: "2 mins" },
       mall: { name: "Yas Mall", km: "1 km", mins: "3 mins" },
       business: { name: "Yas Creative Hub", km: "2 km", mins: "5 mins" },
       hospital: { name: "Burjeel Day Surgery", km: "4 km", mins: "8 mins" }
+    },
+
+    // 🟢 MARKET ANALYSIS (New Data Fields for Updated UI)
+    marketReadData: [
+      { factor: "Buyer Mix", read: "Heavily dominated by international investors and second-home buyers, particularly from Europe and the GCC, drawn by the leisure lifestyle." },
+      { factor: "Rental Demand", read: "Short-term rental demand is the primary driver, peaking during F1 and winter months, with studios and 1-beds achieving significant premiums." },
+      { factor: "Price Drivers", read: "The continuous addition of global attractions (like SeaWorld and the upcoming Harry Potter World) creates sustained capital appreciation." },
+      { factor: "Liquidity", read: "High liquidity for waterfront units; villas in Yas Acres and Noya command waiting lists due to limited supply." }
+    ],
+
+    rentalAnalysisPoints: [
+      "Short-term rentals (Airbnb) significantly outperform long-term leases, with yields often exceeding 9% during peak season.",
+      "Studio and 1-bedroom apartments near Yas Bay are in highest demand for tourists.",
+      "Proximity to Etihad Arena ensures consistent booking rates from event-goers."
+    ],
+
+    salesAnalysisPoints: [
+      "Off-plan projects like Gardenia Bay are selling out within hours of launch, indicating strong investor appetite.",
+      "Resale values for completed units in Water's Edge and Mayan have seen a 15-20% appreciation since 2023.",
+      "Luxury villas in West Yas and Yas Acres serve as the area's premium capital growth anchors."
+    ],
+
+    buyerPsychology: {
+      trigger: "Lifestyle & Entertainment",
+      archetype: "The Experience Seeker",
+      motivation: "Investors are driven by the 'prestige' of owning property on the UAE's most famous entertainment island. The primary motivation is a combination of personal holiday use and high-yield short-term rental income when not in residence."
     }
   },
 
