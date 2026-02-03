@@ -2974,5 +2974,532 @@ export const DUBAI_AREAS = [
     buyerPsychology: { trigger: "Lifestyle", archetype: "The Trendsetter", motivation: "Living in Dubai's most walkable, stylish open-air district." }
   },
 
+  // --- DUBAI: AL YALAYIS (Emerging Budget Hub) ---
+  {
+    id: "al-yalayis",
+    name: "Al Yalayis",
+    emirate: "Dubai",
+    category: "Emerging / Budget",
+    
+    // 🟢 REAL MARKET METRICS (2025/26 Data)
+    roi: "6.8%",
+    avgPrice: "AED 550k (Apt)",
+    imageColor: "bg-stone-500", // Industrial/Emerging
+    
+    // 🟢 KEY FACTS
+    masterDeveloper: "Dubai Investments / Private",
+    location: "Jebel Ali / DIP Interface",
+    totalArea: "Mixed Use (Logistics & Res)",
+    towers: "Low-rise Affordable Housing",
+    completion: "Developing",
+    privateBeach: "No",
+
+    // 🟢 HIGHLIGHTS
+    highlights: [
+      "A rapidly emerging district strategically located near Dubai Investment Park (DIP) and Expo City.",
+      "Offers some of the lowest entry prices for freehold property in Dubai (Studios < AED 450k).",
+      "High demand from the massive workforce in Jebel Ali Freezone and Al Maktoum Airport.",
+      "Al Yalayis 1, 2 & 3 are evolving into self-sufficient residential pockets."
+    ],
+
+    // 🟢 LIFESTYLE & ATTRACTIONS
+    amenities: [
+      "Al Yalayis Government Center (Services)", 
+      "Community Parks (Leisure)", 
+      "DIP Souq (Shopping - Nearby)", 
+      "Expo City Dubai (Leisure - 10 mins)",
+      "Local Mosques (Culture)",
+      "Cycling Tracks (Fitness)"
+    ],
+
+    // 🟢 SUPPLY PIPELINE
+    supplyStats: {
+      totalUnits: "Growing Supply",
+      handedOver: "40%",
+      underConstruction: "60%",
+      nextDelivery: "Q4 2026 (Affordable Projects)"
+    },
+
+    // 🟢 TRANSPORT & CONNECTIVITY
+    transport: {
+      metro: { name: "DIP Station", mins: "Bus Link", status: "Active (Route 2020)" },
+      roadAccess: ["Yalayis Street (D57)", "E611"],
+      walkability: "Low (Car Dependent)",
+      cycling: "Developing Network"
+    },
+
+    aiVerdict: {
+      title: "The Future Growth Zone",
+      summary: "Al Yalayis is a long-term play. It is currently rough around the edges but sits on a critical logistics corridor. As DWC Airport expands, this area will become the primary affordable housing belt for the airport workforce."
+    },
+
+    // 🟢 PRICE HISTORY
+    priceTrend: { 
+      "2023": "AED 420k", 
+      "2024": "AED 480k", 
+      "2025": "AED 550k",
+      "2026 (Proj)": "AED 620k" 
+    },
+
+    demandSignals: { 
+      rentalDemand: "High (Workforce)", 
+      resaleLiquidity: "Moderate", 
+      tenantProfile: "Blue/White Collar Mix" 
+    },
+    ownership: { type: "Freehold", eligibleFor: ["All Nationalities"], minDownPayment: "20%" },
+
+    scores: { cashFlow: 7.5, appreciation: 8.5, liquidity: 5.0, risk: 4.0, lifestyle: 5.5 },
+    overallScore: 7.2,
+
+    // 🟢 UNIT ECONOMICS (Budget Focus)
+    unitEconomics: { 
+      studio: { roi: "7.8%", rent: "AED 32k" }, 
+      oneBed: { roi: "7.2%", rent: "AED 48k" }, 
+      twoBed: { roi: "6.8%", rent: "AED 65k" } 
+    },
+
+    shortTermScore: 3.0,
+    shortTermRental: { allowed: true, avgDailyRate: "AED 200", occupancy: "60%", tenantType: "Budget Business" },
+
+    futureUpgrades: [
+      { name: "Yalayis Street Widening", status: "Completed" },
+      { name: "New Retail Plazas", status: "Planned" }
+    ],
+
+    description: "Al Yalayis is a key node in Dubai's southern expansion. Historically an industrial and government services hub, it is transforming into a budget-friendly residential zone. Its proximity to the Expo 2020 site and the new Al Maktoum Airport makes it a strategic location for investors looking for capital appreciation over a 5-10 year horizon.",
+    
+    marketReadData: [
+      { factor: "Buyer Mix", read: "Budget investors priced out of Furjan and JVC." },
+      { factor: "Rental Demand", read: "Driven by affordability. It competes directly with Dubai South." },
+      { factor: "Price Drivers", read: "Infrastructure development and DWC Airport expansion." },
+      { factor: "Liquidity", read: "Growing, as more off-plan projects launch." }
+    ],
+
+    rentalAnalysisPoints: [
+      "Rents are 20-30% lower than DIP, attracting cost-conscious tenants.",
+      "Bulk leasing to companies for staff accommodation is a common strategy.",
+      "Studio yields can hit 8% due to low service charges."
+    ],
+    salesAnalysisPoints: [
+      "Prices per sq.ft are under AED 800, a rarity in Freehold Dubai.",
+      "Capital growth will follow the completion of surrounding infrastructure."
+    ],
+    investorTip: "Buy cheap, hold long. Wait for the DWC Airport expansion to drive massive workforce demand here.",
+    
+    connectivity: {
+      airport: { name: "DWC Airport", km: "10 km", mins: "12 mins" },
+      school: { name: "Dove Green", km: "5 km", mins: "8 mins" },
+      tourist: { name: "Expo City", km: "8 km", mins: "10 mins" },
+      metro: { name: "DIP Station", km: "4 km", mins: "6 mins" },
+      mall: { name: "DIP Souq", km: "3 km", mins: "5 mins" },
+      business: { name: "Jebel Ali Freezone", km: "8 km", mins: "12 mins" },
+      hospital: { name: "NMC Royal", km: "4 km", mins: "6 mins" }
+    },
+    buyerPsychology: { trigger: "Affordability", archetype: "The Value Hunter", motivation: "Getting on the property ladder for under AED 500k." }
+  },
+
+  // --- DUBAI: ARABIAN RANCHES 1 (The Original Luxury) ---
+  {
+    id: "arabian-ranches-1",
+    name: "Arabian Ranches 1",
+    emirate: "Dubai",
+    category: "Luxury / Golf Community",
+    
+    roi: "5.2%",
+    avgPrice: "AED 6.5M (Villa)",
+    imageColor: "bg-amber-600", // Desert/Golf
+    
+    masterDeveloper: "Emaar",
+    location: "Sheikh Mohammed Bin Zayed Rd",
+    totalArea: "Premium Golf District",
+    towers: "None (Villas only)",
+    completion: "Mature / Established",
+    privateBeach: "No (Golf Course Views)",
+
+    highlights: [
+      "The original, most prestigious desert-themed villa community by Emaar.",
+      "Home to the Arabian Ranches Golf Club and JESS (one of Dubai's top schools).",
+      "Large plots and mature greenery make it a favorite for Western expats.",
+      "Highly established resale market with strong capital retention."
+    ],
+
+    amenities: [
+      "Arabian Ranches Golf Club (Sport)", "Ranches Souk (Retail)", "JESS Jumeirah (Education)", "Mediclinic (Healthcare)", "Equestrian Centre (Leisure)", "Community Lakes (Nature)"
+    ],
+
+    supplyStats: { totalUnits: "Capped Supply", handedOver: "100%", underConstruction: "0%", nextDelivery: "None" },
+    
+    transport: {
+      metro: { name: "No Metro", mins: "--", status: "Car Dependent" },
+      roadAccess: ["Sheikh Mohammed Bin Zayed Rd", "Hessa St"],
+      walkability: "High (Internal Paths)",
+      cycling: "Community Tracks"
+    },
+
+    aiVerdict: {
+      title: "The Gold Standard",
+      summary: "Arabian Ranches 1 is the benchmark for villa living. It commands a premium over AR 2 & 3 due to larger plot sizes and the golf course. It is an 'end-user' market where capital preservation is excellent."
+    },
+
+    priceTrend: { "2023": "AED 5.2M", "2024": "AED 5.8M", "2025": "AED 6.5M", "2026": "AED 6.9M" },
+    demandSignals: { rentalDemand: "Very High", resaleLiquidity: "High", tenantProfile: "Western Families & CEOs" },
+    ownership: { type: "Freehold", eligibleFor: ["All Nationalities"], minDownPayment: "20%" },
+    scores: { cashFlow: 5.0, appreciation: 7.5, liquidity: 8.5, risk: 2.0, lifestyle: 9.8 },
+    overallScore: 8.8,
+
+    unitEconomics: { studio: { roi: "N/A", rent: "N/A" }, oneBed: { roi: "N/A", rent: "N/A" }, twoBed: { roi: "5.5%", rent: "AED 160k" } }, // 2-bed Villas (Palmeral)
+    shortTermScore: 5.0,
+    shortTermRental: { allowed: true, avgDailyRate: "AED 1,500", occupancy: "60%", tenantType: "Golf Tourists" },
+    
+    futureUpgrades: [{ name: "Souk Renovation", status: "Completed" }],
+    description: "Arabian Ranches 1 set the standard for gated communities in Dubai. Launched in 2004, it features 4,000+ villas across distinct enclaves like Saheel, Savannah, and the ultra-exclusive Polo Homes. The mature landscaping and community feel are unmatched.",
+    
+    marketReadData: [
+      { factor: "Buyer Mix", read: "Wealthy families upgrading from apartments. High percentage of owner-occupiers." },
+      { factor: "Rental Demand", read: "Always high. JESS school is a massive magnet; families move here just to secure a school seat." },
+      { factor: "Price Drivers", read: "Golf course views and proximity to JESS." },
+      { factor: "Liquidity", read: "Very high. Renovated units sell within weeks." }
+    ],
+
+    rentalAnalysisPoints: ["3-Bedroom villas (Saheel/Al Reem) rent for AED 220k-260k.", "Upgraded units with pools command a 20% rental premium.", "Tenants are sticky, often staying 5-10 years."],
+    salesAnalysisPoints: ["Prices have risen 35% since 2023.", "Renovated villas trade at AED 1,800/sq.ft vs AED 1,400/sq.ft for original condition."],
+    investorTip: "Buy an unrenovated unit in 'Al Reem' or 'Palmeral', modernize it, and flip for a 15% profit.",
+    
+    connectivity: {
+      airport: { name: "DXB Intl", km: "25 km", mins: "25 mins" },
+      school: { name: "JESS Ranches", km: "0.5 km", mins: "2 mins" },
+      tourist: { name: "Global Village", km: "5 km", mins: "8 mins" },
+      metro: { name: "N/A", km: "--", mins: "--" },
+      mall: { name: "Ranches Souk", km: "1 km", mins: "3 mins" },
+      business: { name: "Motor City", km: "3 km", mins: "5 mins" },
+      hospital: { name: "Mediclinic", km: "1 km", mins: "3 mins" }
+    },
+    buyerPsychology: { trigger: "Prestige & Schools", archetype: "The Family Upgrader", motivation: "Securing a spot in JESS and living on a golf course." }
+  },
+
+  // --- DUBAI: ARABIAN RANCHES 2 (The Family Sequel) ---
+  {
+    id: "arabian-ranches-2",
+    name: "Arabian Ranches 2",
+    emirate: "Dubai",
+    category: "Family / Villa Community",
+    
+    roi: "5.5%",
+    avgPrice: "AED 5.2M (Villa)",
+    imageColor: "bg-amber-700", // Community/Warm
+    
+    masterDeveloper: "Emaar",
+    location: "Al Qudra Road",
+    totalArea: "Gated Villa Clusters",
+    towers: "None",
+    completion: "Mature (2015-2018)",
+    privateBeach: "No",
+
+    highlights: [
+      "Designed specifically for family living with pedestrian-friendly walkways ('The Sikka').",
+      "Home to 'The Ranches Souk' (Carrefour, Virgin Megastore) and a leisure centre.",
+      "Modern Spanish and Portuguese-themed architecture.",
+      "Slightly more compact plots than Ranches 1 but newer build quality."
+    ],
+
+    amenities: [
+      "The Ranches Souk (Mall)", "Fitness First (Gym)", "Ranches Primary School (Education)", "Football Pitches (Sport)", "Blossom Nursery (Education)", "Community Pools (Leisure)"
+    ],
+
+    supplyStats: { totalUnits: "1,700 Villas", handedOver: "100%", underConstruction: "0%", nextDelivery: "None" },
+    
+    transport: {
+      metro: { name: "N/A", mins: "--", status: "Car Dependent" },
+      roadAccess: ["Al Qudra Rd", "Latifa Bint Hamdan St"],
+      walkability: "Very High (Internal Sikka system)",
+      cycling: "Dedicated Tracks"
+    },
+
+    aiVerdict: {
+      title: "The Modern Family Choice",
+      summary: "Ranches 2 fixes the aging issues of Ranches 1 with modern layouts and better community integration. It is the go-to for families who want a 'turn-key' villa experience without the need for immediate renovation."
+    },
+
+    priceTrend: { "2023": "AED 4.2M", "2024": "AED 4.8M", "2025": "AED 5.2M", "2026": "AED 5.5M" },
+    demandSignals: { rentalDemand: "High", resaleLiquidity: "High", tenantProfile: "European/Expat Families" },
+    ownership: { type: "Freehold", eligibleFor: ["All Nationalities"], minDownPayment: "20%" },
+    scores: { cashFlow: 5.2, appreciation: 6.5, liquidity: 8.0, risk: 2.5, lifestyle: 9.5 },
+    overallScore: 8.6,
+
+    unitEconomics: { studio: { roi: "N/A", rent: "N/A" }, oneBed: { roi: "N/A", rent: "N/A" }, twoBed: { roi: "N/A", rent: "N/A" } }, // Only 3+ Bed Villas
+    shortTermScore: 4.0,
+    shortTermRental: { allowed: true, avgDailyRate: "AED 1,200", occupancy: "50%", tenantType: "Families" },
+    
+    futureUpgrades: [{ name: "Road Expansion (Qudra)", status: "Ongoing" }],
+    description: "Arabian Ranches 2 is a cohesive collection of villa enclaves (Casa, Lila, Palma, Yasmin, etc.). It focuses on 'walkability' with a network of sikkas (paths) connecting all homes to the central Souk and school. It feels more intimate and dense than Ranches 1.",
+    
+    marketReadData: [
+      { factor: "Buyer Mix", read: "End-users dominate. Investors buy for stable 5% yields." },
+      { factor: "Rental Demand", read: "Consistent. Vacancy rates are typically below 3%." },
+      { factor: "Price Drivers", read: "Community facilities and newer build quality vs Ranches 1." },
+      { factor: "Liquidity", read: "High. 'Casa' and 'Palma' units are the most liquid." }
+    ],
+
+    rentalAnalysisPoints: ["3-Bedroom villas (Casa) rent for AED 240k+.", "4-Bedroom units average AED 320k.", "Maintenance costs are lower than Ranches 1."],
+    salesAnalysisPoints: ["Prices have stabilized, offering slow steady growth.", "Yasmin and Samara (Luxury clusters) trade at a premium."],
+    investorTip: "Target 'Casa' type villas. They are the entry-level 3-beds and have the highest rental turnover and demand.",
+
+    connectivity: {
+      airport: { name: "DXB Intl", km: "28 km", mins: "28 mins" },
+      school: { name: "Ranches Primary", km: "0.2 km", mins: "1 min" },
+      tourist: { name: "Miracle Garden", km: "4 km", mins: "6 mins" },
+      metro: { name: "N/A", km: "--", mins: "--" },
+      mall: { name: "Ranches Souk 2", km: "0.1 km", mins: "1 min" },
+      business: { name: "Studio City", km: "3 km", mins: "5 mins" },
+      hospital: { name: "Aster", km: "0.2 km", mins: "1 min" }
+    },
+    buyerPsychology: { trigger: "Safety & Walkability", archetype: "The Protective Parent", motivation: "Kids can walk to school and the pool safely without crossing roads." }
+  },
+
+  // --- DUBAI: ARABIAN RANCHES 3 (The New Generation) ---
+  {
+    id: "arabian-ranches-3",
+    name: "Arabian Ranches 3",
+    emirate: "Dubai",
+    category: "Townhouse / Active Living",
+    
+    roi: "6.2%",
+    avgPrice: "AED 2.8M (Townhouse)",
+    imageColor: "bg-yellow-600", // Sunny/Active
+    
+    masterDeveloper: "Emaar",
+    location: "Sheikh Zayed Bin Hamdan Al Nahyan St",
+    totalArea: "Developing Master Plan",
+    towers: "None (Townhouses & Villas)",
+    completion: "Partial Handover / Construction",
+    privateBeach: "No (Lazy River feature)",
+
+    highlights: [
+      "Focused on townhouses (Sun, Joy, Spring) rather than large independent villas.",
+      "Features a 'Lazy River', central park, and extensive sports facilities.",
+      "More affordable entry point than AR 1 or 2.",
+      "Attracts first-time buyers and younger families."
+    ],
+
+    amenities: [
+      "Lazy River (Leisure)", "Central Park (Nature)", "Spinneys (Retail)", "Sports Boulevard (Fitness)", "Clubhouse (Social)", "Skate Park (Leisure)"
+    ],
+
+    supplyStats: { totalUnits: "4,000+ Planned", handedOver: "40%", underConstruction: "60%", nextDelivery: "Q3 2026 (Elie Saab / Bliss)" },
+    
+    transport: {
+      metro: { name: "Global Village (Planned)", mins: "Future", status: "Proposed" },
+      roadAccess: ["Emirates Rd (E611)", "Sheikh Zayed Bin Hamdan"],
+      walkability: "High (In clusters)",
+      cycling: "Track Network"
+    },
+
+    aiVerdict: {
+      title: "The Entry-Level Ranch",
+      summary: "Arabian Ranches 3 is the volume play. It offers the 'Ranches' brand at a townhouse price point. While density is higher, the amenities (Lazy River) appeal to young families. Capital appreciation potential is higher here than mature Ranches 1 & 2 as the community finishes."
+    },
+
+    priceTrend: { "2023": "AED 2.1M", "2024": "AED 2.5M", "2025": "AED 2.8M", "2026": "AED 3.1M" },
+    demandSignals: { rentalDemand: "Very High", resaleLiquidity: "High (Flipping market)", tenantProfile: "Young Families" },
+    ownership: { type: "Freehold", eligibleFor: ["All Nationalities"], minDownPayment: "20%" },
+    scores: { cashFlow: 6.2, appreciation: 8.5, liquidity: 8.5, risk: 3.5, lifestyle: 8.0 },
+    overallScore: 8.2,
+
+    unitEconomics: { studio: { roi: "N/A", rent: "N/A" }, oneBed: { roi: "N/A", rent: "N/A" }, twoBed: { roi: "N/A", rent: "N/A" } }, // Mostly 3/4 Bed Townhouses
+    shortTermScore: 5.0,
+    shortTermRental: { allowed: true, avgDailyRate: "AED 900", occupancy: "60%", tenantType: "Families" },
+    
+    futureUpgrades: [{ name: "Mall Access", status: "Planned" }, { name: "School Opening", status: "2026" }],
+    description: "Arabian Ranches 3 is the latest installment in the trilogy. It marks a shift towards smaller, more affordable 3 & 4 bedroom townhouses. The community is designed around active living, with a central park, cricket pitch, and water features.",
+    
+    marketReadData: [
+      { factor: "Buyer Mix", read: "First-time buyers and investors looking for capital growth during the construction phase." },
+      { factor: "Rental Demand", read: "High demand for 3-bed townhouses as an alternative to apartments in Marina." },
+      { factor: "Price Drivers", read: "Handover of amenities (Lazy River) spikes prices in surrounding clusters." },
+      { factor: "Liquidity", read: "Very high volume of transactions." }
+    ],
+
+    rentalAnalysisPoints: ["3-Bed townhouses rent for AED 160k - 180k.", "4-Bed townhouses rent for AED 210k+.", "Yields are healthier than independent villas due to lower service charges and purchase price."],
+    salesAnalysisPoints: ["Prices have appreciated 20% since off-plan launch.", "Premium clusters like 'Elie Saab' command AED 4M+."],
+    investorTip: "Focus on 'Sun' or 'Joy' clusters for resale value, or 'Bliss' for unique whitewashed aesthetics.",
+
+    connectivity: {
+      airport: { name: "DXB Intl", km: "25 km", mins: "25 mins" },
+      school: { name: "Ranches Primary", km: "5 km", mins: "10 mins" },
+      tourist: { name: "Global Village", km: "2 km", mins: "5 mins" },
+      metro: { name: "N/A", km: "--", mins: "--" },
+      mall: { name: "Cityland Mall", km: "2 km", mins: "5 mins" },
+      business: { name: "Silicon Oasis", km: "8 km", mins: "10 mins" },
+      hospital: { name: "Fakeeh Univ", km: "8 km", mins: "10 mins" }
+    },
+    buyerPsychology: { trigger: "Affordability & Brand", archetype: "The Aspiring Family", motivation: "Buying into the Emaar 'Ranches' lifestyle at an entry-level price." }
+  },
+
+  // --- DUBAI: ARJAN (The Yield Hotspot) ---
+  {
+    id: "arjan",
+    name: "Arjan",
+    emirate: "Dubai",
+    category: "High Yield / Emerging",
+    
+    roi: "8.2%",
+    avgPrice: "AED 850k (Apt)",
+    imageColor: "bg-pink-600", // Floral/Vibrant
+    
+    masterDeveloper: "Dubai Properties",
+    location: "Al Barsha South / Umm Suqeim Rd",
+    totalArea: "Mid-rise District",
+    towers: "G+10 to G+30 Residential",
+    completion: "Developing Rapidly",
+    privateBeach: "No",
+
+    highlights: [
+      "Dubai's top hotspot for rental yields (studios often exceeding 8.5%).",
+      "Home to the Dubai Miracle Garden and Butterfly Garden.",
+      "Extremely popular with mid-income expats due to affordability and new building quality.",
+      "Direct connectivity to Sheikh Mohammed Bin Zayed Road."
+    ],
+
+    amenities: [
+      "Miracle Garden (Tourist)", "Butterfly Garden (Nature)", "Parkview Mediclinic (Healthcare)", "Safa Community School (Education)", "Nord Anglia School (Education)", "My City Centre (Mall)"
+    ],
+
+    supplyStats: { totalUnits: "High Growth", handedOver: "60%", underConstruction: "40%", nextDelivery: "Q2 2026 (Binghatti/Danube)" },
+    
+    transport: {
+      metro: { name: "Blue Line (Planned)", mins: "Future", status: "Approved" },
+      roadAccess: ["Umm Suqeim St", "E311"],
+      walkability: "Moderate",
+      cycling: "Limited"
+    },
+
+    aiVerdict: {
+      title: "The Cash Flow Engine",
+      summary: "Arjan is unbeatable for investors seeking pure ROI. Entry prices are low (< AED 600k for studios), rents are rising, and the future Blue Line Metro will trigger a capital appreciation boom."
+    },
+
+    priceTrend: { "2023": "AED 550k", "2024": "AED 680k", "2025": "AED 850k", "2026": "AED 950k" },
+    demandSignals: { rentalDemand: "Explosive", resaleLiquidity: "High", tenantProfile: "Teachers & Healthcare Staff" },
+    ownership: { type: "Freehold", eligibleFor: ["All Nationalities"], minDownPayment: "20%" },
+    scores: { cashFlow: 9.5, appreciation: 8.0, liquidity: 8.5, risk: 4.5, lifestyle: 7.0 },
+    overallScore: 8.9,
+
+    unitEconomics: { 
+      studio: { roi: "8.5%", rent: "AED 50k" }, 
+      oneBed: { roi: "7.8%", rent: "AED 75k" }, 
+      twoBed: { roi: "7.2%", rent: "AED 105k" } 
+    },
+    shortTermScore: 7.5,
+    shortTermRental: { allowed: true, avgDailyRate: "AED 350", occupancy: "78%", tenantType: "Budget Tourists" },
+    
+    futureUpgrades: [{ name: "Metro Blue Line Station", status: "Approved" }, { name: "New Regional Mall", status: "Planned" }],
+    description: "Arjan is a freehold mixed-use community located in Dubailand. Once a quiet area, it has exploded in popularity due to its prime location near schools and hospitals. It offers modern apartments with resort-style pools at a fraction of the cost of Marina or Downtown.",
+    
+    marketReadData: [
+      { factor: "Buyer Mix", read: "Investors (80%) focused on buy-to-let. End-users (20%) are young couples." },
+      { factor: "Rental Demand", read: "Driven by teachers from the 5 nearby schools and nurses from Parkview Hospital." },
+      { factor: "Price Drivers", read: "The Metro announcement has caused a spike in off-plan sales." },
+      { factor: "Liquidity", read: "High. Units under AED 1M are the fastest moving assets in Dubai." }
+    ],
+
+    rentalAnalysisPoints: ["Studios rent for AED 48k-55k.", "1-Beds rent for AED 70k-85k.", "Holiday homes (Airbnb) are viable here due to Miracle Garden visitors."],
+    salesAnalysisPoints: ["Off-plan projects sell out in days.", "Secondary market prices are rising as completed stock dries up."],
+    investorTip: "Buy a studio or 1-bed near the proposed Metro station site. Hold for 5 years for maximum appreciation.",
+
+    connectivity: {
+      airport: { name: "DXB Intl", km: "28 km", mins: "25 mins" },
+      school: { name: "Safa Community", km: "1 km", mins: "2 mins" },
+      tourist: { name: "Miracle Garden", km: "0.2 km", mins: "1 min" },
+      metro: { name: "MOE (Current)", km: "10 km", mins: "12 mins" },
+      mall: { name: "My City Centre", km: "0.5 km", mins: "2 mins" },
+      business: { name: "Science Park", km: "2 km", mins: "4 mins" },
+      hospital: { name: "Mediclinic", km: "0.5 km", mins: "2 mins" }
+    },
+    buyerPsychology: { trigger: "High Yields", archetype: "The Smart Investor", motivation: "Getting 8% net ROI while waiting for the Metro to increase property value." }
+  },
+
+  // --- DUBAI: AZIZI RIVIERA (Meydan / French Mediterranean) ---
+  {
+    id: "azizi-riviera",
+    name: "Azizi Riviera (Meydan)",
+    emirate: "Dubai",
+    category: "Waterfront / Lifestyle",
+    
+    roi: "7.0% - 9.0%",
+    avgPrice: "AED 1.1M (1-Bed)",
+    imageColor: "bg-cyan-600", // French Riviera Blue
+    
+    masterDeveloper: "Azizi Developments",
+    location: "Meydan One (MBR City)",
+    totalArea: "Waterfront Lagoon Community",
+    towers: "Mid-rise (G+7 to G+10)",
+    completion: "Partial Handover / Construction",
+    privateBeach: "Yes (Crystal Lagoon)",
+
+    highlights: [
+      "Inspired by the French Riviera, featuring a 2km crystal lagoon and boulevard.",
+      "Located in Meydan, minutes from Downtown Dubai and the Racecourse.",
+      "Massive rental yields (up to 9% for studios) due to central location.",
+      "Eligible for 10-Year Golden Visa (on units > AED 2M)."
+    ],
+
+    amenities: [
+      "Crystal Lagoon (Leisure)", "French Boulevard (Retail)", "Meydan Racecourse (Sport)", "Meydan One Mall (Planned)", "Community Cinemas (Leisure)", "Zen Gardens (Nature)"
+    ],
+
+    supplyStats: { totalUnits: "16,000+ Units", handedOver: "50%", underConstruction: "50%", nextDelivery: "Q4 2025 (Phase 3/4)" },
+    
+    transport: {
+      metro: { name: "Planned (Purple Line)", mins: "Future", status: "Proposed" },
+      roadAccess: ["Al Khail Rd", "Meydan Rd"],
+      walkability: "High (Boulevard)",
+      cycling: "Meydan Tracks"
+    },
+
+    aiVerdict: {
+      title: "The Downtown Alternative",
+      summary: "Azizi Riviera offers the 'Downtown lifestyle' at half the price. With the Crystal Lagoon now active, rental demand has surged. It is a prime pick for short-term rental investors targeting tourists."
+    },
+
+    priceTrend: { "2023": "AED 850k", "2024": "AED 950k", "2025": "AED 1.1M", "2026": "AED 1.25M" },
+    demandSignals: { rentalDemand: "Very High (Holiday)", resaleLiquidity: "Moderate", tenantProfile: "Young Pros & Tourists" },
+    ownership: { type: "Freehold", eligibleFor: ["All Nationalities"], minDownPayment: "20%" },
+    scores: { cashFlow: 8.8, appreciation: 7.5, liquidity: 7.0, risk: 4.5, lifestyle: 9.0 },
+    overallScore: 8.6,
+
+    unitEconomics: { 
+      studio: { roi: "8.5%", rent: "AED 60k" }, 
+      oneBed: { roi: "7.5%", rent: "AED 90k" }, 
+      twoBed: { roi: "7.0%", rent: "AED 130k" } 
+    },
+    shortTermScore: 9.2,
+    shortTermRental: { allowed: true, avgDailyRate: "AED 500", occupancy: "85%", tenantType: "Meydan Event Goers" },
+    
+    futureUpgrades: [{ name: "Meydan One Mall", status: "On Hold/Redesign" }, { name: "Lagoon Completion", status: "Active" }],
+    description: "Azizi Riviera is a massive waterfront community in Meydan. It comprises 71 mid-rise buildings designed with a French Mediterranean aesthetic. The centerpiece is a swimmable crystal lagoon and a retail boulevard. It attracts young professionals who want to be 10 minutes from Dubai Mall but pay Business Bay rents.",
+    
+    marketReadData: [
+      { factor: "Buyer Mix", read: "Heavy international investor presence (CIS, Europe, Asia) focusing on holiday homes." },
+      { factor: "Rental Demand", read: "Strong year-round, peaking during the Horse Racing World Cup season." },
+      { factor: "Price Drivers", read: "Lagoon views and proximity to Downtown." },
+      { factor: "Liquidity", read: "Improving as more phases hand over and the community comes to life." }
+    ],
+
+    rentalAnalysisPoints: ["Studios rent for AED 55k-65k.", "Lagoon-view units fetch a 15% rental premium.", "Holiday home operators report 85%+ occupancy."],
+    salesAnalysisPoints: ["Resale market is active for Phase 1 & 2 units.", "Prices are still 30-40% lower than Downtown Dubai."],
+    investorTip: "Buy a Lagoon-facing unit. The premium you pay upfront is recovered through significantly higher Airbnb nightly rates.",
+
+    connectivity: {
+      airport: { name: "DXB Intl", km: "15 km", mins: "15 mins" },
+      school: { name: "Hartland Intl", km: "3 km", mins: "5 mins" },
+      tourist: { name: "Burj Khalifa", km: "8 km", mins: "10 mins" },
+      metro: { name: "Business Bay", km: "6 km", mins: "10 mins" },
+      mall: { name: "Dubai Mall", km: "8 km", mins: "10 mins" },
+      business: { name: "DIFC", km: "8 km", mins: "12 mins" },
+      hospital: { name: "Clemenceau", km: "5 km", mins: "8 mins" }
+    },
+    buyerPsychology: { trigger: "Lifestyle & Value", archetype: "The Lifestyle Investor", motivation: "Living the 'Riviera' life with beach access, just minutes from the city center." }
+  },
+
 ];
 
