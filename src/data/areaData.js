@@ -6434,6 +6434,481 @@ export const DUBAI_AREAS = [
     },
     buyerPsychology: { trigger: "Value & View", archetype: "The Value Investor", motivation: "Freehold creek-front property at a bargain price." }
   },
+  // --- DUBAI: EXPO CITY DUBAI (The Future City) ---
+  {
+    id: "expo-city-dubai",
+    name: "Expo City Dubai",
+    emirate: "Dubai",
+    category: "Future City / Eco-Living",
+    
+    // 🟢 REAL MARKET METRICS (2025/26 Data)
+    roi: "6.5% (Projected)",
+    avgPrice: "AED 1.9M (Apartment)",
+    imageColor: "bg-teal-700", // Sustainability
+    
+    // 🟢 KEY FACTS
+    masterDeveloper: "Expo City Dubai",
+    location: "Dubai South / District 2020",
+    totalArea: "438 Hectares",
+    towers: "Mid-rise (Mangroves / Sky Residences)",
+    completion: "Developing (Expo Valley Handover 2026)",
+    privateBeach: "No (Surreal Water Feature)",
+
+    // 🟢 HIGHLIGHTS
+    highlights: [
+      "The legacy site of Expo 2020, repurposed into a '15-minute city' of the future.",
+      "Home to the global headquarters of Siemens, Terminus, and DP World.",
+      "Features 'Expo Valley', a unique topography with lakes, wadis, and car-free lanes.",
+      "Direct Metro access (Red Line) and adjacency to Al Maktoum Airport (DWC)."
+    ],
+
+    // 🟢 LIFESTYLE & ATTRACTIONS
+    amenities: [
+      "Al Wasl Plaza (Iconic Dome)", "Surreal Water Feature (Leisure)", "Expo Mall (Retail - Planned)", "Terra - The Sustainability Pavilion (Culture)", "Rove Expo Hotel (Hospitality)", "Cycling Tracks (Fitness)"
+    ],
+
+    // 🟢 SUPPLY PIPELINE
+    supplyStats: {
+      totalUnits: "Controlled Release",
+      handedOver: "20%",
+      underConstruction: "80%",
+      nextDelivery: "Q1 2026 (Expo Valley)"
+    },
+
+    // 🟢 TRANSPORT & CONNECTIVITY
+    transport: {
+      metro: { name: "Expo 2020", mins: "Direct Access", status: "Active" },
+      roadAccess: ["Expo Road", "Sheikh Mohammed Bin Zayed Rd"],
+      walkability: "Perfect (100% Pedestrian Friendly)",
+      cycling: "City-wide Network"
+    },
+
+    aiVerdict: {
+      title: "The Visionary's Bet",
+      summary: "Expo City is for the long-term investor. It is the anchor of the Dubai 2040 Master Plan. While current yields are modest, capital appreciation will be significant as DWC Airport expands to become the world's largest."
+    },
+
+    // 🟢 PRICE HISTORY
+    priceTrend: { 
+      "2023": "AED 1.5M", 
+      "2024": "AED 1.7M", 
+      "2025": "AED 1.9M",
+      "2026 (Proj)": "AED 2.1M" 
+    },
+
+    demandSignals: { 
+      rentalDemand: "Growing (Corporate)", 
+      resaleLiquidity: "Moderate", 
+      tenantProfile: "Tech & Sustainability Professionals" 
+    },
+    ownership: { type: "Freehold", eligibleFor: ["All Nationalities"], minDownPayment: "20%" },
+    scores: { cashFlow: 6.0, appreciation: 9.5, liquidity: 6.5, risk: 3.0, lifestyle: 9.5 },
+    overallScore: 8.5,
+
+    // 🟢 UNIT ECONOMICS
+    unitEconomics: { 
+      studio: { roi: "N/A", rent: "N/A" }, 
+      oneBed: { roi: "6.5%", rent: "AED 95k" }, 
+      twoBed: { roi: "6.0%", rent: "AED 140k" } 
+    },
+
+    shortTermScore: 7.0,
+    shortTermRental: { allowed: true, avgDailyRate: "AED 500", occupancy: "65%", tenantType: "Business Events" },
+    
+    futureUpgrades: [{ name: "DWC Airport Expansion", status: "Approved" }, { name: "Expo Mall", status: "Planning" }],
+    description: "Expo City Dubai is a human-centric smart city. It retains 80% of the Expo 2020 infrastructure. The residential zones (Expo Valley and Mangroves) offer a distinct 'eco-luxury' lifestyle different from anything else in Dubai, focusing on wellness and sustainability.",
+    
+    // 🟢 PROPERTY MARKET OVERVIEW
+    marketReadData: [
+      { factor: "Buyer Mix", read: "Eco-conscious end-users and strategic investors betting on the Airport expansion." },
+      { factor: "Rental Demand", read: "Driven by the commercial tenants (Siemens, etc.) moving huge workforces to the district." },
+      { factor: "Price Drivers", read: "Green credentials (LEED Platinum) and the '15-minute city' concept." },
+      { factor: "Liquidity", read: "Off-plan sales are brisk; secondary market is still forming." }
+    ],
+
+    rentalAnalysisPoints: [
+      "Apartments will command a 'green premium' for lower utility bills.",
+      "Short-term rentals will spike during major events at the Exhibition Centre.",
+      "Villas in Expo Valley are expected to rent for AED 250k+."
+    ],
+    salesAnalysisPoints: [
+      "Launch prices were AED 1,800/sq.ft, considered fair for the quality.",
+      "Capital growth is linked to the 10-year DWC airport timeline."
+    ],
+    investorTip: "Buy a townhouse in Expo Valley. The scarcity of 'nature-integrated' homes in Dubai makes this a unique asset.",
+
+    connectivity: {
+      airport: { name: "DWC Airport", km: "5 km", mins: "8 mins" },
+      school: { name: "Dove Green", km: "8 km", mins: "10 mins" },
+      tourist: { name: "Al Wasl Plaza", km: "0 km", mins: "0 mins" },
+      metro: { name: "Expo 2020", km: "0.2 km", mins: "2 mins" },
+      mall: { name: "Expo Mall", km: "0.5 km", mins: "5 mins" },
+      business: { name: "Siemens HQ", km: "0.5 km", mins: "5 mins" },
+      hospital: { name: "NMC Royal", km: "8 km", mins: "10 mins" }
+    },
+    buyerPsychology: { trigger: "Future", archetype: "The Eco-Investor", motivation: "Investing in a car-free, sustainable future." }
+  },
+
+  // --- DUBAI: DUBAI FESTIVAL CITY (The Integrated Waterfront) ---
+  {
+    id: "dubai-festival-city",
+    name: "Dubai Festival City",
+    emirate: "Dubai",
+    category: "Family / Retail / Creek",
+    
+    // 🟢 REAL MARKET METRICS (2025/26 Data)
+    roi: "6.0%",
+    avgPrice: "AED 2.4M",
+    imageColor: "bg-indigo-600", // Retail/Night
+    
+    // 🟢 KEY FACTS
+    masterDeveloper: "Al Futtaim Group",
+    location: "Dubai Creek (East Bank)",
+    totalArea: "Mixed Use Mega-Project",
+    towers: "Mid-rise (Marsa) & Low-rise (Al Badia)",
+    completion: "Mature / Expanding (Al Badia Terraces)",
+    privateBeach: "No (Creek Promenade)",
+
+    highlights: [
+      "A fully integrated mega-community anchored by the massive Festival City Mall.",
+      "Home to IKEA, ACE, and renowned international schools (Universal American/Deira Intl).",
+      "Features 'IMAGINE', a record-breaking laser and water show.",
+      "Quiet, traffic-free residential enclaves like Al Badia and Marsa Plaza."
+    ],
+
+    amenities: [
+      "Festival City Mall (Shopping)", "IKEA (Retail)", "InterContinental (Hotel)", "Al Badia Golf (Greenery)", "Universal American School (Education)", "Festival Bay (Leisure)"
+    ],
+
+    supplyStats: { totalUnits: "Stable", handedOver: "95%", underConstruction: "5%", nextDelivery: "Al Badia Terraces" },
+    
+    transport: {
+      metro: { name: "Creek Station", mins: "Water Taxi / Car", status: "Nearby" },
+      roadAccess: ["Rebat St", "Nad Al Hamar Rd"],
+      walkability: "High (Mall/Promenade)",
+      cycling: "Dedicated Tracks"
+    },
+
+    aiVerdict: {
+      title: "The Self-Sufficient City",
+      summary: "Festival City is a 'bubble' of calm. It is a favorite for families who want to be near schools and the airport without the chaos of city traffic. It holds value well due to the Al Futtaim management quality."
+    },
+
+    priceTrend: { "2023": "AED 2.1M", "2024": "AED 2.3M", "2025": "AED 2.5M", "2026": "AED 2.7M" },
+    demandSignals: { rentalDemand: "High (Stable)", resaleLiquidity: "Moderate", tenantProfile: "Expat Families & Pilots" },
+    ownership: { type: "Freehold", eligibleFor: ["All Nationalities"], minDownPayment: "20%" },
+    scores: { cashFlow: 6.0, appreciation: 5.5, liquidity: 6.5, risk: 2.5, lifestyle: 9.0 },
+    overallScore: 8.2,
+
+    unitEconomics: { 
+      studio: { roi: "N/A", rent: "N/A" }, 
+      oneBed: { roi: "6.5%", rent: "AED 95k" }, 
+      twoBed: { roi: "6.0%", rent: "AED 140k" } 
+    },
+    shortTermScore: 6.5,
+    shortTermRental: { allowed: true, avgDailyRate: "AED 600", occupancy: "70%", tenantType: "Shopping Tourists" },
+    
+    futureUpgrades: [{ name: "Mall Expansion", status: "Ongoing" }],
+    description: "Dubai Festival City is a landmark destination. It sits on the historic Creek but offers modern luxury. The residential district is separated from the mall by lush greenery and the Al Badia Hill. It is famous for its 'resort-at-home' feeling.",
+    
+    marketReadData: [
+      { factor: "Buyer Mix", read: "Families prioritizing proximity to top schools like UAS and DIS." },
+      { factor: "Rental Demand", read: "Very stable. Tenants often stay for 5-8 years until kids graduate." },
+      { factor: "Price Drivers", read: "Community management. The area is impeccably maintained by Al Futtaim." },
+      { factor: "Liquidity", read: "Steady. Not a speculative market." }
+    ],
+
+    rentalAnalysisPoints: ["Marsa Plaza apartments offer hotel-like living and rent for AED 130k+ (2-bed).", "Al Badia Hillside village offers unique Mediterranean architecture.", "Rents are premium but include access to world-class facilities."],
+    salesAnalysisPoints: ["Prices are stable with slow appreciation.", "A safe haven asset rather than a high-growth speculative investment."],
+    investorTip: "Buy a 3-bed in Al Badia. It is the perfect family product with zero competition in the area.",
+
+    connectivity: {
+      airport: { name: "DXB Intl", km: "3 km", mins: "5 mins" },
+      school: { name: "Universal American", km: "1 km", mins: "2 mins" },
+      tourist: { name: "IMAGINE Show", km: "0.5 km", mins: "2 mins" },
+      metro: { name: "Creek", km: "4 km", mins: "10 mins" },
+      mall: { name: "Festival City Mall", km: "0.2 km", mins: "2 mins" },
+      business: { name: "Festival Tower", km: "0.5 km", mins: "2 mins" },
+      hospital: { name: "Mediclinic", km: "4 km", mins: "8 mins" }
+    },
+    buyerPsychology: { trigger: "Convenience & Schools", archetype: "The Stable Family", motivation: "Walking the kids to school and the mall." }
+  },
+
+  // --- DUBAI: INTERNATIONAL CITY (The Yield Giant) ---
+  {
+    id: "international-city",
+    name: "International City",
+    emirate: "Dubai",
+    category: "Budget / High Yield",
+    
+    // 🟢 REAL MARKET METRICS (2025/26 Data)
+    roi: "9.2%",
+    avgPrice: "AED 350k (Studio)",
+    imageColor: "bg-red-700", // Dragon Mart/Trade
+    
+    // 🟢 KEY FACTS
+    masterDeveloper: "Nakheel",
+    location: "Al Warsan / Mohammed Bin Zayed Rd",
+    totalArea: "Massive Themed Clusters",
+    towers: "Low-rise (G+3/4) Clusters",
+    completion: "Mature / Phase 2 Developing",
+    privateBeach: "No",
+
+    highlights: [
+      "The undisputed king of rental yields in Dubai (Gross ROI often 9-10%).",
+      "Home to Dragon Mart 1 & 2, the largest hub for Chinese products outside China.",
+      "Features country-themed clusters (China, England, France, Russia, etc.).",
+      "Extremely affordable entry point (Studios from AED 320k)."
+    ],
+
+    amenities: [
+      "Dragon Mart (Retail)", "Warsan Souk (Shopping)", "Lake District (Nature)", "Pavilion (Retail)", "Union Coop (Grocery)", "Chinese Dining Hub (Food)"
+    ],
+
+    supplyStats: { totalUnits: "High Density", handedOver: "95% (Phase 1)", underConstruction: "5% (Warsan)", nextDelivery: "Warsan 4" },
+    
+    transport: {
+      metro: { name: "Blue Line (Planned)", mins: "Future", status: "Approved" },
+      roadAccess: ["Ras Al Khor Rd", "E311"],
+      walkability: "Moderate (Within Clusters)",
+      cycling: "Limited"
+    },
+
+    aiVerdict: {
+      title: "The Cash Cow",
+      summary: "International City is not for luxury seekers; it is a pure financial instrument. It delivers the highest net cash flow in the market. The upcoming Metro Blue Line will likely boost capital values by 20% by 2029."
+    },
+
+    priceTrend: { "2023": "AED 280k", "2024": "AED 320k", "2025": "AED 350k", "2026": "AED 380k" },
+    demandSignals: { rentalDemand: "Massive", resaleLiquidity: "Very High", tenantProfile: "Single Professionals & Traders" },
+    ownership: { type: "Freehold", eligibleFor: ["All Nationalities"], minDownPayment: "20%" },
+    scores: { cashFlow: 9.8, appreciation: 6.0, liquidity: 9.5, risk: 3.5, lifestyle: 5.0 },
+    overallScore: 8.0,
+
+    unitEconomics: { 
+      studio: { roi: "9.5%", rent: "AED 32k" }, 
+      oneBed: { roi: "8.8%", rent: "AED 48k" }, 
+      twoBed: { roi: "8.2%", rent: "AED 65k" } 
+    },
+    shortTermScore: 4.0,
+    shortTermRental: { allowed: true, avgDailyRate: "AED 180", occupancy: "65%", tenantType: "Traders" },
+    
+    futureUpgrades: [{ name: "Metro Blue Line Station", status: "Approved" }, { name: "Warsan Masterplan", status: "Active" }],
+    description: "International City is a unique, affordable residential district. It is famous for its themed architecture and the Dragon Mart retail complex. While it lacks the polish of New Dubai, it makes up for it with unbeatable affordability and high occupancy rates from the workforce.",
+    
+    marketReadData: [
+      { factor: "Buyer Mix", read: "Cash investors looking for 9% net returns." },
+      { factor: "Rental Demand", read: "Inelastic. It is the cheapest freehold area in the city." },
+      { factor: "Price Drivers", read: "The Metro announcement is driving speculative buying in Phase 1." },
+      { factor: "Liquidity", read: "Extremely high. Units sell in days." }
+    ],
+
+    rentalAnalysisPoints: ["Studios rent for AED 30k-36k.", "1-Beds rent for AED 45k-50k.", "Tenants are price-sensitive but long-term."],
+    salesAnalysisPoints: ["Prices are rising from a low base.", "China Cluster units trade at a premium due to proximity to Dragon Mart."],
+    investorTip: "Buy a studio in the 'France' or 'Spain' cluster. They are better maintained and command slightly higher rents.",
+
+    connectivity: {
+      airport: { name: "DXB Intl", km: "15 km", mins: "15 mins" },
+      school: { name: "Kings School", km: "6 km", mins: "10 mins" },
+      tourist: { name: "Dragon Mart", km: "0.5 km", mins: "2 mins" },
+      metro: { name: "Rashidiya", km: "10 km", mins: "15 mins" },
+      mall: { name: "Dragon Mart 2", km: "0.5 km", mins: "2 mins" },
+      business: { name: "Warsan", km: "0 km", mins: "0 mins" },
+      hospital: { name: "Aster", km: "5 km", mins: "8 mins" }
+    },
+    buyerPsychology: { trigger: "ROI", archetype: "The Yield Hunter", motivation: "Maximizing passive income with minimal capital outlay." }
+  },
+
+  // --- DUBAI: JEBEL ALI (Downtown & Village) ---
+  {
+    id: "jebel-ali",
+    name: "Jebel Ali (Downtown & Village)",
+    emirate: "Dubai",
+    category: "Emerging / Connected",
+    
+    // 🟢 REAL MARKET METRICS (2025/26 Data)
+    roi: "7.0%",
+    avgPrice: "AED 980k (Apt)",
+    imageColor: "bg-orange-800", // Industrial/Growth
+    
+    // 🟢 KEY FACTS
+    masterDeveloper: "Nakheel / Azizi / Sub-developers",
+    location: "Sheikh Zayed Road (South)",
+    totalArea: "Strategic Corridor",
+    towers: "High-rise (Downtown) & Villas (Village)",
+    completion: "Regenerating",
+    privateBeach: "No (JA Resort nearby)",
+
+    highlights: [
+      "Downtown Jebel Ali is rapidly developing into a freehold residential hub.",
+      "Nakheel's 'Jebel Ali Village' redevelopment has created a luxury villa enclave.",
+      "Exceptional connectivity via Sheikh Zayed Road and the Metro (Red Line).",
+      "Proximity to the massive JAFZA workplace and Palm Jebel Ali."
+    ],
+
+    amenities: [
+      "Jebel Ali Recreation Club (Leisure)", "Ibn Battuta Mall (Shopping)", "Festival Plaza (Retail)", "JAFZA (Business)", "Metro Stations (Transport)", "Community Parks (Nature)"
+    ],
+
+    supplyStats: { totalUnits: "Growing", handedOver: "40%", underConstruction: "60%", nextDelivery: "Q4 2025 (Azizi Projects)" },
+    
+    transport: {
+      metro: { name: "UAE Exchange / Danube", mins: "Direct Access", status: "Active (Red Line)" },
+      roadAccess: ["Sheikh Zayed Rd (E11)"],
+      walkability: "Moderate (Improving)",
+      cycling: "Planned"
+    },
+
+    aiVerdict: {
+      title: "The Strategic Pivot",
+      summary: "Jebel Ali is transforming from an industrial zone to a residential hotspot. With Palm Jebel Ali reviving the south, property in Downtown Jebel Ali is undervalued. It offers solid 7% yields today with massive growth potential."
+    },
+
+    priceTrend: { "2023": "AED 800k", "2024": "AED 900k", "2025": "AED 980k", "2026": "AED 1.1M" },
+    demandSignals: { rentalDemand: "High", resaleLiquidity: "Moderate", tenantProfile: "JAFZA Execs & Commuters" },
+    ownership: { type: "Freehold", eligibleFor: ["All Nationalities"], minDownPayment: "20%" },
+    scores: { cashFlow: 7.5, appreciation: 8.0, liquidity: 6.5, risk: 4.0, lifestyle: 6.5 },
+    overallScore: 7.9,
+
+    unitEconomics: { 
+      studio: { roi: "7.5%", rent: "AED 50k" }, 
+      oneBed: { roi: "7.0%", rent: "AED 75k" }, 
+      twoBed: { roi: "6.5%", rent: "AED 105k" } 
+    },
+    shortTermScore: 4.0,
+    shortTermRental: { allowed: true, avgDailyRate: "AED 300", occupancy: "60%", tenantType: "Business" },
+    
+    futureUpgrades: [{ name: "Palm Jebel Ali Bridge", status: "Planning" }, { name: "Downtown JA Infrastructure", status: "Ongoing" }],
+    description: "Jebel Ali is best known for its port, but its residential zones are booming. 'Downtown Jebel Ali' stretches along Sheikh Zayed Road, offering affordable high-rise living. 'Jebel Ali Village' is a revived luxury villa community by Nakheel, offering spacious homes in a historic location.",
+    
+    marketReadData: [
+      { factor: "Buyer Mix", read: "Investors predicting the 'Palm Jebel Ali Effect'." },
+      { factor: "Rental Demand", read: "Driven by the 150,000+ people working in JAFZA and Dubai South." },
+      { factor: "Price Drivers", read: "Palm Jebel Ali progress and Metro connectivity." },
+      { factor: "Liquidity", read: "Apartments are liquid; Villas are high-demand." }
+    ],
+
+    rentalAnalysisPoints: ["1-Beds rent for AED 70k-80k, cheaper than Marina but just 10 mins away.", "Jebel Ali Village villas rent for AED 250k+ (4-bed).", "Sub-letting is common for port staff."],
+    salesAnalysisPoints: ["Downtown Jebel Ali apartments are priced at ~AED 900-1,000 psf.", "A massive discount compared to nearby Furjan or Marina."],
+    investorTip: "Buy in Downtown Jebel Ali (Azizi/Sub-developers) for appreciation. The Palm Jebel Ali will lift this entire corridor.",
+
+    connectivity: {
+      airport: { name: "DWC Airport", km: "15 km", mins: "15 mins" },
+      school: { name: "Winchester", km: "3 km", mins: "5 mins" },
+      tourist: { name: "Legoland", km: "10 km", mins: "12 mins" },
+      metro: { name: "UAE Exchange", km: "0.2 km", mins: "2 mins" },
+      mall: { name: "Ibn Battuta", km: "3 km", mins: "5 mins" },
+      business: { name: "JAFZA", km: "0 km", mins: "0 mins" },
+      hospital: { name: "NMC Royal", km: "5 km", mins: "8 mins" }
+    },
+    buyerPsychology: { trigger: "Growth", archetype: "The South Investor", motivation: "Positioning for the Dubai South / Palm Jebel Ali boom." }
+  },
+
+  // --- DUBAI: JUMEIRAH (1, 2, 3) ---
+  {
+    id: "jumeirah",
+    name: "Jumeirah (1, 2, 3)",
+    emirate: "Dubai",
+    category: "Ultra-Prime / Beachfront",
+    
+    // 🟢 REAL MARKET METRICS (2025/26 Data)
+    roi: "3.5% (Villas) / 6.0% (Freehold Apts)",
+    avgPrice: "AED 15M+ (Villa)",
+    imageColor: "bg-blue-400", // Ocean/Luxury
+    
+    // 🟢 KEY FACTS
+    masterDeveloper: "Wasl / Meraas / Private",
+    location: "Coastline (North of Marina)",
+    totalArea: "Prime Coast",
+    towers: "Low-rise (La Mer/MJL) & Villas",
+    completion: "Historic / Freehold Pockets",
+    privateBeach: "Yes (Public & Private)",
+
+    highlights: [
+      "The Beverly Hills of Dubai. The most prestigious address for locals and expats.",
+      "Predominantly Leasehold villas (GCC ownership), but contains Freehold jewels like La Mer (Port de La Mer) and Madinat Jumeirah Living (MJL).",
+      "Home to the Burj Al Arab, Kite Beach, and Four Seasons.",
+      "Low-density, walkable, and beach-focused lifestyle."
+    ],
+
+    amenities: [
+      "Kite Beach (Leisure)", "Burj Al Arab (Icon)", "Madinat Jumeirah (Dining)", "Four Seasons (Hotel)", "Galleria Mall (Retail)", "La Mer (Leisure)"
+    ],
+
+    supplyStats: { totalUnits: "Scarce", handedOver: "90%", underConstruction: "10% (Freehold Enclaves)", nextDelivery: "MJL Phases" },
+    
+    transport: {
+      metro: { name: "No Metro", mins: "--", status: "Car/Bus Dependent" },
+      roadAccess: ["Jumeirah Beach Rd", "Al Wasl Rd"],
+      walkability: "High (Beach Track)",
+      cycling: "Jumeirah Cycle Path"
+    },
+
+    aiVerdict: {
+      title: "The Forever Address",
+      summary: "Jumeirah is the ultimate lifestyle destination. For investment, focus ONLY on the freehold pockets (Port de La Mer / MJL). These offer the Jumeirah address with ownership rights, commanding massive premiums."
+    },
+
+    // 🟢 PRICE HISTORY
+    priceTrend: { 
+      "2023": "AED 12M (Villa)", 
+      "2024": "AED 14M (Villa)", 
+      "2025": "AED 16M (Villa)",
+      "2026 (Proj)": "AED 18M (Villa)" 
+    },
+
+    demandSignals: { 
+      rentalDemand: "Very High (Luxury)", 
+      resaleLiquidity: "High (Freehold)", 
+      tenantProfile: "CEOs, Diplomats, Founders" 
+    },
+    ownership: { type: "Mixed (Leasehold General / Freehold Pockets)", eligibleFor: ["All (MJL/La Mer)"], minDownPayment: "20%" },
+    scores: { cashFlow: 4.5, appreciation: 9.0, liquidity: 7.0, risk: 2.0, lifestyle: 10.0 },
+    overallScore: 8.9,
+
+    // 🟢 UNIT ECONOMICS (Freehold Apartments - MJL/La Mer)
+    unitEconomics: { 
+      studio: { roi: "N/A", rent: "N/A" }, 
+      oneBed: { roi: "6.0%", rent: "AED 150k" }, 
+      twoBed: { roi: "5.5%", rent: "AED 230k" } 
+    },
+
+    shortTermScore: 9.5,
+    shortTermRental: { allowed: true, avgDailyRate: "AED 1,200", occupancy: "85%", tenantType: "Beach Luxury" },
+    
+    futureUpgrades: [{ name: "Jumeirah Beach Revamp", status: "Ongoing" }, { name: "Marsa Al Arab", status: "Opening" }],
+    description: "Jumeirah 1, 2, and 3 form the coastal stretch of Dubai. It is characterized by low-rise mansions, quiet streets, and the best beaches in the city. While mostly reserved for GCC nationals, the introduction of freehold enclaves has opened this exclusive zip code to global investors.",
+    
+    marketReadData: [
+      { factor: "Buyer Mix", read: "Ultra-HNWIs buying forever homes. European investors buying holiday apartments." },
+      { factor: "Rental Demand", read: "Renters pay a premium for the 'Jumeirah' zip code and beach access." },
+      { factor: "Price Drivers", read: "Scarcity. There is no more land to build on." },
+      { factor: "Liquidity", read: "Freehold units are highly liquid assets." }
+    ],
+
+    rentalAnalysisPoints: [
+      "Villas rent for AED 400k (Old) to AED 1M+ (Modern).",
+      "MJL 1-beds rent for AED 140k-160k, offering resort living.",
+      "Short-term rentals here outperform almost any other district due to beach proximity."
+    ],
+    salesAnalysisPoints: [
+      "Port de La Mer trades at AED 2,200+ psf.",
+      "Jumeirah Bay Island (Bulgari) trades at AED 10,000+ psf (The highest in Dubai).",
+      "MJL resales have seen 40% appreciation since launch."
+    ],
+    investorTip: "Buy in 'Madinat Jumeirah Living'. It is the only freehold freehold apartment complex opposite the Burj Al Arab.",
+
+    connectivity: {
+      airport: { name: "DXB Intl", km: "15 km", mins: "20 mins" },
+      school: { name: "JESS Jumeirah", km: "2 km", mins: "5 mins" },
+      tourist: { name: "Burj Al Arab", km: "1 km", mins: "2 mins" },
+      metro: { name: "Business Bay", km: "5 km", mins: "10 mins" },
+      mall: { name: "Mercato Mall", km: "2 km", mins: "5 mins" },
+      business: { name: "DIFC", km: "5 km", mins: "10 mins" },
+      hospital: { name: "Emirates Hospital", km: "1 km", mins: "2 mins" }
+    },
+    buyerPsychology: { trigger: "Prestige", archetype: "The Elite", motivation: "Living in the most famous, established, and affluent coastline in the region." }
+  },
 
 ];
 
