@@ -7,8 +7,10 @@ import {
   Tags, Building, Download, Loader2, Flame, Users, DollarSign, MessageCircle,
   Calendar, Maximize, Waves, Building2, Map, Camera, Palmtree, 
   LineChart, Lightbulb, Target, Utensils, Car, Bike, Navigation, BookOpen, Home,
-  Key, BrainCircuit, HardHat, Crown, ArrowRight, Star
+  Key, BrainCircuit, HardHat, Crown, ArrowRight, Star,
+  Sparkles, Brain   // ✅ ADD THESE
 } from 'lucide-react';
+
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
 
@@ -412,6 +414,22 @@ const AreaPage = () => {
                     </div>
                  </div>
               </div>
+              {/* ================= AMENITIES ================= */}
+<section className="mb-12">
+  <SectionTitle icon={Sparkles}>Lifestyle Amenities</SectionTitle>
+
+  <div className="grid md:grid-cols-3 gap-4">
+    {(area.amenities || []).map((amenity, index) => (
+      <GlassCard key={index}>
+        <div className="flex items-center gap-3">
+          <Sparkles className="w-5 h-5 text-blue-400" />
+          <span className="text-gray-300">{amenity}</span>
+        </div>
+      </GlassCard>
+    ))}
+  </div>
+</section>
+
 
               {/* TRANSPORT & ACCESS */}
               <div className="bg-slate-900 text-white rounded-3xl p-8 shadow-xl relative overflow-hidden">
@@ -453,6 +471,34 @@ const AreaPage = () => {
                  {/* Map Pattern BG */}
                  <div className="absolute inset-0 opacity-10 bg-[url('https://upload.wikimedia.org/wikipedia/commons/e/ec/World_map_blank_without_borders.svg')] bg-cover bg-center"></div>
               </div>
+              {/* ================= TRANSPORT ================= */}
+<section className="mb-12">
+  <SectionTitle icon={Car}>Transport & Connectivity</SectionTitle>
+
+  <div className="grid md:grid-cols-3 gap-4">
+    <ScoreCard
+      title="Airport"
+      value={`${area.connectivity?.airport?.mins || "N/A"}`}
+      subtitle={area.connectivity?.airport?.name}
+      icon={Plane}
+    />
+
+    <ScoreCard
+      title="Business Hub"
+      value={`${area.connectivity?.business?.mins || "N/A"}`}
+      subtitle={area.connectivity?.business?.name}
+      icon={Building2}
+    />
+
+    <ScoreCard
+      title="Metro / Public Transport"
+      value={`${area.connectivity?.metro?.mins || "N/A"}`}
+      subtitle={area.connectivity?.metro?.name}
+      icon={Train}
+    />
+  </div>
+</section>
+
 
               {/* PRICE TRENDS */}
               <div className="bg-white border border-slate-200 rounded-3xl p-8 shadow-sm">
