@@ -6910,5 +6910,468 @@ export const DUBAI_AREAS = [
     buyerPsychology: { trigger: "Prestige", archetype: "The Elite", motivation: "Living in the most famous, established, and affluent coastline in the region." }
   },
 
+  {
+  id: "jebel-ali-village",
+  name: "Jebel Ali Village",
+  emirate: "Dubai",
+  category: "Luxury Villas / Redevelopment",
+
+  roi: "5.8%",
+  avgPrice: "AED 5.2M (Villa)",
+  imageColor: "bg-green-700",
+
+  masterDeveloper: "Nakheel",
+  location: "Between Sheikh Zayed Road & JAFZA",
+  totalArea: "Villa Master Community",
+  towers: "Luxury Villas",
+  completion: "Redeveloped 2024+",
+  privateBeach: "No",
+
+  highlights: [
+    "Historic expat community fully redeveloped by Nakheel.",
+    "Family-centric villa enclave with premium infrastructure.",
+    "Strong demand from executives working in JAFZA and Dubai South."
+  ],
+
+  amenities: [
+    "Community Clubhouse",
+    "Cycling Tracks",
+    "Parks & Playgrounds",
+    "Retail Pavilion",
+    "Nearby International Schools"
+  ],
+
+  supplyStats: {
+    totalUnits: "800+ Villas",
+    handedOver: "70%",
+    underConstruction: "30%",
+    nextDelivery: "2026"
+  },
+
+  transport: {
+    metro: { name: "UAE Exchange", mins: "7 mins", status: "Active (Red Line)" },
+    roadAccess: ["Sheikh Zayed Road", "E311"],
+    walkability: "Moderate",
+    cycling: "Good"
+  },
+
+  aiVerdict: {
+    title: "Premium South Family Hub",
+    summary: "Jebel Ali Village offers luxury suburban villas with appreciation driven by Palm Jebel Ali and JAFZA growth."
+  },
+
+  priceTrend: {
+    "2023": "AED 3.8M",
+    "2024": "AED 4.6M",
+    "2025": "AED 5.2M",
+    "2026": "AED 5.8M"
+  },
+
+  demandSignals: {
+    rentalDemand: "High",
+    resaleLiquidity: "Moderate",
+    tenantProfile: "Families & Senior Executives"
+  },
+
+  ownership: {
+    type: "Freehold",
+    eligibleFor: ["All Nationalities"],
+    minDownPayment: "20%"
+  },
+
+  scores: { cashFlow: 6.0, appreciation: 8.0, liquidity: 6.5, risk: 3.0, lifestyle: 8.5 },
+  overallScore: 7.9,
+
+  unitEconomics: {
+    fourBed: { roi: "5.8%", rent: "AED 300k" },
+    fiveBed: { roi: "5.5%", rent: "AED 350k" }
+  },
+
+  shortTermScore: 3.5,
+  shortTermRental: { allowed: false },
+
+  futureUpgrades: [
+    { name: "Palm Jebel Ali Expansion", status: "Ongoing" },
+    { name: "Dubai South Logistics Expansion", status: "Ongoing" }
+  ],
+
+  description: "Jebel Ali Village is a premium Nakheel villa redevelopment offering family-focused suburban luxury close to Dubai South and Palm Jebel Ali growth corridor.",
+
+  marketReadData: [
+    { factor: "Buyer Mix", read: "End-users and executive relocations." },
+    { factor: "Rental Demand", read: "Driven by JAFZA workforce expansion." },
+    { factor: "Price Drivers", read: "Palm Jebel Ali & infrastructure upgrades." },
+    { factor: "Liquidity", read: "Stable but villa transactions take longer." }
+  ],
+
+  rentalAnalysisPoints: [
+    "4-bed villas rent between AED 280k – 320k.",
+    "5-bed villas rent above AED 350k.",
+    "Tenants are mostly corporate executives."
+  ],
+
+  salesAnalysisPoints: [
+    "Modern villas priced AED 1,000–1,200 psf.",
+    "Prices rising due to Palm Jebel Ali influence."
+  ],
+
+  investorTip: "Target early resale villas before Palm Jebel Ali infrastructure completes.",
+
+  connectivity: {
+    airport: { name: "DWC Airport", km: "18 km", mins: "20 mins" },
+    school: { name: "The Winchester School", km: "3 km", mins: "5 mins" },
+    tourist: { name: "Legoland", km: "12 km", mins: "15 mins" },
+    metro: { name: "UAE Exchange", km: "3 km", mins: "7 mins" },
+    mall: { name: "Ibn Battuta Mall", km: "5 km", mins: "8 mins" },
+    business: { name: "JAFZA", km: "2 km", mins: "3 mins" },
+    hospital: { name: "NMC Royal", km: "6 km", mins: "10 mins" }
+  },
+
+  buyerPsychology: {
+    trigger: "Family Stability",
+    archetype: "The Executive Family Investor",
+    motivation: "Luxury villa living near business hubs."
+  }
+},
+
+{
+  id: "jumeirah-bay-island",
+  name: "Jumeirah Bay Island",
+  emirate: "Dubai",
+  category: "Ultra Prime Island",
+
+  roi: "3.5%",
+  avgPrice: "AED 25M+",
+  imageColor: "bg-indigo-400",
+
+  masterDeveloper: "Meraas",
+  location: "Jumeirah Coastline",
+  totalArea: "Private Island",
+  towers: "Luxury Villas & Mansions",
+  completion: "Completed",
+  privateBeach: "Yes",
+
+  highlights: [
+    "Home to Bulgari Resort and Marina.",
+    "Ultra exclusive billionaire enclave.",
+    "One of Dubai's highest psf price zones."
+  ],
+
+  amenities: [
+    "Private Marina",
+    "Luxury Beach Club",
+    "Bulgari Resort",
+    "Fine Dining",
+    "Yacht Facilities"
+  ],
+
+  supplyStats: {
+    totalUnits: "Extremely Limited",
+    handedOver: "95%",
+    underConstruction: "5%",
+    nextDelivery: "Rare"
+  },
+
+  transport: {
+    metro: { name: "Business Bay", mins: "15 mins", status: "Car Only" },
+    roadAccess: ["Jumeirah Beach Road"],
+    walkability: "High",
+    cycling: "Limited"
+  },
+
+  aiVerdict: {
+    title: "Dubai’s Ultimate Prestige Asset",
+    summary: "Investment driven by scarcity and global UHNW demand rather than rental yield."
+  },
+
+  priceTrend: {
+    "2023": "AED 20M",
+    "2024": "AED 23M",
+    "2025": "AED 25M",
+    "2026": "AED 28M"
+  },
+
+  demandSignals: {
+    rentalDemand: "Luxury Only",
+    resaleLiquidity: "High",
+    tenantProfile: "UHNW Individuals"
+  },
+
+  ownership: {
+    type: "Freehold",
+    eligibleFor: ["All Nationalities"],
+    minDownPayment: "25%"
+  },
+
+  scores: { cashFlow: 3.0, appreciation: 9.5, liquidity: 8.0, risk: 2.0, lifestyle: 10.0 },
+  overallScore: 8.8,
+
+  shortTermScore: 9.0,
+  shortTermRental: {
+    allowed: true,
+    avgDailyRate: "AED 8,000+",
+    occupancy: "70%",
+    tenantType: "Ultra Luxury Tourists"
+  },
+
+  futureUpgrades: [{ name: "Luxury Marina Expansion", status: "Planning" }],
+
+  description: "Jumeirah Bay Island is Dubai's most elite residential island, hosting the Bulgari Resort and luxury mansions.",
+
+  marketReadData: [
+    { factor: "Buyer Mix", read: "Global billionaires and sovereign wealth investors." },
+    { factor: "Rental Demand", read: "Extremely high for ultra luxury seasonal stays." },
+    { factor: "Price Drivers", read: "Scarcity and brand luxury." },
+    { factor: "Liquidity", read: "Strong in ultra luxury segment." }
+  ],
+
+  rentalAnalysisPoints: [
+    "Luxury villas command daily rates exceeding AED 8,000.",
+    "Seasonal high-net-worth stays dominate rentals."
+  ],
+
+  salesAnalysisPoints: [
+    "Plots and villas exceed AED 10,000 psf.",
+    "Limited supply drives aggressive capital growth."
+  ],
+
+  investorTip: "Buy only for long-term prestige capital preservation.",
+
+  connectivity: {
+    airport: { name: "DXB Intl", km: "16 km", mins: "20 mins" },
+    school: { name: "Jumeirah College", km: "4 km", mins: "8 mins" },
+    tourist: { name: "Burj Al Arab", km: "6 km", mins: "10 mins" },
+    metro: { name: "Business Bay", km: "7 km", mins: "15 mins" },
+    mall: { name: "City Walk", km: "5 km", mins: "10 mins" },
+    business: { name: "DIFC", km: "6 km", mins: "12 mins" },
+    hospital: { name: "Emirates Hospital", km: "5 km", mins: "10 mins" }
+  },
+
+  buyerPsychology: {
+    trigger: "Prestige",
+    archetype: "The Billionaire Collector",
+    motivation: "Owning Dubai’s rarest real estate asset."
+  }
+},
+
+{
+  id: "jbr",
+  name: "Jumeirah Beach Residence (JBR)",
+  emirate: "Dubai",
+  category: "Beachfront Lifestyle / Tourism Hub",
+
+  roi: "6.8%",
+  avgPrice: "AED 2.2M (Apt)",
+  imageColor: "bg-yellow-400",
+
+  masterDeveloper: "Dubai Properties",
+  location: "Dubai Marina Coastline",
+  totalArea: "Waterfront Strip",
+  towers: "High-Rise Towers",
+  completion: "Completed",
+  privateBeach: "Public Beach Access",
+
+  highlights: [
+    "Dubai’s most famous beachfront promenade lifestyle.",
+    "Extremely strong holiday rental demand.",
+    "Walkable tourism and dining destination."
+  ],
+
+  amenities: [
+    "The Beach Mall",
+    "Bluewaters Island",
+    "Beach Clubs",
+    "Restaurants",
+    "Cinema"
+  ],
+
+  supplyStats: {
+    totalUnits: "6,900+",
+    handedOver: "100%",
+    underConstruction: "0%",
+    nextDelivery: "N/A"
+  },
+
+  transport: {
+    metro: { name: "DMCC / Sobha Realty", mins: "10 mins", status: "Active" },
+    roadAccess: ["Al Marsa Street"],
+    walkability: "Very High",
+    cycling: "Good"
+  },
+
+  aiVerdict: {
+    title: "Tourism Rental Powerhouse",
+    summary: "JBR delivers consistent Airbnb performance and remains one of Dubai’s most liquid beachfront apartment markets."
+  },
+
+  priceTrend: {
+    "2023": "AED 1.8M",
+    "2024": "AED 2.0M",
+    "2025": "AED 2.2M",
+    "2026": "AED 2.4M"
+  },
+
+  demandSignals: {
+    rentalDemand: "Very High",
+    resaleLiquidity: "High",
+    tenantProfile: "Tourists & Young Professionals"
+  },
+
+  ownership: {
+    type: "Freehold",
+    eligibleFor: ["All Nationalities"],
+    minDownPayment: "20%"
+  },
+
+  scores: { cashFlow: 7.5, appreciation: 6.5, liquidity: 8.5, risk: 3.5, lifestyle: 9.0 },
+  overallScore: 8.2,
+
+  unitEconomics: {
+    studio: { roi: "7.0%", rent: "AED 80k" },
+    oneBed: { roi: "6.8%", rent: "AED 115k" },
+    twoBed: { roi: "6.2%", rent: "AED 170k" }
+  },
+
+  shortTermScore: 9.2,
+  shortTermRental: {
+    allowed: true,
+    avgDailyRate: "AED 650",
+    occupancy: "80%",
+    tenantType: "Tourists"
+  },
+
+  futureUpgrades: [{ name: "Bluewaters Expansion", status: "Ongoing" }],
+
+  description: "JBR is Dubai’s iconic beachfront residential strip offering vibrant lifestyle, strong rental demand, and premium tourism appeal.",
+
+  marketReadData: [
+    { factor: "Buyer Mix", read: "Short-term rental investors dominate." },
+    { factor: "Rental Demand", read: "Tourism-driven year-round occupancy." },
+    { factor: "Price Drivers", read: "Beachfront scarcity and tourism growth." },
+    { factor: "Liquidity", read: "Highly liquid resale market." }
+  ],
+
+  rentalAnalysisPoints: [
+    "1-beds rent AED 110k–125k long-term.",
+    "Holiday rentals outperform long-term leasing.",
+    "Sea-view units command strong premiums."
+  ],
+
+  salesAnalysisPoints: [
+    "Prime sea view units trade above AED 2,000 psf.",
+    "Strong resale volume due to investor turnover."
+  ],
+
+  investorTip: "Target sea-view units for maximum short-term rental ROI.",
+
+  connectivity: {
+    airport: { name: "DXB", km: "30 km", mins: "30 mins" },
+    school: { name: "Dubai British School", km: "8 km", mins: "15 mins" },
+    tourist: { name: "Bluewaters Island", km: "1 km", mins: "2 mins" },
+    metro: { name: "DMCC", km: "1 km", mins: "10 mins" },
+    mall: { name: "Dubai Marina Mall", km: "2 km", mins: "5 mins" },
+    business: { name: "Dubai Marina", km: "0 km", mins: "0 mins" },
+    hospital: { name: "Emirates Hospital Marina", km: "3 km", mins: "6 mins" }
+  },
+
+  buyerPsychology: {
+    trigger: "Lifestyle + Rental Income",
+    archetype: "The Airbnb Investor",
+    motivation: "Owning beachfront property with tourism yield."
+  }
+},
+
+{
+  id: "jumeirah-golf-estates",
+  name: "Jumeirah Golf Estates",
+  emirate: "Dubai",
+  category: "Luxury Golf Villas",
+
+  roi: "5.5%",
+  avgPrice: "AED 7M",
+  imageColor: "bg-green-900",
+
+  masterDeveloper: "Wasl",
+  location: "Near Sports City",
+  totalArea: "Golf Estate",
+  towers: "Luxury Villas & Townhouses",
+  completion: "Expanding",
+  privateBeach: "No",
+
+  highlights: [
+    "Host of DP World Tour Championship.",
+    "Premium golf course lifestyle community.",
+    "High European expat ownership."
+  ],
+
+  amenities: [
+    "Earth & Fire Golf Courses",
+    "Country Club",
+    "Fitness Centers",
+    "Parks",
+    "Schools"
+  ],
+
+  supplyStats: {
+    totalUnits: "3,000+",
+    handedOver: "75%",
+    underConstruction: "25%",
+    nextDelivery: "2026"
+  },
+
+  transport: {
+    metro: { name: "Jumeirah Golf Estates Metro", mins: "Direct Access", status: "Route 2020 Line" },
+    roadAccess: ["E311", "Al Khail Road"],
+    walkability: "Moderate",
+    cycling: "Good"
+  },
+
+  aiVerdict: {
+    title: "Dubai’s Premier Golf Lifestyle Investment",
+    summary: "Combines luxury family living with strong long-term appreciation driven by exclusivity and golf branding."
+  },
+
+  priceTrend: {
+    "2023": "AED 5.5M",
+    "2024": "AED 6.3M",
+    "2025": "AED 7M",
+    "2026": "AED 7.8M"
+  },
+
+  demandSignals: {
+    rentalDemand: "High",
+    resaleLiquidity: "Moderate",
+    tenantProfile: "European Families & Executives"
+  },
+
+  ownership: {
+    type: "Freehold",
+    eligibleFor: ["All Nationalities"],
+    minDownPayment: "20%"
+  },
+
+  scores: { cashFlow: 5.5, appreciation: 8.5, liquidity: 6.5, risk: 3.0, lifestyle: 9.5 },
+  overallScore: 8.3,
+
+  unitEconomics: {
+    fourBed: { roi: "5.5%", rent: "AED 320k" },
+    fiveBed: { roi: "5.2%", rent: "AED 400k" }
+  },
+
+  shortTermScore: 5.5,
+  shortTermRental: { allowed: true, avgDailyRate: "AED 1,500", occupancy: "60%" },
+
+  futureUpgrades: [{ name: "Wasl Master Expansion", status: "Ongoing" }],
+
+  description: "Jumeirah Golf Estates is a premium villa community centered around championship golf courses and luxury family living.",
+
+  buyerPsychology: {
+    trigger: "Luxury Lifestyle",
+    archetype: "The Golf Elite",
+    motivation: "Owning property in golf-branded luxury community."
+  }
+},
+
+
 ];
 
