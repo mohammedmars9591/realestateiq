@@ -41,15 +41,15 @@ const HomePage = () => {
           
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-50 border border-blue-100 text-blue-700 text-xs font-bold uppercase tracking-wider mb-8 shadow-sm">
             <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full text-blue-600 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 text-blue-600"></span>
             </span>
             Live 2026 Market Forecasts
           </div>
 
           <h1 className="text-5xl md:text-7xl font-serif font-bold text-slate-900 tracking-tight mb-6 leading-tight">
             Smart Data for <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">Smart Investors</span>
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 text-blue-600">Smart Investors</span>
           </h1>
           
           <p className="text-xl text-slate-500 max-w-2xl mx-auto mb-10 leading-relaxed font-light">
