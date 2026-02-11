@@ -67,9 +67,9 @@ const HomePage = () => {
 
           {/* Trust Badge (Updated Luxury Look) */}
           <div className="mt-12 pt-8 border-t border-slate-100 flex flex-col items-center">
-             <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-4">Intelligence Powered By</p>
+             <p className="text-xs font-bold text-blue-600 uppercase tracking-widest mb-4">Intelligence Powered By</p>
              <div className="flex gap-8 opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
-                <span className="font-serif font-bold text-xl text-slate-800 flex items-center gap-2"><Globe size={18} className="text-blue-600"/> Dubai Land Dept</span>
+                <span className="font-serif font-bold text-xl text-slate-800 flex items-center gap-2"><Globe size={18} className="text-slate-500"/> Dubai Land Dept</span>
                 <span className="font-serif font-bold text-xl text-slate-800 flex items-center gap-2"><Database size={18} className="text-blue-600"/> Reidin</span>
                 <span className="font-serif font-bold text-xl text-slate-800 flex items-center gap-2"><Layers size={18} className="text-blue-600"/> Bayut Data</span>
              </div>
@@ -83,7 +83,7 @@ const HomePage = () => {
       {/* --- 3. QUICK TOOLS GRID (LUXURY CARDS) --- */}
       <div className="max-w-6xl mx-auto px-4 -mt-24 relative z-20 mb-24">
          <div className="bg-white/80 backdrop-blur-xl rounded-3xl shadow-2xl border border-white/50 p-6 grid grid-cols-2 md:grid-cols-4 gap-6">
-            <ToolCard to="/areas" icon={<Globe />} label="Explore Areas" color="text-blue-600" />
+            <ToolCard to="/areas" icon={<Globe />} label="Explore Areas" color= "text-blue-600" />
             <ToolCard to="/builders" icon={<HardHat />} label="Rate Developers" color="text-orange-600" />
             <ToolCard to="/heatmap" icon={<TrendingUp />} label="ROI Heatmap" color="text-emerald-600" />
             <ToolCard to="/compare" icon={<LineChart />} label="Compare Tools" color="text-purple-600" />
