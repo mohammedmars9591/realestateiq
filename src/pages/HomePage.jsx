@@ -6,12 +6,51 @@ import {
   CheckCircle2, LineChart, Globe, Database, Layers, Star
 } from 'lucide-react';
 import SEO from '../components/SEO';
-import { DUBAI_AREAS } from '../data/areaData';
+import { DUBAI_AREAS as MASTER_DB } from '../data/emiratesData';
 import { BUILDERS } from '../data/buildersData';
 
 const HomePage = () => {
-  // Safe slice to avoid errors
-  const featuredAreas = (DUBAI_AREAS || []).slice(0, 4);
+  // --- HELPERS ---
+  const getCount = (emirateName) => {
+    if (!MASTER_DB) return 0;
+    return MASTER_DB.filter(area => area.emirate === emirateName).length;
+  };
+
+  const featuredEmirates = [
+    { 
+      name: 'Dubai', 
+      count: `${getCount('Dubai')} Areas`, 
+      color: 'bg-blue-900',
+      icon: <Building2 className="text-blue-400" size={32} />,
+      tag: 'Global Hub',
+      desc: "Global business & luxury living" 
+    },
+    { 
+      name: 'Abu Dhabi', 
+      count: `${getCount('Abu Dhabi')} Areas`, 
+      color: 'bg-teal-900',
+      icon: <ShieldCheck className="text-teal-400" size={32} />,
+      tag: 'Stability',
+      desc: "Capital of UAE, high-income stability" 
+    },
+    { 
+      name: 'Sharjah', 
+      count: `${getCount('Sharjah')} Areas`, 
+      color: 'bg-orange-900',
+      icon: <Wallet className="text-orange-400" size={32} />,
+      tag: 'High Yield',
+      desc: "Highest rental yields & culture" 
+    },
+    { 
+      name: 'Ras Al Khaimah', 
+      count: `${getCount('Ras Al Khaimah')} Areas`, 
+      color: 'bg-purple-900',
+      icon: <Zap className="text-purple-400" size={32} />,
+      tag: 'Growth Phase',
+      desc: "Gaming resorts & appreciation" 
+    }
+  ];
+
   const featuredBuilders = (BUILDERS || []).slice(0, 4);
 
   const structuredData = {
@@ -62,9 +101,9 @@ const HomePage = () => {
             Live 2026 Market Forecasts
           </div>
 
-          <h1 className="text-5xl md:text-7xl font-serif font-bold text-slate-900 tracking-tight mb-6 leading-tight">
+          <h1 className="text-6xl md:text-8xl font-sans font-black text-slate-900 tracking-tighter mb-6 leading-tight">
             Smart Data for <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 text-blue-600">Smart Investors</span>
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-700 via-blue-600 to-indigo-600">Smart Investors</span>
           </h1>
           
           <p className="text-xl text-slate-500 max-w-2xl mx-auto mb-10 leading-relaxed font-light">
@@ -140,53 +179,54 @@ const HomePage = () => {
          </div>
       </div>
 
-      {/* --- 5. TRENDING DISTRICTS (PREMIUM PROPERTY CARDS) --- */}
+      {/* --- 5. TRENDING EMIRATES (PREMIUM PROPERTY CARDS) --- */}
       <div className="max-w-7xl mx-auto px-4 md:px-8 mb-24">
         <div className="flex justify-between items-end mb-10 border-b border-slate-100 pb-6">
           <div>
-            <h2 className="text-4xl font-serif font-bold text-slate-900">Trending Districts</h2>
-            <p className="text-slate-500 mt-2">Highest transaction volume zones this month.</p>
+            <h2 className="text-4xl font-serif font-bold text-slate-900">Trending Emirates</h2>
+            <p className="text-slate-500 mt-2">Highest transaction volume zones across the UAE.</p>
           </div>
-          <Link to="/areas" className="text-blue-600 font-bold hover:underline hidden md:block flex items-center gap-2">View All <ArrowRight size={16}/></Link>
+          <Link to="/areas" className="text-blue-600 font-bold hover:underline hidden md:block flex items-center gap-2">View All Areas <ArrowRight size={16}/></Link>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {featuredAreas.map((area) => (
-            <Link to={`/area/${area.id}`} key={area.id} className="group relative block h-[450px] rounded-[2rem] overflow-hidden cursor-pointer shadow-lg hover:shadow-2xl transition-all duration-700 hover:-translate-y-2 border border-slate-100">
-              {/* Image Layer with Gradient Overlay */}
-              <div className={`absolute inset-0 ${area.imageColor || 'bg-slate-800'} transition-transform duration-1000 group-hover:scale-110`}>
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-900/40 to-transparent opacity-90"></div>
-              </div>
+          {featuredEmirates.map((emirate) => (
+            <Link to="/areas" key={emirate.name} className={`group relative block h-[450px] rounded-[2rem] overflow-hidden cursor-pointer shadow-lg hover:shadow-2xl transition-all duration-700 hover:-translate-y-2 border border-slate-100 ${emirate.color}`}>
               
               {/* Luxury Badge */}
               <div className="absolute top-5 left-5 z-10">
                 <div className="bg-white/10 backdrop-blur-md border border-white/20 text-white text-[10px] font-bold px-3 py-1.5 rounded-full uppercase tracking-widest shadow-lg flex items-center gap-1">
-                  <Crown size={10} className="text-amber-400" /> {area.category}
+                  <Crown size={10} className="text-amber-400" /> {emirate.tag}
                 </div>
               </div>
 
               {/* Card Content */}
-              <div className="absolute bottom-0 left-0 w-full p-6 z-20 flex flex-col justify-end h-full">
-                <div className="mt-auto mb-4 transform group-hover:-translate-y-2 transition-transform duration-500">
-                   <h3 className="text-3xl font-serif font-bold text-white leading-none mb-2">{area.name}</h3>
-                   <div className="w-12 h-1 bg-amber-500 rounded-full mb-2"></div>
+              <div className="absolute inset-0 p-8 z-20 flex flex-col justify-end">
+                <div className="mb-auto mt-16 p-4 rounded-2xl bg-white/10 backdrop-blur-md w-max border border-white/20">
+                   {emirate.icon}
+                </div>
+
+                <div className="mt-auto transform group-hover:-translate-y-2 transition-transform duration-500">
+                   <h3 className="text-4xl font-sans font-black text-white tracking-tight leading-none mb-2">{emirate.name}</h3>
+                   <p className="text-white/80 font-medium mb-4">{emirate.desc}</p>
+                   <div className="w-12 h-1 bg-amber-500 rounded-full mb-4"></div>
                 </div>
 
                 {/* Glass Stats Panel */}
-                <div className="bg-white/10 backdrop-blur-md border border-white/10 rounded-xl p-3 flex justify-between items-center group-hover:bg-white/20 transition-colors">
+                <div className="bg-white/10 backdrop-blur-md border border-white/10 rounded-xl p-4 flex justify-between items-center group-hover:bg-white/20 transition-colors">
                    <div>
-                      <div className="text-[10px] text-slate-300 uppercase tracking-wider font-bold mb-0.5">Est. Yield</div>
-                      <div className="text-emerald-400 font-bold text-lg flex items-center gap-1">
-                        <TrendingUp size={14} /> {area.roi}
-                      </div>
+                      <div className="text-[10px] text-slate-300 uppercase tracking-wider font-bold mb-0.5">Active Zones</div>
+                      <div className="text-white font-bold text-lg">{emirate.count}</div>
                    </div>
                    <div className="w-px h-8 bg-white/20"></div>
-                   <div className="text-right">
-                      <div className="text-[10px] text-slate-300 uppercase tracking-wider font-bold mb-0.5">Score</div>
-                      <div className="text-amber-400 font-bold text-lg">{area.overallScore}/10</div>
+                   <div className="text-right text-white font-bold text-sm flex items-center gap-1">
+                      Explore <ArrowRight size={16} />
                    </div>
                 </div>
               </div>
+
+              {/* Decorative Glow */}
+              <div className="absolute -bottom-10 -right-10 w-48 h-48 bg-white/10 rounded-full blur-3xl group-hover:bg-white/20 transition-all"></div>
             </Link>
           ))}
         </div>
