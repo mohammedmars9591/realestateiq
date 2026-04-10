@@ -14,9 +14,9 @@ const emirates = [
 
 export function EmiratesSection() {
   return (
-    <section className="section-warm py-32">
+    <section className="section-warm py-16 md:py-32">
       <div className="mx-auto max-w-7xl px-4 lg:px-8">
-        <div className="mx-auto max-w-3xl text-center mb-16">
+        <div className="mx-auto max-w-3xl text-center mb-10 md:mb-16">
           <h2 className="display-medium text-[#1C1C22] mb-6">
             All Seven Emirates, <span className="gold-gradient">One Platform</span>
           </h2>

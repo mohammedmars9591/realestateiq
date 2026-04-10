@@ -1,27 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { Menu, X, BarChart3, Search, MapPin, HardHat } from 'lucide-react';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
+import { Menu, X, Building2, Search, MapPin, HardHat } from 'lucide-react';
 
 // --- DATA IMPORTS ---
-import { DUBAI_AREAS } from '../data/areaData';
+import { DUBAI_AREAS } from '../data/emiratesData'; // Already usando emiratesData
 import { BUILDERS } from '../data/buildersData';
-import { SHARJAH_DATA } from '../data/sharjahData';
-import { AJMAN_DATA } from '../data/ajmanData';
-import { RAK_DATA } from '../data/rakData';
-import { UAQ_DATA } from '../data/uaqData';
-import { ABUDHABI_DATA } from '../data/abudhabiData';
-import { FUJAIRAH_DATA } from '../data/fujairahData';
-
-// --- MERGE ALL DATA FOR GLOBAL SEARCH ---
-const ALL_AREAS = [
-  ...DUBAI_AREAS,
-  ...(SHARJAH_DATA || []),
-  ...(AJMAN_DATA || []),
-  ...(RAK_DATA || []),
-  ...(UAQ_DATA || []),
-  ...(ABUDHABI_DATA || []),
-  ...(FUJAIRAH_DATA || [])
-];
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -30,7 +13,10 @@ const Header = () => {
   const [showResults, setShowResults] = useState(false);
   
   const navigate = useNavigate();
+  const location = useLocation();
   const searchRef = useRef(null);
+
+  const pathname = location.pathname;
 
   // --- SEARCH ENGINE LOGIC ---
   useEffect(() => {
@@ -41,10 +27,10 @@ const Header = () => {
 
     const lowerQuery = searchQuery.toLowerCase();
 
-    // 1. Search All Areas (Dubai, Shj, RAK, etc.)
-    const matchedAreas = ALL_AREAS.filter(a => 
+    // 1. Search Areas
+    const matchedAreas = (DUBAI_AREAS || []).filter(a => 
       a.name?.toLowerCase().includes(lowerQuery)
-    ).slice(0, 5); // Increased limit to 5
+    ).slice(0, 5);
 
     // 2. Search Builders
     const matchedBuilders = (BUILDERS || []).filter(b => 
@@ -73,27 +59,37 @@ const Header = () => {
     setIsMenuOpen(false);
   };
 
+  const navLinks = [
+    { href: "/", label: "Overview" },
+    { href: "/areas", label: "Areas" },
+    { href: "/builders", label: "Builders" },
+    { href: "/heatmap", label: "Heatmap" },
+    { href: "/compare", label: "Compare" },
+  ];
+
   return (
-    <header className="bg-white border-b border-slate-200 sticky top-0 z-50 shadow-sm">
-      <div className="flex justify-between items-center py-4 px-4 md:px-8 max-w-7xl mx-auto gap-4">
+    <header className="sticky top-0 z-50 border-b border-[rgba(198,167,94,0.2)] bg-[rgba(248,245,239,0.88)] backdrop-blur-2xl">
+      <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 lg:px-8">
         
         {/* LOGO */}
-        <Link to="/" className="flex items-center gap-2 text-xl md:text-2xl font-extrabold text-slate-900 hover:text-slate-900 no-underline shrink-0">
-          <div className="bg-blue-600 text-white p-1.5 rounded-lg">
-            <BarChart3 size={24} />
+        <Link to="/" className="flex items-center gap-3 group shrink-0">
+          <div className="gold-gradient-bg flex h-10 w-10 items-center justify-center rounded-xl glow-gold-hover transition-all duration-500 shadow-lg">
+            <Building2 className="h-5 w-5 text-[#1C1C22]" strokeWidth={1.5} />
           </div>
-          <span className="hidden md:inline">RealEstate<span className="text-blue-600">IQ</span></span>
-          <span className="md:hidden">RE<span className="text-blue-600">IQ</span></span>
+          <span className="text-xl font-bold tracking-tight font-heading text-[#1C1C22] hidden sm:inline">
+            RealEstate<span className="gold-gradient">IQ</span><span className="text-[#7A6E60] font-light text-sm italic ml-0.5">.ae</span>
+          </span>
+          <span className="sm:hidden text-lg font-bold text-[#1C1C22]">RE<span className="gold-gradient">IQ</span></span>
         </Link>
         
         {/* --- GLOBAL SEARCH BAR --- */}
-        <div className="flex-1 max-w-md relative" ref={searchRef}>
+        <div className="flex-1 max-w-sm mx-4 relative hidden md:block" ref={searchRef}>
           <div className="relative">
-             <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" size={18} />
+             <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-[#A69785]" size={16} />
              <input 
                type="text" 
-               placeholder="Search Dubai, Sharjah, Abu Dhabi..." 
-               className="w-full pl-10 pr-4 py-2 bg-slate-100 border-none rounded-full text-sm font-medium focus:ring-2 focus:ring-blue-500 transition-all outline-none"
+               placeholder="Search area or builder..." 
+               className="w-full pl-10 pr-4 py-2 bg-white/50 border border-[rgba(198,167,94,0.3)] rounded-full text-xs font-medium focus:ring-2 focus:ring-[#C6A75E] transition-all outline-none text-[#1C1C22] placeholder-[#A69785]"
                value={searchQuery}
                onChange={(e) => setSearchQuery(e.target.value)}
                onFocus={() => searchQuery.length >= 2 && setShowResults(true)}
@@ -102,18 +98,18 @@ const Header = () => {
 
           {/* DROPDOWN RESULTS */}
           {showResults && (searchResults.areas.length > 0 || searchResults.builders.length > 0) && (
-            <div className="absolute top-full left-0 w-full bg-white border border-slate-200 rounded-xl shadow-xl mt-2 overflow-hidden z-50">
+            <div className="absolute top-full left-0 w-full bg-white border border-[rgba(198,167,94,0.25)] rounded-2xl shadow-[0_10px_40px_rgba(0,0,0,0.1)] mt-3 overflow-hidden z-50 animate-in fade-in slide-in-from-top-2">
                
                {/* Areas Results */}
                {searchResults.areas.length > 0 && (
                  <div className="p-2">
-                   <div className="text-[10px] font-bold text-slate-400 uppercase px-2 mb-1">Locations</div>
+                   <div className="text-[10px] font-bold text-[#A69785] uppercase px-3 mb-1 tracking-widest">Premium Locations</div>
                    {searchResults.areas.map(a => (
-                     <button key={a.id} onClick={() => handleNavigate(`/area/${a.id}`)} className="w-full flex items-center gap-3 p-2 hover:bg-slate-50 rounded-lg text-left transition-colors">
-                       <MapPin size={16} className="text-blue-500" />
+                     <button key={a.id} onClick={() => handleNavigate(`/area/${a.id}`)} className="w-full flex items-center gap-4 p-3 hover:bg-[#FDFBF7] rounded-xl text-left transition-colors group">
+                       <MapPin size={16} className="text-[#C6A75E] group-hover:scale-110 transition-transform" />
                        <div className="flex flex-col">
-                         <span className="text-sm font-bold text-slate-700 leading-none">{a.name}</span>
-                         <span className="text-[10px] text-slate-400 uppercase mt-0.5">{a.emirate}</span>
+                         <span className="text-sm font-bold text-[#1C1C22] leading-none">{a.name}</span>
+                         <span className="text-[10px] text-[#A69785] uppercase mt-1 tracking-wider">{a.emirate}</span>
                        </div>
                      </button>
                    ))}
@@ -122,12 +118,12 @@ const Header = () => {
 
                {/* Builders Results */}
                {searchResults.builders.length > 0 && (
-                 <div className="p-2 border-t border-slate-100">
-                   <div className="text-[10px] font-bold text-slate-400 uppercase px-2 mb-1">Developers</div>
+                 <div className="p-2 border-t border-[rgba(198,167,94,0.1)]">
+                   <div className="text-[10px] font-bold text-[#A69785] uppercase px-3 mb-1 tracking-widest">Top Developers</div>
                    {searchResults.builders.map(b => (
-                     <button key={b.id} onClick={() => handleNavigate(`/builder/${b.id}`)} className="w-full flex items-center gap-3 p-2 hover:bg-slate-50 rounded-lg text-left transition-colors">
-                       <HardHat size={16} className="text-orange-500" />
-                       <span className="text-sm font-bold text-slate-700">{b.name}</span>
+                     <button key={b.id} onClick={() => handleNavigate(`/builder/${b.id}`)} className="w-full flex items-center gap-4 p-3 hover:bg-[#FDFBF7] rounded-xl text-left transition-colors group">
+                       <HardHat size={16} className="text-[#8E7F6E]" />
+                       <span className="text-sm font-bold text-[#1C1C22]">{b.name}</span>
                      </button>
                    ))}
                  </div>
@@ -137,31 +133,57 @@ const Header = () => {
         </div>
 
         {/* DESKTOP NAV */}
-        <nav className="hidden md:flex gap-6 text-sm font-bold text-slate-600 items-center">
-          <Link to="/areas" className="hover:text-blue-600 transition">Areas</Link>
-          <Link to="/builders" className="hover:text-blue-600 transition">Developers</Link>
-          <Link to="/heatmap" className="hover:text-blue-600 transition">Heatmap</Link>
-          <Link to="/compare" className="hover:text-blue-600 transition">Compare</Link>
+        <nav className="hidden lg:flex items-center gap-2">
+          {navLinks.map((link) => (
+            <Link
+              key={link.href}
+              to={link.href}
+              className={`relative rounded-lg px-4 py-2 text-sm font-medium transition-all duration-300 ${
+                pathname === link.href ? "text-[#C6A75E]" : "text-[#7A6E60] hover:text-[#1C1C22]"
+              }`}
+            >
+              {link.label}
+              {pathname === link.href && (
+                <span className="absolute bottom-0 left-1/2 h-[2.5px] w-6 -translate-x-1/2 gold-gradient-bg rounded-full shadow-[0_1px_4px_rgba(198,167,94,0.4)]" />
+              )}
+            </Link>
+          ))}
         </nav>
 
-        {/* MOBILE MENU BUTTON */}
-        <button 
-          className="md:hidden text-slate-900 p-2 shrink-0"
-          onClick={() => setIsMenuOpen(!isMenuOpen)}
-        >
-          {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
-        </button>
+        {/* MOBILE ACTIONS */}
+        <div className="flex items-center gap-2 md:gap-4">
+          <button className="md:hidden text-[#1C1C22] p-2">
+             <Search size={22} className="text-[#A69785]" />
+          </button>
+          <button 
+            className="md:hidden text-[#1C1C22] p-2"
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+          >
+            {isMenuOpen ? <X size={26} /> : <Menu size={26} />}
+          </button>
+        </div>
       </div>
 
       {/* MOBILE MENU DROPDOWN */}
       {isMenuOpen && (
-        <div className="md:hidden bg-white border-t border-slate-100 p-6 flex flex-col gap-6 shadow-xl absolute w-full left-0 z-50">
-          <nav className="flex flex-col gap-4 text-lg font-bold text-slate-700">
-            <Link to="/areas" onClick={() => setIsMenuOpen(false)}>Explore Areas</Link>
-            <Link to="/builders" onClick={() => setIsMenuOpen(false)}>Top Developers</Link>
-            <Link to="/heatmap" onClick={() => setIsMenuOpen(false)}>ROI Heatmap</Link>
-            <Link to="/compare" onClick={() => setIsMenuOpen(false)}>Comparison Tool</Link>
+        <div className="lg:hidden border-t border-[rgba(198,167,94,0.2)] bg-[#FDFBF7] p-8 absolute w-full left-0 z-50 shadow-2xl animate-in slide-in-from-top-4 duration-300">
+          <nav className="flex flex-col gap-2">
+            {navLinks.map((link) => (
+              <Link
+                key={link.href}
+                to={link.href}
+                onClick={() => setIsMenuOpen(false)}
+                className={`rounded-xl px-5 py-4 text-lg font-bold transition-all ${
+                  pathname === link.href ? "bg-[rgba(198,167,94,0.1)] text-[#C6A75E]" : "text-[#1C1C22] hover:bg-white/50"
+                }`}
+              >
+                {link.label}
+              </Link>
+            ))}
           </nav>
+          <button className="mt-8 w-full btn-primary px-6 py-4 rounded-2xl text-lg font-bold">
+             Get Intelligence
+          </button>
         </div>
       )}
     </header>

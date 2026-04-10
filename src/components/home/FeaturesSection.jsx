@@ -14,9 +14,9 @@ const features = [
 
 export function FeaturesSection() {
   return (
-    <section className="section-ivory py-32 relative">
+    <section className="section-ivory py-16 md:py-32 relative">
       <div className="mx-auto max-w-7xl px-4 lg:px-8">
-        <div className="mx-auto max-w-3xl text-center mb-20">
+        <div className="mx-auto max-w-3xl text-center mb-12 md:mb-20">
           <h2 className="display-medium text-[#1C1C22] mb-6">
             Everything You Need for <span className="gold-gradient">UAE Property Intelligence</span>
           </h2>
