@@ -61,12 +61,12 @@ const AreaPage = () => {
     window.open(`https://wa.me/${phone}?text=${encodeURIComponent(text)}`, '_blank');
   };
 
-  // Metric Mappings
+  // Metric Mappings - Refined for professional intelligence
   const metricCharts = [
-    { title: "Investment Yield", valueLabel: area.roi || "N/A", score: parseInt((area.roi || "0").replace(/[^0-9]/g, "")) * 10, explanation: "Yield strength based on current rental returns and capital velocity." },
-    { title: "Appreciation Score", valueLabel: "High Potential", score: (area.scores?.appreciation || 7) * 12, explanation: "Projected capital growth based on masterplan delivery status." },
-    { title: "Investor Demand", valueLabel: "Institutional", score: 88, explanation: "Buy-side pressure from global HNWIs and institutional funds." },
-    { title: "Market Liquidity", valueLabel: "Liquid", score: (area.scores?.liquidity || 6) * 14, explanation: "Transaction velocity in the secondary resale and rental market." },
+    { title: "Investment Yield", valueLabel: area.roi || "N/A", score: parseFloat((area.roi || "0").replace(/[^0-9.]/g, "")) * 10 || 65, explanation: "Yield strength based on active rental contracts and benchmarked capital velocity." },
+    { title: "Appreciation Score", valueLabel: (area.scores?.appreciation > 8) ? "Elite Potential" : "High Growth", score: (area.scores?.appreciation || 7) * 11, explanation: "Projected capital growth floor based on infrastructure maturity and masterplan status." },
+    { title: "Investor Demand", valueLabel: area.demandSignals?.rentalDemand || "Institutional", score: 85, explanation: "Active buy-side pressure from both domestic syndicates and international HNWIs." },
+    { title: "Market Liquidity", valueLabel: area.demandSignals?.resaleLiquidity || "Liquid", score: (area.scores?.liquidity || 6) * 13, explanation: "Exit velocity in the secondary resale market and ease of off-plan flip arbitrage." },
   ];
 
   return (

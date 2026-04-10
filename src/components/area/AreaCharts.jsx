@@ -98,12 +98,20 @@ export function ROIBarChart({ economics }) {
   );
 }
 
-export function BuyerMixPieChart({ _buyerMix }) {
-  // We use fallback data as buyerMix parsing is not implemented yet
-  const data = [
-      { name: "Investors", value: 65 },
-      { name: "End Users", value: 35 },
-  ];
+export function BuyerMixPieChart({ buyerMix }) {
+  // Clever regex parsing from v0 template
+  const percentMatches = [...(buyerMix || "").matchAll(/(\d+)%\s*([^/]+)/g)];
+
+  const data =
+    percentMatches.length > 0
+      ? percentMatches.map((match) => ({
+          name: match[2].trim(),
+          value: parseInt(match[1], 10),
+        }))
+      : [
+          { name: "Investors", value: 65 },
+          { name: "End Users", value: 35 },
+        ];
 
   return (
     <div className="h-[280px] w-full">
@@ -118,10 +126,10 @@ export function BuyerMixPieChart({ _buyerMix }) {
         </PieChart>
       </ResponsiveContainer>
       <div className="mt-2 flex flex-wrap justify-center gap-3">
-        {data.map((_entry, index) => (
-          <div key={`legend-${_entry.name}`} className="flex items-center gap-2">
+        {data.map((entry, index) => (
+          <div key={`legend-${entry.name}`} className="flex items-center gap-2">
             <span className="h-2 w-2 rounded-full" style={{ backgroundColor: PIE_COLORS[index % PIE_COLORS.length] }} />
-            <span className="text-xs font-semibold text-[#4A3F2F]">{_entry.name} ({_entry.value}%)</span>
+            <span className="text-xs font-semibold text-[#4A3F2F]">{entry.name} ({entry.value}%)</span>
           </div>
         ))}
       </div>
