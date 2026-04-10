@@ -3,7 +3,7 @@ import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { Menu, X, Building2, Search, MapPin, HardHat } from 'lucide-react';
 
 // --- DATA IMPORTS ---
-import { DUBAI_AREAS } from '../data/emiratesData'; // Already usando emiratesData
+import { DUBAI_AREAS } from '../data/emiratesData'; 
 import { BUILDERS } from '../data/buildersData';
 
 const Header = () => {

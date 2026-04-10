@@ -8,7 +8,6 @@ function SectionTitle({ title }) {
 
 export function AreaDetailSections({ area }) {
   // Mapping current app data structures
-  const conn = area.connectivity || {};
   const scores = area.scores || { cashFlow: 5, appreciation: 5, liquidity: 5, risk: 5, lifestyle: 5 };
   const economics = area.unitEconomics || {};
   const supplyStats = { handedOver: "85%", underConstruction: "15%", nextDelivery: "Q4 2026" };

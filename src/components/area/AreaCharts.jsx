@@ -98,8 +98,8 @@ export function ROIBarChart({ economics }) {
   );
 }
 
-export function BuyerMixPieChart({ buyerMix }) {
-  // Fallback data if buyerMix isn't a string with percentages
+export function BuyerMixPieChart({ _buyerMix }) {
+  // We use fallback data as buyerMix parsing is not implemented yet
   const data = [
       { name: "Investors", value: 65 },
       { name: "End Users", value: 35 },
@@ -118,10 +118,10 @@ export function BuyerMixPieChart({ buyerMix }) {
         </PieChart>
       </ResponsiveContainer>
       <div className="mt-2 flex flex-wrap justify-center gap-3">
-        {data.map((entry, index) => (
-          <div key={`legend-${entry.name}`} className="flex items-center gap-2">
+        {data.map((_entry, index) => (
+          <div key={`legend-${_entry.name}`} className="flex items-center gap-2">
             <span className="h-2 w-2 rounded-full" style={{ backgroundColor: PIE_COLORS[index % PIE_COLORS.length] }} />
-            <span className="text-xs font-semibold text-[#4A3F2F]">{entry.name} ({entry.value}%)</span>
+            <span className="text-xs font-semibold text-[#4A3F2F]">{_entry.name} ({_entry.value}%)</span>
           </div>
         ))}
       </div>
@@ -147,8 +147,8 @@ export function MetricInsightCharts({ metrics }) {
                 <ResponsiveContainer width="100%" height="100%">
                   <PieChart>
                     <Pie data={chartData} dataKey="value" innerRadius={24} outerRadius={36} startAngle={90} endAngle={-270} stroke="none">
-                      {chartData.map((entry, index) => (
-                        <Cell key={`${metric.title}-${entry.name}`} fill={PIE_COLORS[index % PIE_COLORS.length]} />
+                      {chartData.map((entry) => (
+                        <Cell key={`${metric.title}-${entry.name}`} fill={PIE_COLORS[chartData.indexOf(entry) % PIE_COLORS.length]} />
                       ))}
                     </Pie>
                   </PieChart>
