@@ -2,10 +2,91 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Custom Tweaks (Optional) */
+/* ─── LIGHT LUXURY PALETTE (From v0 Template) ──────────────────────── */
+:root {
+  --background: #F8F5EF;
+  --background-alt: #F4EDE2;
+  --foreground: #1C1C22;
+  --card: rgba(255, 255, 255, 0.65);
+  --primary: #C6A75E;
+}
+
 @layer base {
   body {
-    @apply bg-slate-50 text-slate-900 antialiased;
+    @apply bg-[#F8F5EF] text-[#1C1C22] antialiased tracking-wide;
+  }
+}
+
+@layer utilities {
+  .display-large {
+    @apply text-5xl md:text-7xl lg:text-8xl font-bold leading-[1.1] tracking-tight;
+  }
+
+  .display-medium {
+    @apply text-4xl md:text-6xl font-bold leading-tight tracking-tight;
+  }
+
+  .gold-gradient {
+    background: linear-gradient(90deg, #C6A75E 0%, #D4A95F 50%, #F4DFA0 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .glass-card-hover {
+    background: rgba(255, 255, 255, 0.65);
+    backdrop-filter: blur(14px);
+    border: 1px solid rgba(212, 169, 95, 0.25);
+    border-radius: 20px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.06);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .glass-card-hover:hover {
+    background: rgba(255, 255, 255, 0.85);
+    border-color: rgba(212, 169, 95, 0.5);
+    box-shadow: 0 20px 60px rgba(212, 169, 95, 0.2), 0 4px 20px rgba(0, 0, 0, 0.08);
+    transform: translateY(-6px);
+  }
+
+  .btn-primary {
+    background: linear-gradient(135deg, #C6A75E 0%, #D4A95F 50%, #E6B76A 100%);
+    color: #1C1C22;
+    font-weight: 700;
+    border-radius: 0.85rem;
+    padding: 0.85rem 2rem;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 16px rgba(198, 167, 94, 0.25);
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 0 20px rgba(212, 169, 95, 0.4), 0 8px 24px rgba(0, 0, 0, 0.08);
+  }
+
+  .btn-secondary {
+    background: rgba(255, 255, 255, 0.8);
+    color: #1C1C22;
+    font-weight: 700;
+    border: 1px solid #D4A95F;
+    border-radius: 0.85rem;
+    padding: 0.85rem 2rem;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    backdrop-filter: blur(8px);
+  }
+
+  .btn-secondary:hover {
+    box-shadow: 0 0 20px rgba(212, 169, 95, 0.4);
+    background: rgba(255, 255, 255, 0.95);
+    transform: translateY(-2px);
+  }
+
+  .section-warm {
+    background: #F4EDE2;
+  }
+
+  .section-ivory {
+    background: #F8F5EF;
   }
 }
 
