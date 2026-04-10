@@ -1,233 +1,140 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { 
-  TrendingUp, ArrowRight, Zap, ShieldCheck, Wallet, 
-  Building2, ArrowLeft, LayoutGrid, Palmtree, Anchor, Sun 
-} from 'lucide-react';
+import { ArrowRight, MapPin } from "lucide-react";
 import SEO from '../components/SEO';
 
 // --- IMPORT MASTER DATA ---
 import { DUBAI_AREAS as MASTER_DB } from '../data/emiratesData';
 
 const ExploreAreas = () => {
-  const [selectedEmirate, setSelectedEmirate] = useState(null);
+  useEffect(() => { window.scrollTo(0, 0); }, []);
 
-  useEffect(() => { window.scrollTo(0, 0); }, [selectedEmirate]);
-
-  // --- FILTER LOGIC ---
-  const currentAreas = selectedEmirate && MASTER_DB 
-    ? MASTER_DB.filter(area => area.emirate === selectedEmirate)
-    : [];
-
-  // --- HELPER: GET AREA COUNT ---
-  // This automatically counts how many areas exist in your data file for each city
-  const getCount = (emirateName) => {
-    if (!MASTER_DB) return 0;
-    return MASTER_DB.filter(area => area.emirate === emirateName).length;
+  // Helper to group areas by Emirate
+  const emirateNames = ['Dubai', 'Abu Dhabi', 'Sharjah', 'Ras Al Khaimah', 'Ajman', 'Fujairah', 'Umm Al Quwain'];
+  
+  const featuredEmirateStyles = {
+    'Dubai': {
+      image: "/dubai-bg.png",
+      overlay: "bg-gradient-to-r from-[#FDFBF7] via-[#FDFBF7]/97 to-[#FDFBF7]/50",
+    },
+    'Sharjah': {
+      image: "/sharjah-bg.png",
+      overlay: "bg-gradient-to-r from-[#FDFBF7] via-[#FDFBF7]/92 to-[#FDFBF7]/28",
+    },
+    'Ras Al Khaimah': {
+      image: "/ras-al-khaimah-bg.png",
+      overlay: "bg-gradient-to-r from-[#FDFBF7] via-[#FDFBF7]/94 to-[#FDFBF7]/36",
+    },
+    'Abu Dhabi': {
+      image: "/abu-dhabi-bg.png",
+      overlay: "bg-gradient-to-r from-[#FDFBF7] via-[#FDFBF7]/95 to-[#FDFBF7]/40",
+    },
+    'Ajman': {
+      image: "/ajman-bg.png",
+      overlay: "bg-gradient-to-r from-[#FDFBF7] via-[#FDFBF7]/95 to-[#FDFBF7]/42",
+    },
+    'Fujairah': {
+      image: "/fujairah-bg.png",
+      overlay: "bg-gradient-to-r from-[#FDFBF7] via-[#FDFBF7]/94 to-[#FDFBF7]/40",
+    },
+    'Umm Al Quwain': {
+      image: "/umm-al-quwain-bg.png",
+      overlay: "bg-gradient-to-r from-[#FDFBF7] via-[#FDFBF7]/95 to-[#FDFBF7]/44",
+    },
   };
 
-  // --- EMIRATE CARDS CONFIG ---
-  // Now using dynamic counts!
-  const EMIRATES = [
-    { 
-      name: 'Dubai', 
-      count: `${getCount('Dubai')} Areas`, 
-      color: 'bg-blue-900', 
-      icon: <Building2 className="text-blue-400" />, 
-      desc: "Global business hub & luxury living" 
-    },
-    { 
-      name: 'Abu Dhabi', 
-      count: `${getCount('Abu Dhabi')} Areas`, 
-      color: 'bg-teal-900', 
-      icon: <ShieldCheck className="text-teal-400" />, 
-      desc: "Capital of UAE, high-income stability" 
-    },
-    { 
-      name: 'Sharjah', 
-      count: `${getCount('Sharjah')} Areas`, 
-      color: 'bg-orange-900', 
-      icon: <Wallet className="text-orange-400" />, 
-      desc: "Highest rental yields & culture" 
-    },
-    { 
-      name: 'Ras Al Khaimah', 
-      count: `${getCount('Ras Al Khaimah')} Areas`, 
-      color: 'bg-purple-900', 
-      icon: <Zap className="text-purple-400" />, 
-      desc: "Gaming resorts & massive appreciation" 
-    },
-    { 
-      name: 'Ajman', 
-      count: `${getCount('Ajman')} Areas`, 
-      color: 'bg-emerald-900', 
-      icon: <Sun className="text-emerald-400" />, 
-      desc: "Affordable entry & high occupancy" 
-    },
-    { 
-      name: 'Fujairah', 
-      count: `${getCount('Fujairah')} Areas`, 
-      color: 'bg-cyan-900', 
-      icon: <Anchor className="text-cyan-400" />, 
-      desc: "Port city with strategic growth" 
-    },
-    { 
-      name: 'Umm Al Quwain', 
-      count: `${getCount('Umm Al Quwain')} Areas`, 
-      color: 'bg-lime-900', 
-      icon: <Palmtree className="text-lime-400" />, 
-      desc: "Quiet coastal living & value" 
-    },
-  ];
-
   return (
-    <div className="max-w-7xl mx-auto px-4 md:px-8 pb-20 fade-in bg-slate-50 min-h-screen">
+    <div className="min-h-screen bg-background fade-in">
       <SEO 
-        title={selectedEmirate ? `${selectedEmirate} Real Estate Investment Guide | Free ROI Data` : "Best Dubai Areas for High ROI | RealEstateIQ"}
-        description="Explore the best Dubai areas for European and Indian investors. Free access to UAE real estate ROI, capital growth data, and investment zones."
+        title="UAE Areas Explorer | RealEstateIQ"
+        description="Explore UAE emirate and area-level real estate intelligence, including average price, rent, and ROI signals for investors."
       />
 
-      {/* --- VIEW 1: NATIONAL MAP (Selector) --- */}
-      {!selectedEmirate && (
-        <div className="py-12 animate-in fade-in slide-in-from-bottom-4 duration-500">
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <h1 className="text-4xl md:text-6xl font-extrabold text-slate-900 mb-6 tracking-tight">
-              The National <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-700 to-indigo-600">Investment Map</span>
-            </h1>
-            <p className="text-xl text-slate-500">Select an Emirate to drill down into local prices, yields, and growth zones.</p>
-          </div>
+      <section className="relative overflow-hidden section-warm py-24 min-h-[40vh] flex items-center">
+        {/* We use a fallback color if the background image isn't available */}
+        <div className="absolute inset-0 bg-[#E6B76A] bg-cover bg-center bg-no-repeat opacity-[0.1]" style={{ backgroundImage: "url('/dubai-area-bg.png')" }} />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#FDFBF7] via-[#FDFBF7]/90 to-[#FDFBF7]/40" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_rgba(244,223,160,0.3)_0%,_transparent_60%)] mix-blend-multiply pointer-events-none" />
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {EMIRATES.map((item) => (
-              <button
-                key={item.name}
-                onClick={() => setSelectedEmirate(item.name)}
-                className={`
-                  relative overflow-hidden p-8 rounded-3xl text-left transition-all duration-300 group
-                  ${item.color} hover:scale-[1.02] hover:shadow-2xl
-                `}
-              >
-                <div className="relative z-10">
-                  <div className="flex justify-between items-start mb-6">
-                    <div className="p-3 rounded-2xl bg-white/10 backdrop-blur-md">
-                      {React.cloneElement(item.icon, { size: 28 })}
-                    </div>
-                    <div className="px-3 py-1 rounded-full bg-white/20 text-white text-[10px] font-bold uppercase tracking-wider">
-                      {item.count}
-                    </div>
+        <div className="relative mx-auto max-w-7xl px-4 lg:px-8 w-full z-10">
+          <h1 className="display-medium text-[#1C1C22] mb-6">
+            Area <span className="gold-gradient">Explorer</span>
+          </h1>
+          <p className="mt-4 max-w-2xl text-lg text-[#7A6E60] leading-relaxed font-light">
+            Explore detailed real estate intelligence for every area across all seven UAE emirates. Select an area below to dive into deep analytics.
+          </p>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-4 py-12 lg:px-8">
+        <div className="flex flex-col gap-10">
+          {emirateNames.map((emirateName) => {
+            const areasForEmirate = MASTER_DB ? MASTER_DB.filter(a => a.emirate === emirateName) : [];
+            if (areasForEmirate.length === 0) return null;
+
+            const featuredStyle = featuredEmirateStyles[emirateName];
+
+            return (
+              <div key={emirateName} className="mb-8 animate-in slide-in-from-bottom-4 duration-500">
+                {/* Emirate Header Banner */}
+                <div className={`flex flex-col sm:flex-row sm:items-center justify-between gap-4 ${featuredStyle ? "relative overflow-hidden rounded-3xl p-8 mb-6 border border-[rgba(198,167,94,0.25)] shadow-[0_15px_40px_rgba(198,167,94,0.1)] bg-white" : "mb-4"}`}>
+                  {featuredStyle && (
+                    <>
+                      <div
+                        className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-20"
+                        style={{ backgroundImage: `url('${featuredStyle.image}')` }}
+                      />
+                      <div className={`absolute inset-0 ${featuredStyle.overlay}`} />
+                    </>
+                  )}
+
+                  <div className="relative z-10">
+                    <h2 className="text-3xl font-bold text-[#1C1C22] font-heading mb-1">{emirateName}</h2>
+                    <p className="text-sm font-semibold uppercase tracking-widest text-[#C6A75E]/70">{areasForEmirate.length} areas analyzed</p>
                   </div>
-                  
-                  <h3 className="text-3xl font-bold text-white mb-2">{item.name}</h3>
-                  <p className="text-white/70 text-sm font-medium">{item.desc}</p>
-                  
-                  <div className="mt-8 flex items-center gap-2 text-white font-bold text-sm opacity-0 group-hover:opacity-100 transition-opacity transform translate-y-2 group-hover:translate-y-0">
-                    Explore Market <ArrowRight size={16} />
-                  </div>
+
+                  <span className="hidden items-center gap-1 text-sm font-medium text-[#C6A75E] sm:flex relative z-10">
+                    View Market Intel <ArrowRight className="h-3.5 w-3.5" />
+                  </span>
                 </div>
 
-                {/* Decorative Glow */}
-                <div className="absolute -bottom-10 -right-10 w-48 h-48 bg-white/10 rounded-full blur-3xl group-hover:bg-white/20 transition-all"></div>
-              </button>
-            ))}
-          </div>
-        </div>
-      )}
-
-      {/* --- VIEW 2: EMIRATE DETAIL (The "Opened" State) --- */}
-      {selectedEmirate && (
-        <div className="py-8 animate-in zoom-in-95 duration-300">
-          
-          {/* Back Navigation */}
-          <button 
-            onClick={() => setSelectedEmirate(null)}
-            className="group flex items-center gap-2 text-slate-500 hover:text-blue-600 font-bold mb-8 transition-colors"
-          >
-            <div className="p-2 rounded-full bg-white border border-slate-200 group-hover:border-blue-200 group-hover:bg-blue-50">
-               <ArrowLeft size={18} />
-            </div>
-            Back to National Map
-          </button>
-
-          {/* Emirate Header */}
-          <div className="flex flex-col md:flex-row justify-between items-end mb-12 border-b border-slate-200 pb-8">
-            <div>
-              <div className="flex items-center gap-3 mb-2">
-                 <h1 className="text-4xl md:text-5xl font-extrabold text-slate-900">{selectedEmirate}</h1>
-                 <span className="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-xs font-bold uppercase tracking-wide">
-                   {currentAreas.length} Areas Tracked
-                 </span>
-              </div>
-              <p className="text-slate-500 text-lg">Top performing investment zones in {selectedEmirate}.</p>
-            </div>
-          </div>
-
-          {/* Areas Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {currentAreas.length > 0 ? (
-              currentAreas.map((area) => (
-                <Link to={`/area/${area.id}`} key={area.id} className="group block hover:no-underline h-full">
-                  <div className="bg-white border border-slate-200 rounded-3xl overflow-hidden hover:shadow-xl transition-all duration-300 h-full flex flex-col">
-                    
-                    {/* Image Section */}
-                    <div className="relative h-56 overflow-hidden">
-                      <div className={`absolute inset-0 ${area.imageColor || 'bg-slate-800'} transition-transform duration-700 group-hover:scale-110`}></div>
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent"></div>
-                      
-                      <div className="absolute top-4 left-4">
-                        <span className="bg-white/20 backdrop-blur-md border border-white/20 text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider">
-                          {area.category}
-                        </span>
+                {/* Areas Grid for this Emirate */}
+                <div className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                  {areasForEmirate.map((area) => (
+                    <Link
+                      key={area.id}
+                      to={`/area/${area.id}`}
+                      className="glass-card-hover group flex items-start gap-4 p-5"
+                    >
+                      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[rgba(198,167,94,0.12)] border border-[rgba(198,167,94,0.25)] transition-all duration-500 group-hover:bg-[rgba(198,167,94,0.22)]">
+                        <MapPin className="h-5 w-5 text-[#C6A75E]" strokeWidth={1.5} />
                       </div>
+                      <div className="flex-1">
+                        <h3 className="text-base font-bold text-[#1C1C22] tracking-tight">{area.name}</h3>
 
-                      <div className="absolute bottom-4 left-4 text-white">
-                        <h3 className="text-xl font-bold">{area.name}</h3>
-                        <div className="flex items-center gap-3 text-xs font-medium mt-1 opacity-90">
-                          <span className="flex items-center gap-1"><TrendingUp size={12} className="text-emerald-400"/> {area.roi} ROI</span>
-                          <span>•</span>
-                          <span>{area.avgPrice}</span>
+                        <div className="mt-3 grid grid-cols-3 gap-2">
+                          <div>
+                            <p className="text-[10px] uppercase tracking-wider text-[#7A6E60]">Avg Price</p>
+                            <p className="text-xs font-semibold text-[#1C1C22]">{area.avgPrice}</p>
+                          </div>
+                          <div>
+                            <p className="text-[10px] uppercase tracking-wider text-[#7A6E60]">Avg Rent</p>
+                            <p className="text-xs font-semibold text-[#1C1C22]">{area.avgRent}</p>
+                          </div>
+                          <div>
+                            <p className="text-[10px] uppercase tracking-wider text-[#7A6E60]">ROI</p>
+                            <p className="text-xs font-semibold text-emerald-600">{area.roi}</p>
+                          </div>
                         </div>
                       </div>
-                    </div>
-
-                    {/* Body */}
-                    <div className="p-5 flex flex-col flex-grow">
-                      <p className="text-slate-600 text-sm leading-relaxed mb-4 line-clamp-2 flex-grow">
-                        {area.description}
-                      </p>
-                      
-                      <div className="pt-4 border-t border-slate-100 flex items-center justify-between">
-                         <div className="flex gap-2">
-                            {area.amenities?.slice(0, 2).map(am => (
-                              <span key={am} className="text-[10px] bg-slate-100 px-2 py-1 rounded text-slate-600 font-medium">
-                                {am}
-                              </span>
-                            ))}
-                         </div>
-                         <div className="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center group-hover:bg-blue-600 group-hover:text-white transition-colors">
-                            <ArrowRight size={14} />
-                         </div>
-                      </div>
-                    </div>
-
-                  </div>
-                </Link>
-              ))
-            ) : (
-              // Empty State
-              <div className="col-span-full py-20 text-center bg-white rounded-3xl border border-dashed border-slate-300">
-                <LayoutGrid size={48} className="mx-auto text-slate-300 mb-4" />
-                <h3 className="text-xl font-bold text-slate-900">Coming Soon</h3>
-                <p className="text-slate-500 max-w-md mx-auto mt-2">
-                  We are currently verifying investment data for {selectedEmirate}.
-                </p>
-                <button onClick={() => setSelectedEmirate(null)} className="mt-6 text-blue-600 font-bold text-sm hover:underline">
-                  Back to Map
-                </button>
+                    </Link>
+                  ))}
+                </div>
               </div>
-            )}
-          </div>
+            );
+          })}
         </div>
-      )}
+      </section>
     </div>
   );
 };
