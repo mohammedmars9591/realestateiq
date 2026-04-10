@@ -14,11 +14,26 @@ const HomePage = () => {
   const featuredAreas = (DUBAI_AREAS || []).slice(0, 4);
   const featuredBuilders = (BUILDERS || []).slice(0, 4);
 
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "RealEstateIQ",
+    "operatingSystem": "Web",
+    "applicationCategory": "BusinessApplication",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "AED"
+    },
+    "description": "Free AI-powered Dubai Real Estate Investment Tool for analyzing Builders and Area ROI."
+  };
+
   return (
     <div className="fade-in bg-slate-50 font-sans text-slate-900">
       <SEO 
-        title="RealEstateIQ | AI-Powered Dubai Property Investment Analysis" 
-        description="Stop guessing. Access verified rental yields, capital appreciation forecasts, and builder reliability scores for 50+ Dubai areas."
+        title="RealEstateIQ | Free AI Dubai Real Estate Investment Tool" 
+        description="Stop guessing. Access 100% free verified rental yields, ROI forecasts, and compare top builders. The ultimate platform for Indian, European, and Global investors."
+        schema={structuredData}
       />
 
       {/* --- 1. LIVE MARKET TICKER --- */}
@@ -36,7 +51,7 @@ const HomePage = () => {
       </div>
 
       {/* --- 2. HERO SECTION --- */}
-      <div className="relative bg-white pt-16 pb-32 overflow-hidden">
+      <div className="relative bg-white pt-16 pb-20 overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 md:px-8 text-center relative z-10">
           
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-50 border border-blue-100 text-blue-700 text-xs font-bold uppercase tracking-wider mb-8 shadow-sm">
@@ -53,7 +68,7 @@ const HomePage = () => {
           </h1>
           
           <p className="text-xl text-slate-500 max-w-2xl mx-auto mb-10 leading-relaxed font-light">
-            Stop guessing with outdated listings. Use advanced <strong>AI Analytics, Heatmaps, and Scoring Models</strong> to find the highest ROI opportunities in Dubai.
+            <strong>Free Dubai real estate ROI comparison.</strong> Compare builders, trust scores, and top areas. The ultimate tool for <strong>Indian & European expats</strong> targeting high capital growth.
           </p>
           
           <div className="flex flex-col sm:flex-row justify-center gap-4">
@@ -80,18 +95,8 @@ const HomePage = () => {
         <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-blue-50 via-white to-white -z-0"></div>
       </div>
 
-      {/* --- 3. QUICK TOOLS GRID (LUXURY CARDS) --- */}
-      <div className="max-w-6xl mx-auto px-4 -mt-24 relative z-20 mb-24">
-         <div className="bg-white/80 backdrop-blur-xl rounded-3xl shadow-2xl border border-white/50 p-6 grid grid-cols-2 md:grid-cols-4 gap-6">
-            <ToolCard to="/areas" icon={<Globe />} label="Explore Areas" color= "text-blue-600" />
-            <ToolCard to="/builders" icon={<HardHat />} label="Rate Developers" color="from-blue-500 to-blue-700" />
-            <ToolCard to="/heatmap" icon={<TrendingUp />} label="ROI Heatmap" color="from-blue-500 to-blue-700" />
-            <ToolCard to="/compare" icon={<LineChart />} label="Compare Tools" color="from-blue-500 to-blue-700"/>
-         </div>
-      </div>
-
-      {/* --- 4. HOW SMART INVESTORS WIN (LUXURY CARDS) --- */}
-      <div className="max-w-7xl mx-auto px-4 md:px-8 mb-24">
+      {/* --- 3. HOW SMART INVESTORS WIN (LUXURY CARDS) --- */}
+      <div className="max-w-7xl mx-auto px-4 md:px-8 mb-16 pt-16 border-t border-slate-100">
          <div className="text-center mb-16">
             <div className="inline-block px-3 py-1 border border-blue-100 rounded-full text-blue-600 text-xs font-bold uppercase tracking-widest mb-4">
                The Methodology
@@ -122,6 +127,16 @@ const HomePage = () => {
                icon={<TrendingUp className="text-white" size={24} />}
                color="from-emerald-500 to-emerald-700"
             />
+         </div>
+      </div>
+
+      {/* --- 4. QUICK TOOLS GRID (LUXURY CARDS) --- */}
+      <div className="max-w-6xl mx-auto px-4 relative z-20 mb-24">
+         <div className="bg-white/80 backdrop-blur-xl rounded-3xl shadow-xl border border-slate-200 p-6 grid grid-cols-2 md:grid-cols-4 gap-6">
+            <ToolCard to="/areas" icon={<Globe />} label="Explore Areas" color= "text-blue-600" />
+            <ToolCard to="/builders" icon={<HardHat />} label="Compare Developers" color="from-blue-500 to-blue-700" />
+            <ToolCard to="/heatmap" icon={<TrendingUp />} label="ROI Heatmap" color="from-blue-500 to-blue-700" />
+            <ToolCard to="/compare" icon={<LineChart />} label="Compare ROI" color="from-blue-500 to-blue-700"/>
          </div>
       </div>
 
@@ -177,7 +192,41 @@ const HomePage = () => {
         </div>
       </div>
 
-      {/* --- 6. ANALYST VERDICTS (LUXURY SECTION) --- */}
+      {/* --- 6. FEATURED DEVELOPERS --- */}
+      <div className="max-w-7xl mx-auto px-4 md:px-8 mb-24">
+         <div className="flex justify-between items-end mb-10 border-b border-slate-100 pb-6">
+           <div>
+             <h2 className="text-3xl font-serif font-bold text-slate-900">Developer Reliability</h2>
+             <p className="text-slate-500 mt-2">Don't buy without checking the track record.</p>
+           </div>
+           <Link to="/builders" className="text-blue-600 font-bold hover:underline hidden md:block">Compare All →</Link>
+         </div>
+
+         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+           {featuredBuilders.map((builder) => (
+             <Link to={`/builder/${builder.id}`} key={builder.id} className="group block hover:no-underline">
+               <div className="bg-white border border-slate-200 rounded-2xl p-6 hover:shadow-xl transition-all hover:-translate-y-1 h-full flex flex-col relative overflow-hidden group-hover:border-blue-200">
+                 <div className={`absolute top-0 left-0 w-full h-1 ${builder.imageColor || 'bg-slate-800'}`}></div>
+                 <div className="flex justify-between items-start mb-6">
+                   <div className={`p-3 rounded-xl bg-slate-50 text-slate-700 group-hover:bg-blue-50 group-hover:text-blue-600 transition-colors`}>
+                     <Building2 size={24} />
+                   </div>
+                   {builder.id === 'emaar' && <Crown size={20} className="text-amber-500" />}
+                 </div>
+                 <h3 className="text-lg font-bold text-slate-900 mb-1">{builder.name}</h3>
+                 <div className="text-xs font-bold text-slate-400 uppercase tracking-wide mb-6">{builder.tier}</div>
+                 
+                 <div className="mt-auto pt-4 border-t border-slate-100 flex justify-between items-center text-sm">
+                   <span className="text-slate-500 font-medium">Trust Score</span>
+                   <span className={`font-bold text-lg ${builder.scores?.trust >= 9 ? 'text-green-600' : 'text-blue-600'}`}>{builder.scores?.trust}<span className="text-xs text-slate-400">/10</span></span>
+                 </div>
+               </div>
+             </Link>
+           ))}
+         </div>
+      </div>
+
+      {/* --- 7. ANALYST VERDICTS (LUXURY SECTION) --- */}
       <div className="bg-slate-900 py-24 mb-24 text-white relative overflow-hidden">
          {/* Background Decor */}
          <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-blue-600/10 rounded-full blur-[100px] pointer-events-none"></div>
@@ -222,47 +271,13 @@ const HomePage = () => {
          </div>
       </div>
 
-      {/* --- 7. FEATURED DEVELOPERS --- */}
-      <div className="max-w-7xl mx-auto px-4 md:px-8 mb-24">
-         <div className="flex justify-between items-end mb-10 border-b border-slate-100 pb-6">
-           <div>
-             <h2 className="text-3xl font-serif font-bold text-slate-900">Developer Reliability</h2>
-             <p className="text-slate-500 mt-2">Don't buy without checking the track record.</p>
-           </div>
-           <Link to="/builders" className="text-blue-600 font-bold hover:underline hidden md:block">Compare All →</Link>
-         </div>
-
-         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-           {featuredBuilders.map((builder) => (
-             <Link to={`/builder/${builder.id}`} key={builder.id} className="group block hover:no-underline">
-               <div className="bg-white border border-slate-200 rounded-2xl p-6 hover:shadow-xl transition-all hover:-translate-y-1 h-full flex flex-col relative overflow-hidden group-hover:border-blue-200">
-                 <div className={`absolute top-0 left-0 w-full h-1 ${builder.imageColor || 'bg-slate-800'}`}></div>
-                 <div className="flex justify-between items-start mb-6">
-                   <div className={`p-3 rounded-xl bg-slate-50 text-slate-700 group-hover:bg-blue-50 group-hover:text-blue-600 transition-colors`}>
-                     <Building2 size={24} />
-                   </div>
-                   {builder.id === 'emaar' && <Crown size={20} className="text-amber-500" />}
-                 </div>
-                 <h3 className="text-lg font-bold text-slate-900 mb-1">{builder.name}</h3>
-                 <div className="text-xs font-bold text-slate-400 uppercase tracking-wide mb-6">{builder.tier}</div>
-                 
-                 <div className="mt-auto pt-4 border-t border-slate-100 flex justify-between items-center text-sm">
-                   <span className="text-slate-500 font-medium">Trust Score</span>
-                   <span className={`font-bold text-lg ${builder.scores?.trust >= 9 ? 'text-green-600' : 'text-blue-600'}`}>{builder.scores?.trust}<span className="text-xs text-slate-400">/10</span></span>
-                 </div>
-               </div>
-             </Link>
-           ))}
-         </div>
-      </div>
-
       {/* --- 8. CTA SECTION --- */}
       <div className="max-w-7xl mx-auto px-4 md:px-8 mb-20">
          <div className="bg-gradient-to-r from-blue-700 to-blue-900 rounded-3xl p-12 text-center text-white relative overflow-hidden shadow-2xl">
             <div className="relative z-10">
                <h2 className="text-3xl font-serif font-bold mb-4">Ready to find your next investment?</h2>
-               <p className="text-blue-100 mb-8 max-w-xl mx-auto text-lg">Access the same data institutional investors use. Free for a limited time.</p>
-               <Link to="/areas" className="inline-block bg-white text-blue-900 px-10 py-4 rounded-full font-bold hover:bg-blue-50 transition shadow-lg hover:shadow-xl transform hover:-translate-y-1">Start Exploring Now</Link>
+               <p className="text-blue-100 mb-8 max-w-xl mx-auto text-lg">Use the ultimate free Dubai property investment tool. Act early and dominate the market.</p>
+               <Link to="/compare" className="inline-block bg-white text-blue-900 px-10 py-4 rounded-full font-bold hover:bg-blue-50 transition shadow-lg hover:shadow-xl transform hover:-translate-y-1">Start Comparing For Free</Link>
             </div>
             {/* Decor */}
             <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full -mr-16 -mt-16 blur-3xl"></div>

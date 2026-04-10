@@ -47,8 +47,8 @@ const BuildersPage = () => {
     <div className="max-w-7xl mx-auto px-4 md:px-8 pb-20 fade-in">
       
       <SEO 
-        title="Top 15 Dubai Developers | Comparison Guide 2026" 
-        description="Detailed analysis of Emaar, Damac, Binghatti, Sobha, and more. Compare payment plans, build quality, and trust scores."
+        title="Top Dubai Real Estate Builders | Free Comparison & Reviews" 
+        description="Compare top Dubai real estate builders. Free Trust Scores, Payment Plans, and ROI data for Indian and European investors targeting builders like Emaar and Damac."
       />
 
       {/* HERO SECTION */}

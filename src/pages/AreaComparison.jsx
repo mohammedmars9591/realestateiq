@@ -74,8 +74,8 @@ const AreaComparison = () => {
   return (
     <div className="max-w-7xl mx-auto px-4 md:px-8 pb-20 fade-in bg-slate-50 min-h-screen pt-8">
       <SEO 
-        title={`Compare ${mode === 'areas' ? 'Areas' : 'Developers'} | EstateIQ`} 
-        description="Detailed side-by-side comparison of ROI, Connectivity, and Future Growth."
+        title={`Free Dubai ${mode === 'areas' ? 'Area' : 'Builder'} Comparison | RealEstateIQ`} 
+        description={`Compare Dubai real estate ${mode === 'areas' ? 'areas' : 'builders'} for free. Check ROI, Capital Growth, and Trust Scores to find the best property.`}
       />
 
       {/* HEADER & TOGGLE */}

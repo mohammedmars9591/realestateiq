@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+# Exclude dynamic areas that might cause infinite crawling without actual links, though SPA router handles it.
+Disallow: /api/
+
+Sitemap: https://www.realestateiq.ae/sitemap.xml

@@ -83,8 +83,8 @@ const ExploreAreas = () => {
   return (
     <div className="max-w-7xl mx-auto px-4 md:px-8 pb-20 fade-in bg-slate-50 min-h-screen">
       <SEO 
-        title={selectedEmirate ? `${selectedEmirate} Real Estate Market | EstateIQ` : "UAE Investment Map 2026 | EstateIQ"}
-        description="Navigate the UAE's real estate landscape. From the luxury of Dubai to the high yields of Sharjah."
+        title={selectedEmirate ? `${selectedEmirate} Real Estate Investment Guide | Free ROI Data` : "Best Dubai Areas for High ROI | RealEstateIQ"}
+        description="Explore the best Dubai areas for European and Indian investors. Free access to UAE real estate ROI, capital growth data, and investment zones."
       />
 
       {/* --- VIEW 1: NATIONAL MAP (Selector) --- */}
