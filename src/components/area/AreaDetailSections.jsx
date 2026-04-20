@@ -9,8 +9,35 @@ import {
 function SectionTitle({ title }) {
   return (
     <div className="mb-6 flex items-center gap-4">
-      <h2 className="font-serif text-xl font-bold text-[#1C1C22] md:text-2xl">{title}</h2>
+      <h2 className="font-serif text-lg font-bold text-[#1C1C22] md:text-2xl">{title}</h2>
       <div className="h-[1px] flex-grow bg-gradient-to-r from-[rgba(198,167,94,0.3)] to-transparent"></div>
+    </div>
+  );
+}
+
+function MobileTableCard({ title, data, type = "default" }) {
+  return (
+    <div className="flex flex-col gap-4 md:hidden">
+      {data.map((item, idx) => (
+        <div key={idx} className="rounded-2xl border border-[rgba(198,167,94,0.2)] bg-white/80 p-5 shadow-sm">
+          <div className="mb-3 flex items-center justify-between border-b border-[rgba(198,167,94,0.1)] pb-3">
+             <span className="text-[10px] font-black uppercase tracking-widest text-[#C6A75E]">
+               {item.label}
+             </span>
+             {item.badge && (
+               <span className="rounded-lg bg-[#1C1C22] px-2 py-1 text-[8px] font-bold text-white uppercase">{item.badge}</span>
+             )}
+          </div>
+          <div className="space-y-4">
+            {item.details.map((detail, dIdx) => (
+              <div key={dIdx} className="flex flex-col gap-1">
+                <span className="text-[9px] font-bold uppercase text-[#7A6E60]">{detail.name}</span>
+                <p className="text-sm text-[#1C1C22] font-medium leading-relaxed">{detail.value}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      ))}
     </div>
   );
 }
@@ -43,30 +70,30 @@ export function AreaDetailSections({ area }) {
   const getMarketPoint = (factor) => area.marketReadData?.find(f => f.factor === factor)?.read || "Data analysis in progress for this sub-sector.";
 
   return (
-    <div className="flex flex-col gap-20 py-10">
+    <div className="flex flex-col gap-12 md:gap-20 py-6 md:py-10">
       
       {/* 1) AREA INFORMATION */}
       <section className="animate-in fade-in slide-in-from-bottom-4 duration-700">
         <SectionTitle title="1) Area Intelligence & Inventory" />
-        <div className="grid gap-8 lg:grid-cols-2">
-          <div className="rounded-3xl border border-[rgba(198,167,94,0.3)] bg-white/60 p-8 shadow-sm blur-backdrop">
+        <div className="grid gap-6 lg:grid-cols-2">
+          <div className="rounded-3xl border border-[rgba(198,167,94,0.3)] bg-white/60 p-5 md:p-8 shadow-sm blur-backdrop">
             <p className="text-sm leading-relaxed text-[#4A3F2F] font-light">{area.description}</p>
-            <div className="mt-8 grid gap-4 sm:grid-cols-2">
-              <div className="rounded-2xl border border-[rgba(198,167,94,0.15)] bg-white p-5">
+            <div className="mt-6 md:mt-8 grid gap-4 sm:grid-cols-2">
+              <div className="rounded-2xl border border-[rgba(198,167,94,0.15)] bg-white p-4 md:p-5">
                 <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#7A6E60]">Sub-Market</p>
                 <p className="mt-1 text-sm font-bold text-[#1C1C22]">{area.category || "Residential"}</p>
               </div>
-              <div className="rounded-2xl border border-[rgba(198,167,94,0.15)] bg-white p-5">
+              <div className="rounded-2xl border border-[rgba(198,167,94,0.15)] bg-white p-4 md:p-5">
                 <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#7A6E60]">Total Area</p>
                 <p className="mt-1 text-sm font-bold text-[#1C1C22]">{area.totalArea || "N/A"}</p>
               </div>
             </div>
-            <div className="mt-4 rounded-2xl border border-[rgba(198,167,94,0.15)] bg-white p-5">
+            <div className="mt-4 rounded-2xl border border-[rgba(198,167,94,0.15)] bg-white p-4 md:p-5">
               <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#7A6E60]">Iconic Registry / Towers</p>
               <p className="mt-1 text-sm font-bold text-[#1C1C22]">{area.towers || "Signature Developments"}</p>
             </div>
           </div>
-          <div className="relative group overflow-hidden rounded-3xl border border-[rgba(198,167,94,0.3)] bg-slate-900 p-8 shadow-2xl">
+          <div className="relative group overflow-hidden rounded-3xl border border-[rgba(198,167,94,0.3)] bg-slate-900 p-6 md:p-8 shadow-2xl">
              <div className="relative z-10">
                 <h3 className="mb-6 flex items-center gap-2 text-[11px] font-bold uppercase tracking-widest text-[#C6A75E]">
                    <Building size={16} /> Asset Class Distribution
@@ -99,14 +126,14 @@ export function AreaDetailSections({ area }) {
       {/* 2) AREA DEVELOPERS & TIMELINE */}
       <section>
         <SectionTitle title="2) Key Developers & Evolution Timeline" />
-        <div className="rounded-3xl border border-[rgba(198,167,94,0.3)] bg-white/60 p-8 shadow-sm">
-          <div className="mb-10">
+        <div className="rounded-3xl border border-[rgba(198,167,94,0.3)] bg-white/60 p-5 md:p-8 shadow-sm">
+          <div className="mb-8 md:mb-10">
             <h3 className="mb-4 flex items-center gap-2 text-[11px] font-bold uppercase tracking-widest text-[#1C1C22]">
               <HardHat className="h-4 w-4 text-[#C6A75E]" /> Master Influence
             </h3>
-            <div className="flex flex-wrap gap-3">
+            <div className="flex flex-wrap gap-2 md:gap-3">
               {[area.masterDeveloper, "Emaar", "Nakheel", "Sobha"].filter(Boolean).slice(0, 5).map((dev) => (
-                <span key={dev} className="rounded-xl border border-[rgba(198,167,94,0.2)] bg-white px-4 py-2 text-xs font-bold text-[#4A3F2F] shadow-sm">
+                <span key={dev} className="rounded-xl border border-[rgba(198,167,94,0.2)] bg-white px-3 py-1.5 md:px-4 md:py-2 text-[10px] md:text-xs font-bold text-[#4A3F2F] shadow-sm">
                   {dev}
                 </span>
               ))}
@@ -114,9 +141,9 @@ export function AreaDetailSections({ area }) {
           </div>
           <div className="space-y-4">
             <h3 className="mb-4 text-[11px] font-bold uppercase tracking-widest text-[#1C1C22]">Strategic Roadmap</h3>
-            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+            <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-3">
               {(timeline.length > 0 ? timeline : [{name: "Infrastructure Phase", status: "Completed"}, {name: "Expansion Phase", status: "Ongoing"}, {name: "Vision 2030", status: "Planned"}]).map((event, idx) => (
-                <div key={idx} className="flex flex-col gap-2 rounded-2xl border border-[rgba(198,167,94,0.15)] bg-white p-5 hover:border-[#C6A75E] transition-colors">
+                <div key={idx} className="flex flex-col gap-2 rounded-2xl border border-[rgba(198,167,94,0.15)] bg-white p-4 md:p-5 hover:border-[#C6A75E] transition-colors">
                   <span className="text-[10px] font-black text-[#C6A75E] uppercase">{event.status || "Timeline Event"}</span>
                   <p className="text-sm font-bold text-[#1C1C22]">{event.name}</p>
                 </div>
@@ -127,12 +154,12 @@ export function AreaDetailSections({ area }) {
       </section>
 
       {/* 3) REAL ESTATE BRIEF & 4) MARKET ANALYSIS */}
-      <section className="grid gap-8 lg:grid-cols-2">
+      <section className="grid gap-6 md:gap-8 lg:grid-cols-2">
         <div>
           <SectionTitle title="3) Real Estate Context Brief" />
-          <div className="rounded-3xl border border-[rgba(198,167,94,0.3)] bg-white/60 p-8 shadow-sm h-full flex flex-col justify-center">
-             <div className="flex items-start gap-4">
-               <div className="rounded-2xl bg-[#C6A75E]/10 p-4"><Info className="h-6 w-6 text-[#C6A75E]" /></div>
+          <div className="rounded-3xl border border-[rgba(198,167,94,0.3)] bg-white/60 p-5 md:p-8 shadow-sm h-full flex flex-col justify-center">
+             <div className="flex items-start gap-3 md:gap-4">
+               <div className="rounded-2xl bg-[#C6A75E]/10 p-3 md:p-4"><Info className="h-5 w-5 md:h-6 md:w-6 text-[#C6A75E]" /></div>
                <div>
                   <p className="text-sm leading-relaxed text-[#4A3F2F] italic">
                     "{area.aiVerdict?.summary || area.description?.slice(0, 200) + "..."}"
@@ -144,7 +171,7 @@ export function AreaDetailSections({ area }) {
         </div>
         <div>
           <SectionTitle title="4) Intelligence Analysis" />
-          <div className="space-y-4 rounded-3xl border border-[rgba(198,167,94,0.3)] bg-[#1C1C22] p-8 shadow-2xl text-white h-full overflow-hidden relative">
+          <div className="space-y-4 rounded-3xl border border-[rgba(198,167,94,0.3)] bg-[#1C1C22] p-6 md:p-8 shadow-2xl text-white h-full overflow-hidden relative">
             <div className="relative z-10 space-y-6">
               <div>
                 <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#C6A75E]">Price Position Insights</p>
@@ -177,12 +204,12 @@ export function AreaDetailSections({ area }) {
       <section className="grid gap-8 lg:grid-cols-12">
         <div className="lg:col-span-8">
           <SectionTitle title="6) Property Market Dynamics" />
-          <div className="overflow-hidden rounded-3xl border border-[rgba(198,167,94,0.3)] bg-white/60 shadow-lg">
-            <table className="w-full text-left">
+          <div className="hidden md:block overflow-x-auto luxury-scroll rounded-3xl border border-[rgba(198,167,94,0.3)] bg-white/60 shadow-lg">
+            <table className="w-full text-left min-w-[500px]">
               <thead>
                 <tr className="border-b border-[rgba(198,167,94,0.2)] bg-gradient-to-r from-[rgba(198,167,94,0.1)] to-transparent">
-                  <th className="px-6 py-4 text-[10px] font-bold uppercase tracking-widest text-[#1C1C22]">Institutional Metric</th>
-                  <th className="px-6 py-4 text-[10px] font-bold uppercase tracking-widest text-[#1C1C22]">Intelligence Insight</th>
+                  <th className="px-5 md:px-6 py-4 text-[10px] font-bold uppercase tracking-widest text-[#1C1C22]">Institutional Metric</th>
+                  <th className="px-5 md:px-6 py-4 text-[10px] font-bold uppercase tracking-widest text-[#1C1C22]">Intelligence Insight</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-[rgba(198,167,94,0.1)]">
@@ -193,17 +220,25 @@ export function AreaDetailSections({ area }) {
                   { m: "Ownership Type", d: area.ownership?.type || "Freehold" },
                 ].map((row, i) => (
                   <tr key={i} className="group hover:bg-white/40 transition-colors">
-                    <td className="px-6 py-5 text-xs font-bold text-[#1C1C22] uppercase tracking-tighter">{row.m}</td>
-                    <td className="px-6 py-5 text-sm text-[#4A3F2F] font-light leading-relaxed">{row.d}</td>
+                    <td className="px-5 md:px-6 py-4 md:py-5 text-[10px] md:text-xs font-bold text-[#1C1C22] uppercase tracking-tighter">{row.m}</td>
+                    <td className="px-5 md:px-6 py-4 md:py-5 text-sm text-[#4A3F2F] font-light leading-relaxed">{row.d}</td>
                   </tr>
                 ))}
               </tbody>
             </table>
           </div>
+          <MobileTableCard 
+            data={[
+              { label: "Buyer Mix", details: [{ name: "Intelligence Insight", value: getMarketPoint("Buyer Mix") }] },
+              { label: "Rental Demand", details: [{ name: "Intelligence Insight", value: getMarketPoint("Rental Demand") }] },
+              { label: "Liquidity Status", details: [{ name: "Intelligence Insight", value: getMarketPoint("Liquidity") }] },
+              { label: "Ownership Type", details: [{ name: "Intelligence Insight", value: area.ownership?.type || "Freehold" }] },
+            ]} 
+          />
         </div>
         <div className="lg:col-span-4">
           <SectionTitle title="Buyer Psychology" />
-          <div className="rounded-3xl border border-[rgba(198,167,94,0.3)] bg-white/60 p-6 shadow-sm blur-backdrop">
+          <div className="rounded-3xl border border-[rgba(198,167,94,0.3)] bg-white/60 p-5 md:p-6 shadow-sm blur-backdrop">
              <BuyerMixPieChart buyerMix={getMarketPoint("Buyer Mix")} />
           </div>
         </div>
@@ -212,23 +247,23 @@ export function AreaDetailSections({ area }) {
       {/* 7) RENTAL & SALE PRICES + INVESTOR TIPS */}
       <section>
         <SectionTitle title="7) Rental & Sale Performance Corridors" />
-        <div className="overflow-x-auto rounded-3xl border border-[rgba(198,167,94,0.3)] bg-white/60 shadow-lg">
-          <table className="min-w-[900px] w-full text-left">
+        <div className="hidden md:block overflow-x-auto luxury-scroll rounded-3xl border border-[rgba(198,167,94,0.3)] bg-white/60 shadow-lg">
+          <table className="min-w-[800px] md:min-w-[900px] w-full text-left">
             <thead>
               <tr className="border-b border-[rgba(198,167,94,0.2)] bg-gradient-to-r from-[rgba(198,167,94,0.1)] to-transparent">
-                <th className="px-6 py-4 text-[10px] font-bold uppercase tracking-widest text-[#1C1C22]">Configuration</th>
-                <th className="px-6 py-4 text-[10px] font-bold uppercase tracking-widest text-[#1C1C22]">Rental Benchmark</th>
-                <th className="px-6 py-4 text-[10px] font-bold uppercase tracking-widest text-[#1C1C22]">Sales Benchmark</th>
-                <th className="px-6 py-4 text-[10px] font-bold uppercase tracking-widest text-[#1C1C22]">Strategic Tip</th>
+                <th className="px-5 md:px-6 py-4 text-[10px] font-bold uppercase tracking-widest text-[#1C1C22]">Configuration</th>
+                <th className="px-5 md:px-6 py-4 text-[10px] font-bold uppercase tracking-widest text-[#1C1C22]">Rental Benchmark</th>
+                <th className="px-5 md:px-6 py-4 text-[10px] font-bold uppercase tracking-widest text-[#1C1C22]">Sales Benchmark</th>
+                <th className="px-5 md:px-6 py-4 text-[10px] font-bold uppercase tracking-widest text-[#1C1C22]">Strategic Tip</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-[rgba(198,167,94,0.1)]">
               {Object.entries(economics).map(([type, details]) => (
                 <tr key={type} className="hover:bg-white/40 transition-colors">
-                  <td className="px-6 py-5 text-sm font-bold text-[#1C1C22] uppercase">{type.replace(/([A-Z])/g, ' $1')}</td>
-                  <td className="px-6 py-5 text-sm text-[#4A3F2F] font-medium">{details.rent || "N/A"}</td>
-                  <td className="px-6 py-5 text-sm text-[#4A3F2F] font-medium">{details.price || "N/A"}</td>
-                  <td className="px-6 py-5 text-xs text-[#7A6E60] font-light italic leading-relaxed">
+                  <td className="px-5 md:px-6 py-4 md:py-5 text-xs md:text-sm font-bold text-[#1C1C22] uppercase">{type.replace(/([A-Z])/g, ' $1')}</td>
+                  <td className="px-5 md:px-6 py-4 md:py-5 text-sm text-[#4A3F2F] font-medium">{details.rent || "N/A"}</td>
+                  <td className="px-5 md:px-6 py-4 md:py-5 text-sm text-[#4A3F2F] font-medium">{details.price || "N/A"}</td>
+                  <td className="px-5 md:px-6 py-4 md:py-5 text-[10px] md:text-xs text-[#7A6E60] font-light italic leading-relaxed">
                      {details.roi > 7.5 ? "Priority high-yield focus." : "Target for capital preservation."}
                   </td>
                 </tr>
@@ -236,14 +271,24 @@ export function AreaDetailSections({ area }) {
             </tbody>
           </table>
         </div>
+        <MobileTableCard 
+          data={Object.entries(economics).map(([type, details]) => ({
+            label: type.replace(/([A-Z])/g, ' $1'),
+            details: [
+              { name: "Rental Benchmark", value: details.rent || "N/A" },
+              { name: "Sales Benchmark", value: details.price || "N/A" },
+              { name: "Strategic Tip", value: details.roi > 7.5 ? "Priority high-yield focus." : "Target for capital preservation." }
+            ]
+          }))}
+        />
       </section>
 
       {/* 8) PROPERTY CONFIGURATIONS TABLE & 9) PRICE HISTORY */}
       <section className="grid gap-8 lg:grid-cols-12">
          <div className="lg:col-span-8">
             <SectionTitle title="8) Deep Property Configurations" />
-            <div className="overflow-x-auto rounded-3xl border border-[rgba(198,167,94,0.3)] bg-white/60 shadow-lg">
-               <table className="min-w-[1000px] w-full text-left">
+            <div className="hidden md:block overflow-x-auto luxury-scroll rounded-3xl border border-[rgba(198,167,94,0.3)] bg-white/60 shadow-lg">
+               <table className="min-w-[800px] md:min-w-[1000px] w-full text-left">
                 <thead>
                   <tr className="border-b border-[rgba(198,167,94,0.2)] bg-[rgba(198,167,94,0.05)]">
                     <th className="px-4 py-3 text-[10px] font-bold uppercase tracking-widest text-[#1C1C22]">Type</th>
@@ -255,19 +300,29 @@ export function AreaDetailSections({ area }) {
                 <tbody className="divide-y divide-[rgba(198,167,94,0.1)]">
                    {Object.entries(economics).map(([type, details]) => (
                      <tr key={type} className="hover:bg-white/40">
-                        <td className="px-4 py-4 text-xs font-bold text-[#1C1C22]">{type.toUpperCase()}</td>
-                        <td className="px-4 py-4 text-xs text-[#4A3F2F]">{details.size || "1,150 sq.ft"}</td>
-                        <td className="px-4 py-4 text-xs font-black text-[#C6A75E]">{details.roi || "6.5%"}</td>
-                        <td className="px-4 py-4 text-xs text-[#7A6E60]">{details.roi > 8 ? "Yield Optimizer" : "Equity Builder"}</td>
+                        <td className="px-4 py-4 text-[10px] md:text-xs font-bold text-[#1C1C22]">{type.toUpperCase()}</td>
+                        <td className="px-4 py-4 text-[10px] md:text-xs text-[#4A3F2F]">{details.size || "1,150 sq.ft"}</td>
+                        <td className="px-4 py-4 text-[10px] md:text-xs font-black text-[#C6A75E]">{details.roi || "6.5%"}</td>
+                        <td className="px-4 py-4 text-[10px] md:text-xs text-[#7A6E60]">{details.roi > 8 ? "Yield Optimizer" : "Equity Builder"}</td>
                      </tr>
                    ))}
                 </tbody>
                </table>
             </div>
+            <MobileTableCard 
+              data={Object.entries(economics).map(([type, details]) => ({
+                label: type.toUpperCase(),
+                details: [
+                  { name: "Avg. Size", value: details.size || "1,150 sq.ft" },
+                  { name: "Yield (ROI)", value: details.roi || "6.5%" },
+                  { name: "Target Investor", value: details.roi > 8 ? "Yield Optimizer" : "Equity Builder" }
+                ]
+              }))}
+            />
          </div>
          <div className="lg:col-span-4">
             <SectionTitle title="9) Equity Trend" />
-            <div className="rounded-3xl border border-[rgba(198,167,94,0.3)] bg-white/60 p-6 shadow-sm h-full flex flex-col justify-center">
+            <div className="rounded-3xl border border-[rgba(198,167,94,0.3)] bg-white/60 p-5 md:p-6 shadow-sm h-full flex flex-col justify-center">
               <PriceHistoryChart priceHistory={area.priceTrend} />
             </div>
          </div>
@@ -276,41 +331,41 @@ export function AreaDetailSections({ area }) {
       {/* 10) 5-YEAR GROWTH PROJECTION */}
       <section>
         <SectionTitle title="10) Macro Appreciation Target (2030)" />
-        <div className="rounded-3xl border border-[#1c2f56] bg-gradient-to-br from-[#1C1C22] to-[#2D2D35] p-10 shadow-2xl relative overflow-hidden group">
+        <div className="rounded-3xl border border-[#1c2f56] bg-gradient-to-br from-[#1C1C22] to-[#2D2D35] p-6 md:p-10 shadow-2xl relative overflow-hidden group">
           <div className="relative z-10">
-            <div className="mb-6 flex items-center justify-between">
-              <h3 className="flex items-center gap-3 text-2xl font-bold text-white tracking-tight">
-                <TrendingUp className="h-7 w-7 text-[#C6A75E]" /> 5-Year Equity Roadmap
+            <div className="mb-6 flex flex-col md:flex-row md:items-center justify-between gap-4">
+              <h3 className="flex items-center gap-3 text-xl md:text-2xl font-bold text-white tracking-tight">
+                <TrendingUp className="h-6 w-6 md:h-7 md:w-7 text-[#C6A75E]" /> 5-Year Equity Roadmap
               </h3>
-              <span className="rounded-xl border border-[#C6A75E]/30 bg-[#C6A75E]/10 px-4 py-2 text-sm font-bold text-[#C6A75E]">
+              <span className="self-start md:self-auto rounded-xl border border-[#C6A75E]/30 bg-[#C6A75E]/10 px-4 py-2 text-[10px] md:text-sm font-bold text-[#C6A75E] uppercase tracking-widest">
                 +{growthTarget}% Institutional Target
               </span>
             </div>
-            <p className="text-sm leading-relaxed text-slate-400 font-light mb-12 max-w-2xl">
+            <p className="text-xs md:text-sm leading-relaxed text-slate-400 font-light mb-8 md:mb-12 max-w-2xl">
               Proprietary appreciation simulation incorporating Master Plan completion milestones, global HNWI migration flows, and area-specific supply constraints.
             </p>
-            <div className="grid grid-cols-5 gap-4 border-t border-slate-800 pt-10">
+            <div className="grid grid-cols-3 sm:grid-cols-5 gap-3 md:gap-4 border-t border-slate-800 pt-8 md:pt-10">
               {growthPoints.map((point) => (
                 <div key={point.year} className="text-center group-hover:-translate-y-2 transition-transform duration-500">
-                  <p className="text-lg font-black text-[#C6A75E]">{point.value}</p>
+                  <p className="text-sm md:text-lg font-black text-[#C6A75E]">{point.value}</p>
                   <p className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">{point.year}</p>
                 </div>
               ))}
             </div>
           </div>
-          <Construction className="absolute bottom-[-40px] right-[-40px] h-64 w-64 text-white opacity-5 pointer-events-none" />
+          <Construction className="absolute bottom-[-30px] right-[-30px] md:bottom-[-40px] md:right-[-40px] h-48 w-48 md:h-64 md:w-64 text-white opacity-5 pointer-events-none" />
         </div>
       </section>
 
       {/* 11) RENTAL MARKET & 12) BUYER INTEL */}
-      <section className="grid gap-8 lg:grid-cols-2">
-         <div className="rounded-3xl border border-[rgba(198,167,94,0.3)] bg-white/60 p-8 shadow-sm">
+      <section className="grid gap-6 md:gap-8 lg:grid-cols-2">
+         <div className="rounded-3xl border border-[rgba(198,167,94,0.3)] bg-white/60 p-6 md:p-8 shadow-sm">
             <SectionTitle title="11) Rental Market Intel" />
             <p className="text-sm leading-relaxed text-[#4A3F2F] font-light">
               {getMarketPoint("Rental Demand")}. High correlation between building maintenance quality and yield retention. Professional occupants favor high-floor units with open orientations.
             </p>
          </div>
-         <div className="rounded-3xl border border-[rgba(198,167,94,0.3)] bg-white/60 p-8 shadow-sm">
+         <div className="rounded-3xl border border-[rgba(198,167,94,0.3)] bg-white/60 p-6 md:p-8 shadow-sm">
             <SectionTitle title="12) Buyer Intelligence" />
             <p className="text-sm leading-relaxed text-[#4A3F2F] font-light">
               {area.buyerPsychology?.motivation || "Buyers demonstrate strong sensitivity to amenity density and ease of exit to major highway systems. Cash purchases represent 40% of prime stock transactions."}
@@ -321,20 +376,20 @@ export function AreaDetailSections({ area }) {
       {/* 13) FUTURE VISION 2030 & SUPPLY PIPELINE */}
       <section>
         <SectionTitle title="13) Future Vision 2030 / Supply Institutional Data" />
-        <div className="grid gap-6 lg:grid-cols-2">
-          <div className="rounded-3xl border border-[#C6A75E]/30 bg-gradient-to-br from-white to-[#F9F6F0] p-8 shadow-sm relative overflow-hidden group">
+        <div className="grid gap-4 md:gap-6 lg:grid-cols-2">
+          <div className="rounded-3xl border border-[#C6A75E]/30 bg-gradient-to-br from-white to-[#F9F6F0] p-6 md:p-8 shadow-sm relative overflow-hidden group">
             <div className="flex items-center gap-3 mb-4 text-[#1C1C22]">
               <Zap className="h-5 w-5 text-[#C6A75E]" />
-              <p className="text-sm font-bold uppercase tracking-wider">Vision Milestones</p>
+              <p className="text-xs md:text-sm font-bold uppercase tracking-wider">Vision Milestones</p>
             </div>
             <p className="text-sm leading-relaxed text-[#4A3F2F] relative z-10 font-light italic">
               "Future appreciation is predicated on the delivery of {area.futureUpgrades?.[0]?.name || "Upcoming Phase"} and the continued integration of smart-city infrastructure planned for {area.name}."
             </p>
           </div>
-          <div className="rounded-3xl border border-[#1C1C22]/10 bg-gradient-to-br from-[#1C1C22] to-[#2D2D35] p-8 shadow-xl text-white">
+          <div className="rounded-3xl border border-[#1C1C22]/10 bg-gradient-to-br from-[#1C1C22] to-[#2D2D35] p-6 md:p-8 shadow-xl text-white">
             <div className="flex items-center gap-3 mb-4">
               <Building className="h-5 w-5 text-[#C6A75E]" />
-              <p className="text-sm font-bold uppercase tracking-wider">Supply Saturation Analyst</p>
+              <p className="text-xs md:text-sm font-bold uppercase tracking-wider">Supply Saturation Analyst</p>
             </div>
             <p className="text-sm leading-relaxed text-slate-300 font-light">
               Current market maturity at {supply.handedOver}. Upcoming inventory pipeline accounts for {supply.underConstruction} of total stock. Low risk of oversupply in the short-term window.
@@ -369,22 +424,22 @@ export function AreaDetailSections({ area }) {
       </section>
 
       {/* 15) PUBLIC TRANSPORT & 16) METRO/BUS STATION LOGISTICS */}
-      <section className="grid gap-8 lg:grid-cols-2">
-         <div className="rounded-3xl border border-[rgba(198,167,94,0.3)] bg-white/60 p-8 shadow-sm">
+      <section className="grid gap-6 md:gap-8 lg:grid-cols-2">
+         <div className="rounded-3xl border border-[rgba(198,167,94,0.3)] bg-white/60 p-6 md:p-8 shadow-sm">
             <SectionTitle title="15) Logistical Flow (Highways)" />
             <div className="flex flex-wrap gap-2 mb-6">
               {(area.transport?.roadAccess || []).map(r => (
-                <span key={r} className="rounded-xl bg-[#1C1C22] text-[#C6A75E] px-4 py-2 text-[10px] font-black uppercase tracking-widest">{r}</span>
+                <span key={r} className="rounded-xl bg-[#1C1C22] text-[#C6A75E] px-3 py-1.5 md:px-4 md:py-2 text-[9px] md:text-[10px] font-black uppercase tracking-widest">{r}</span>
               ))}
             </div>
             <p className="text-sm leading-relaxed text-[#4A3F2F] font-light">
               Highly prioritized highway linkages ensure {area.transport?.roadAccess?.[0]} access within minutes. Commuter flow is streamlined via modern interchanges.
             </p>
          </div>
-         <div className="rounded-3xl border border-[rgba(198,167,94,0.3)] bg-white/60 p-8 shadow-sm">
+         <div className="rounded-3xl border border-[rgba(198,167,94,0.3)] bg-white/60 p-6 md:p-8 shadow-sm">
             <SectionTitle title="16) Transit Connectivity (Metro/Bus)" />
-            <div className="flex items-center gap-4 mb-4">
-               <div className="rounded-2xl bg-slate-900 p-3"><Bus className="text-[#C6A75E] h-5 w-5" /></div>
+            <div className="flex items-center gap-3 md:gap-4 mb-4">
+               <div className="rounded-2xl bg-slate-900 p-2.5 md:p-3"><Bus className="text-[#C6A75E] h-4 w-4 md:h-5 md:w-5" /></div>
                <div>
                   <p className="text-sm font-bold text-[#1C1C22]">Nearest Hub: {area.transport?.metro?.name || "Transit Station Interface"}</p>
                   <p className="text-xs text-[#7A6E60] italic">{area.transport?.metro?.status || "Mature Connectivity Zone"}</p>
@@ -421,17 +476,17 @@ export function AreaDetailSections({ area }) {
       {/* 18) STRATEGIC CONNECTIVITY (MATRIX) */}
       <section>
         <SectionTitle title="18) Strategic Connectivity Matrix" />
-        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
           {[
             { label: "Aviation Hubs", val: connectivity.airport?.mins || "20 min", sub: "International Transit" },
             { label: "Educational Prox", val: connectivity.school?.mins || "5 min", sub: "Top-Tier Schooling" },
             { label: "Financial Dist.", val: connectivity.business?.mins || "15 min", sub: "DIFC / Business Hubs" },
             { label: "Major Retail", val: connectivity.mall?.mins || "10 min", sub: "World-Class Shopping" },
           ].map((item, i) => (
-            <div key={i} className="rounded-2xl border border-[rgba(198,167,94,0.15)] bg-white p-6 shadow-sm hover:-translate-y-1 transition-transform">
-               <p className="text-[10px] font-bold uppercase tracking-widest text-[#7A6E60]">{item.label}</p>
-               <p className="mt-2 text-2xl font-black text-[#1C1C22]">{item.val}</p>
-               <p className="text-[10px] font-semibold text-[#C6A75E] uppercase mt-1">{item.sub}</p>
+            <div key={i} className="rounded-2xl border border-[rgba(198,167,94,0.15)] bg-white p-4 md:p-6 shadow-sm hover:-translate-y-1 transition-transform">
+               <p className="text-[9px] md:text-[10px] font-bold uppercase tracking-widest text-[#7A6E60]">{item.label}</p>
+               <p className="mt-1 md:mt-2 text-lg md:text-2xl font-black text-[#1C1C22]">{item.val}</p>
+               <p className="text-[8px] md:text-[10px] font-semibold text-[#C6A75E] uppercase mt-1">{item.sub}</p>
             </div>
           ))}
         </div>
@@ -494,9 +549,9 @@ export function AreaDetailSections({ area }) {
       <section className="grid gap-12">
         <div>
            <SectionTitle title="22) Market-Leading Famous Towers Registry" />
-           <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-4">
+           <div className="grid gap-3 grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
               {(area.towers?.split(',') || ["D1 Tower", "Palazzo Versace", "Kempinski", "Marriott Residences"]).map((tower, i) => (
-                <div key={i} className="rounded-2xl border border-[rgba(198,167,94,0.2)] bg-white/70 p-5 text-sm font-bold text-[#1C1C22] flex items-center gap-3">
+                <div key={i} className="rounded-2xl border border-[rgba(198,167,94,0.2)] bg-white/70 p-4 md:p-5 text-sm font-bold text-[#1C1C22] flex items-center gap-3">
                    <div className="h-2 w-2 rounded-full bg-[#C6A75E]" /> {tower.trim()}
                 </div>
               ))}

@@ -11,7 +11,7 @@ export function HeroSection() {
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_rgba(244,223,160,0.35)_0%,_transparent_60%)] mix-blend-multiply pointer-events-none" />
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,_rgba(212,169,95,0.12)_0%,_transparent_60%)] mix-blend-multiply pointer-events-none" />
 
-      <div className="relative mx-auto max-w-7xl px-4 py-16 md:py-24 lg:px-8 w-full z-10">
+      <div className="relative mx-auto max-w-7xl px-4 py-12 md:py-24 lg:px-8 w-full z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           
           {/* Left - Content */}

@@ -78,7 +78,7 @@ const AreaPage = () => {
 
       {/* TOP DECK: ACTIONS */}
       <div className="mx-auto max-w-7xl px-4 pt-8 lg:px-8">
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-10">
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-6 mb-10">
           <Link to="/areas" className="group flex items-center gap-3 text-[#7A6E60] hover:text-[#C6A75E] font-bold text-xs uppercase tracking-widest transition-all">
             <div className="p-2 rounded-full border border-[rgba(198,167,94,0.2)] group-hover:bg-[#C6A75E] group-hover:text-white transition-all">
                <ArrowLeft size={14} />
@@ -86,19 +86,19 @@ const AreaPage = () => {
             Back to National Map
           </Link>
           
-          <div className="flex gap-4 w-full md:w-auto">
-            <button onClick={handleDownloadPDF} disabled={isGeneratingPdf} className="btn-secondary flex-1 md:flex-none flex items-center justify-center gap-2 text-xs py-2.5">
+          <div className="flex gap-4 w-full sm:w-auto">
+            <button onClick={handleDownloadPDF} disabled={isGeneratingPdf} className="btn-secondary flex-1 sm:flex-none flex items-center justify-center gap-2 text-[10px] md:text-xs py-2.5">
               {isGeneratingPdf ? <Loader2 size={14} className="animate-spin" /> : <Download size={14} />} 
               Download Market Brief
             </button>
-            <button onClick={handleWhatsAppClick} className="btn-primary flex-1 md:flex-none flex items-center justify-center gap-3 text-xs py-2.5">
+            <button onClick={handleWhatsAppClick} className="btn-primary flex-1 sm:flex-none flex items-center justify-center gap-3 text-[10px] md:text-xs py-2.5">
               <MessageCircle size={16} /> Contact Advisor
             </button>
           </div>
         </div>
 
         {/* --- MAIN GENERATED CONTENT --- */}
-        <div ref={reportRef} className="rounded-[2.5rem] border border-[rgba(198,167,94,0.25)] bg-white/50 shadow-[0_30px_80px_rgba(198,167,94,0.12)] overflow-hidden">
+        <div ref={reportRef} className="rounded-2xl md:rounded-[2.5rem] border border-[rgba(198,167,94,0.25)] bg-white/50 shadow-[0_30px_80px_rgba(198,167,94,0.12)] overflow-hidden">
           
           {/* HERO HEADER */}
           <div className="relative h-[400px] md:h-[500px] flex items-end">
@@ -108,7 +108,7 @@ const AreaPage = () => {
             </div>
             <div className="absolute inset-0 bg-gradient-to-t from-white via-white/80 to-transparent" />
             
-            <div className="relative z-10 p-8 md:p-14 w-full">
+            <div className="relative z-10 p-6 md:p-14 w-full">
               <div className="flex items-center gap-3 mb-4">
                 <span className="bg-[#C6A75E] text-white px-4 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-[0.2em] border border-[rgba(255,255,255,0.3)] shadow-lg animate-in slide-in-from-left-4">
                   Confirmed Market Intelligence
@@ -117,16 +117,16 @@ const AreaPage = () => {
                   {area.emirate}
                 </span>
               </div>
-              <h1 className="text-5xl md:text-7xl font-bold text-[#1C1C22] tracking-tighter mb-4 font-serif">
+              <h1 className="text-4xl md:text-7xl font-bold text-[#1C1C22] tracking-tighter mb-4 font-serif">
                 {area.name}
               </h1>
-              <p className="text-lg md:text-xl text-[#7A6E60] font-light max-w-3xl leading-relaxed">
+              <p className="text-base md:text-xl text-[#7A6E60] font-light max-w-3xl leading-relaxed">
                 {area.description}
               </p>
             </div>
           </div>
 
-          <div className="p-8 md:p-14 pt-6">
+          <div className="p-6 md:p-14 pt-6">
             {/* INVESTMENT METRICS DECK */}
             <div className="mb-20">
               <div className="flex items-center justify-between mb-8">

@@ -166,24 +166,35 @@ const Header = () => {
 
       {/* MOBILE MENU DROPDOWN */}
       {isMenuOpen && (
-        <div className="lg:hidden border-t border-[rgba(198,167,94,0.2)] bg-[#FDFBF7] p-8 absolute w-full left-0 z-50 shadow-2xl animate-in slide-in-from-top-4 duration-300">
-          <nav className="flex flex-col gap-2">
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                to={link.href}
-                onClick={() => setIsMenuOpen(false)}
-                className={`rounded-xl px-5 py-4 text-lg font-bold transition-all ${
-                  pathname === link.href ? "bg-[rgba(198,167,94,0.1)] text-[#C6A75E]" : "text-[#1C1C22] hover:bg-white/50"
-                }`}
-              >
-                {link.label}
-              </Link>
-            ))}
-          </nav>
-          <button className="mt-8 w-full btn-primary px-6 py-4 rounded-2xl text-lg font-bold">
-             Get Intelligence
-          </button>
+        <div className="fixed inset-0 top-[73px] z-[100] bg-[rgba(248,245,239,0.95)] backdrop-blur-xl animate-in fade-in slide-in-from-right-4 duration-500 lg:hidden">
+          <div className="flex h-full flex-col p-6 overflow-y-auto">
+            <nav className="flex flex-col gap-1">
+              {navLinks.map((link) => (
+                <Link
+                  key={link.href}
+                  to={link.href}
+                  onClick={() => setIsMenuOpen(false)}
+                  className={`flex items-center justify-between rounded-2xl px-6 py-5 transition-all ${
+                    pathname === link.href 
+                      ? "bg-white border border-[rgba(198,167,94,0.3)] text-[#C6A75E] shadow-sm" 
+                      : "text-[#1C1C22] hover:bg-white/50"
+                  }`}
+                >
+                  <span className="text-xl font-bold tracking-tight">{link.label}</span>
+                  {pathname === link.href && <div className="h-2 w-2 rounded-full gold-gradient-bg" />}
+                </Link>
+              ))}
+            </nav>
+            
+            <div className="mt-8 space-y-4 px-2">
+              <button className="w-full btn-primary px-6 py-5 rounded-2xl text-lg font-bold shadow-xl">
+                 Get Intelligence
+              </button>
+              <p className="text-center text-xs font-semibold uppercase tracking-widest text-[#A69785] mt-4">
+                 Trusted by 2,000+ Investors
+              </p>
+            </div>
+          </div>
         </div>
       )}
     </header>
