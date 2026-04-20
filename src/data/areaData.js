@@ -78,14 +78,17 @@ export const DUBAI_AREAS = [
     },
     ownership: { type: "Freehold", eligibleFor: ["All Nationalities"], minDownPayment: "25%" },
 
-    scores: { cashFlow: 6.5, appreciation: 9.2, liquidity: 6.8, risk: 4.5, lifestyle: 10.0 },
+    scores: { cashFlow: 6.5, appreciation: 9.2, liquidity: 6.8, risk: 4.5, lifestyle: 10.0, airbnb: 6.0 },
     overallScore: 8.9,
 
     // 🟢 UNIT ECONOMICS (Real Rents)
     unitEconomics: { 
-      studio: { roi: "N/A", rent: "N/A" }, 
-      oneBed: { roi: "6.2%", rent: "AED 160k" }, // 7th Heaven / Ashjar
-      twoBed: { roi: "5.9%", rent: "AED 240k" }  // 7th Heaven / Ashjar
+      studio: { roi: "N/A", rent: "N/A", price: "N/A", size: "N/A", features: "N/A" }, 
+      oneBed: { roi: "6.2%", rent: "AED 160k", price: "AED 2.4M", size: "1,150 sq.ft", features: "High Ceilings, Floor-to-Ceiling Windows" }, 
+      twoBed: { roi: "5.9%", rent: "AED 240k", price: "AED 4.2M", size: "1,850 sq.ft", features: "Large Terraces, Dual Views" },
+      threeBed: { roi: "5.5%", rent: "AED 350k", price: "AED 6.5M", size: "3,200 sq.ft", features: "Private Elevator, Gourmet Kitchen" },
+      townHouse: { roi: "5.2%", rent: "AED 550k", price: "AED 10.5M", size: "5,500 sq.ft", features: "Private Pool, Rooftop Garden" },
+      villa: { roi: "4.8%", rent: "AED 1.2M", price: "AED 35M", size: "12,500 sq.ft", features: "Landscaped Gardens, Entertainment Basement" }
     },
 
     shortTermScore: 6.0,
@@ -94,7 +97,8 @@ export const DUBAI_AREAS = [
     futureUpgrades: [
       { name: "Al Barari Playground", status: "Completed" },
       { name: "Lunaria Villas", status: "Handing Over" },
-      { name: "Community Mall Expansion", status: "Planned" }
+      { name: "Community Mall Expansion", status: "Planned (2026)" },
+      { name: "Vision 2030 Green Belt", status: "Vision 2030" }
     ],
 
     // 🟢 REAL ESTATE IN AL BARARI
@@ -127,12 +131,12 @@ export const DUBAI_AREAS = [
 
     connectivity: {
       airport: { name: "DXB Intl Airport", km: "18 km", mins: "20 mins" },
-      school: { name: "Dunecrest American", km: "1 km", mins: "2 mins" },
+      school: { name: "Dunecrest American, Repton, GEMS Heritage", km: "1 km", mins: "2 mins" },
       tourist: { name: "Global Village", km: "4 km", mins: "8 mins" },
       metro: { name: "N/A", km: "--", mins: "--" },
-      mall: { name: "Cityland Mall", km: "5 km", mins: "9 mins" },
-      business: { name: "DIFC", km: "15 km", mins: "18 mins" },
-      hospital: { name: "Mediclinic Parkview", km: "12 km", mins: "15 mins" }
+      mall: { name: "Cityland Mall, Silicon Central, Dubai Mall", km: "5 km", mins: "9 mins" },
+      business: { name: "DIFC, Business Bay, Dubai Design District", km: "15 km", mins: "18 mins" },
+      hospital: { name: "Mediclinic Parkview, Neuro Spinal Hospital, Fakeeh University", km: "12 km", mins: "15 mins" }
     },
 
     buyerPsychology: {

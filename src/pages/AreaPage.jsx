@@ -137,7 +137,7 @@ const AreaPage = () => {
             </div>
 
             {/* SEGMENTED DATA VIEWS */}
-            <AreaDetailSections area={area} />
+            <AreaDetailSections area={area} allAreas={MASTER_DB} />
 
             {/* NEIGHBORHOOD EXPLORER */}
             <div className="mt-24 pt-16 border-t border-[rgba(198,167,94,0.2)] no-print">

@@ -23,8 +23,9 @@ const PIE_COLORS = ["#C6A75E", "#E5D3AB", "#CDBE98", "#ECE2CF"];
 
 export function ScorecardChart({ scorecard }) {
   // Mapping current app scorecard names to display names
+  // User explicitly asked for: 1)airbnb potenial 2)cash flow 3)appreciation 4)liquidity 5) lifestyle 6)risk
   const data = [
-    { metric: "Airbnb", value: scorecard.airbnbPotential || scorecard.cashFlow },
+    { metric: "Airbnb", value: scorecard.airbnb * 10 || scorecard.cashFlow * 10 || 50 },
     { metric: "Cash Flow", value: scorecard.cashFlow * 10 || 50 },
     { metric: "Appreciation", value: scorecard.appreciation * 10 || 50 },
     { metric: "Liquidity", value: scorecard.liquidity * 10 || 50 },
@@ -33,12 +34,12 @@ export function ScorecardChart({ scorecard }) {
   ];
 
   return (
-    <ResponsiveContainer width="100%" height={320}>
-      <RadarChart data={data} cx="50%" cy="50%" outerRadius="70%">
-        <PolarGrid stroke="rgba(198,167,94,0.2)" />
-        <PolarAngleAxis dataKey="metric" tick={{ fill: "#7A6E60", fontSize: 11 }} />
+    <ResponsiveContainer width="100%" height={380}>
+      <RadarChart data={data} cx="50%" cy="50%" outerRadius="75%">
+        <PolarGrid stroke="rgba(198,167,94,0.3)" />
+        <PolarAngleAxis dataKey="metric" tick={{ fill: "#C6A75E", fontSize: 11, fontWeight: "bold" }} />
         <PolarRadiusAxis angle={30} domain={[0, 100]} tick={false} axisLine={false} />
-        <Radar name="Score" dataKey="value" stroke="#C6A75E" fill="#C6A75E" fillOpacity={0.2} strokeWidth={2} />
+        <Radar name="Score" dataKey="value" stroke="#C6A75E" fill="#C6A75E" fillOpacity={0.3} strokeWidth={3} />
       </RadarChart>
     </ResponsiveContainer>
   );
@@ -48,7 +49,7 @@ export function PriceHistoryChart({ priceHistory }) {
   // priceHistory might be an object like { "2023": "AED 800k", ... }
   const data = Object.entries(priceHistory || {}).map(([year, price]) => ({
     year,
-    price: parseInt(price.replace(/[^0-9]/g, ""), 10),
+    price: parseInt(price?.replace(/[^0-9]/g, "") || "0", 10),
   }));
 
   return (
@@ -59,40 +60,54 @@ export function PriceHistoryChart({ priceHistory }) {
         <YAxis tick={{ fill: "#7A6E60", fontSize: 11 }} />
         <Tooltip
           contentStyle={{
-            background: "rgba(255, 255, 255, 0.9)",
+            background: "rgba(255, 255, 255, 0.95)",
             border: "1px solid rgba(198,167,94,0.3)",
-            borderRadius: "8px",
+            borderRadius: "12px",
             color: "#1C1C22",
+            boxShadow: "0 10px 30px rgba(0,0,0,0.1)"
           }}
         />
-        <Line type="monotone" dataKey="price" stroke="#C6A75E" strokeWidth={2} dot={{ fill: "#C6A75E" }} />
+        <Line type="monotone" dataKey="price" stroke="#C6A75E" strokeWidth={3} dot={{ fill: "#C6A75E", r: 4 }} activeDot={{ r: 6, stroke: "#1C1C22", strokeWidth: 2 }} />
       </LineChart>
     </ResponsiveContainer>
   );
 }
 
-export function ROIBarChart({ economics }) {
-  // Mapping unitEconomics { studio: { roi: '8.2%' }, ... }
-  const data = Object.entries(economics || {}).map(([type, details]) => ({
-    type: type.charAt(0).toUpperCase() + type.slice(1).replace(/([A-Z])/g, ' $1'),
-    roi: parseFloat((details.roi || "0").replace(/[^0-9.]/g, "")),
-  }));
+export function ROIBarChart({ economics, neighborData }) {
+  // If neighborData is provided, we show proximity comparison
+  // Otherwise we show unit economics ROI
+  let data = [];
+  
+  if (neighborData) {
+    data = neighborData;
+  } else {
+    data = Object.entries(economics || {}).map(([type, details]) => ({
+      name: type.charAt(0).toUpperCase() + type.slice(1).replace(/([A-Z])/g, ' $1'),
+      roi: parseFloat((details.roi || "0").replace(/[^0-9.]/g, "")),
+    }));
+  }
 
   return (
     <ResponsiveContainer width="100%" height={280}>
-      <BarChart data={data}>
-        <CartesianGrid stroke="rgba(198,167,94,0.1)" strokeDasharray="3 3" />
-        <XAxis dataKey="type" tick={{ fill: "#7A6E60", fontSize: 10 }} />
-        <YAxis tick={{ fill: "#7A6E60", fontSize: 11 }} />
+      <BarChart data={data} margin={{ top: 20, right: 30, left: 0, bottom: 0 }}>
+        <CartesianGrid stroke="rgba(198,167,94,0.1)" vertical={false} />
+        <XAxis dataKey="name" tick={{ fill: "#7A6E60", fontSize: 10, fontWeight: "bold" }} axisLine={false} tickLine={false} />
+        <YAxis tick={{ fill: "#7A6E60", fontSize: 11 }} axisLine={false} tickLine={false} />
         <Tooltip
+          cursor={{ fill: 'rgba(198,167,94,0.05)' }}
           contentStyle={{
-            background: "rgba(255, 255, 255, 0.9)",
+            background: "rgba(255, 255, 255, 0.95)",
             border: "1px solid rgba(198,167,94,0.3)",
-            borderRadius: "8px",
+            borderRadius: "12px",
             color: "#1C1C22",
+            boxShadow: "0 10px 30px rgba(0,0,0,0.1)"
           }}
         />
-        <Bar dataKey="roi" fill="#C6A75E" radius={[4, 4, 0, 0]} />
+        <Bar dataKey="roi" fill="#C6A75E" radius={[6, 6, 0, 0]} barSize={40}>
+          {data.map((entry, index) => (
+             <Cell key={`cell-${index}`} fill={index === 0 && neighborData ? "#1C1C22" : "#C6A75E"} />
+          ))}
+        </Bar>
       </BarChart>
     </ResponsiveContainer>
   );
