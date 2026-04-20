@@ -1,13 +1,21 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, MapPin } from "lucide-react";
+import { ArrowRight, MapPin, ChevronDown, ChevronUp } from "lucide-react";
 import SEO from '../components/SEO';
 
 // --- IMPORT MASTER DATA ---
 import { DUBAI_AREAS as MASTER_DB } from '../data/emiratesData';
 
 const ExploreAreas = () => {
+  const [expandedEmirates, setExpandedEmirates] = useState({});
   useEffect(() => { window.scrollTo(0, 0); }, []);
+
+  const toggleEmirate = (emirate) => {
+    setExpandedEmirates(prev => ({
+      ...prev,
+      [emirate]: !prev[emirate]
+    }));
+  };
 
   // Helper to group areas by Emirate
   const emirateNames = ['Dubai', 'Abu Dhabi', 'Sharjah', 'Ras Al Khaimah', 'Ajman', 'Fujairah', 'Umm Al Quwain'];
@@ -100,7 +108,7 @@ const ExploreAreas = () => {
 
                 {/* Areas Grid for this Emirate */}
                 <div className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-                  {areasForEmirate.map((area) => (
+                  {(expandedEmirates[emirateName] ? areasForEmirate : areasForEmirate.slice(0, 6)).map((area) => (
                     <Link
                       key={area.id}
                       to={`/area/${area.id}`}
@@ -130,6 +138,22 @@ const ExploreAreas = () => {
                     </Link>
                   ))}
                 </div>
+
+                {/* VIEW MORE TOGGLE */}
+                {areasForEmirate.length > 6 && (
+                  <div className="mt-8 flex justify-center">
+                    <button 
+                      onClick={() => toggleEmirate(emirateName)}
+                      className="group flex items-center gap-2 rounded-full border border-[rgba(198,167,94,0.3)] bg-white px-8 py-3 text-sm font-bold text-[#1C1C22] shadow-sm transition-all hover:bg-[#C6A75E] hover:text-white hover:shadow-lg active:scale-95"
+                    >
+                      {expandedEmirates[emirateName] ? (
+                        <>View Fewer Areas <ChevronUp size={16} /></>
+                      ) : (
+                        <>View More Areas <ChevronDown size={16} /></>
+                      )}
+                    </button>
+                  </div>
+                )}
               </div>
             );
           })}
