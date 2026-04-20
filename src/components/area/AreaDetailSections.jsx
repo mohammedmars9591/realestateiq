@@ -70,7 +70,7 @@ export function AreaDetailSections({ area }) {
   const getMarketPoint = (factor) => area.marketReadData?.find(f => f.factor === factor)?.read || "Data analysis in progress for this sub-sector.";
 
   return (
-    <div className="flex flex-col gap-12 md:gap-20 py-6 md:py-10">
+    <div className="flex flex-col gap-16 md:gap-20 py-6 md:py-10">
       
       {/* 1) AREA INFORMATION */}
       <section className="animate-in fade-in slide-in-from-bottom-4 duration-700">

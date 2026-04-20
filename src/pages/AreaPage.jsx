@@ -101,7 +101,7 @@ const AreaPage = () => {
         <div ref={reportRef} className="rounded-2xl md:rounded-[2.5rem] border border-[rgba(198,167,94,0.25)] bg-white/50 shadow-[0_30px_80px_rgba(198,167,94,0.12)] overflow-hidden">
           
           {/* HERO HEADER */}
-          <div className="relative h-[400px] md:h-[500px] flex items-end">
+          <div className="relative min-h-[450px] md:h-[500px] flex items-end">
             <div className={`absolute inset-0 ${area.imageColor || 'bg-[#1C1C22]'} opacity-90 transition-all duration-1000 overflow-hidden`}>
                 {/* Fallback pattern if image is missing */}
                 <div className="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_2px_2px,_#C6A75E_1px,_transparent_0)] bg-[size:30px_30px]"></div>
@@ -109,7 +109,7 @@ const AreaPage = () => {
             <div className="absolute inset-0 bg-gradient-to-t from-white via-white/80 to-transparent" />
             
             <div className="relative z-10 p-6 md:p-14 w-full">
-              <div className="flex items-center gap-3 mb-4">
+              <div className="flex flex-wrap items-center gap-2 md:gap-3 mb-4">
                 <span className="bg-[#C6A75E] text-white px-4 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-[0.2em] border border-[rgba(255,255,255,0.3)] shadow-lg animate-in slide-in-from-left-4">
                   Confirmed Market Intelligence
                 </span>
@@ -117,7 +117,7 @@ const AreaPage = () => {
                   {area.emirate}
                 </span>
               </div>
-              <h1 className="text-4xl md:text-7xl font-bold text-[#1C1C22] tracking-tighter mb-4 font-serif">
+              <h1 className="text-5xl md:text-7xl font-bold text-[#1C1C22] tracking-tighter mb-4 font-serif leading-none">
                 {area.name}
               </h1>
               <p className="text-base md:text-xl text-[#7A6E60] font-light max-w-3xl leading-relaxed">
