@@ -81,26 +81,26 @@ function LiveVelocityTicker() {
   }, []);
 
   return (
-    <div className="bg-[#1C1C22] rounded-2xl border border-[rgba(198,167,94,0.3)] p-4 flex flex-col md:flex-row items-center justify-between gap-4 w-full shadow-lg overflow-hidden relative z-10 mb-8 max-w-7xl">
-       <div className="flex items-center gap-3 shrink-0 px-2 lg:border-r border-white/10 lg:pr-6 w-full md:w-auto justify-center md:justify-start">
+    <div className="bg-white/40 backdrop-blur-xl border border-white/60 rounded-2xl p-4 flex flex-col md:flex-row items-center justify-between gap-4 w-full shadow-sm overflow-hidden relative z-10 mb-8 max-w-7xl">
+       <div className="flex items-center gap-3 shrink-0 px-2 lg:border-r border-[#C6A75E]/20 lg:pr-6 w-full md:w-auto justify-center md:justify-start">
           <div className="relative flex h-3 w-3 shrink-0">
-            <span className={`animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75 ${pulse ? '' : 'hidden'}`}></span>
-            <span className="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"></span>
+            <span className={`animate-ping absolute inline-flex h-full w-full rounded-full bg-[#C6A75E] opacity-75 ${pulse ? '' : 'hidden'}`}></span>
+            <span className="relative inline-flex rounded-full h-3 w-3 bg-[#C6A75E]"></span>
           </div>
           <span className="text-[10px] md:text-[11px] uppercase font-black tracking-[0.2em] text-[#C6A75E] whitespace-nowrap">Live Velocity</span>
        </div>
        <div className="flex-grow flex justify-between w-full px-2 gap-4">
           <div className="text-center w-full">
-             <div className="text-white font-bold text-sm md:text-lg">142</div>
-             <div className="text-[8px] md:text-[9px] text-slate-400 uppercase tracking-widest mt-0.5">Units Sold (7d)</div>
+             <div className="text-[#3A3125] font-bold text-sm md:text-lg">142</div>
+             <div className="text-[8px] md:text-[9px] text-[#A69785] uppercase tracking-widest mt-0.5">Units Sold (7d)</div>
           </div>
           <div className="text-center w-full">
-             <div className="text-white font-bold text-sm md:text-lg">21 Days</div>
-             <div className="text-[8px] md:text-[9px] text-slate-400 uppercase tracking-widest mt-0.5">Avg Days on Market</div>
+             <div className="text-[#3A3125] font-bold text-sm md:text-lg">21 Days</div>
+             <div className="text-[8px] md:text-[9px] text-[#A69785] uppercase tracking-widest mt-0.5">Avg Days on Market</div>
           </div>
           <div className="text-center w-full">
-             <div className="text-emerald-400 font-bold text-sm md:text-lg">-1.5%</div>
-             <div className="text-[8px] md:text-[9px] text-slate-400 uppercase tracking-widest mt-0.5">Negotiation Spread</div>
+             <div className="text-emerald-600 font-bold text-sm md:text-lg">-1.5%</div>
+             <div className="text-[8px] md:text-[9px] text-[#A69785] uppercase tracking-widest mt-0.5">Negotiation Spread</div>
           </div>
        </div>
     </div>
@@ -124,13 +124,14 @@ function FifteenMinuteCityScore({ connectivity }) {
   const percentage = (score / 4) * 100;
 
   return (
-    <div className="bg-white rounded-3xl border border-[rgba(198,167,94,0.3)] p-8 shadow-sm group hover:-translate-y-1 transition-all h-full">
-      <div className="flex justify-between items-start mb-6 border-b border-[rgba(198,167,94,0.1)] pb-6">
+    <div className="bg-white/40 backdrop-blur-xl border border-white/60 rounded-3xl p-6 md:p-10 mb-10 shadow-sm relative overflow-hidden">
+       <div className="absolute top-0 right-0 w-64 h-64 bg-[#C6A75E]/5 rounded-full blur-[80px]"></div>
+       <div className="flex items-center gap-3 mb-6 relative z-10">
+          <Activity size={24} className="text-[#C6A75E]" />
+          <h3 className="text-xl font-serif font-bold text-[#3A3125]">Scorecard</h3>
+       </div>
+       <div className="flex justify-between items-start mb-6 border-b border-[rgba(198,167,94,0.1)] pb-6">
         <div>
-           <div className="flex items-center gap-2 mb-1">
-             <Timer size={20} className="text-[#C6A75E]" /> 
-             <h3 className="font-bold text-[#1C1C22] text-lg">15-Minute City Index</h3>
-           </div>
            <p className="text-[10px] uppercase font-black tracking-widest text-[#7A6E60]">Urban Walkability Profile</p>
         </div>
         <div className="h-14 w-14 rounded-full border-4 border-[#C6A75E] bg-[#C6A75E]/5 flex items-center justify-center font-black text-[#1C1C22]">
@@ -186,9 +187,9 @@ function DemographicHeatmap() {
 
 function SectionTitle({ title }) {
   return (
-    <div className="mb-6 flex items-center gap-4">
-      <h2 className="font-serif text-lg font-bold text-[#1C1C22] md:text-2xl">{title}</h2>
-      <div className="h-[1px] flex-grow bg-gradient-to-r from-[rgba(198,167,94,0.3)] to-transparent"></div>
+    <div className="flex items-center gap-3 mb-8 border-b border-[rgba(198,167,94,0.2)] pb-4">
+       <span className="p-1 rounded-md bg-[#C6A75E]/10"><Target size={14} className="text-[#C6A75E]" /></span>
+       <h3 className="text-xl md:text-2xl font-bold text-[#3A3125] font-serif tracking-tight">{title}</h3>
     </div>
   );
 }
@@ -344,24 +345,24 @@ export function AreaDetailSections({ area, allAreas = [] }) {
       {/* 10) PROPERTY MARKET OVERVIEW TABLE */}
       <section>
         <SectionTitle title="10) Property Market Dynamics Overview" />
-        <div className="hidden md:block overflow-hidden rounded-3xl border border-[rgba(198,167,94,0.3)] bg-white shadow-2xl">
+        <div className="hidden md:block overflow-hidden rounded-3xl border border-white/60 bg-white/40 backdrop-blur-xl shadow-sm mb-6">
            <table className="w-full text-left">
-             <thead className="bg-[#1C1C22] text-[#C6A75E]">
+             <thead className="border-b border-[rgba(198,167,94,0.2)] bg-white/50 text-[#3A3125]">
                 <tr>
-                   <th className="px-8 py-5 text-[10px] uppercase font-black tracking-widest">Institutional Metric</th>
-                   <th className="px-8 py-5 text-[10px] uppercase font-black tracking-widest">Intelligence Detail / Strategic Insight</th>
+                   <th className="px-8 py-5 text-[10px] uppercase font-black tracking-widest text-[#A69785]">Institutional Metric</th>
+                   <th className="px-8 py-5 text-[10px] uppercase font-black tracking-widest text-[#A69785]">Intelligence Detail / Strategic Insight</th>
                 </tr>
              </thead>
-             <tbody className="divide-y divide-[rgba(198,167,94,0.1)]">
+               <tbody className="divide-y divide-[rgba(198,167,94,0.1)]">
                 {[
                   { m: "Buyer Mix", d: getMarketPoint("Buyer Mix") },
                   { m: "Rental Demand", d: getMarketPoint("Rental Demand") },
                   { m: "Price Drivers", d: getMarketPoint("Price Drivers") },
                   { m: "Liquidity Status", d: getMarketPoint("Liquidity") }
                 ].map((row, i) => (
-                  <tr key={i} className="hover:bg-[#FDFBF7] transition-colors">
-                     <td className="px-8 py-6 text-sm font-black text-[#1C1C22]">{row.m}</td>
-                     <td className="px-8 py-6 text-sm text-[#4A3F2F] leading-relaxed font-light">{row.d}</td>
+                  <tr key={i} className="hover:bg-white/60 transition-colors">
+                     <td className="px-8 py-6 text-sm font-black text-[#3A3125]">{row.m}</td>
+                     <td className="px-8 py-6 text-sm text-[#5A4F40] leading-relaxed font-light">{row.d}</td>
                   </tr>
                 ))}
              </tbody>
@@ -421,32 +422,32 @@ export function AreaDetailSections({ area, allAreas = [] }) {
       <section>
         <SectionTitle title="12) Property Configuration Matrix & Yield Intelligence" />
         <StrategyCalculator economics={economics} />
-        <div className="hidden md:block overflow-hidden rounded-3xl border border-[rgba(198,167,94,0.3)] bg-white shadow-xl">
+        <div className="hidden md:block overflow-hidden rounded-3xl border border-white/60 bg-white/40 backdrop-blur-xl shadow-sm">
            <table className="w-full text-left">
-             <thead className="bg-[#1C1C22] text-[#C6A75E]">
+             <thead className="border-b border-[rgba(198,167,94,0.2)] bg-white/50 text-[#3A3125]">
                 <tr>
-                   <th className="px-6 py-4 text-[9px] uppercase font-black">Unit Type</th>
-                   <th className="px-6 py-4 text-[9px] uppercase font-black">Typical Size</th>
-                   <th className="px-6 py-4 text-[9px] uppercase font-black">Signature Features</th>
-                   <th className="px-6 py-4 text-[9px] uppercase font-black">Yield Focus</th>
-                   <th className="px-6 py-4 text-[9px] uppercase font-black">Avg. Rent</th>
-                   <th className="px-6 py-4 text-[9px] uppercase font-black">Avg. Price</th>
-                   <th className="px-6 py-4 text-[9px] uppercase font-black">ROI %</th>
+                   <th className="px-6 py-4 text-[9px] uppercase font-black tracking-widest text-[#A69785]">Unit Type</th>
+                   <th className="px-6 py-4 text-[9px] uppercase font-black tracking-widest text-[#A69785]">Typical Size</th>
+                   <th className="px-6 py-4 text-[9px] uppercase font-black tracking-widest text-[#A69785]">Signature Features</th>
+                   <th className="px-6 py-4 text-[9px] uppercase font-black tracking-widest text-[#A69785]">Yield Focus</th>
+                   <th className="px-6 py-4 text-[9px] uppercase font-black tracking-widest text-[#A69785]">Avg. Rent</th>
+                   <th className="px-6 py-4 text-[9px] uppercase font-black tracking-widest text-[#A69785]">Avg. Price</th>
+                   <th className="px-6 py-4 text-[9px] uppercase font-black tracking-widest text-[#C6A75E]">ROI %</th>
                 </tr>
              </thead>
              <tbody className="divide-y divide-[rgba(198,167,94,0.1)]">
                 {Object.entries(economics).map(([type, details]) => (
-                  <tr key={type} className="hover:bg-[#FDFBF7]">
-                     <td className="px-6 py-5 text-xs font-black text-[#1C1C22] uppercase tracking-tighter">{type.replace(/([A-Z])/g, ' $1')}</td>
-                     <td className="px-6 py-5 text-xs text-[#7A6E60] font-bold">{details.size || "Measured Data"}</td>
-                     <td className="px-6 py-5 text-xs text-[#4A3F2F] leading-tight max-w-[200px]">{details.features || "Prime Finishes"}</td>
+                  <tr key={type} className="hover:bg-white/60 transition-colors">
+                     <td className="px-6 py-5 text-xs font-black text-[#3A3125] uppercase tracking-tighter">{type.replace(/([A-Z])/g, ' $1')}</td>
+                     <td className="px-6 py-5 text-xs text-[#A69785] font-bold">{details.size || "Measured Data"}</td>
+                     <td className="px-6 py-5 text-xs text-[#5A4F40] leading-tight max-w-[200px]">{details.features || "Prime Finishes"}</td>
                      <td className="px-6 py-5">
-                        <span className={`rounded-lg px-2 py-1 text-[8px] font-black uppercase ${parseFloat(details.roi) > 7 ? "bg-emerald-100 text-emerald-800" : "bg-blue-100 text-blue-800"}`}>
+                        <span className={`rounded-lg px-2 py-1 text-[8px] font-black uppercase ${parseFloat(details.roi) > 7 ? "bg-[#C6A75E]/20 text-[#3A3125]" : "bg-white/50 border border-white/60 text-[#5A4F40]"}`}>
                            {parseFloat(details.roi) > 7 ? "High Yield" : "Stability"}
                         </span>
                      </td>
-                     <td className="px-6 py-5 text-xs font-bold text-[#1C1C22]">{details.rent || "Contact"}</td>
-                     <td className="px-6 py-5 text-xs font-bold text-[#1C1C22]">{details.price || "Contact"}</td>
+                     <td className="px-6 py-5 text-xs font-bold text-[#3A3125]">{details.rent || "Contact"}</td>
+                     <td className="px-6 py-5 text-xs font-bold text-[#3A3125]">{details.price || "Contact"}</td>
                      <td className="px-6 py-5 text-sm font-black text-[#C6A75E]">{details.roi || "Target"}</td>
                   </tr>
                 ))}

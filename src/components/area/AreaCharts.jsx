@@ -55,19 +55,19 @@ export function PriceHistoryChart({ priceHistory }) {
   return (
     <ResponsiveContainer width="100%" height={280}>
       <LineChart data={data}>
-        <CartesianGrid stroke="rgba(198,167,94,0.1)" strokeDasharray="3 3" />
-        <XAxis dataKey="year" tick={{ fill: "#7A6E60", fontSize: 11 }} />
-        <YAxis tick={{ fill: "#7A6E60", fontSize: 11 }} />
+        <CartesianGrid stroke="rgba(198,167,94,0.1)" vertical={false} />
+        <XAxis dataKey="year" tick={{ fill: "#5A4F40", fontSize: 11, fontWeight: 500 }} axisLine={false} tickLine={false} />
+        <YAxis tick={{ fill: "#5A4F40", fontSize: 11, fontWeight: 500 }} axisLine={false} tickLine={false} />
         <Tooltip
           contentStyle={{
-            background: "rgba(255, 255, 255, 0.95)",
+            background: "rgba(253, 251, 247, 0.95)",
             border: "1px solid rgba(198,167,94,0.3)",
             borderRadius: "12px",
             color: "#1C1C22",
             boxShadow: "0 10px 30px rgba(0,0,0,0.1)"
           }}
         />
-        <Line type="monotone" dataKey="price" stroke="#C6A75E" strokeWidth={3} dot={{ fill: "#C6A75E", r: 4 }} activeDot={{ r: 6, stroke: "#1C1C22", strokeWidth: 2 }} />
+        <Line type="monotone" dataKey="price" stroke="#C6A75E" strokeWidth={4} activeDot={{ r: 6, stroke: "#3A3125", strokeWidth: 2 }} dot={false} />
       </LineChart>
     </ResponsiveContainer>
   );
@@ -91,15 +91,15 @@ export function ROIBarChart({ economics, neighborData }) {
     <ResponsiveContainer width="100%" height={280}>
       <BarChart data={data} margin={{ top: 20, right: 30, left: 0, bottom: 0 }}>
         <CartesianGrid stroke="rgba(198,167,94,0.1)" vertical={false} />
-        <XAxis dataKey="name" tick={{ fill: "#7A6E60", fontSize: 10, fontWeight: "bold" }} axisLine={false} tickLine={false} />
-        <YAxis tick={{ fill: "#7A6E60", fontSize: 11 }} axisLine={false} tickLine={false} />
+        <XAxis dataKey="name" tick={{ fill: "#5A4F40", fontSize: 10, fontWeight: "bold" }} axisLine={false} tickLine={false} />
+        <YAxis tick={{ fill: "#5A4F40", fontSize: 11 }} axisLine={false} tickLine={false} />
         <Tooltip
           cursor={{ fill: 'rgba(198,167,94,0.05)' }}
           contentStyle={{
-            background: "rgba(255, 255, 255, 0.95)",
+            background: "rgba(253, 251, 247, 0.95)",
             border: "1px solid rgba(198,167,94,0.3)",
             borderRadius: "12px",
-            color: "#1C1C22",
+            color: "#3A3125",
             boxShadow: "0 10px 30px rgba(0,0,0,0.1)"
           }}
         />
@@ -163,8 +163,8 @@ export function MetricInsightCharts({ metrics }) {
         ];
 
         return (
-          <div key={metric.title} className="rounded-2xl border border-[rgba(198,167,94,0.32)] bg-gradient-to-b from-white/85 to-[#FBF5EA]/70 p-5 shadow-[0_10px_28px_rgba(198,167,94,0.12)]">
-            <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-[#7A6E60]">{metric.title}</p>
+          <div key={metric.title} className="rounded-2xl border border-white/60 bg-white/40 backdrop-blur-xl p-5 shadow-sm transition-all hover:shadow-md hover:bg-white/60">
+            <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-[#A69785]">{metric.title}</p>
             <div className="mt-3 flex items-center gap-3">
               <div className="relative h-20 w-20 shrink-0">
                 <ResponsiveContainer width="100%" height="100%">
@@ -177,12 +177,12 @@ export function MetricInsightCharts({ metrics }) {
                   </PieChart>
                 </ResponsiveContainer>
                 <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
-                  <span className="text-xs font-bold text-[#1C1C22]">{safeScore}%</span>
+                  <span className="text-xs font-bold text-[#3A3125]">{safeScore}%</span>
                 </div>
               </div>
               <div>
-                <p className="text-sm font-bold text-[#1C1C22] leading-snug">{metric.valueLabel}</p>
-                <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-[#A69785]">Indicator</p>
+                <p className="text-sm font-bold text-[#3A3125] leading-snug">{metric.valueLabel}</p>
+                <p className="text-[10px] font-semibold uppercase tracking-[0.14em] text-[#C6A75E]">Indicator</p>
               </div>
             </div>
             <p className="mt-3 border-t border-[rgba(198,167,94,0.2)] pt-3 text-xs leading-relaxed text-[#4A3F2F]">{metric.explanation}</p>

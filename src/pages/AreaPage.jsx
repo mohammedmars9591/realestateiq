@@ -122,16 +122,16 @@ const AreaPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#F8F5EF] pb-24 fade-in">
+    <div className="min-h-screen bg-gradient-to-b from-[#F3E9D2] via-[#FDFBF7] to-[#FDFBF7] pb-24 fade-in">
       <SEO 
         title={`${area.name} Investment Intelligence 2026 — ROI, Prices & Forecast`}
-        description={`Professional real estate analysis for ${area.name}, ${area.emirate}. Average ROI: ${area.roi || "N/A"}, Avg Price: ${area.avgPrice || "N/A"}. Explore price history, supply pipeline, connectivity, and 5-year growth forecast.`}
+        description={`Professional real estate analysis for ${area.name}, ${area.emirate}. Average ROI: ${area.roi || "N/A"}.`}
         url={`/area/${area.id}`}
         schema={areaListingSchema}
         faqSchema={areaFAQ}
         articleSchema={{
           headline: `${area.name} Real Estate Investment Guide 2026`,
-          description: `Comprehensive investment intelligence for ${area.name}, ${area.emirate}. ROI data, price trends, developer pipeline, and expert AI verdict.`,
+          description: `Comprehensive investment intelligence for ${area.name}, ${area.emirate}.`,
           datePublished: "2026-01-01",
           dateModified: new Date().toISOString().split('T')[0]
         }}
@@ -160,74 +160,97 @@ const AreaPage = () => {
         </div>
 
         {/* --- MAIN GENERATED CONTENT --- */}
-        <div ref={reportRef} className="rounded-2xl md:rounded-[2.5rem] border border-[rgba(198,167,94,0.25)] bg-white/50 shadow-[0_30px_80px_rgba(198,167,94,0.12)] overflow-hidden">
+        <div ref={reportRef} className="relative w-full rounded-2xl md:rounded-[2.5rem] bg-transparent overflow-hidden mb-12">
           
           {/* HERO HEADER */}
-          <div className="relative min-h-[450px] md:h-[500px] flex items-end">
-            <div className={`absolute inset-0 ${area.imageColor || 'bg-[#1C1C22]'} opacity-90 transition-all duration-1000 overflow-hidden`}>
-                {/* Fallback pattern if image is missing */}
-                <div className="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_2px_2px,_#C6A75E_1px,_transparent_0)] bg-[size:30px_30px]"></div>
+          <div className="relative w-full min-h-[500px] md:h-[650px] flex items-end">
+            <div className="absolute inset-0 w-full h-full">
+               <img 
+                 src={`https://source.unsplash.com/1600x900/?dubai,${area.name.replace(/\s+/g, ',')},buildings`} 
+                 alt={area.name}
+                 className="w-full h-full object-cover"
+                 onError={(e) => {
+                    e.target.src = 'https://source.unsplash.com/1600x900/?dubai,skyline,downtown';
+                 }}
+               />
+               <div className="absolute inset-0 bg-gradient-to-t from-[#FDFBF7] via-[#FDFBF7]/80 to-transparent"></div>
+               <div className="absolute inset-0 bg-gradient-to-r from-[#FDFBF7]/90 via-transparent to-transparent"></div>
             </div>
-            <div className="absolute inset-0 bg-gradient-to-t from-white via-white/80 to-transparent" />
             
-            <div className="relative z-10 p-6 md:p-14 w-full">
-              <div className="flex flex-wrap items-center gap-2 md:gap-3 mb-4">
-                <span className="bg-[#C6A75E] text-white px-4 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-[0.2em] border border-[rgba(255,255,255,0.3)] shadow-lg animate-in slide-in-from-left-4">
-                  Confirmed Market Intelligence
-                </span>
-                <span className="bg-white/80 backdrop-blur-md px-4 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-[0.2em] text-[#C6A75E] border border-[rgba(198,167,94,0.2)]">
-                  {area.emirate}
-                </span>
-              </div>
-              <h1 className="text-5xl md:text-7xl font-bold text-[#1C1C22] tracking-tighter mb-4 font-serif leading-none">
+            <div className="relative z-10 p-6 md:p-14 w-full md:w-2/3">
+              <h1 className="text-5xl md:text-7xl font-serif text-[#3A3125] leading-tight mb-2 tracking-tight drop-shadow-sm">
                 {area.name}
               </h1>
-              <p className="text-base md:text-xl text-[#7A6E60] font-light max-w-3xl leading-relaxed mb-6">
+              <div className="flex items-center gap-2 mb-6">
+                 <span className="text-lg md:text-xl text-[#3A3125] font-light">{area.emirate},</span>
+                 <span className="text-lg md:text-xl text-[#C6A75E] font-medium tracking-wide">UAE</span>
+              </div>
+              
+              <p className="text-base md:text-lg text-[#5A4F40] font-light max-w-2xl leading-relaxed mb-8">
                 {area.description}
               </p>
+
+              {/* MAJOR DEVELOPERS GLASS CARD */}
+              <div className="bg-white/40 backdrop-blur-md border border-white/60 rounded-2xl p-6 shadow-sm mb-6 max-w-xl">
+                 <div className="flex items-center gap-2 mb-4">
+                    <span className="p-1 rounded-md bg-[#C6A75E]/10"><HardHat size={14} className="text-[#C6A75E]" /></span>
+                    <h3 className="text-sm font-serif font-bold text-[#3A3125]">Major Developers</h3>
+                 </div>
+                 <div className="grid grid-cols-2 gap-y-3 gap-x-4">
+                    {area.masterDeveloper?.split(',').map((dev, idx) => (
+                      <div key={idx} className="flex items-center gap-2 text-xs text-[#5A4F40] font-medium">
+                         <div className="w-1 h-3 rounded-full bg-gradient-to-b from-[#C6A75E] to-[#E2C98E]"></div>
+                         {dev.trim()}
+                      </div>
+                    )) || (
+                      <>
+                        <div className="flex items-center gap-2 text-xs text-[#5A4F40] font-medium"><div className="w-1 h-3 rounded-full bg-gradient-to-b from-[#C6A75E] to-[#E2C98E]"></div>Emaar Properties</div>
+                        <div className="flex items-center gap-2 text-xs text-[#5A4F40] font-medium"><div className="w-1 h-3 rounded-full bg-gradient-to-b from-[#C6A75E] to-[#E2C98E]"></div>DAMAC Properties</div>
+                        <div className="flex items-center gap-2 text-xs text-[#5A4F40] font-medium"><div className="w-1 h-3 rounded-full bg-gradient-to-b from-[#C6A75E] to-[#E2C98E]"></div>Select Group</div>
+                      </>
+                    )}
+                 </div>
+              </div>
               
-              {/* AI AUDIO BRIEFING COMPONENT */}
-              <div className="flex items-center gap-4 bg-white/20 backdrop-blur-xl border border-white/30 p-2.5 pr-6 rounded-full max-w-md shadow-[0_10px_30px_rgba(0,0,0,0.1)]">
+              {/* AI AUDIO BRIEFING COMPONENT (Warm Glass) */}
+              <div className="flex items-center gap-4 bg-white/40 backdrop-blur-xl border border-white/60 p-2.5 pr-6 rounded-full max-w-md shadow-sm">
                  <button 
                    onClick={() => setIsPlayingAudio(!isPlayingAudio)}
-                   className="text-[#1C1C22] bg-white hover:bg-[#C6A75E] hover:text-white transition-all rounded-full p-2"
+                   className="text-[#3A3125] bg-white hover:bg-[#C6A75E] hover:text-white transition-all rounded-full p-2"
                  >
                    {isPlayingAudio ? <PauseCircle size={24} /> : <PlayCircle size={24} />}
                  </button>
                  <div className="flex-grow">
                    <div className="flex justify-between items-center mb-1">
-                     <span className="text-[10px] font-bold uppercase tracking-widest text-[#1C1C22]">AI Market Briefing</span>
-                     <span className="text-[10px] font-bold text-[#1C1C22]/60">1:14</span>
+                     <span className="text-[10px] font-bold uppercase tracking-widest text-[#3A3125]">AI Market Briefing</span>
+                     <span className="text-[10px] font-bold text-[#3A3125]/60">1:14</span>
                    </div>
-                   <div className="w-full h-1 bg-white/30 rounded-full overflow-hidden flex items-center">
+                   <div className="w-full h-1 bg-[#3A3125]/10 rounded-full overflow-hidden flex items-center">
                      {isPlayingAudio ? (
                         <div className="w-full flex items-end gap-0.5 px-0.5 h-3">
                            {[...Array(20)].map((_, i) => (
-                             <div key={i} className="w-full bg-[#1C1C22] animate-pulse rounded-t-sm" style={{ height: `${Math.max(20, Math.random() * 100)}%`, animationDuration: `${0.3 + Math.random() * 0.5}s` }} />
+                             <div key={i} className="w-full bg-[#C6A75E] animate-pulse rounded-t-sm" style={{ height: `${Math.max(20, Math.random() * 100)}%`, animationDuration: `${0.3 + Math.random() * 0.5}s` }} />
                            ))}
                         </div>
                      ) : (
-                        <div className="w-1/3 h-full bg-[#1C1C22] rounded-full" />
+                        <div className="w-1/3 h-full bg-[#C6A75E] rounded-full" />
                      )}
                    </div>
                  </div>
-                 <Volume2 size={16} className="text-[#1C1C22]/60" />
+                 <Volume2 size={16} className="text-[#3A3125]/60" />
               </div>
 
             </div>
           </div>
-
-          <div className="p-6 md:p-14 pt-6">
+          
+          {/* CONTENT RECEPTACLE FOR SECTIONS */}
+          <div className="px-4 md:px-14 pb-20">
             {/* INVESTMENT METRICS DECK */}
-            <div className="mb-20">
-              <div className="flex items-center justify-between mb-8">
-                 <h2 className="text-2xl font-bold text-[#1C1C22] tracking-tight">Market Pulse Metrics</h2>
-                 <span className="text-[10px] font-bold uppercase tracking-widest text-[#C6A75E]">Real-Time Data Feed</span>
-              </div>
+            <div className="mb-16 -mt-8 relative z-20">
               <MetricInsightCharts metrics={metricCharts} />
             </div>
 
-            {/* SEGMENTED DATA VIEWS */}
+            {/* STRIPPED OUT HEADER TITLES, LETTING THE FROSTED CARDS SHINE */}
             <AreaDetailSections area={area} allAreas={MASTER_DB} />
 
             {/* NEIGHBORHOOD EXPLORER */}
