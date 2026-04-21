@@ -4,12 +4,12 @@ import { ArrowRight } from "lucide-react";
 
 export function CTASection() {
   return (
-    <section className="section-warm py-32">
+    <section className="section-warm py-16 md:py-32">
       <div className="mx-auto max-w-7xl px-4 lg:px-8">
-        <div className="relative overflow-hidden rounded-3xl border border-[rgba(198,167,94,0.35)] bg-gradient-to-br from-[#FDF8EF] to-[#F4EDE2] p-12 sm:p-20 shadow-[0_20px_70px_rgba(198,167,94,0.15)]">
+        <div className="relative overflow-hidden rounded-3xl border border-[rgba(198,167,94,0.35)] bg-gradient-to-br from-[#FDF8EF] to-[#F4EDE2] p-8 sm:p-20 shadow-[0_20px_70px_rgba(198,167,94,0.15)]">
           {/* Warm radial glow */}
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,_rgba(244,223,160,0.3)_0%,_transparent_70%)]" />
-
+ 
           <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div className="text-left">
               <h2 className="display-medium text-[#1C1C22] mb-6">
@@ -18,7 +18,7 @@ export function CTASection() {
               <p className="mt-4 max-w-xl text-lg text-[#7A6E60] leading-relaxed font-light">
                 Join thousands of investors, agents, and developers who use RealEstateIQ to gain a competitive edge in the UAE property market.
               </p>
-              <div className="mt-12 flex flex-col sm:flex-row gap-6">
+              <div className="mt-10 flex flex-col sm:flex-row gap-4 sm:gap-6">
                 <Link to="/areas" className="btn-primary group inline-flex items-center gap-3 text-sm flex-1 sm:flex-none justify-center">
                   Start Exploring <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                 </Link>

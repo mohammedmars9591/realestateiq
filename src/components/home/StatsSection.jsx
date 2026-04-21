@@ -9,9 +9,9 @@ const stats = [
 
 export function StatsSection() {
   return (
-    <section className="section-warm border-y border-[rgba(198,167,94,0.2)] py-20">
+    <section className="section-warm border-y border-[rgba(198,167,94,0.2)] py-12 md:py-20">
       <div className="mx-auto max-w-7xl px-4 lg:px-8">
-        <div className="grid grid-cols-2 gap-6 md:gap-12 md:grid-cols-4">
+        <div className="grid grid-cols-2 gap-y-10 gap-x-6 md:gap-12 md:grid-cols-4">
           {stats.map((stat, idx) => (
             <div key={idx} className="text-center group">
               <p className="text-4xl md:text-5xl font-bold gold-gradient tracking-tighter transition-transform duration-500 group-hover:scale-110">

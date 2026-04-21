@@ -11,7 +11,7 @@ export function HeroSection() {
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_rgba(244,223,160,0.35)_0%,_transparent_60%)] mix-blend-multiply pointer-events-none" />
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,_rgba(212,169,95,0.12)_0%,_transparent_60%)] mix-blend-multiply pointer-events-none" />
 
-      <div className="relative mx-auto max-w-7xl px-4 py-12 md:py-24 lg:px-8 w-full z-10">
+      <div className="relative mx-auto max-w-7xl px-4 py-16 md:py-24 lg:px-8 w-full z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           
           {/* Left - Content */}
@@ -22,10 +22,10 @@ export function HeroSection() {
             </div>
 
             <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-bold leading-[1.1] tracking-tight text-[#1C1C22]">
-              <span>Make Smarter Real</span>
-              <br />
+              <span>Make Smarter <span className="sm:hidden"><br /></span>Real</span>
+              <br className="hidden sm:block" />
               <span>Estate Decisions</span>
-              <br />
+              <br className="hidden sm:block" />
               <span>in the <span className="gold-gradient">UAE</span></span>
             </h1>
 
@@ -51,11 +51,11 @@ export function HeroSection() {
           {/* Right - Glass Cards */}
           <div className="flex flex-col gap-5">
             {[
-              { icon: BarChart3, title: "Market Analytics", desc: "Real-time price trends, ROI data and 5-year price histories.", stat: "7.2%", label: "Avg Yield BusinessBay" },
-              { icon: Map, title: "Area Intelligence", desc: "Deep insights into every neighborhood across all 7 Emirates.", stat: "500+", label: "Areas Analyzed" },
-              { icon: TrendingUp, title: "Investment Scores", desc: "AI-powered scorecards covering risk, liquidity & appreciation.", stat: "92/100", label: "Downtown Airbnb Score" },
+              { icon: BarChart3, title: "Market Analytics", desc: "Real-time trends & ROI data.", stat: "7.2%", label: "Avg Yield" },
+              { icon: Map, title: "Area Intelligence", desc: "Deep insights for 7 Emirates.", stat: "500+", label: "Areas" },
+              { icon: TrendingUp, title: "Investment Scores", desc: "AI-powered scorecards.", stat: "92/100", label: "Airbnb Score" },
             ].map((item, idx) => (
-              <div key={idx} className="glass-card-hover group flex items-center gap-5 p-6">
+              <div key={idx} className="glass-card-hover group flex items-center gap-4 md:gap-5 p-5 md:p-6 transition-all">
                 <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-[rgba(198,167,94,0.12)] border border-[rgba(198,167,94,0.25)] transition-all duration-500 group-hover:bg-[rgba(198,167,94,0.2)]">
                   <item.icon className="h-6 w-6 text-[#C6A75E]" strokeWidth={1.5} />
                 </div>

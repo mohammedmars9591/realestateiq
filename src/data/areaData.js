@@ -4000,38 +4000,59 @@ export const DUBAI_AREAS = [
     overallScore: 8.9,
 
     unitEconomics: { 
-      studio: { roi: "7.8%", rent: "AED 85k" }, 
-      oneBed: { roi: "7.0%", rent: "AED 115k" }, 
-      twoBed: { roi: "6.5%", rent: "AED 160k" } 
+      studio: { roi: "7.8%", rent: "AED 85k", price: "AED 1.1M", size: "550 sq.ft", features: "High-floor views, fitness access" }, 
+      oneBed: { roi: "7.0%", rent: "AED 115k", price: "AED 1.65M", size: "850 sq.ft", features: "Canal view balconies, smart home systems" }, 
+      twoBed: { roi: "6.5%", rent: "AED 160k", price: "AED 2.45M", size: "1,450 sq.ft", features: "Dual balconies, premium fitted kitchens" },
+      threeBed: { roi: "6.2%", rent: "AED 240k", price: "AED 4.2M", size: "2,200 sq.ft", features: "Maids room, floor-to-ceiling windows" },
+      townHouse: { roi: "5.8%", rent: "AED 350k", price: "AED 8.5M", size: "3,800 sq.ft", features: "Private garden, canal frontage" },
+      penthouse: { roi: "5.2%", rent: "AED 650k", price: "AED 18.5M", size: "5,500 sq.ft", features: "Private pool, panoramic Downtown views" }
     },
 
     shortTermScore: 8.8,
     shortTermRental: { allowed: true, avgDailyRate: "AED 650", occupancy: "85%", tenantType: "Business/Tourist" },
     
-    futureUpgrades: [{ name: "Peninsula District", status: "Handing Over" }, { name: "Canal Flying Taxi", status: "Proposed" }],
+    futureUpgrades: [
+      { name: "Peninsula Water-Front District", status: "Handing Over" }, 
+      { name: "Canal Front Residences", status: "Ongoing" },
+      { name: "Marasi Bay Expansion", status: "Active Construction" },
+      { name: "Vision 2030 Integrated Transit", status: "Planned" }
+    ],
     description: "Business Bay is Dubai's vision of a cosmopolitan metropolis. It is a forest of skyscrapers along the extension of the Creek. It has evolved from a pure office district into a vibrant residential hub with 5-star hotels, yacht berths, and fine dining.",
     
     marketReadData: [
-      { factor: "Buyer Mix", read: "Diverse. Corporate investors buy offices; HNWIs buy canal penthouses." },
-      { factor: "Rental Demand", read: "Highest in Dubai alongside Marina. It is the preferred address for white-collar expats." },
-      { factor: "Price Drivers", read: "Views of Burj Khalifa and the Canal command a 25-40% premium." },
-      { factor: "Liquidity", read: "Exceptional. Properties here are as liquid as cash." }
+      { factor: "Buyer Mix", read: "Mix of institutional investors (40%) and mid-to-high income professionals (60%). High percentage of international buyers from Europe and Asia." },
+      { factor: "Rental Demand", read: "Highest in Dubai alongside Marina. It is the preferred address for white-collar expats needing Downtown proximity." },
+      { factor: "Price Drivers", read: "Canal frontage, Burj Khalifa views, and the delivery of 'super-luxury' branded residences (Pagani, Bugatti)." },
+      { factor: "Liquidity", read: "Exceptional. Property in Business Bay is a 'cash equivalent' asset due to the high transaction velocity." }
     ],
 
-    rentalAnalysisPoints: ["Executive Towers offer the best value/space ratio for families.", "Newer builds (sls, Paramount) attract younger tenants willing to pay for amenities.", "Holiday homes outperform long-term leases by 15%."],
-    salesAnalysisPoints: ["Off-plan ultra-luxury segment (AED 4,000/sqft) is booming.", "Standard resale units trade at AED 1,800/sqft, offering value gaps."],
-    investorTip: "Buy 'Peninsula' or 'Jumeirah Living' for long-term appreciation. Buy 'Executive Towers' for immediate high rental yield.",
+    rentalAnalysisPoints: [
+      "Executive Towers remains the gold standard for family rentals due to space and podium amenities.",
+      "Branded residences (SLS, Paramount) command a 20% rental premium over non-branded stock.",
+      "Studio and 1-bed units near the Metro station have near-zero vacancy rates year-round."
+    ],
+    salesAnalysisPoints: [
+      "Secondary market prices for 'Ready' stock have seen a 15% YoY appreciation.",
+      "Off-plan ultra-luxury segment is trading at record highs of AED 4,500+ per sq.ft.",
+      "Older towers are seeing significant renovation-flip activity for high capital gains."
+    ],
+    investorTip: "Focus on canal-fronting properties in projects like 'Peninsula' for maximum capital appreciation, or 'Old' Business Bay towers (Executive Towers) for stable 7%+ gross yields.",
 
     connectivity: {
-      airport: { name: "DXB Intl", km: "15 km", mins: "15 mins" },
-      school: { name: "Hartland Intl", km: "5 km", mins: "10 mins" },
-      tourist: { name: "Burj Khalifa", km: "2 km", mins: "5 mins" },
-      metro: { name: "Business Bay", km: "0.5 km", mins: "2 mins" },
-      mall: { name: "Dubai Mall", km: "2 km", mins: "5 mins" },
-      business: { name: "Main Hub", km: "0 km", mins: "0 mins" },
-      hospital: { name: "Emirates Hosp", km: "3 km", mins: "8 mins" }
+      airport: { name: "Dubai Intl Airport (DXB)", km: "15 km", mins: "15 mins" },
+      school: { name: "Hartland Intl, North London Collegiate, Horizon English", km: "5 km", mins: "10 mins" },
+      tourist: { name: "Burj Khalifa, Museum of the Future", km: "2 km", mins: "5 mins" },
+      metro: { name: "Business Bay Metro Station", km: "0.5 km", mins: "2 mins" },
+      mall: { name: "Dubai Mall, Bay Avenue Mall, City Walk", km: "2 km", mins: "5 mins" },
+      business: { name: "DIFC, World Trade Centre, Design District", km: "0 km", mins: "0 mins" },
+      hospital: { name: "Emirates Hospital, Mediclinic Dubai Mall, Aster Clinic", km: "3 km", mins: "8 mins" }
     },
-    buyerPsychology: { trigger: "Ambition", archetype: "The Corporate Climber", motivation: "Living in the skyline, next to the office and the best nightlife." }
+    buyerPsychology: { 
+      trigger: "Ambition & Centrality", 
+      archetype: "The Corporate High-Flyer", 
+      motivation: "Living in the skyline, next to the office and the best nightlife. Prestige of a 'Downtown' adjacent lifestyle." 
+    },
+    scores: { cashFlow: 8.5, appreciation: 8.8, liquidity: 9.5, risk: 3.5, lifestyle: 9.0, airbnb: 9.2 }
   },
   // --- DUBAI: CHERRYWOODS (Family Townhouses) ---
   {
@@ -4746,36 +4767,58 @@ export const DUBAI_AREAS = [
     scores: { cashFlow: 7.0, appreciation: 9.8, liquidity: 8.0, risk: 4.0, lifestyle: 10.0 },
     overallScore: 9.1,
 
-    unitEconomics: { studio: { roi: "N/A", rent: "N/A" }, oneBed: { roi: "N/A", rent: "N/A" }, twoBed: { roi: "N/A", rent: "N/A" } },
-    // Projected Townhouse Yields ~7-8%
+    unitEconomics: { 
+      townHouse: { roi: "5.8%", rent: "AED 220k", price: "AED 3.2M", size: "2,400 sq.ft", features: "Water-themed architecture, backyard pool access" }, 
+      fourBed: { roi: "5.4%", rent: "AED 280k", price: "AED 4.5M", size: "3,200 sq.ft", features: "Mediterranean design, rooftop terrace" }, 
+      fiveBed: { roi: "5.2%", rent: "AED 380k", price: "AED 6.5M", size: "4,500 sq.ft", features: "Crystal lagoon frontage, cinema room" },
+      sixBed: { roi: "4.8%", rent: "AED 600k", price: "AED 15M+", size: "8,500 sq.ft", features: "Signature mansion, private jetty, waterfall feature" }
+    },
 
-    shortTermScore: 9.5,
-    shortTermRental: { allowed: true, avgDailyRate: "AED 1,200", occupancy: "Proj 80%", tenantType: "Tourists" },
-    
-    futureUpgrades: [{ name: "Lagoon Activation", status: "2025" }, { name: "Hessa St Upgrade", status: "Ongoing" }],
-    description: "DAMAC Lagoons is not just a home; it's a vacation destination. Each cluster is designed to mimic a Mediterranean city. The crystal lagoons are swimmable, bringing the beach to your doorstep. It is positioned as a premium upgrade to DAMAC Hills 1.",
-    
-    marketReadData: [
-      { factor: "Buyer Mix", read: "Heavy investor activity flipping off-plan contracts. End-users waiting for handover." },
-      { factor: "Rental Demand", read: "Expected to be extremely high for families wanting a resort lifestyle." },
-      { factor: "Price Drivers", read: "The Lagoon. It is a unique selling point that justifies a premium over dry communities." },
-      { factor: "Liquidity", read: "High. Premiums on original price are already 20-30%." }
+    shortTermScore: 7.2,
+    shortTermRental: { allowed: true, avgDailyRate: "AED 1,100", occupancy: "65%", tenantType: "Vacationing Families" },
+
+    futureUpgrades: [
+      { name: "Morocco Hub Completion", status: "Ongoing" },
+      { name: "Floating Amphitheatre", status: "Under Construction" },
+      { name: "Wellness Central Mall", status: "Proposed (2026)" }
     ],
 
-    rentalAnalysisPoints: ["Projected rents for 4-beds: AED 250k+.", "Short-term rental potential is massive due to the theme park vibe.", "Will compete directly with Tilal Al Ghaf."],
-    salesAnalysisPoints: ["Prices have jumped from AED 1.7M at launch to AED 2.8M+.", "Monte Carlo and Morocco clusters command the highest premiums."],
-    investorTip: "Hold until handover. The real value spike happens when people see the water.",
+    description: "DAMAC Lagoons is a massive water-themed master community featuring residential clusters inspired by Mediterranean destinations like Santorini, Venice, and Morocco, all centered around crystal blue lagoons.",
+    
+    marketReadData: [
+      { factor: "Buyer Mix", read: "Predominantly international vacation-home buyers and expat families seeking a resort-style lifestyle." },
+      { factor: "Rental Demand", read: "High for the 'Holiday Home' segment. Families prefer the community-feel and themed lagoons for long stays." },
+      { factor: "Price Drivers", read: "Lagoon frontage and themed-cluster exclusivity. Mediterranean-style mansions command the highest premiums." },
+      { factor: "Liquidity", read: "High for townhouses (entry-level luxury) and moderate for bespoke mansions." }
+    ],
+
+    rentalAnalysisPoints: [
+      "Short-term rentals can generate 25% higher returns than traditional long-term leasing.",
+      "Morocco and Venice clusters are the most requested in the pre-leasing market.",
+      "Townhouses near the main Crystal Lagoon see the fastest rental velocity."
+    ],
+    salesAnalysisPoints: [
+      "Prices have steadily increased as themed clusters reach handover milestones.",
+      "The community has seen a 15% YoY appreciation in the off-plan secondary market.",
+      "Investors are targeting 'Themed Mansions' for high capital growth potential."
+    ],
+    investorTip: "Buy a Santorini or Venice townhouse for the best occupancy rates. Look at the higher-floor rooftops for privacy and yield.",
 
     connectivity: {
-      airport: { name: "DXB Intl", km: "30 km", mins: "28 mins" },
-      school: { name: "Jebel Ali School", km: "2 km", mins: "5 mins" },
-      tourist: { name: "Miracle Garden", km: "8 km", mins: "10 mins" },
-      metro: { name: "N/A", km: "--", mins: "--" },
-      mall: { name: "First Avenue", km: "5 km", mins: "8 mins" },
-      business: { name: "Studio City", km: "5 km", mins: "8 mins" },
-      hospital: { name: "Mediclinic", km: "4 km", mins: "8 mins" }
+      airport: { name: "Al Maktoum Intl (DWC)", km: "15 km", mins: "20 mins" },
+      school: { name: "Victory Heights Primary, GEMS United, Royal Grammar School", km: "5 km", mins: "10 mins" },
+      tourist: { name: "Global Village, Miracle Garden", km: "10 km", mins: "15 mins" },
+      metro: { name: "Expo 2020 Metro Link", km: "8 km", mins: "12 mins" },
+      mall: { name: "Trump Clubhouse Retail, City Centre Me'aisem, Retail Village", km: "4 km", mins: "8 mins" },
+      business: { name: "Dubai South, EXPO District", km: "12 km", mins: "15 mins" },
+      hospital: { name: "Mediclinic Parkview, Neuro Spinal Hospital", km: "10 km", mins: "15 mins" }
     },
-    buyerPsychology: { trigger: "Concept & Hype", archetype: "The Dreamer", motivation: "Living in Santorini or Venice without leaving Dubai." }
+    buyerPsychology: { 
+      trigger: "Resort Living", 
+      archetype: "The Vacationer Family", 
+      motivation: "Living in a permanent holiday destination. Mediterranean vibes without leaving Dubai." 
+    },
+    scores: { cashFlow: 6.5, appreciation: 8.5, liquidity: 7.5, risk: 3.0, lifestyle: 9.8, airbnb: 8.2 }
   },
   // --- DUBAI: DEIRA (The Historic Trading Hub) ---
   {
@@ -5083,20 +5126,58 @@ export const DUBAI_AREAS = [
     overallScore: 9.2,
 
     unitEconomics: { 
-      studio: { roi: "6.0%", rent: "AED 110k" }, 
-      oneBed: { roi: "5.8%", rent: "AED 165k" }, 
-      twoBed: { roi: "5.2%", rent: "AED 260k" } 
+      studio: { roi: "6.0%", rent: "AED 110k", price: "AED 1.8M", size: "520 sq.ft", features: "Full Burj View options, premium floorings" }, 
+      oneBed: { roi: "5.8%", rent: "AED 165k", price: "AED 2.8M", size: "950 sq.ft", features: "State-of-the-art kitchen, integrated automation" }, 
+      twoBed: { roi: "5.4%", rent: "AED 260k", price: "AED 4.5M", size: "1,550 sq.ft", features: "Dual en-suite, separate maid room" },
+      threeBed: { roi: "5.0%", rent: "AED 420k", price: "AED 8.5M", size: "2,500 sq.ft", features: "Front-row fountain views, multi-zone AC" },
+      townhouse: { roi: "4.5%", rent: "AED 600k", price: "AED 15.5M", size: "4,200 sq.ft", features: "Private entrance, boulevard frontage" },
+      penthouse: { roi: "4.2%", rent: "AED 1.2M", price: "AED 35M+", size: "8,500 sq.ft", features: "Helipad access (select), private gym/theatre" }
     },
     shortTermScore: 9.8,
     shortTermRental: { allowed: true, avgDailyRate: "AED 1,200", occupancy: "88%", tenantType: "Luxury Tourists" },
     
-    futureUpgrades: [{ name: "Opera District Finalization", status: "Active" }],
+    futureUpgrades: [
+      { name: "Opera District Finalization", status: "Active" },
+      { name: "Dubai Mall Expansion Phase 2", status: "Ongoing" },
+      { name: "Downtown Circle Feasibility", status: "Vision 2030" }
+    ],
     description: "Downtown Dubai is the flagship mega-development by Emaar. It creates a new heart for the city, anchored by the tallest building and largest mall in the world. It attracts those who want to be at the 'Centre of Now'.",
     
     marketReadData: [
-      { factor: "Buyer Mix", read: "Global elite. 60% of buyers are international cash buyers." },
-      { factor: "Rental Demand", read: "Short-term rentals (Airbnb) often generate 20-30% more revenue than long-term leases here." },
-      { factor: "Price Drivers", read: "View corridors. A full Burj view can double the price of a unit." },
+      { factor: "Buyer Mix", read: "Global elite. 60% of buyers are international cash buyers looking for safe-haven assets." },
+      { factor: "Rental Demand", read: "Unmatched performance for short-term rentals (Airbnb) which generate 20-30% more revenue than long-term leases." },
+      { factor: "Price Drivers", read: "View corridors. A full Burj view can double the price of a unit compared to a back-facing unit." },
+      { factor: "Liquidity", read: "Gold-standard liquidity. Downtown units are the most resilient asset class in Dubai real estate." }
+    ],
+
+    rentalAnalysisPoints: [
+      "The Address Residences command the highest premiums due to fully managed hotel-style living.",
+      "1-Bed units in the Burj Vista or The Lofts remain the preference for high-earning professionals.",
+      "Fountain-view apartments have a zero-vacancy status in the holiday home market."
+    ],
+    salesAnalysisPoints: [
+      "Secondary market entry for Emaar stock starts at AED 2,500 per sqft.",
+      "The 'Opera District' has seen a 25% price surge since the Opera Houses' completion.",
+      "Limited plot availability ensures that Downtown prices have a permanent floor."
+    ],
+    investorTip: "Focus on 'Old Town' for lower service charges and rustic luxury appeal, or 'Opera District' for high-rise modernism and rental velocity.",
+
+    connectivity: {
+      airport: { name: "Dubai Intl Airport (DXB)", km: "12 km", mins: "15 mins" },
+      school: { name: "Hartland Intl, GEMS Wellington, North London Collegiate", km: "6 km", mins: "12 mins" },
+      tourist: { name: "Burj Khalifa, Dubai Mall, Dubai Opera", km: "0 km", mins: "0 mins" },
+      metro: { name: "Burj Khalifa / Dubai Mall Station", km: "0.2 km", mins: "2 mins" },
+      mall: { name: "Dubai Mall, Souk Al Bahar, Boulevard Retail", km: "0 km", mins: "0 mins" },
+      business: { name: "DIFC, Business Bay, World Trade Centre", km: "2 km", mins: "5 mins" },
+      hospital: { name: "Mediclinic Dubai Mall, Emirates Hospital, Aster Clinic", km: "2 km", mins: "5 mins" }
+    },
+    buyerPsychology: { 
+      trigger: "Prestige & Centrality", 
+      archetype: "The Global Citizen", 
+      motivation: "Owning a piece of the world's most iconic skyline. Maximum convenience and ultimate bragging rights." 
+    },
+    scores: { cashFlow: 5.5, appreciation: 9.0, liquidity: 9.5, risk: 2.0, lifestyle: 10.0, airbnb: 9.8 }
+  },
       { factor: "Liquidity", read: "Highest in the market. A prime unit priced correctly sells in days." }
     ],
 
@@ -5166,37 +5247,58 @@ export const DUBAI_AREAS = [
     overallScore: 8.8,
 
     unitEconomics: { 
-      studio: { roi: "N/A", rent: "N/A" }, 
-      oneBed: { roi: "6.5%", rent: "AED 115k" }, 
-      twoBed: { roi: "6.0%", rent: "AED 165k" } 
+      oneBed: { roi: "6.2%", rent: "AED 105k", price: "AED 1.75M", size: "820 sq.ft", features: "Full skyline view, floor-to-ceiling glass" }, 
+      twoBed: { roi: "5.8%", rent: "AED 160k", price: "AED 2.85M", size: "1,250 sq.ft", features: "Corner unit, direct creek access" }, 
+      threeBed: { roi: "5.4%", rent: "AED 240k", price: "AED 4.2M", size: "2,100 sq.ft", features: "Massive wrap-around terrace, en-suite bathrooms" },
+      townHouse: { roi: "5.0%", rent: "AED 350k", price: "AED 8.5M", size: "3,500 sq.ft", features: "Waterfront frontage, private patio" },
+      penthouse: { roi: "4.5%", rent: "AED 750k", price: "AED 25M+", size: "6,000 sq.ft", features: "Full Burj Khalifa & Creek Tower views" }
     },
-    shortTermScore: 8.5,
-    shortTermRental: { allowed: true, avgDailyRate: "AED 750", occupancy: "80%", tenantType: "Sunset Chasers" },
-    
-    futureUpgrades: [{ name: "Blue Line Metro", status: "Approved" }, { name: "New Bridge to Bur Dubai", status: "Planned" }],
-    description: "Dubai Creek Harbour is an eco-friendly waterfront mega-city. It combines the glamour of a marina lifestyle with the tranquility of a nature reserve. The master plan includes retail districts larger than Dubai Mall (Dubai Square) and a walkable urban environment.",
-    
-    marketReadData: [
-      { factor: "Buyer Mix", read: "Visionary investors betting on the 10-year master plan." },
-      { factor: "Rental Demand", read: "Rapidly growing as access improves. Tenants love the 'newness' and park amenities." },
-      { factor: "Price Drivers", read: "Infrastructure announcements (Blue Line) and the Creek Tower progress." },
-      { factor: "Liquidity", read: "High for 1-beds and Marina-facing units." }
+
+    shortTermScore: 7.8,
+    shortTermRental: { allowed: true, avgDailyRate: "AED 850", occupancy: "75%", tenantType: "Millennial Tourists" },
+
+    futureUpgrades: [
+      { name: "Creek Tower Redesign Reveal", status: "Announced (2025)" },
+      { name: "Metro Blue Line Link", status: "Active Construction" },
+      { name: "Creek Marina Yacht Club", status: "Expansion Phase" }
     ],
 
-    rentalAnalysisPoints: ["1-Beds rent for AED 110k-125k.", "2-Beds are popular with families due to parks and car-free zones.", "Views of the Flamingo sanctuary command a niche premium."],
-    salesAnalysisPoints: ["Price per sq.ft is ~AED 2,100, compared to AED 2,800 in Downtown.", "Massive upside potential as the district matures."],
-    investorTip: "Buy in 'Island District' for immediate rental or 'Creek Beach' for holiday home potential.",
+    description: "Dubai Creek Harbour is an ultra-modern, stylish, and pedestrian-friendly community that represents the next generation of Dubai's waterfront living, twice the size of Downtown Dubai.",
+    
+    marketReadData: [
+      { factor: "Buyer Mix", read: "Millennial investors and young professional families (70% Investors, 30% End-users). High interest from tech-sector professionals." },
+      { factor: "Rental Demand", read: "High for the 'Islands' segment. Professional expats are drawn to the tranquility and modern infrastructure." },
+      { factor: "Price Drivers", read: "The upcoming Creek Tower and Blue Line Metro. Skyline views of Burj Khalifa command a 20% premium." },
+      { factor: "Liquidity", read: "Very High for the Island District. Resale activity is booming for ready Emaar units." }
+    ],
+
+    rentalAnalysisPoints: [
+      "1-beds in 'Creek Horizon' and 'The Cove' command the highest rental yields.",
+      "The Blue Line Metro announcement has already caused a 10% rent hike in ready units.",
+      "Waterfront units are consistently maintaining 98%+ occupancy rates."
+    ],
+    salesAnalysisPoints: [
+      "Secondary market entry starts at AED 2,100 psf, offering a value-edge over Downtown.",
+      "Capital appreciation for waterfront units has reached 45% since launch.",
+      "Investors are speculatively buying now to front-run the Creek Tower completion."
+    ],
+    investorTip: "Buy 'Creek Island' units now before the Metro Blue Line completion in 2027-2028. The appreciation jump will be significant.",
 
     connectivity: {
-      airport: { name: "DXB Intl", km: "10 km", mins: "12 mins" },
-      school: { name: "Swiss Scientific", km: "4 km", mins: "8 mins" },
-      tourist: { name: "Flamingo Sanctuary", km: "1 km", mins: "3 mins" },
-      metro: { name: "Creek Station", km: "3 km", mins: "5 mins" },
-      mall: { name: "Dubai Square", km: "0 km", mins: "Future" },
-      business: { name: "DIFC", km: "8 km", mins: "10 mins" },
-      hospital: { name: "Mediclinic", km: "6 km", mins: "10 mins" }
+      airport: { name: "Dubai Intl Airport (DXB)", km: "8 km", mins: "12 mins" },
+      school: { name: "Hartland Intl, Swiss International, North London Collegiate", km: "6 km", mins: "12 mins" },
+      tourist: { name: "Ras Al Khor Sanctuary, Creek Promenade", km: "0 km", mins: "0 mins" },
+      metro: { name: "Blue Line Station (Upcoming)", km: "0.2 km", mins: "2 mins" },
+      mall: { name: "Dubai Festival City Mall, Dubai Hills Mall", km: "5 km", mins: "10 mins" },
+      business: { name: "DIFC, Business Bay", km: "10 km", mins: "15 mins" },
+      hospital: { name: "Mediclinic Welcare, American Hospital Dubai, Aster Clinic", km: "8 km", mins: "15 mins" }
     },
-    buyerPsychology: { trigger: "Future Value", archetype: "The Visionary", motivation: "Buying into the 'next Downtown' before prices peak." }
+    buyerPsychology: { 
+      trigger: "The Future Address", 
+      archetype: "The Visionary Investor", 
+      motivation: "Early entry into the next iconic Dubai district. Living in a high-tech, scenic waterfront environment with Wildlife proximity." 
+    },
+    scores: { cashFlow: 6.2, appreciation: 9.5, liquidity: 8.5, risk: 2.5, lifestyle: 9.0, airbnb: 7.8 }
   },
 
   // --- DUBAI: DUBAI DESIGN DISTRICT (d3) ---
@@ -5414,37 +5516,58 @@ export const DUBAI_AREAS = [
     overallScore: 8.9,
 
     unitEconomics: { 
-      studio: { roi: "N/A", rent: "N/A" }, 
-      oneBed: { roi: "6.8%", rent: "AED 110k" }, 
-      twoBed: { roi: "6.4%", rent: "AED 165k" } 
+      oneBed: { roi: "6.8%", rent: "AED 110k", price: "AED 1.7M", size: "820 sq.ft", features: "Central park view, floor-to-ceiling windows" }, 
+      twoBed: { roi: "6.4%", rent: "AED 165k", price: "AED 2.8M", size: "1,450 sq.ft", features: "Spacious terrace, built-in wardrobes" }, 
+      threeBed: { roi: "6.0%", rent: "AED 240k", price: "AED 4.5M", size: "2,400 sq.ft", features: "Corner unit, park frontage" },
+      townHouse: { roi: "5.5%", rent: "AED 350k", price: "AED 7.5M", size: "3,500 sq.ft", features: "End-unit, proximity to the clubhouse" },
+      villa: { roi: "5.0%", rent: "AED 550k", price: "AED 18M+", size: "5,500 sq.ft", features: "Golf course view, large plot, high-end marble" }
     },
-    shortTermScore: 6.5,
-    shortTermRental: { allowed: true, avgDailyRate: "AED 700", occupancy: "75%", tenantType: "Families" },
-    
-    futureUpgrades: [{ name: "Metro Extension", status: "Proposed" }, { name: "New Business Park", status: "Active" }],
-    description: "Dubai Hills Estate is a city within a city. Centered around an 18-hole golf course and a park larger than Zabeel Park, it attracts affluent families. The mix of luxury villas (Sidra, Maple) and park-facing apartments (Park Heights, Park Ridge) creates a vibrant, diversified ecosystem.",
-    
-    marketReadData: [
-      { factor: "Buyer Mix", read: "End-users dominate the villa market. Investors target the 'Park' apartments." },
-      { factor: "Rental Demand", read: "Consistent. Tenants often renew leases for 3+ years." },
-      { factor: "Price Drivers", read: "Mall proximity and Park views. Units facing the park trade at a 15% premium." },
-      { factor: "Liquidity", read: "High. One of the most traded communities in DLD records." }
+
+    shortTermScore: 7.5,
+    shortTermRental: { allowed: true, avgDailyRate: "AED 800", occupancy: "70%", tenantType: "European Families" },
+
+    futureUpgrades: [
+      { name: "Dubai Hills Park Extension", status: "Ongoing" },
+      { name: "Sidra Phase 4 Handover", status: "Q4 2025" },
+      { name: "Commercial District Phase 2", status: "Construction" }
     ],
 
-    rentalAnalysisPoints: ["1-Beds rent for AED 100k-120k.", "3-Bed Villas (Maple) rent for AED 280k+.", "High demand for 'Park Point' and 'Collective' due to co-living vibe."],
-    salesAnalysisPoints: ["Apartments trade at AED 1,900 - 2,300 psf.", "Villas have appreciated 40% since 2021."],
-    investorTip: "Buy a 1-bed in 'Park Heights' facing the pool. It's the most liquid asset in the community.",
+    description: "Dubai Hills Estate is a 'city within a city' and the first multi-purpose development by Emaar, combining high-end villas, apartments, a massive mall, and a world-class golf course.",
+    
+    marketReadData: [
+      { factor: "Buyer Mix", read: "Predominantly end-users and long-term investors (60% Families, 40% Investors). High demand from high-net-worth expats moving from the UK, Russia, and India." },
+      { factor: "Rental Demand", read: "Extremely robust. Townhouses have a waiting list in the secondary market. Apartments near the mall see 95%+ occupancy." },
+      { factor: "Price Drivers", read: "Proximity to Dubai Hills Mall and central park view. Golf-facing villas command a 50% premium." },
+      { factor: "Liquidity", read: "Very High. One of the most traded communities in DLD records." }
+    ],
+
+    rentalAnalysisPoints: [
+      "Villas in 'Sidra' and 'Maple' have appreciated 15% in rental value YoY.",
+      "1-Bed apartments are the highest-yielding asset class in the community.",
+      "New luxury launches near the golf course are resetting price ceilings for the entire project."
+    ],
+    salesAnalysisPoints: [
+      "Secondary market prices for 'Maple' townhouses have doubled since launch.",
+      "Golf course mansions are trading at record prices of AED 50M+.",
+      "Investor interest in 'Off-plan' apartments remains high due to attractive payment plans."
+    ],
+    investorTip: "Buy 'Acacia' or 'Mulberry' apartments for park views and best long-term rental appreciation. Buy 'Sidra' for safe-haven family end-user demand.",
 
     connectivity: {
-      airport: { name: "DXB Intl", km: "20 km", mins: "20 mins" },
-      school: { name: "GEMS Wellington", km: "1 km", mins: "3 mins" },
-      tourist: { name: "Dubai Hills Park", km: "0 km", mins: "0 mins" },
-      metro: { name: "Mall of Emirates", km: "5 km", mins: "10 mins" },
-      mall: { name: "Dubai Hills Mall", km: "0.5 km", mins: "2 mins" },
-      business: { name: "Business Park", km: "1 km", mins: "3 mins" },
-      hospital: { name: "King's College", km: "0.5 km", mins: "2 mins" }
+      airport: { name: "Dubai Intl Airport (DXB)", km: "22 km", mins: "25 mins" },
+      school: { name: "GEMS World Academy, Dubai Heights Academy, Brighton College", km: "2 km", mins: "5 mins" },
+      tourist: { name: "Dubai Hills Mall, Dubai Hills Park", km: "0 km", mins: "0 mins" },
+      metro: { name: "Proposed Metro Link (Gold Line)", km: "1 km", mins: "5 mins" },
+      mall: { name: "Dubai Hills Mall, Mall of the Emirates", km: "0 km", mins: "0 mins" },
+      business: { name: "DIFC, Business Bay", km: "15 km", mins: "18 mins" },
+      hospital: { name: "King's College Hospital Dubai, Mediclinic Parkview", km: "0 km", mins: "2 mins" }
     },
-    buyerPsychology: { trigger: "Lifestyle", archetype: "The Modern Family", motivation: "Living in a green, safe, self-contained bubble." }
+    buyerPsychology: { 
+      trigger: "Stability & Nature", 
+      archetype: "The Elite Family", 
+      motivation: "Living in a gated, green master-community with every convenience (mall, hospital, school) inside the development boundary." 
+    },
+    scores: { cashFlow: 6.2, appreciation: 8.8, liquidity: 9.2, risk: 2.5, lifestyle: 9.8, airbnb: 7.5 }
   },
 
   // --- DUBAI: DUBAI INTERNET CITY (DIC) ---
@@ -5746,37 +5869,57 @@ export const DUBAI_AREAS = [
     overallScore: 8.8,
 
     unitEconomics: { 
-      studio: { roi: "7.0%", rent: "AED 90k" }, 
-      oneBed: { roi: "6.5%", rent: "AED 135k" }, 
-      twoBed: { roi: "6.0%", rent: "AED 210k" } 
+      studio: { roi: "7.0%", rent: "AED 90k", price: "AED 1.1M", size: "480 sq.ft", features: "Marina-view balcony, high-spec fitness gym" }, 
+      oneBed: { roi: "6.5%", rent: "AED 135k", price: "AED 2.2M", size: "850 sq.ft", features: "Integrated kitchen, walk-in closets" }, 
+      twoBed: { roi: "6.0%", rent: "AED 210k", price: "AED 3.8M", size: "1,450 sq.ft", features: "Panoramic water views, smart climate control" },
+      threeBed: { roi: "5.5%", rent: "AED 320k", price: "AED 6.5M", size: "2,200 sq.ft", features: "Private yacht berth access, massive terrace" },
+      townHouse: { roi: "5.2%", rent: "AED 450k", price: "AED 12.5M", size: "4,200 sq.ft", features: "Waterfront garden, rooftop deck" },
+      penthouse: { roi: "4.8%", rent: "AED 750k", price: "AED 25M+", size: "6,500 sq.ft", features: "360-degree views, private cinema, rooftop pool" }
     },
     shortTermScore: 9.5,
     shortTermRental: { allowed: true, avgDailyRate: "AED 850", occupancy: "90%", tenantType: "Tourists" },
     
-    futureUpgrades: [{ name: "Marina Mall Renovation", status: "Planned" }],
+    futureUpgrades: [
+      { name: "Dubai Marina Mall Renovation", status: "Planned (2025)" },
+      { name: "Marina Promenade Digitalization", status: "Ongoing" },
+      { name: "Harbour Residences Integration", status: "Active Construction" }
+    ],
     description: "Dubai Marina is a canal city carved along a 3km stretch of Persian Gulf shoreline. It creates a riviera-style community with towering skyscrapers, luxury yachts, and al fresco dining. It is the heartbeat of 'New Dubai'.",
     
     marketReadData: [
-      { factor: "Buyer Mix", read: "Global investors. It is the default 'first investment' for international buyers." },
-      { factor: "Rental Demand", read: "Never stops. Vacancy is purely frictional." },
-      { factor: "Price Drivers", read: "Marina views vs Sea views. Emaar buildings command a 20% premium." },
-      { factor: "Liquidity", read: "Highest in Dubai. You can cash out in weeks." }
+      { factor: "Buyer Mix", read: "Global investors and high-earning expats. 70% of buyers are international, looking for lifestyle and high liquidity." },
+      { factor: "Rental Demand", read: "The highest long-term rental demand district in Dubai. Vacancy is purely frictional." },
+      { factor: "Price Drivers", read: "Marina views vs Sea views. Proximity to the Metro and JBR Beach command a 15-20% premium." },
+      { factor: "Liquidity", read: "The most liquid market in the Middle East. You can liquidate a Marina asset in 10-15 days." }
     ],
 
-    rentalAnalysisPoints: ["Rents have surged 20% post-2023.", "Short-term rentals (Airbnb) are extremely lucrative here.", "Renovated units in older towers (e.g., Marina Diamonds) offer high ROI potential."],
-    salesAnalysisPoints: ["Prices vary wildly from AED 1,200 psf (older) to AED 4,000 psf (branded).", "Emaar 6 Towers (Original 6) remain the gold standard for quality."],
-    investorTip: "Buy a renovated unit in a 'B-grade' tower for yield, or an Emaar unit for capital preservation.",
+    rentalAnalysisPoints: [
+      "Emaar-built towers (Original 6) command a 30% rental premium over secondary developments.",
+      "Renovated 1-Beds in older clusters (Marina Diamonds) offer the highest net cash flow for value seekers.",
+      "Holiday homes during Q4-Q1 outperform long-term leases by 40% due to lifestyle tourism."
+    ],
+    salesAnalysisPoints: [
+      "Prices have seen a 22% increase in the last 24 months, driven by the scarcity of new plots.",
+      "Full Marina-facing units trade at a 40% premium over street-facing back-row units.",
+      "Branded residences (Cavalli, Damac Bay) are setting new price records above AED 4,500 psf."
+    ],
+    investorTip: "Buy 'Grande' units in Emaar towers for capital preservation, or renovated 'Marina Quay' units for long-term rental yield velocity.",
 
     connectivity: {
-      airport: { name: "DXB Intl", km: "30 km", mins: "25 mins" },
-      school: { name: "Emirates Intl", km: "5 km", mins: "10 mins" },
-      tourist: { name: "JBR Beach", km: "0.5 km", mins: "5 mins" },
-      metro: { name: "Sobha Realty", km: "0.2 km", mins: "2 mins" },
-      mall: { name: "Marina Mall", km: "0 km", mins: "0 mins" },
-      business: { name: "Media City", km: "2 km", mins: "5 mins" },
-      hospital: { name: "Marina Medical", km: "0 km", mins: "2 mins" }
+      airport: { name: "Dubai Intl Airport (DXB)", km: "30 km", mins: "25 mins" },
+      school: { name: "Emirates Intl, Horizon International, GEMS Wellington", km: "5 km", mins: "10 mins" },
+      tourist: { name: "JBR Beach, Bluewaters Island, Ain Dubai", km: "0.5 km", mins: "5 mins" },
+      metro: { name: "Sobha Realty Metro, DMCC Metro, Dubai Tram", km: "0.2 km", mins: "2 mins" },
+      mall: { name: "Dubai Marina Mall, Pier 7, Nakheel Mall", km: "0 km", mins: "0 mins" },
+      business: { name: "Media City, Internet City, JLT Hub", km: "2 km", mins: "5 mins" },
+      hospital: { name: "Mediclinic Meadows, King's College Hospital, Marina Medical", km: "3 km", mins: "8 mins" }
     },
-    buyerPsychology: { trigger: "Lifestyle", archetype: "The Socialite", motivation: "Living where the action is. View of yachts and skyscrapers." }
+    buyerPsychology: { 
+      trigger: "Lifestyle & Prestige", 
+      archetype: "The Waterfront Socialite", 
+      motivation: "Living where the action is. Constant proximity to the beach, yachts, and the world's most impressive high-rise skyline." 
+    },
+    scores: { cashFlow: 6.5, appreciation: 7.0, liquidity: 10.0, risk: 2.0, lifestyle: 9.8, airbnb: 9.5 }
   },
 
   // --- DUBAI: DUBAI MEDIA CITY (Creative Hub) ---
@@ -7205,7 +7348,59 @@ export const DUBAI_AREAS = [
 
   aiVerdict: {
     title: "Tourism Rental Powerhouse",
-    summary: "JBR delivers consistent Airbnb performance and remains one of Dubai’s most liquid beachfront apartment markets."
+    summary: "JBR delivers consistent Airbnb performance and remains one of Dubai’s most liquid beachfront apartment markets.",
+    unitEconomics: { 
+      studio: { roi: "7.0%", rent: "AED 80k", price: "AED 1.2M", size: "620 sq.ft", features: "Beachfront tower, walk-in access to The Beach" }, 
+      oneBed: { roi: "6.8%", rent: "AED 115k", price: "AED 2.25M", size: "1,100 sq.ft", features: "Spacious layout, high-floor sea views" }, 
+      twoBed: { roi: "6.2%", rent: "AED 170k", price: "AED 3.8M", size: "1,650 sq.ft", features: "Direct sea views, floor-to-ceiling windows" },
+      threeBed: { roi: "5.8%", rent: "AED 260k", price: "AED 5.5M", size: "2,400 sq.ft", features: "Vast living area, multi-balcony setup" },
+      townHouse: { roi: "5.4%", rent: "AED 450k", price: "AED 12M", size: "4,200 sq.ft", features: "Podium level garden, private access" },
+      penthouse: { roi: "4.8%", rent: "AED 850k", price: "AED 22M+", size: "6,500 sq.ft", features: "Duplex layout, 360-degree Marina & Sea views" }
+    },
+    shortTermScore: 9.2,
+    shortTermRental: { allowed: true, avgDailyRate: "AED 650", occupancy: "80%", tenantType: "Tourists" },
+    
+    futureUpgrades: [
+      { name: "Bluewaters Expansion", status: "Ongoing" },
+      { name: "JBR Beach Renovation", status: "Planned (2025)" },
+      { name: "The Walk Tech-Upgrade", status: "Ongoing" }
+    ],
+    description: "JBR is Dubai’s iconic beachfront residential strip offering vibrant lifestyle, strong rental demand, and premium tourism appeal.",
+    
+    marketReadData: [
+      { factor: "Buyer Mix", read: "Short-term rental investors (70%) and lifestyle end-users (30%). Extremely popular among CIS and European buyers." },
+      { factor: "Rental Demand", read: "Tourism-driven year-round occupancy. Airbnbs are booked 9-10 months in advance for peak season." },
+      { factor: "Price Drivers", read: "Beachfront scarcity and tourism growth. Proximity to Bluewaters Island adds a 30% premium." },
+      { factor: "Liquidity", read: "Highly liquid resale market. Beachfront property in Dubai is the most stable asset class." }
+    ],
+
+    rentalAnalysisPoints: [
+      "1-beds rent AED 110k–125k long-term, but can yield 2X on short-term platforms.",
+      "Upper-floor units in Sadaf or Murjan have the highest rental velocity.",
+      "Sea-view units command a 25% premium in the daily-rate market."
+    ],
+    salesAnalysisPoints: [
+      "Prime sea view units trade above AED 2,200 psf in the current cycle.",
+      "Strong resale volume due to high investor demand for holiday home stock.",
+      "Older towers are seeing significant renovation activity for higher yields."
+    ],
+    investorTip: "Target sea-view apartments in 'Sadaf' or 'Rimal' for maximum short-term rental ROI. Focus on renovated units to skip capital outlay.",
+
+    connectivity: {
+      airport: { name: "Dubai Intl Airport (DXB)", km: "30 km", mins: "30 mins" },
+      school: { name: "Dubai British School, Emirates International, GEMS Wellington", km: "8 km", mins: "15 mins" },
+      tourist: { name: "Bluewaters Island, Ain Dubai, The Beach Mall", km: "1 km", mins: "2 mins" },
+      metro: { name: "DMCC / Sobha Realty Station", km: "1 km", mins: "10 mins" },
+      mall: { name: "Dubai Marina Mall, Nakheel Mall, Ibn Battuta", km: "2 km", mins: "5 mins" },
+      business: { name: "Dubai Marina, Media City, JLT", km: "0 km", mins: "0 mins" },
+      hospital: { name: "Emirates Hospital JBR, King's College Hospital, Mediclinic Meadows", km: "3 km", mins: "6 mins" }
+    },
+    buyerPsychology: { 
+      trigger: "Beachfront Freedom", 
+      archetype: "The Global Tourist & Investor", 
+      motivation: "Owning property where the world goes on vacation. Maximum yield from tourism and lifestyle enjoyment." 
+    },
+    scores: { cashFlow: 7.5, appreciation: 6.5, liquidity: 8.5, risk: 3.5, lifestyle: 9.0, airbnb: 9.2 }
   },
 
   priceTrend: {
@@ -7357,23 +7552,58 @@ export const DUBAI_AREAS = [
   scores: { cashFlow: 5.5, appreciation: 8.5, liquidity: 6.5, risk: 3.0, lifestyle: 9.5 },
   overallScore: 8.3,
 
-  unitEconomics: {
-    fourBed: { roi: "5.5%", rent: "AED 320k" },
-    fiveBed: { roi: "5.2%", rent: "AED 400k" }
+  unitEconomics: { 
+    threeBed: { roi: "6.0%", rent: "AED 240k", price: "AED 4.2M", size: "3,200 sq.ft", features: "Golf course frontage, private pool" }, 
+    fourBed: { roi: "5.5%", rent: "AED 320k", price: "AED 8.5M", size: "4,800 sq.ft", features: "Landscaped garden, high ceilings" }, 
+    fiveBed: { roi: "5.2%", rent: "AED 450k", price: "AED 12.5M", size: "6,200 sq.ft", features: "Basement entertainment suite, golf-facing view" },
+    sixBed: { roi: "4.8%", rent: "AED 850k", price: "AED 35M+", size: "12,000 sq.ft", features: "Signature mansion, private lift, smart home" }
   },
 
   shortTermScore: 5.5,
-  shortTermRental: { allowed: true, avgDailyRate: "AED 1,500", occupancy: "60%" },
+  shortTermRental: { allowed: true, avgDailyRate: "AED 2,500", occupancy: "60%", tenantType: "Golf Tourists" },
 
-  futureUpgrades: [{ name: "Wasl Master Expansion", status: "Ongoing" }],
+  futureUpgrades: [
+    { name: "Wasl Master Expansion", status: "Ongoing" },
+    { name: "Earth Course Tech-Renovation", status: "Active" },
+    { name: "New Community Retail Hub", status: "Proposed" }
+  ],
 
-  description: "Jumeirah Golf Estates is a premium villa community centered around championship golf courses and luxury family living.",
+  description: "Jumeirah Golf Estates is one of the world's most prestigious residential golf destinations. Home to the DP World Tour Championship, it offers two world-class courses (Earth and Fire) and a collection of individually designed luxury villas and townhouses.",
+  
+  marketReadData: [
+    { factor: "Buyer Mix", read: "Predominantly European and British expats (70% End-users, 30% Investors). High demand from professional golfers and CEOs." },
+    { factor: "Rental Demand", read: "Extremely stable. Families often commit to multi-year contracts due to the school-golf ecosystem." },
+    { factor: "Price Drivers", read: "Front-line golf course views. Proximity to the Metro station and the Clubhouse command significant premiums." },
+    { factor: "Liquidity", read: "Moderate for ultra-luxury mansions, but high for entry-level townhouses in 'Jumeirah Golf Estates'." }
+  ],
 
-  buyerPsychology: {
-    trigger: "Luxury Lifestyle",
-    archetype: "The Golf Elite",
-    motivation: "Owning property in golf-branded luxury community."
-  }
+  rentalAnalysisPoints: [
+    "Villas in 'Whispering Pines' and 'Wildflower' remain the benchmark for high-end leasing.",
+    "Rents for 4-beds have surged 18% YoY due to limited stock and high family demand.",
+    "Golf-facing units generate 30% higher rental premiums than internal park units."
+  ],
+  salesAnalysisPoints: [
+    "Secondary prices for 'Redwood Avenue' have hit record highs in 2024-2025.",
+    "Capital appreciation for golf-frontage plots has exceeded 50% since the pandemic.",
+    "The Metro 2020 extension has significantly de-risked the apartment segment."
+  ],
+  investorTip: "Focus on 'Al Andalus' apartments for entry-level cash flow or 'Flame Tree Ridge' for significant capital preservation and luxury rental yields.",
+
+  connectivity: {
+    airport: { name: "Al Maktoum Intl (DWC)", km: "20 km", mins: "20 mins" },
+    school: { name: "Victory Heights Primary, GEMS United, Royal Grammar School", km: "5 km", mins: "10 mins" },
+    tourist: { name: "DP World Tour Venue, Global Village", km: "10 km", mins: "15 mins" },
+    metro: { name: "Jumeirah Golf Estates Metro Station", km: "0.2 km", mins: "2 mins" },
+    mall: { name: "City Centre Me'aisem, First Avenue Mall, Dubai Hills Mall", km: "8 km", mins: "15 mins" },
+    business: { name: "Dubai Sports City, Production City (IMPZ)", km: "2 km", mins: "5 mins" },
+    hospital: { name: "Mediclinic Parkview, Neuro Spinal Hospital, Fakeeh University", km: "10 km", mins: "12 mins" }
+  },
+  buyerPsychology: { 
+    trigger: "Athletic Luxury", 
+    archetype: "The Golfing Executive", 
+    motivation: "Living where the professionals play. Ultimate privacy combined with top-tier athletic community amenities." 
+  },
+  scores: { cashFlow: 5.5, appreciation: 8.5, liquidity: 6.5, risk: 3.0, lifestyle: 9.5, airbnb: 5.5 }
 },
 
 

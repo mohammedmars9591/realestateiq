@@ -9,9 +9,9 @@ const testimonials = [
 
 export function TestimonialsSection() {
   return (
-    <section className="section-ivory py-32">
+    <section className="section-ivory py-16 md:py-32">
       <div className="mx-auto max-w-7xl px-4 lg:px-8">
-        <div className="mx-auto max-w-3xl text-center mb-16">
+        <div className="mx-auto max-w-3xl text-center mb-10 md:mb-16">
           <h2 className="display-medium text-[#1C1C22] mb-6">
             Trusted by UAE <span className="gold-gradient">Real Estate Professionals</span>
           </h2>

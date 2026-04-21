@@ -11,6 +11,7 @@ const Header = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [searchResults, setSearchResults] = useState({ areas: [], builders: [] });
   const [showResults, setShowResults] = useState(false);
+  const [isMobileSearchOpen, setIsMobileSearchOpen] = useState(false);
   
   const navigate = useNavigate();
   const location = useLocation();
@@ -151,18 +152,67 @@ const Header = () => {
         </nav>
 
         {/* MOBILE ACTIONS */}
-        <div className="flex items-center gap-2 md:gap-4">
-          <button className="md:hidden text-[#1C1C22] p-2">
-             <Search size={22} className="text-[#A69785]" />
+        <div className="flex items-center gap-2 md:gap-4 lg:hidden">
+          <button 
+            className="text-[#1C1C22] p-2"
+            onClick={() => setIsMobileSearchOpen(!isMobileSearchOpen)}
+          >
+             <Search size={22} className={isMobileSearchOpen ? "text-[#C6A75E]" : "text-[#A69785]"} />
           </button>
           <button 
-            className="md:hidden text-[#1C1C22] p-2"
+            className="text-[#1C1C22] p-2"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
             {isMenuOpen ? <X size={26} /> : <Menu size={26} />}
           </button>
         </div>
       </div>
+
+      {/* MOBILE SEARCH BAR OVERLAY */}
+      {isMobileSearchOpen && (
+        <div className="lg:hidden p-4 bg-white border-t border-[rgba(198,167,94,0.15)] animate-in slide-in-from-top-2">
+           <div className="relative" ref={searchRef}>
+              <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-[#A69785]" size={18} />
+              <input 
+                type="text" 
+                placeholder="Search area or builder..." 
+                className="w-full pl-12 pr-4 py-3 bg-[#FDFBF7] border border-[rgba(198,167,94,0.3)] rounded-2xl text-sm font-medium focus:ring-2 focus:ring-[#C6A75E] transition-all outline-none"
+                autoFocus
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+              />
+
+              {/* Mobile Results Dropdown */}
+              {showResults && (searchResults.areas.length > 0 || searchResults.builders.length > 0) && (
+                <div className="absolute top-full left-0 w-full bg-white border border-[rgba(198,167,94,0.25)] rounded-2xl shadow-2xl mt-2 overflow-hidden z-[60]">
+                   {searchResults.areas.length > 0 && (
+                     <div className="p-2">
+                       {searchResults.areas.map(a => (
+                         <button key={a.id} onClick={() => { handleNavigate(`/area/${a.id}`); setIsMobileSearchOpen(false); }} className="w-full flex items-center gap-4 p-4 hover:bg-[#FDFBF7] rounded-xl text-left">
+                           <MapPin size={18} className="text-[#C6A75E]" />
+                           <div className="flex flex-col">
+                             <span className="text-base font-bold text-[#1C1C22]">{a.name}</span>
+                             <span className="text-xs text-[#A69785] uppercase tracking-wider">{a.emirate}</span>
+                           </div>
+                         </button>
+                       ))}
+                     </div>
+                   )}
+                   {searchResults.builders.length > 0 && (
+                     <div className="p-2 border-t border-[rgba(198,167,94,0.1)]">
+                       {searchResults.builders.map(b => (
+                         <button key={b.id} onClick={() => { handleNavigate(`/builder/${b.id}`); setIsMobileSearchOpen(false); }} className="w-full flex items-center gap-4 p-4 hover:bg-[#FDFBF7] rounded-xl text-left">
+                           <HardHat size={18} className="text-[#8E7F6E]" />
+                           <span className="text-base font-bold text-[#1C1C22]">{b.name}</span>
+                         </button>
+                       ))}
+                     </div>
+                   )}
+                </div>
+              )}
+           </div>
+        </div>
+      )}
 
       {/* MOBILE MENU DROPDOWN */}
       {isMenuOpen && (
