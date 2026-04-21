@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { 
-  Building2, TrendingUp, Wallet, CheckCircle, 
-  Crown, ShieldCheck, Zap, ArrowRight, Heart, Palette, Gem, Leaf, Activity, Globe
+  Building2, TrendingUp, CheckCircle, Crown, ShieldCheck,
+  Zap, ArrowRight, Leaf, Activity, Globe, Search, SlidersHorizontal
 } from 'lucide-react';
 import SEO from '../components/SEO';
 import { BUILDERS } from '../data/buildersData';
@@ -10,341 +10,292 @@ import { BUILDERS } from '../data/buildersData';
 const BuildersPage = () => {
   const [quizResult, setQuizResult] = useState(null);
   const [filter, setFilter] = useState('all');
-  
-  const filteredBuilders = BUILDERS.filter(b => {
-    if (filter === 'all') return true;
-    if (filter === 'esg') return b.esgRating > 9.0;
-    if (filter === 'govt') return b.fundingStability?.includes('Sovereign') || b.fundingStability?.includes('Government');
-    if (filter === 'confidence') return b.aiConfidence > 95;
-    return true;
-  });
-  
-  // --- 1. QUIZ LOGIC (Matches User Goal to Developer) ---
+  const [searchTerm, setSearchTerm] = useState('');
+
   const matchBuilder = (goal) => {
-    switch(goal) {
-      case 'cheap': 
-        setQuizResult(BUILDERS.find(b => b.id === 'danube')); // 1% Plan
-        break;
-      case 'luxury_art': 
-        setQuizResult(BUILDERS.find(b => b.id === 'omniyat')); // Zaha Hadid
-        break;
-      case 'wellness': 
-        setQuizResult(BUILDERS.find(b => b.id === 'mag')); // Bio-Living
-        break;
-      case 'safe': 
-        setQuizResult(BUILDERS.find(b => b.id === 'aldar')); // Govt Safety
-        break;
-      case 'boutique': 
-        setQuizResult(BUILDERS.find(b => b.id === 'ellington')); // Hotel Style
-        break;
-      case 'villa': 
-        setQuizResult(BUILDERS.find(b => b.id === 'damac')); // Lagoons
-        break;
-      case 'records': 
-        setQuizResult(BUILDERS.find(b => b.id === 'binghatti')); // Bugatti
-        break;
-      default:
-        setQuizResult(BUILDERS.find(b => b.id === 'emaar'));
-    }
+    const map = {
+      cheap: 'danube', luxury_art: 'omniyat', wellness: 'mag',
+      safe: 'aldar', boutique: 'ellington', villa: 'damac', records: 'binghatti'
+    };
+    setQuizResult(BUILDERS.find(b => b.id === (map[goal] || 'emaar')));
   };
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+  useEffect(() => { window.scrollTo(0, 0); }, []);
+
+  const filteredBuilders = BUILDERS.filter(b => {
+    const matchesSearch = b.name?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      b.tier?.toLowerCase().includes(searchTerm.toLowerCase());
+    if (!matchesSearch) return false;
+    if (filter === 'all') return true;
+    if (filter === 'esg') return (b.esgRating || 0) > 9.0;
+    if (filter === 'govt') return b.fundingStability?.includes('Sovereign') || b.fundingStability?.includes('Government');
+    if (filter === 'confidence') return (b.aiConfidence || 0) > 95;
+    return true;
+  });
+
+  const STATS = [
+    { value: '25+', label: 'Developers Tracked' },
+    { value: '98.2%', label: 'Data Accuracy' },
+    { value: 'AAA', label: 'Institutional Grade' },
+    { value: '2026', label: 'Live Intelligence' },
+  ];
+
+  const QUIZ_BUTTONS = [
+    { label: '💰 Best Payment Plan', goal: 'cheap' },
+    { label: '🛡️ Safest (Govt Backed)', goal: 'safe' },
+    { label: '🏡 Luxury Villas', goal: 'villa' },
+    { label: '🧘 Wellness & Health', goal: 'wellness' },
+    { label: '🎨 Boutique Design', goal: 'boutique' },
+    { label: '💎 Architectural Art', goal: 'luxury_art' },
+    { label: '🏆 Record Breakers', goal: 'records' },
+  ];
 
   const buildersListSchema = {
     "@context": "https://schema.org",
     "@type": "ItemList",
     "name": "Top Dubai & UAE Real Estate Developers 2026",
-    "description": "Comprehensive institutional analysis of 25+ UAE real estate developers with Trust Scores, ESG Ratings, AI Delivery Confidence, and payment plan data.",
-    "url": "https://www.realestateiq.ae/builders",
     "numberOfItems": BUILDERS.length,
     "itemListElement": BUILDERS.slice(0, 10).map((b, idx) => ({
-      "@type": "ListItem",
-      "position": idx + 1,
-      "name": b.name,
-      "url": `https://www.realestateiq.ae/builder/${b.id}`,
-      "description": `${b.name} — Tier: ${b.tier}, Trust Score: ${b.scores?.trust || "N/A"}/10, Best For: ${b.bestFor?.[0] || "investors"}`
+      "@type": "ListItem", "position": idx + 1, "name": b.name,
+      "url": `https://www.realestateiq.ae/builder/${b.id}`
     }))
   };
 
-  const buildersBreadcrumb = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    "itemListElement": [
-      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.realestateiq.ae" },
-      { "@type": "ListItem", "position": 2, "name": "Developer Intelligence Hub", "item": "https://www.realestateiq.ae/builders" }
-    ]
-  };
-
   return (
-    <div className="max-w-7xl mx-auto px-4 md:px-8 pb-20 fade-in">
-      
-      <SEO 
+    <div className="min-h-screen bg-[#F8F5EF] fade-in">
+      <SEO
         title="Top 25 Dubai Real Estate Developers 2026 — Trust Scores, Reviews & ROI"
-        description="Compare 25+ top Dubai real estate developers for free. Free Trust Scores, ESG Ratings, AI Delivery Confidence, and payment plan data for Emaar, Damac, Sobha, Binghatti, Danube and more. Updated 2026."
+        description="Compare 25+ top Dubai real estate developers for free. ESG Ratings, AI Delivery Confidence, Trust Scores for Emaar, Damac, Sobha, Binghatti, Danube and more."
         url="/builders"
         schema={buildersListSchema}
-        faqSchema={[
-          {
-            question: "Who is the most trusted developer in Dubai?",
-            answer: "Emaar Properties is the most trusted developer in Dubai with a Trust Score of 9.8/10 on RealEstateIQ. They are government-backed, have 100% delivery rate, and are responsible for iconic projects like Burj Khalifa, Downtown Dubai, and Dubai Mall. Aldar is the most trusted in Abu Dhabi."
-          },
-          {
-            question: "Which developer has the best payment plan in Dubai?",
-            answer: "Danube Properties is ranked #1 for payment flexibility on RealEstateIQ with a 10/10 payment score. Their signature 1% monthly payment plan makes them the most accessible developer for first-time investors. Ellington, Samana, and Reportage also offer flexible post-handover plans."
-          },
-          {
-            question: "What is the most reliable off-plan developer in UAE?",
-            answer: "Binghatti Developers has a 100% on-time delivery record — making them the most reliable for off-plan delivery. Emaar has a 99%+ track record. Sobha Realty (AI Confidence: 97.2%) is ranked highest for construction quality with a 10/10 build quality score."
-          }
-        ]}
       />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(buildersBreadcrumb) }} />
 
-      {/* HERO SECTION */}
-      <div className="text-center py-16">
-        <h1 className="text-4xl md:text-6xl font-extrabold mb-6 text-slate-900">
-          The Titans of <span className="text-blue-600">Dubai Real Estate</span>
-        </h1>
-        <p className="text-xl text-slate-500 max-w-2xl mx-auto">
-          We track the top 15 developers in the UAE. From ultra-luxury masterpieces to investor-friendly budget options.
-        </p>
-      </div>
+      {/* ─── HERO ─── */}
+      <section className="relative overflow-hidden bg-[#1C1C22] text-white py-24 md:py-32">
+        {/* Glow orbs */}
+        <div className="absolute top-[-30%] right-[-10%] w-[700px] h-[700px] bg-[#C6A75E]/10 rounded-full blur-[120px] pointer-events-none" />
+        <div className="absolute bottom-[-20%] left-[-5%] w-[500px] h-[500px] bg-[#C6A75E]/5 rounded-full blur-[100px] pointer-events-none" />
+        {/* Dot grid */}
+        <div className="absolute inset-0 opacity-[0.04] bg-[radial-gradient(circle_at_2px_2px,_#C6A75E_1px,_transparent_0)] bg-[length:32px_32px]" />
 
-      {/* --- FEATURE: THE BUILDER MATCHER --- */}
-      <div className="bg-slate-900 text-white rounded-3xl p-8 md:p-12 mb-20 shadow-2xl relative overflow-hidden">
-        <div className="relative z-10 text-center">
-          <h2 className="text-3xl font-bold mb-8 flex items-center justify-center gap-3">
-            <Zap className="text-yellow-400" /> 
-            Find Your Perfect Developer Match
-          </h2>
-          
-          <div className="flex flex-wrap justify-center gap-3 mb-8">
-            <QuizButton label="💰 Best Payment Plan" onClick={() => matchBuilder('cheap')} />
-            <QuizButton label="🛡️ Safest (Govt Backed)" onClick={() => matchBuilder('safe')} />
-            <QuizButton label="🏡 Luxury Villas" onClick={() => matchBuilder('villa')} />
-            <QuizButton label="🧘 Wellness & Health" onClick={() => matchBuilder('wellness')} />
-            <QuizButton label="🎨 Boutique Design" onClick={() => matchBuilder('boutique')} />
-            <QuizButton label="💎 Architectural Art" onClick={() => matchBuilder('luxury_art')} />
-            <QuizButton label="🏆 Record Breakers" onClick={() => matchBuilder('records')} />
+        <div className="relative mx-auto max-w-7xl px-4 lg:px-8 z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            {/* Left */}
+            <div>
+              <div className="inline-flex items-center gap-2 rounded-full border border-[rgba(198,167,94,0.4)] bg-[rgba(198,167,94,0.08)] px-4 py-1.5 mb-6 text-xs font-semibold uppercase tracking-[0.2em] text-[#C6A75E]">
+                <span className="h-1.5 w-1.5 rounded-full bg-[#C6A75E] animate-pulse" />
+                Developer Intelligence Hub
+              </div>
+              <h1 className="text-4xl md:text-6xl font-bold leading-[1.1] tracking-tight mb-6">
+                The Titans of<br />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#C6A75E] to-[#E6B76A]">
+                  UAE Real Estate
+                </span>
+              </h1>
+              <p className="text-lg text-white/60 font-light leading-relaxed max-w-lg mb-8">
+                Institutional-grade ESG ratings, AI delivery confidence, and trust scores for 25+ UAE developers. All free.
+              </p>
+              <div className="flex flex-wrap gap-3">
+                <Link to="/compare" className="inline-flex items-center gap-2 px-6 py-3 bg-[#C6A75E] text-[#1C1C22] font-bold rounded-xl text-sm hover:bg-[#E6B76A] transition-all">
+                  Compare Developers <ArrowRight size={16} />
+                </Link>
+                <a href="#developers" className="inline-flex items-center gap-2 px-6 py-3 border border-white/20 text-white font-bold rounded-xl text-sm hover:bg-white/10 transition-all">
+                  View All Developers
+                </a>
+              </div>
+            </div>
+
+            {/* Right — Stats cards */}
+            <div className="grid grid-cols-2 gap-4">
+              {STATS.map((s, i) => (
+                <div key={i} className="bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur-sm hover:bg-white/10 transition-all">
+                  <div className="text-3xl font-extrabold text-[#C6A75E] mb-1">{s.value}</div>
+                  <div className="text-xs font-semibold uppercase tracking-widest text-white/50">{s.label}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ─── DEVELOPER MATCHER QUIZ ─── */}
+      <section className="py-20 bg-[#FDFBF7] border-b border-[rgba(198,167,94,0.15)]">
+        <div className="mx-auto max-w-5xl px-4 lg:px-8">
+          <div className="text-center mb-10">
+            <div className="inline-flex items-center gap-2 rounded-full border border-[rgba(198,167,94,0.4)] bg-[rgba(198,167,94,0.07)] px-4 py-1.5 mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-[#C6A75E]">
+              <Zap size={12} /> AI Matcher
+            </div>
+            <h2 className="text-2xl md:text-4xl font-bold text-[#1C1C22] tracking-tight">Find Your Perfect Developer Match</h2>
+            <p className="mt-3 text-[#7A6E60] font-light">Tell us your goal — we'll recommend the best developer for you.</p>
           </div>
 
-          {/* QUIZ RESULT CARD */}
-          {quizResult && (
-            <div className="bg-white text-slate-900 p-8 rounded-2xl max-w-lg mx-auto animate-fade-in shadow-2xl border-4 border-yellow-400 relative">
-              <div className="absolute -top-4 -right-4 bg-yellow-400 text-black font-bold px-4 py-1 rounded-full text-xs uppercase tracking-wider shadow-sm">
-                Top Recommendation
-              </div>
-              <div className="text-sm font-bold uppercase text-slate-400 mb-2">Based on your choice</div>
-              <h3 className="text-4xl font-extrabold text-blue-600 mb-2">{quizResult.name}</h3>
-              <p className="text-slate-600 font-medium mb-6 text-lg">"{quizResult.usp}"</p>
-              
-              <div className="grid grid-cols-2 gap-4 mb-6 text-left bg-slate-50 p-4 rounded-xl">
-                 <div>
-                   <span className="text-xs font-bold text-slate-400 uppercase">Best For</span>
-                   <div className="font-bold text-slate-900 text-sm">{quizResult.bestFor[0]}</div>
-                 </div>
-                 <div>
-                   <span className="text-xs font-bold text-slate-400 uppercase">Trust Score</span>
-                   <div className="font-bold text-green-600 text-sm">{quizResult.scores.trust}/10</div>
-                 </div>
-              </div>
+          <div className="flex flex-wrap justify-center gap-3 mb-10">
+            {QUIZ_BUTTONS.map(({ label, goal }) => (
+              <button
+                key={goal}
+                onClick={() => matchBuilder(goal)}
+                className="px-5 py-3 rounded-xl border border-[rgba(198,167,94,0.3)] bg-white text-[#1C1C22] font-bold text-sm hover:bg-[#C6A75E] hover:text-white hover:border-[#C6A75E] transition-all shadow-sm"
+              >
+                {label}
+              </button>
+            ))}
+          </div>
 
-              {/* FIX: Use /builder/ (singular) to match App.jsx routing */}
-              <Link to={`/builder/${quizResult.id}`} className="inline-flex items-center gap-2 px-8 py-3 bg-slate-900 text-white font-bold rounded-xl hover:bg-slate-800 transition w-full justify-center">
-                Read Full Analysis <ArrowRight size={18} />
-              </Link>
+          {quizResult && (
+            <div className="bg-[#1C1C22] text-white rounded-3xl p-8 max-w-lg mx-auto border border-[rgba(198,167,94,0.3)] relative overflow-hidden shadow-2xl">
+              <div className="absolute -top-4 -right-4 bg-[#C6A75E] text-[#1C1C22] font-bold px-4 py-1.5 rounded-full text-[10px] uppercase tracking-wider z-10">
+                Top Match
+              </div>
+              <div className="absolute top-0 right-0 w-64 h-64 bg-[#C6A75E]/10 rounded-full blur-[80px] pointer-events-none" />
+              <div className="relative z-10">
+                <div className="text-[10px] font-bold uppercase tracking-widest text-[#C6A75E]/70 mb-1">Based on your goal</div>
+                <h3 className="text-3xl font-extrabold text-[#C6A75E] mb-2">{quizResult.name}</h3>
+                <p className="text-white/70 font-light mb-6 leading-relaxed">"{quizResult.usp}"</p>
+                <div className="grid grid-cols-2 gap-3 mb-6 bg-white/5 rounded-2xl p-4">
+                  <div>
+                    <div className="text-[10px] font-bold text-white/40 uppercase mb-1">Best For</div>
+                    <div className="font-bold text-sm">{quizResult.bestFor?.[0]}</div>
+                  </div>
+                  <div>
+                    <div className="text-[10px] font-bold text-white/40 uppercase mb-1">Trust Score</div>
+                    <div className="font-bold text-sm text-[#C6A75E]">{quizResult.scores?.trust}/10</div>
+                  </div>
+                </div>
+                <Link to={`/builder/${quizResult.id}`} className="w-full inline-flex items-center justify-center gap-2 px-6 py-3 bg-[#C6A75E] text-[#1C1C22] font-bold rounded-xl hover:bg-[#E6B76A] transition">
+                  Read Full Analysis <ArrowRight size={16} />
+                </Link>
+              </div>
             </div>
           )}
         </div>
-        {/* Background Glow */}
-        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-blue-900 to-slate-900 -z-0"></div>
-      </div>
+      </section>
 
-      {/* --- INSTITUTIONAL FILTERS --- */}
-      <div className="flex flex-wrap items-center justify-center gap-4 mb-12">
-        <button 
-          onClick={() => setFilter('all')}
-          className={`px-6 py-2 rounded-full font-bold text-sm transition-all ${filter === 'all' ? 'bg-blue-600 text-white shadow-lg' : 'bg-white text-slate-500 border border-slate-200 hover:border-blue-400'}`}
-        >
-          All Titans
-        </button>
-        <button 
-          onClick={() => setFilter('esg')}
-          className={`px-6 py-2 rounded-full font-bold text-sm flex items-center gap-2 transition-all ${filter === 'esg' ? 'bg-emerald-600 text-white shadow-lg' : 'bg-white text-slate-500 border border-slate-200 hover:border-emerald-400'}`}
-        >
-          <Leaf size={14} /> ESG Leaders
-        </button>
-        <button 
-          onClick={() => setFilter('govt')}
-          className={`px-6 py-2 rounded-full font-bold text-sm flex items-center gap-2 transition-all ${filter === 'govt' ? 'bg-purple-600 text-white shadow-lg' : 'bg-white text-slate-500 border border-slate-200 hover:border-purple-400'}`}
-        >
-          <Globe size={14} /> Government Backed
-        </button>
-        <button 
-          onClick={() => setFilter('confidence')}
-          className={`px-6 py-2 rounded-full font-bold text-sm flex items-center gap-2 transition-all ${filter === 'confidence' ? 'bg-amber-600 text-white shadow-lg' : 'bg-white text-slate-500 border border-slate-200 hover:border-amber-400'}`}
-        >
-          <Activity size={14} /> High Confidence
-        </button>
-      </div>
+      {/* ─── FILTERS + GRID ─── */}
+      <section id="developers" className="py-20 mx-auto max-w-7xl px-4 lg:px-8">
+        {/* Filter Bar */}
+        <div className="flex flex-col md:flex-row items-center gap-4 mb-12">
+          {/* Search */}
+          <div className="relative flex-grow w-full md:max-w-xs">
+            <Search size={16} className="absolute left-4 top-1/2 -translate-y-1/2 text-[#7A6E60]" />
+            <input
+              type="text"
+              placeholder="Search developer..."
+              value={searchTerm}
+              onChange={e => setSearchTerm(e.target.value)}
+              className="w-full pl-10 pr-4 py-3 rounded-xl border border-[rgba(198,167,94,0.3)] bg-white text-[#1C1C22] font-medium text-sm focus:outline-none focus:ring-2 focus:ring-[#C6A75E]/40"
+            />
+          </div>
 
-      {/* --- BUILDER GRID (Filtered) --- */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {filteredBuilders.map((builder) => (
-          // FIX: Use /builder/ (singular) here as well
-          <Link to={`/builder/${builder.id}`} key={builder.id} className="block hover:no-underline group h-full">
-            <div className="bg-white border border-slate-200 rounded-2xl overflow-hidden hover:shadow-2xl transition-all duration-300 h-full flex flex-col transform hover:-translate-y-1">
-              
-              {/* Colored Header */}
-              <div className={`p-6 ${builder.imageColor || 'bg-slate-800'} text-white relative overflow-hidden`}>
-                <div className="relative z-10 flex justify-between items-start mb-2">
-                  <h3 className="text-2xl font-bold truncate pr-2">{builder.name}</h3>
-                  {builder.id === 'emaar' && <Crown size={24} className="text-yellow-400 shrink-0" />}
-                  {builder.id === 'omniyat' && <Gem size={24} className="text-purple-400 shrink-0" />}
-                  {builder.id === 'mag' && <Heart size={24} className="text-red-400 shrink-0" />}
-                </div>
-                <span className="inline-block px-3 py-1 bg-white/20 backdrop-blur-md rounded-full text-xs font-bold uppercase tracking-wider text-white border border-white/20">
-                  {builder.tier}
-                </span>
-              </div>
+          {/* Filter pills */}
+          <div className="flex flex-wrap gap-2">
+            {[
+              { id: 'all', label: 'All Titans', icon: null },
+              { id: 'esg', label: 'ESG Leaders', icon: <Leaf size={12} /> },
+              { id: 'govt', label: 'Govt Backed', icon: <Globe size={12} /> },
+              { id: 'confidence', label: 'High Confidence', icon: <Activity size={12} /> },
+            ].map(f => (
+              <button
+                key={f.id}
+                onClick={() => setFilter(f.id)}
+                className={`flex items-center gap-1.5 px-5 py-2.5 rounded-full text-xs font-bold transition-all border ${
+                  filter === f.id
+                    ? 'bg-[#1C1C22] text-[#C6A75E] border-[#C6A75E]'
+                    : 'bg-white text-[#7A6E60] border-[rgba(198,167,94,0.25)] hover:border-[#C6A75E]'
+                }`}
+              >
+                {f.icon} {f.label}
+              </button>
+            ))}
+          </div>
 
-              {/* Card Body */}
-              <div className="p-6 space-y-4 flex-grow">
-                <div className="flex items-center justify-between text-sm">
-                  <span className="text-slate-500 flex items-center gap-2">
-                    <Building2 size={16} /> Est.
+          <div className="ml-auto text-xs text-[#7A6E60] font-medium hidden md:block">
+            {filteredBuilders.length} developer{filteredBuilders.length !== 1 ? 's' : ''} found
+          </div>
+        </div>
+
+        {/* Developer Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {filteredBuilders.map((builder) => (
+            <Link to={`/builder/${builder.id}`} key={builder.id} className="group block">
+              <div className="bg-white border border-[rgba(198,167,94,0.18)] rounded-3xl overflow-hidden hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 h-full flex flex-col">
+                {/* Coloured Header */}
+                <div className={`relative p-7 ${builder.imageColor || 'bg-[#1C1C22]'} text-white overflow-hidden`}>
+                  <div className="absolute inset-0 opacity-[0.06] bg-[radial-gradient(circle_at_2px_2px,_#fff_1px,_transparent_0)] bg-[length:20px_20px]" />
+                  <div className="relative z-10 flex justify-between items-start mb-3">
+                    <h3 className="text-xl font-extrabold tracking-tight pr-2 leading-tight">{builder.name}</h3>
+                    {builder.id === 'emaar' && <Crown size={20} className="text-yellow-400 shrink-0" />}
+                  </div>
+                  <span className="inline-flex items-center px-3 py-1 bg-white/15 backdrop-blur-md rounded-full text-[10px] font-bold uppercase tracking-wider border border-white/20">
+                    {builder.tier}
                   </span>
-                  <span className="font-bold text-slate-900">{builder.established}</span>
                 </div>
 
-                <div className="flex items-center justify-between text-sm">
-                  <span className="text-slate-500 flex items-center gap-2">
-                    <TrendingUp size={16} /> Best For
-                  </span>
-                  <span className="font-bold text-blue-600 text-right text-xs max-w-[150px] truncate">{builder.bestFor[0]}</span>
-                </div>
-
-                <div className="bg-slate-50 p-4 rounded-xl border border-slate-100 mt-4">
-                  <p className="text-sm text-slate-700 font-medium leading-relaxed line-clamp-3">
+                {/* Body */}
+                <div className="p-6 flex-grow space-y-4">
+                  <p className="text-[13px] text-[#7A6E60] leading-relaxed line-clamp-2 font-light italic">
                     "{builder.usp}"
                   </p>
+
+                  <div className="space-y-2.5 pt-2">
+                    <MetricRow icon={<CheckCircle size={13} className="text-emerald-500" />} label="Trust Score" value={`${builder.scores?.trust || 'N/A'}/10`} highlight />
+                    <MetricRow icon={<Leaf size={13} className="text-emerald-600" />} label="ESG Rating" value={`${builder.esgRating || 'N/A'}/10`} />
+                    <MetricRow icon={<Activity size={13} className="text-amber-500" />} label="AI Confidence" value={`${builder.aiConfidence || 'N/A'}%`} />
+                    <MetricRow icon={<ShieldCheck size={13} className="text-blue-500" />} label="Delivery" value={builder.deliveryTrackRecord?.onTime || 'N/A'} />
+                  </div>
                 </div>
-                
-                {/* Highlights */}
-                <div className="pt-2 space-y-2">
-                  <div className="flex gap-2 items-center text-xs text-slate-600">
-                      <CheckCircle size={14} className="text-green-500 shrink-0" />
-                      <span>Trust Score: <strong>{builder.scores?.trust || "N/A"}/10</strong></span>
-                  </div>
-                  <div className="flex gap-2 items-center text-xs text-slate-600">
-                      <Leaf size={14} className="text-emerald-500 shrink-0" />
-                      <span>ESG Rating: <strong>{builder.esgRating || "N/A"}/10</strong></span>
-                  </div>
-                  <div className="flex gap-2 items-center text-xs text-slate-600">
-                      <Activity size={14} className="text-amber-500 shrink-0" />
-                      <span>AI Delivery Confidence: <strong className="text-amber-600">{builder.aiConfidence || "N/A"}%</strong></span>
+
+                {/* Footer CTA */}
+                <div className="px-6 pb-6">
+                  <div className="w-full flex items-center justify-between px-5 py-3 bg-[#F8F5EF] group-hover:bg-[#1C1C22] rounded-xl transition-all duration-300 border border-[rgba(198,167,94,0.2)]">
+                    <span className="text-xs font-bold text-[#1C1C22] group-hover:text-[#C6A75E] transition-colors uppercase tracking-wider">View Full Analysis</span>
+                    <ArrowRight size={15} className="text-[#C6A75E] group-hover:translate-x-1 transition-transform" />
                   </div>
                 </div>
               </div>
-              
-              {/* Card Footer */}
-              <div className="p-4 bg-slate-50 border-t border-slate-100 text-center text-blue-600 font-bold text-sm group-hover:bg-blue-600 group-hover:text-white transition-colors">
-                View Full Analysis →
-              </div>
-
-            </div>
-          </Link>
-        ))}
-      </div>
-
-      {/* --- 3. ANALYST VERDICTS (Bottom Section) --- */}
-      <div className="mt-24 max-w-5xl mx-auto">
-        <h2 className="text-3xl font-bold text-center mb-10 text-slate-900">Analyst Verdicts: 2026 Edition</h2>
-        
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          
-          <VerdictBox 
-            title="Best Build Quality" 
-            winner="Sobha & Ellington" 
-            desc="For obsessive attention to detail, Sobha's in-house construction and Ellington's boutique hotel finish are unmatched."
-            icon={<ShieldCheck size={24} />}
-            color="bg-purple-50 border-purple-100 text-purple-800"
-            iconBg="bg-purple-200 text-purple-900"
-          />
-
-          <VerdictBox 
-            title="Best for Flipping" 
-            winner="Emaar & Select" 
-            desc="Emaar (Downtown) and Select Group (Marina) offer the highest liquidity. You can sell these units in days, not months."
-            icon={<TrendingUp size={24} />}
-            color="bg-blue-50 border-blue-100 text-blue-800"
-            iconBg="bg-blue-200 text-blue-900"
-          />
-
-          <VerdictBox 
-            title="Most Unique" 
-            winner="Omniyat & MAG" 
-            desc="Omniyat builds art (The Opus). MAG builds health (Keturah). Choose these if you want a trophy asset, not just a rental."
-            icon={<Gem size={24} />}
-            color="bg-emerald-50 border-emerald-100 text-emerald-800"
-            iconBg="bg-emerald-200 text-emerald-900"
-          />
-
-          <VerdictBox 
-            title="Safest Investment" 
-            winner="Aldar & Emaar" 
-            desc="Aldar is backed by Abu Dhabi Govt. Emaar is backed by Dubai Govt. These are 'Too Big To Fail' investments."
-            icon={<Crown size={24} />}
-            color="bg-amber-50 border-amber-100 text-amber-800"
-            iconBg="bg-amber-200 text-amber-900"
-          />
-
-          <VerdictBox 
-            title="Best Payment Plan" 
-            winner="Danube" 
-            desc="Still the undefeated king of the 1% Monthly Payment Plan. Perfect for first-time investors with limited cash flow."
-            icon={<Wallet size={24} />}
-            color="bg-green-50 border-green-100 text-green-800"
-            iconBg="bg-green-200 text-green-900"
-          />
-
-           <VerdictBox 
-            title="Best for Youth" 
-            winner="Arada" 
-            desc="Arada brings skate parks, forests, and modern community centers. They are capturing the younger demographic perfectly."
-            icon={<Palette size={24} />}
-            color="bg-red-50 border-red-100 text-red-800"
-            iconBg="bg-red-200 text-red-900"
-          />
-
+            </Link>
+          ))}
         </div>
-      </div>
+      </section>
 
+      {/* ─── ANALYST VERDICTS ─── */}
+      <section className="py-24 bg-[#1C1C22]">
+        <div className="mx-auto max-w-6xl px-4 lg:px-8">
+          <div className="text-center mb-16">
+            <div className="inline-flex items-center gap-2 rounded-full border border-[rgba(198,167,94,0.4)] bg-[rgba(198,167,94,0.08)] px-4 py-1.5 mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-[#C6A75E]">
+              <TrendingUp size={12} /> Expert Intelligence
+            </div>
+            <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight">
+              Analyst Verdicts: <span className="text-[#C6A75E]">2026 Edition</span>
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {[
+              { title: 'Best Build Quality', winner: 'Sobha & Ellington', desc: "Sobha's in-house construction and Ellington's boutique hotel finish are unmatched in the UAE market.", icon: <ShieldCheck size={22} />, color: 'text-purple-400' },
+              { title: 'Best for Flipping', winner: 'Emaar & Select', desc: 'Emaar (Downtown) and Select Group (Marina) offer the highest secondary market liquidity in UAE.', icon: <TrendingUp size={22} />, color: 'text-blue-400' },
+              { title: 'Best Payment Plan', winner: 'Danube', desc: 'Undefeated king of the 1% monthly plan. Perfect for first-time investors with limited initial capital.', icon: <Zap size={22} />, color: 'text-amber-400' },
+              { title: 'Safest Investment', winner: 'Aldar & Emaar', desc: 'Both are government-backed and effectively "Too Big To Fail" from an investor risk perspective.', icon: <Crown size={22} />, color: 'text-yellow-400' },
+              { title: 'Highest ESG Score', winner: 'Majid Al Futtaim', desc: '9.9 ESG rating — the most sustainable major developer in UAE, committed to Net Zero by 2040.', icon: <Leaf size={22} />, color: 'text-emerald-400' },
+              { title: 'AI Confidence King', winner: 'Sobha Realty', desc: '97.2% AI delivery confidence — the most predictable handover timeline of any developer in Dubai.', icon: <Activity size={22} />, color: 'text-cyan-400' },
+            ].map((v, i) => (
+              <div key={i} className="bg-white/5 border border-white/10 rounded-2xl p-7 hover:bg-white/8 hover:border-[rgba(198,167,94,0.3)] transition-all">
+                <div className={`mb-4 ${v.color}`}>{v.icon}</div>
+                <div className="text-[10px] font-bold uppercase tracking-widest text-white/40 mb-1">{v.title}</div>
+                <div className="text-lg font-extrabold text-[#C6A75E] mb-3">{v.winner}</div>
+                <p className="text-xs text-white/50 leading-relaxed font-light">{v.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
     </div>
   );
 };
 
-// --- SUB-COMPONENTS ---
-
-const QuizButton = ({ label, onClick }) => (
-  <button 
-    onClick={onClick} 
-    className="px-5 py-3 bg-white/10 hover:bg-white/20 border border-white/20 rounded-xl transition font-bold text-sm md:text-base backdrop-blur-sm"
-  >
-    {label}
-  </button>
-);
-
-const VerdictBox = ({ title, winner, desc, icon, color, iconBg }) => (
-  <div className={`p-6 rounded-2xl border shadow-sm flex flex-col items-center text-center hover:shadow-md transition-shadow ${color}`}>
-    <div className={`p-3 rounded-full mb-4 ${iconBg}`}>
-      {icon}
-    </div>
-    <h3 className="text-sm font-bold uppercase tracking-wider opacity-70 mb-1">{title}</h3>
-    <div className="font-extrabold text-lg mb-3">{winner}</div>
-    <p className="text-xs opacity-80 leading-relaxed font-medium">{desc}</p>
+const MetricRow = ({ icon, label, value, highlight }) => (
+  <div className={`flex items-center justify-between text-xs py-1.5 px-3 rounded-lg ${highlight ? 'bg-emerald-50' : 'bg-[#F8F5EF]'}`}>
+    <span className="flex items-center gap-1.5 text-[#7A6E60] font-medium">{icon}{label}</span>
+    <span className={`font-bold ${highlight ? 'text-emerald-700' : 'text-[#1C1C22]'}`}>{value}</span>
   </div>
 );
 
