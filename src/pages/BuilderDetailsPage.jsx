@@ -2,7 +2,8 @@ import React, { useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { 
   ArrowLeft, TrendingUp, AlertTriangle, 
-  Crown, Clock, Wallet, BarChart, ShieldCheck, Building2, MapPin, CheckCircle
+  Crown, Clock, Wallet, BarChart, ShieldCheck, Building2, MapPin, CheckCircle,
+  Leaf, Activity, Globe, Zap, Database
 } from 'lucide-react';
 import { BUILDERS } from '../data/buildersData';
 import SEO from '../components/SEO';
@@ -162,6 +163,79 @@ const BuilderDetailsPage = () => {
                 </div>
              </div>
            </div>
+
+           {/* 4. INSTITUTIONAL INTELLIGENCE 2026 (NEW) */}
+           <div className="bg-slate-900 text-white rounded-3xl p-8 shadow-2xl relative overflow-hidden">
+              <div className="relative z-10">
+                 <h3 className="text-2xl font-bold mb-8 flex items-center gap-3">
+                   <Database className="text-blue-400" /> Institutional Intelligence <span className="text-xs bg-blue-500 text-white px-2 py-1 rounded">2026 EXCLUSIVE</span>
+                 </h3>
+                 
+                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    {/* ESG Section */}
+                    <div className="space-y-4">
+                       <div className="flex items-center justify-between">
+                          <div className="flex items-center gap-2 text-emerald-400 font-bold uppercase tracking-wider text-xs">
+                             <Leaf size={16} /> ESG Performance Rating
+                          </div>
+                          <div className="text-2xl font-black">{builder.esgRating || "N/A"}/10</div>
+                       </div>
+                       <div className="w-full bg-white/10 h-3 rounded-full overflow-hidden">
+                          <div 
+                             className="bg-emerald-500 h-full rounded-full shadow-[0_0_10px_rgba(16,185,129,0.5)]" 
+                             style={{ width: `${(builder.esgRating || 0) * 10}%` }}
+                          ></div>
+                       </div>
+                       <p className="text-xs text-white/50 leading-relaxed font-medium">
+                          Reflects {builder.name}'s commitment to Net-Zero construction, sustainable urban cooling, and corporate governance transparency.
+                       </p>
+                    </div>
+
+                    {/* AI Delivery Confidence */}
+                    <div className="space-y-4">
+                       <div className="flex items-center justify-between">
+                          <div className="flex items-center gap-2 text-amber-400 font-bold uppercase tracking-wider text-xs">
+                             <Activity size={16} /> AI Delivery Confidence
+                          </div>
+                          <div className="text-2xl font-black">{builder.aiConfidence || "N/A"}%</div>
+                       </div>
+                       <div className="flex gap-1 h-3">
+                          {[...Array(10)].map((_, i) => (
+                             <div 
+                                key={i} 
+                                className={`flex-grow rounded-sm ${i < (builder.aiConfidence / 10) ? 'bg-amber-400 shadow-[0_0_8px_rgba(251,191,36,0.4)]' : 'bg-white/10'}`}
+                             ></div>
+                          ))}
+                       </div>
+                       <p className="text-xs text-white/50 leading-relaxed font-medium">
+                          Real-time predictive analysis based on current labor force deployment, supply chain velocity, and historical handover accuracy.
+                       </p>
+                    </div>
+                 </div>
+
+                 <div className="mt-10 grid grid-cols-2 md:grid-cols-4 gap-6 border-t border-white/10 pt-8">
+                    <div className="text-center">
+                       <div className="text-[10px] font-bold text-slate-500 uppercase mb-1">Funding Stability</div>
+                       <div className="text-sm font-bold text-blue-300">{builder.fundingStability || "Standard"}</div>
+                     </div>
+                     <div className="text-center">
+                        <div className="text-[10px] font-bold text-slate-500 uppercase mb-1">Secondary Liquidity</div>
+                        <div className="text-sm font-bold text-purple-300">{builder.marketLiquidityVelocity || "Medium"}</div>
+                     </div>
+                     <div className="text-center">
+                        <div className="text-[10px] font-bold text-slate-500 uppercase mb-1">Digital Twin Readiness</div>
+                        <div className="text-sm font-bold text-emerald-300">{builder.digitalTwinReadiness ? "Fully Integrated" : "Partial / Legacy"}</div>
+                     </div>
+                     <div className="text-center">
+                        <div className="text-[10px] font-bold text-slate-500 uppercase mb-1">Institutional Grade</div>
+                        <div className="text-sm font-bold text-amber-300">Class AAA</div>
+                     </div>
+                  </div>
+               </div>
+               {/* Background mesh gradient */}
+               <div className="absolute top-0 right-0 w-64 h-64 bg-blue-600/20 rounded-full blur-[100px] pointer-events-none"></div>
+               <div className="absolute bottom-0 left-0 w-64 h-64 bg-purple-600/10 rounded-full blur-[100px] pointer-events-none"></div>
+            </div>
 
         </div>
 

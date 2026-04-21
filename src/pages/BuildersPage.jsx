@@ -2,13 +2,22 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { 
   Building2, TrendingUp, Wallet, CheckCircle, 
-  Crown, ShieldCheck, Zap, ArrowRight, Heart, Palette, Gem 
+  Crown, ShieldCheck, Zap, ArrowRight, Heart, Palette, Gem, Leaf, Activity, Globe
 } from 'lucide-react';
 import SEO from '../components/SEO';
 import { BUILDERS } from '../data/buildersData';
 
 const BuildersPage = () => {
   const [quizResult, setQuizResult] = useState(null);
+  const [filter, setFilter] = useState('all');
+  
+  const filteredBuilders = BUILDERS.filter(b => {
+    if (filter === 'all') return true;
+    if (filter === 'esg') return b.esgRating > 9.0;
+    if (filter === 'govt') return b.fundingStability?.includes('Sovereign') || b.fundingStability?.includes('Government');
+    if (filter === 'confidence') return b.aiConfidence > 95;
+    return true;
+  });
   
   // --- 1. QUIZ LOGIC (Matches User Goal to Developer) ---
   const matchBuilder = (goal) => {
@@ -111,9 +120,37 @@ const BuildersPage = () => {
         <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-blue-900 to-slate-900 -z-0"></div>
       </div>
 
-      {/* --- BUILDER GRID (15 Builders) --- */}
+      {/* --- INSTITUTIONAL FILTERS --- */}
+      <div className="flex flex-wrap items-center justify-center gap-4 mb-12">
+        <button 
+          onClick={() => setFilter('all')}
+          className={`px-6 py-2 rounded-full font-bold text-sm transition-all ${filter === 'all' ? 'bg-blue-600 text-white shadow-lg' : 'bg-white text-slate-500 border border-slate-200 hover:border-blue-400'}`}
+        >
+          All Titans
+        </button>
+        <button 
+          onClick={() => setFilter('esg')}
+          className={`px-6 py-2 rounded-full font-bold text-sm flex items-center gap-2 transition-all ${filter === 'esg' ? 'bg-emerald-600 text-white shadow-lg' : 'bg-white text-slate-500 border border-slate-200 hover:border-emerald-400'}`}
+        >
+          <Leaf size={14} /> ESG Leaders
+        </button>
+        <button 
+          onClick={() => setFilter('govt')}
+          className={`px-6 py-2 rounded-full font-bold text-sm flex items-center gap-2 transition-all ${filter === 'govt' ? 'bg-purple-600 text-white shadow-lg' : 'bg-white text-slate-500 border border-slate-200 hover:border-purple-400'}`}
+        >
+          <Globe size={14} /> Government Backed
+        </button>
+        <button 
+          onClick={() => setFilter('confidence')}
+          className={`px-6 py-2 rounded-full font-bold text-sm flex items-center gap-2 transition-all ${filter === 'confidence' ? 'bg-amber-600 text-white shadow-lg' : 'bg-white text-slate-500 border border-slate-200 hover:border-amber-400'}`}
+        >
+          <Activity size={14} /> High Confidence
+        </button>
+      </div>
+
+      {/* --- BUILDER GRID (Filtered) --- */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {BUILDERS.map((builder) => (
+        {filteredBuilders.map((builder) => (
           // FIX: Use /builder/ (singular) here as well
           <Link to={`/builder/${builder.id}`} key={builder.id} className="block hover:no-underline group h-full">
             <div className="bg-white border border-slate-200 rounded-2xl overflow-hidden hover:shadow-2xl transition-all duration-300 h-full flex flex-col transform hover:-translate-y-1">
@@ -160,8 +197,12 @@ const BuildersPage = () => {
                       <span>Trust Score: <strong>{builder.scores?.trust || "N/A"}/10</strong></span>
                   </div>
                   <div className="flex gap-2 items-center text-xs text-slate-600">
-                      <Wallet size={14} className="text-blue-500 shrink-0" />
-                      <span>Plan: <strong>{builder.paymentFlexibility?.commonPlans[0] || "Standard"}</strong></span>
+                      <Leaf size={14} className="text-emerald-500 shrink-0" />
+                      <span>ESG Rating: <strong>{builder.esgRating || "N/A"}/10</strong></span>
+                  </div>
+                  <div className="flex gap-2 items-center text-xs text-slate-600">
+                      <Activity size={14} className="text-amber-500 shrink-0" />
+                      <span>AI Delivery Confidence: <strong className="text-amber-600">{builder.aiConfidence || "N/A"}%</strong></span>
                   </div>
                 </div>
               </div>
