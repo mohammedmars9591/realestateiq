@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { 
   ArrowRight, TrendingUp, ShieldCheck, Wallet, Plane, ShoppingBag, Train,
-  BarChart3, Zap, Scale, Trophy, AlertTriangle, ArrowUpRight, Swords, Building2, MapPin, CheckCircle
+  BarChart3, Zap, Scale, Trophy, AlertTriangle, ArrowUpRight, Swords, Building2, MapPin, CheckCircle,
+  Leaf, Activity, Globe, Database, Target, Search, Users
 } from 'lucide-react';
 import SEO from '../components/SEO';
 
@@ -13,6 +14,7 @@ import WhatsAppButton from '../components/WhatsAppButton';
 const AreaComparison = () => {
   // --- STATE MANAGEMENT ---
   const [mode, setMode] = useState('areas'); // 'areas' or 'builders'
+  const [goal, setGoal] = useState('growth'); // 'growth', 'yield', 'safety'
   
   // Area State (Defaults)
   const [area1Id, setArea1Id] = useState('jvc'); 
@@ -61,9 +63,35 @@ const AreaComparison = () => {
     };
   };
 
+  // --- PERSONA BASED WINNER CALCULATION ---
+  const calculatePersonaScore = (item) => {
+    if (!item) return 0;
+    
+    if (mode === 'areas') {
+      const s = item.scores || {};
+      const roiNum = parseFloat(item.roi) || 0;
+      
+      if (goal === 'yield') return (roiNum * 2) + (s.cashFlow || 0) + (s.airbnb || 0);
+      if (goal === 'growth') return (parseFloat(simulateGrowth(item).rate) * 0.5) + (s.appreciation || 0);
+      if (goal === 'safety') return (s.trust || 8) + (item.emirate === 'Abu Dhabi' ? 2 : 0) - (s.risk || 0);
+    } else {
+      const s = item.scores || {};
+      const esg = item.esgRating || 8;
+      const conf = (item.aiConfidence || 90) / 10;
+      
+      if (goal === 'yield') return (s.rentalDemand || 0) + (s.resaleValue || 0);
+      if (goal === 'growth') return (s.resaleValue || 0) + (s.appreciation || 0);
+      if (goal === 'safety') return (s.trust || 0) + (item.fundingStability?.includes('Sovereign') ? 3 : 0) + conf + (esg / 10);
+    }
+    return 0;
+  };
+
   const sim1 = simulateGrowth(item1);
   const sim2 = simulateGrowth(item2);
-  const winner = Number(sim1.rate) > Number(sim2.rate) ? item1 : item2;
+  
+  const score1 = calculatePersonaScore(item1);
+  const score2 = calculatePersonaScore(item2);
+  const winner = score1 > score2 ? item1 : item2;
 
   // --- SAFE ACCESSORS ---
   const i1Scores = item1.scores || {};
@@ -84,7 +112,7 @@ const AreaComparison = () => {
           Investment <span className="text-blue-600">Battleground</span>
         </h1>
         
-        <div className="inline-flex bg-white p-1.5 rounded-xl border border-slate-200 shadow-sm mt-4">
+        <div className="inline-flex bg-white p-1.5 rounded-xl border border-slate-200 shadow-sm mt-4 mb-8">
           <button 
             onClick={() => setMode('areas')}
             className={`px-6 py-2.5 rounded-lg text-sm font-bold flex items-center gap-2 transition-all ${mode === 'areas' ? 'bg-slate-900 text-white shadow-md' : 'text-slate-500 hover:bg-slate-50'}`}
@@ -97,6 +125,38 @@ const AreaComparison = () => {
           >
             <Building2 size={16} /> Compare Builders
           </button>
+        </div>
+      </div>
+
+      {/* GOAL SELECTOR */}
+      <div className="max-w-4xl mx-auto mb-12">
+        <div className="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm flex flex-col md:flex-row items-center gap-4">
+           <div className="flex items-center gap-2 text-xs font-bold text-slate-400 uppercase tracking-widest pl-2">
+             <Target size={16} className="text-blue-600" /> My Investment Goal:
+           </div>
+           <div className="grid grid-cols-3 gap-2 flex-grow w-full">
+              <GoalButton 
+                active={goal === 'growth'} 
+                onClick={() => setGoal('growth')} 
+                icon={<TrendingUp size={14}/>} 
+                label="Capital Growth" 
+                color="blue"
+              />
+              <GoalButton 
+                active={goal === 'yield'} 
+                onClick={() => setGoal('yield')} 
+                icon={<Wallet size={14}/>} 
+                label="High Rental Yield" 
+                color="emerald"
+              />
+              <GoalButton 
+                active={goal === 'safety'} 
+                onClick={() => setGoal('safety')} 
+                icon={<ShieldCheck size={14}/>} 
+                label="Safety & Trust" 
+                color="indigo"
+              />
+           </div>
         </div>
       </div>
 
@@ -153,11 +213,13 @@ const AreaComparison = () => {
                </>
              ) : (
                <>
-                 <StatRow label="Trust Score" val1={i1Scores.trust} val2={i2Scores.trust} isScore highlight />
-                 <StatRow label="Delivery Reliability" val1={i1Scores.deliveryReliability} val2={i2Scores.deliveryReliability} isScore />
-                 <StatRow label="Build Quality" val1={i1Scores.constructionQuality} val2={i2Scores.constructionQuality} isScore />
-                 <StatRow label="Est. Year" val1={item1.established} val2={item2.established} />
-                 <StatRow label="Total Projects" val1={item1.portfolio?.totalProjects} val2={item2.portfolio?.totalProjects} />
+                  <StatRow label="Trust Score" val1={i1Scores.trust} val2={i2Scores.trust} isScore highlight />
+                  <StatRow label="ESG Rating" val1={item1.esgRating} val2={item2.esgRating} isScore />
+                  <StatRow label="AI Confidence" val1={item1.aiConfidence} val2={item2.aiConfidence} isScore suffix="%" />
+                  <StatRow label="Delivery Reliability" val1={i1Scores.deliveryReliability} val2={i2Scores.deliveryReliability} isScore />
+                  <StatRow label="Build Quality" val1={i1Scores.constructionQuality} val2={i2Scores.constructionQuality} isScore />
+                  <StatRow label="Est. Year" val1={item1.established} val2={item2.established} />
+                  <StatRow label="Total Projects" val1={item1.portfolio?.totalProjects} val2={item2.portfolio?.totalProjects} />
                </>
              )}
           </div>
@@ -221,12 +283,12 @@ const AreaComparison = () => {
                 <div className="mt-8 pt-6 border-t border-white/10 flex items-start gap-4">
                    <Trophy size={32} className="text-yellow-500 shrink-0" />
                    <div>
-                      <h4 className="font-bold text-lg text-yellow-400 mb-1">Winner: {winner.name}</h4>
-                      <p className="text-sm text-slate-300 leading-relaxed">
-                        {mode === 'areas' 
-                          ? `Higher growth potential driven by ${winner.category} demand.` 
-                          : `Stronger capital appreciation track record and brand power.`}
-                      </p>
+                       <h4 className="font-bold text-lg text-yellow-400 mb-1">Recommended Winner: {winner.name}</h4>
+                       <p className="text-sm text-slate-300 leading-relaxed">
+                        {goal === 'yield' ? `Optimized for maximum cash flow and periodic income.` : 
+                         goal === 'growth' ? `Projected to have superior capital appreciation in the next 18-24 months.` : 
+                         `Selected for financial transparency, institutional stability, and long-term trust.`}
+                       </p>
                    </div>
                 </div>
              </div>
@@ -269,7 +331,7 @@ const AreaComparison = () => {
 
 // --- SUB-COMPONENTS ---
 
-const StatRow = ({ label, val1, val2, highlight, isScore, inverse }) => {
+const StatRow = ({ label, val1, val2, highlight, isScore, inverse, suffix = "" }) => {
   const v1 = parseFloat(val1) || 0;
   const v2 = parseFloat(val2) || 0;
   
@@ -280,8 +342,12 @@ const StatRow = ({ label, val1, val2, highlight, isScore, inverse }) => {
   return (
     <div className={`grid grid-cols-3 py-4 border-b border-slate-100 text-sm text-center items-center hover:bg-slate-50 transition ${highlight ? 'bg-yellow-50/50' : ''}`}>
       <div className="font-medium text-slate-500 text-left pl-6">{label}</div>
-      <div className={`font-bold ${isScore && win1 ? 'text-green-600' : 'text-slate-900'}`}>{val1 || "N/A"}</div>
-      <div className={`font-bold ${isScore && !win1 && !isTie ? 'text-green-600' : 'text-slate-900'}`}>{val2 || "N/A"}</div>
+      <div className={`font-bold flex items-center justify-center gap-1 ${isScore && win1 ? 'text-green-600' : 'text-slate-900'}`}>
+        {val1 || "N/A"}{val1 && suffix} {isScore && win1 && <Trophy size={12} className="text-yellow-500" />}
+      </div>
+      <div className={`font-bold flex items-center justify-center gap-1 ${isScore && !win1 && !isTie ? 'text-green-600' : 'text-slate-900'}`}>
+        {val2 || "N/A"}{val2 && suffix} {isScore && !win1 && !isTie && <Trophy size={12} className="text-yellow-500" />}
+      </div>
     </div>
   );
 };
@@ -294,6 +360,23 @@ const ConnItem = ({ icon, label, val }) => (
     <div className="font-bold text-slate-900">{val || "--"}</div>
   </div>
 );
+
+const GoalButton = ({ active, onClick, icon, label, color }) => {
+  const colors = {
+    blue: active ? 'bg-blue-600 text-white shadow-blue-200' : 'text-slate-500 hover:bg-blue-50',
+    emerald: active ? 'bg-emerald-600 text-white shadow-emerald-200' : 'text-slate-500 hover:bg-emerald-50',
+    indigo: active ? 'bg-indigo-600 text-white shadow-indigo-200' : 'text-slate-500 hover:bg-indigo-50',
+  };
+
+  return (
+    <button 
+      onClick={onClick}
+      className={`flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl text-[10px] md:text-sm font-bold transition-all shadow-sm border border-transparent ${colors[color]}`}
+    >
+      {icon} {label}
+    </button>
+  );
+};
 
 const VerdictRow = ({ label, winner, color }) => (
   <div className="p-3 rounded-xl bg-slate-50 border border-slate-100 flex justify-between items-center">
