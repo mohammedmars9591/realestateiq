@@ -31,7 +31,30 @@ const MarketPage = () => {
 
   return (
     <div className="min-h-screen bg-slate-50 pt-20 pb-12 px-4 fade-in">
-      <SEO title="Dubai Market Analysis | RealEstateIQ" description="Analyze top performing areas in Dubai by ROI and Capital Growth." />
+      <SEO 
+        title="Dubai Real Estate Market Analysis 2026 — Top ROI Areas by Investment Strategy"
+        description="Filter and analyze Dubai's top investment zones by ROI strategy. Compare High Yield areas (9–11%), Capital Growth districts, and Luxury segments. Free verified data updated 2026."
+        url="/market"
+        schema={{
+          "@context": "https://schema.org",
+          "@type": "Dataset",
+          "name": "Dubai Real Estate Market Analysis 2026",
+          "description": "Curated dataset of Dubai property investment areas filtered by yield, growth, and luxury category. Updated 2026.",
+          "url": "https://www.realestateiq.ae/market",
+          "creator": { "@type": "Organization", "name": "RealEstateIQ" },
+          "dateModified": new Date().toISOString().split('T')[0]
+        }}
+        faqSchema={[
+          {
+            question: "Which areas in Dubai have the highest rental yield in 2026?",
+            answer: "The highest rental yield areas in Dubai 2026 include JVC (9–11%), Dubai Studio City (9–10%), International City (9–10%), Jumeirah Village Triangle (8–10%), and Sports City (8–9%). These areas are popular with budget investors targeting maximum cash flow."
+          },
+          {
+            question: "Which Dubai area has the best capital appreciation potential?",
+            answer: "Areas with highest capital appreciation potential in 2026 include Palm Jebel Ali (+40–60% projected), Creek Harbour (+35%), Emaar South (+30%), Downtown Dubai (+25%), and Dubai Hills Estate (+28%). These are primarily master-planned communities by Emaar and Meraas."
+          }
+        ]}
+      />
       
       <div className="max-w-7xl mx-auto">
         {/* HEADER */}

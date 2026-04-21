@@ -21,25 +21,28 @@ const Header = () => {
 
   // --- SEARCH ENGINE LOGIC ---
   useEffect(() => {
-    if (searchQuery.length < 2) {
-      setSearchResults({ areas: [], builders: [] });
-      return;
-    }
+    const timer = setTimeout(() => {
+      if (searchQuery.length < 2) {
+        setSearchResults({ areas: [], builders: [] });
+        setShowResults(false);
+        return;
+      }
 
-    const lowerQuery = searchQuery.toLowerCase();
+      const lowerQuery = searchQuery.toLowerCase();
 
-    // 1. Search Areas
-    const matchedAreas = (DUBAI_AREAS || []).filter(a => 
-      a.name?.toLowerCase().includes(lowerQuery)
-    ).slice(0, 5);
+      const matchedAreas = (DUBAI_AREAS || []).filter(a =>
+        a.name?.toLowerCase().includes(lowerQuery)
+      ).slice(0, 5);
 
-    // 2. Search Builders
-    const matchedBuilders = (BUILDERS || []).filter(b => 
-      b.name?.toLowerCase().includes(lowerQuery)
-    ).slice(0, 3);
+      const matchedBuilders = (BUILDERS || []).filter(b =>
+        b.name?.toLowerCase().includes(lowerQuery)
+      ).slice(0, 3);
 
-    setSearchResults({ areas: matchedAreas, builders: matchedBuilders });
-    setShowResults(true);
+      setSearchResults({ areas: matchedAreas, builders: matchedBuilders });
+      setShowResults(true);
+    }, 0);
+
+    return () => clearTimeout(timer);
   }, [searchQuery]);
 
   // Close search when clicking outside

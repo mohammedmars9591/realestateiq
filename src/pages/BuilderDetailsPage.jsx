@@ -40,12 +40,70 @@ const BuilderDetailsPage = () => {
   const risk = builder.buyerRiskProfile || { offPlanRisk: "N/A", handoverRisk: "N/A" };
   const payment = builder.paymentFlexibility || {};
 
+  // --- AEO/GEO: BUILD SCHEMAS ---
+  const builderOrgSchema = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": builder.name,
+    "description": builder.description,
+    "url": `https://www.realestateiq.ae/builder/${builder.id}`,
+    "foundingDate": String(builder.established),
+    "areaServed": builder.flagshipCommunities?.join(", ") || "Dubai, UAE",
+    "knowsAbout": ["Real Estate Development", "Off-Plan Properties", "UAE Construction"],
+    "additionalProperty": [
+      { "@type": "PropertyValue", "name": "Trust Score", "value": `${scores.trust}/10` },
+      { "@type": "PropertyValue", "name": "Delivery Reliability", "value": `${scores.deliveryReliability}/10` },
+      { "@type": "PropertyValue", "name": "ESG Rating", "value": `${builder.esgRating || "N/A"}/10` },
+      { "@type": "PropertyValue", "name": "On-Time Delivery", "value": trackRecord.onTime || "N/A" },
+      { "@type": "PropertyValue", "name": "Funding Stability", "value": builder.fundingStability || "N/A" }
+    ]
+  };
+
+  const builderFAQ = [
+    {
+      question: `Is ${builder.name} a reliable developer in Dubai?`,
+      answer: `${builder.name} has a Trust Score of ${scores.trust}/10 and a Construction Quality score of ${scores.constructionQuality}/10 on RealEstateIQ. Their delivery track record shows ${trackRecord.onTime || "strong"} on-time project completion. They are best for ${builder.bestFor?.join(", ") || "property investors"}.`
+    },
+    {
+      question: `What are the best projects by ${builder.name}?`,
+      answer: `${builder.name}'s signature project is ${builder.signatureProject || "not yet specified"}. Their flagship communities include ${builder.flagshipCommunities?.join(", ") || "Dubai"}. They have a total portfolio of ${builder.portfolio?.totalProjects || "multiple"} projects.`
+    },
+    {
+      question: `What payment plans does ${builder.name} offer?`,
+      answer: `${builder.name} offers payment plans including ${payment.commonPlans?.join(" and ") || "standard options"} with a flexibility score of ${payment.score || "N/A"}/10. Post-handover payment: ${payment.postHandoverAvailable ? "Available" : "Not Available"}.`
+    },
+    {
+      question: `What is the rental yield for ${builder.name} properties?`,
+      answer: `Properties by ${builder.name} deliver an average rental yield of ${perf.avgRentalYield || "N/A"} with a market liquidity of ${perf.resaleLiquidity || "N/A"}. 5-year capital appreciation averages ${perf.avgCapitalAppreciation5Y || "N/A"}.`
+    }
+  ];
+
+  const builderBreadcrumb = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.realestateiq.ae" },
+      { "@type": "ListItem", "position": 2, "name": "Developers", "item": "https://www.realestateiq.ae/builders" },
+      { "@type": "ListItem", "position": 3, "name": builder.name, "item": `https://www.realestateiq.ae/builder/${builder.id}` }
+    ]
+  };
+
   return (
     <div className="max-w-7xl mx-auto px-4 md:px-8 pb-20 fade-in bg-slate-50 min-h-screen pt-8">
       <SEO 
-        title={`${builder.name} - Review & Analytics 2026`} 
-        description={`Investment analysis of ${builder.name}. Trust Score: ${scores.trust}/10. Risk Profile: ${risk.offPlanRisk}.`}
+        title={`${builder.name} Review 2026 — Trust Score, Projects & ROI Analysis`}
+        description={`Institutional investment analysis of ${builder.name}. Trust Score: ${scores.trust}/10. Delivery: ${trackRecord.onTime || "N/A"} on time. ESG: ${builder.esgRating || "N/A"}/10. AI Confidence: ${builder.aiConfidence || "N/A"}%. Best for: ${builder.bestFor?.join(", ") || "investors"}.`}
+        url={`/builder/${builder.id}`}
+        schema={builderOrgSchema}
+        faqSchema={builderFAQ}
+        articleSchema={{
+          headline: `${builder.name} — 2026 Investment Intelligence Report`,
+          description: `Full institutional-grade analysis of ${builder.name}: Trust Scores, ESG Ratings, AI Delivery Confidence, payment plans, and ROI forecasts.`,
+          datePublished: "2026-01-01",
+          dateModified: new Date().toISOString().split('T')[0]
+        }}
       />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(builderBreadcrumb) }} />
 
       {/* BREADCRUMB */}
       <Link to="/builders" className="inline-flex items-center gap-2 text-slate-500 hover:text-black mb-6 font-bold text-sm transition-colors">

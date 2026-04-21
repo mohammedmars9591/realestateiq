@@ -69,12 +69,73 @@ const AreaPage = () => {
     { title: "Market Liquidity", valueLabel: area.demandSignals?.resaleLiquidity || "Liquid", score: (area.scores?.liquidity || 6) * 13, explanation: "Exit velocity in the secondary resale market and ease of off-plan flip arbitrage." },
   ];
 
+  // --- AEO/GEO: BUILD SCHEMAS FOR THIS AREA ---
+  const areaListingSchema = {
+    "@context": "https://schema.org",
+    "@type": "Place",
+    "name": area.name,
+    "description": area.description,
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": area.name,
+      "addressRegion": area.emirate,
+      "addressCountry": "AE"
+    },
+    "url": `https://www.realestateiq.ae/area/${area.id}`,
+    "knowsAbout": area.amenities || [],
+    "additionalProperty": [
+      { "@type": "PropertyValue", "name": "Avg. ROI", "value": area.roi || "N/A" },
+      { "@type": "PropertyValue", "name": "Avg. Price", "value": area.avgPrice || "N/A" },
+      { "@type": "PropertyValue", "name": "Overall Score", "value": area.overallScore || "N/A" },
+      { "@type": "PropertyValue", "name": "Ownership Type", "value": area.ownership?.type || "Freehold" }
+    ]
+  };
+
+  const areaFAQ = [
+    {
+      question: `Is ${area.name} a good investment in 2026?`,
+      answer: area.aiVerdict?.summary || `${area.name} offers strong investment fundamentals with approximately ${area.roi || "competitive"} rental yield. ${area.description || ""}`
+    },
+    {
+      question: `What is the average property price in ${area.name}?`,
+      answer: `The average property price in ${area.name} is approximately ${area.avgPrice || "N/A"}. Prices range from ${area.unitEconomics?.studio?.price || "AED 500K"} for studios to ${area.unitEconomics?.villa?.price || "AED 10M+"} for villas.`
+    },
+    {
+      question: `What is the rental yield in ${area.name}?`,
+      answer: `${area.name} delivers approximately ${area.roi || "6–9%"} annual rental yield. One-bedroom units typically return ${area.unitEconomics?.oneBed?.roi || "7–9%"} ROI at average rents of ${area.unitEconomics?.oneBed?.rent || "AED 80–100K per year"}.`
+    },
+    {
+      question: `Is ${area.name} freehold for foreigners?`,
+      answer: area.ownership ? `${area.name} is a ${area.ownership.type} area. It is eligible for ${area.ownership.eligibleFor?.join(", ") || "all nationalities"} with a minimum down payment of ${area.ownership.minDownPayment || "25%"}.` : `${area.name} is a freehold zone open to all nationalities.`
+    }
+  ];
+
+  const areaBreadcrumb = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.realestateiq.ae" },
+      { "@type": "ListItem", "position": 2, "name": "Areas", "item": "https://www.realestateiq.ae/areas" },
+      { "@type": "ListItem", "position": 3, "name": area.name, "item": `https://www.realestateiq.ae/area/${area.id}` }
+    ]
+  };
+
   return (
     <div className="min-h-screen bg-[#F8F5EF] pb-24 fade-in">
       <SEO 
-        title={`${area.name} Investment Intelligence | RealEstateIQ`} 
-        description={`Professional real estate analysis for ${area.name}, ${area.emirate}. Explore ROI, price history, and supply pipeline.`} 
+        title={`${area.name} Investment Intelligence 2026 — ROI, Prices & Forecast`}
+        description={`Professional real estate analysis for ${area.name}, ${area.emirate}. Average ROI: ${area.roi || "N/A"}, Avg Price: ${area.avgPrice || "N/A"}. Explore price history, supply pipeline, connectivity, and 5-year growth forecast.`}
+        url={`/area/${area.id}`}
+        schema={areaListingSchema}
+        faqSchema={areaFAQ}
+        articleSchema={{
+          headline: `${area.name} Real Estate Investment Guide 2026`,
+          description: `Comprehensive investment intelligence for ${area.name}, ${area.emirate}. ROI data, price trends, developer pipeline, and expert AI verdict.`,
+          datePublished: "2026-01-01",
+          dateModified: new Date().toISOString().split('T')[0]
+        }}
       />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(areaBreadcrumb) }} />
 
       {/* TOP DECK: ACTIONS */}
       <div className="mx-auto max-w-7xl px-4 pt-8 lg:px-8">

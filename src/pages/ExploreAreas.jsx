@@ -51,12 +51,50 @@ const ExploreAreas = () => {
     },
   };
 
+  const exploreSchema = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": "UAE Real Estate Investment Areas 2026",
+    "description": "Comprehensive list of 77+ investment areas across Dubai, Abu Dhabi, Sharjah and all UAE emirates with ROI data, price analysis, and investment scores.",
+    "url": "https://www.realestateiq.ae/areas",
+    "numberOfItems": MASTER_DB.length,
+    "itemListElement": MASTER_DB.slice(0, 10).map((area, idx) => ({
+      "@type": "ListItem",
+      "position": idx + 1,
+      "name": area.name,
+      "url": `https://www.realestateiq.ae/area/${area.id}`,
+      "description": `${area.name}, ${area.emirate} — Average ROI: ${area.roi || "N/A"}, Category: ${area.category || "Investment"}`
+    }))
+  };
+
+  const exploreBreadcrumb = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.realestateiq.ae" },
+      { "@type": "ListItem", "position": 2, "name": "UAE Areas Explorer", "item": "https://www.realestateiq.ae/areas" }
+    ]
+  };
+
   return (
     <div className="min-h-screen bg-background fade-in">
       <SEO 
-        title="UAE Areas Explorer | RealEstateIQ"
-        description="Explore UAE emirate and area-level real estate intelligence, including average price, rent, and ROI signals for investors."
+        title="UAE Real Estate Areas Explorer 2026 — Dubai, Abu Dhabi & All Emirates ROI"
+        description="Explore 77+ investment areas across all UAE emirates. Compare rental yields (6–11%), average property prices, and investment scores for Dubai, Abu Dhabi, Sharjah, and beyond. Free, verified data for 2026."
+        url="/areas"
+        schema={exploreSchema}
+        faqSchema={[
+          {
+            question: "Which UAE emirate has the highest rental yield in 2026?",
+            answer: "Dubai leads with rental yields of 7–11% in areas like JVC, Sports City, and Dubai Studio City. Ras Al Khaimah offers emerging yields of 8–10%. Abu Dhabi offers stable 6–8% yields backed by government infrastructure."
+          },
+          {
+            question: "How many freehold areas are available in UAE for foreign investors?",
+            answer: "There are 40+ designated freehold zones in Dubai alone, including Downtown Dubai, Dubai Marina, Palm Jumeirah, JVC, Business Bay, and DIFC. These allow 100% foreign ownership. RealEstateIQ tracks 77+ areas across all UAE emirates."
+          }
+        ]}
       />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(exploreBreadcrumb) }} />
 
       <section className="relative overflow-hidden section-warm py-24 min-h-[40vh] flex items-center">
         {/* We use a fallback color if the background image isn't available */}

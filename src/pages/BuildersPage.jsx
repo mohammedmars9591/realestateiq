@@ -52,13 +52,55 @@ const BuildersPage = () => {
     window.scrollTo(0, 0);
   }, []);
 
+  const buildersListSchema = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": "Top Dubai & UAE Real Estate Developers 2026",
+    "description": "Comprehensive institutional analysis of 25+ UAE real estate developers with Trust Scores, ESG Ratings, AI Delivery Confidence, and payment plan data.",
+    "url": "https://www.realestateiq.ae/builders",
+    "numberOfItems": BUILDERS.length,
+    "itemListElement": BUILDERS.slice(0, 10).map((b, idx) => ({
+      "@type": "ListItem",
+      "position": idx + 1,
+      "name": b.name,
+      "url": `https://www.realestateiq.ae/builder/${b.id}`,
+      "description": `${b.name} — Tier: ${b.tier}, Trust Score: ${b.scores?.trust || "N/A"}/10, Best For: ${b.bestFor?.[0] || "investors"}`
+    }))
+  };
+
+  const buildersBreadcrumb = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.realestateiq.ae" },
+      { "@type": "ListItem", "position": 2, "name": "Developer Intelligence Hub", "item": "https://www.realestateiq.ae/builders" }
+    ]
+  };
+
   return (
     <div className="max-w-7xl mx-auto px-4 md:px-8 pb-20 fade-in">
       
       <SEO 
-        title="Top Dubai Real Estate Builders | Free Comparison & Reviews" 
-        description="Compare top Dubai real estate builders. Free Trust Scores, Payment Plans, and ROI data for Indian and European investors targeting builders like Emaar and Damac."
+        title="Top 25 Dubai Real Estate Developers 2026 — Trust Scores, Reviews & ROI"
+        description="Compare 25+ top Dubai real estate developers for free. Free Trust Scores, ESG Ratings, AI Delivery Confidence, and payment plan data for Emaar, Damac, Sobha, Binghatti, Danube and more. Updated 2026."
+        url="/builders"
+        schema={buildersListSchema}
+        faqSchema={[
+          {
+            question: "Who is the most trusted developer in Dubai?",
+            answer: "Emaar Properties is the most trusted developer in Dubai with a Trust Score of 9.8/10 on RealEstateIQ. They are government-backed, have 100% delivery rate, and are responsible for iconic projects like Burj Khalifa, Downtown Dubai, and Dubai Mall. Aldar is the most trusted in Abu Dhabi."
+          },
+          {
+            question: "Which developer has the best payment plan in Dubai?",
+            answer: "Danube Properties is ranked #1 for payment flexibility on RealEstateIQ with a 10/10 payment score. Their signature 1% monthly payment plan makes them the most accessible developer for first-time investors. Ellington, Samana, and Reportage also offer flexible post-handover plans."
+          },
+          {
+            question: "What is the most reliable off-plan developer in UAE?",
+            answer: "Binghatti Developers has a 100% on-time delivery record — making them the most reliable for off-plan delivery. Emaar has a 99%+ track record. Sobha Realty (AI Confidence: 97.2%) is ranked highest for construction quality with a 10/10 build quality score."
+          }
+        ]}
       />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(buildersBreadcrumb) }} />
 
       {/* HERO SECTION */}
       <div className="text-center py-16">

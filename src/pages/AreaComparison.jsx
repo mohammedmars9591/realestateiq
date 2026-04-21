@@ -102,8 +102,41 @@ const AreaComparison = () => {
   return (
     <div className="max-w-7xl mx-auto px-4 md:px-8 pb-20 fade-in bg-slate-50 min-h-screen pt-8">
       <SEO 
-        title={`Free Dubai ${mode === 'areas' ? 'Area' : 'Builder'} Comparison | RealEstateIQ`} 
-        description={`Compare Dubai real estate ${mode === 'areas' ? 'areas' : 'builders'} for free. Check ROI, Capital Growth, and Trust Scores to find the best property.`}
+        title={mode === 'areas' 
+          ? `Compare Dubai Areas 2026 — ${item1.name} vs ${item2.name} | Free ROI Analysis`
+          : `Compare Dubai Developers 2026 — ${item1.name} vs ${item2.name} | Trust Scores`
+        }
+        description={mode === 'areas'
+          ? `Free side-by-side comparison of ${item1.name} vs ${item2.name} in Dubai. Compare ROI, rental yield, capital appreciation, connectivity, and 5-year forecasts. AI-powered goal-based winner analysis.`
+          : `Free developer comparison: ${item1.name} vs ${item2.name}. Compare Trust Scores, ESG Ratings, AI Delivery Confidence, payment plans, and construction quality. Updated 2026.`
+        }
+        url="/compare"
+        schema={{
+          "@context": "https://schema.org",
+          "@type": "WebPage",
+          "name": "Investment Battleground — UAE Real Estate Comparison Tool",
+          "description": "Compare any two Dubai areas or developers head-to-head. AI-driven persona-based winner analysis for Capital Growth, Rental Yield, and Safety goals.",
+          "url": "https://www.realestateiq.ae/compare",
+          "breadcrumb": {
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.realestateiq.ae" },
+              { "@type": "ListItem", "position": 2, "name": "Comparison Tool", "item": "https://www.realestateiq.ae/compare" }
+            ]
+          }
+        }}
+        faqSchema={[
+          {
+            question: "How do I compare two Dubai investment areas?",
+            answer: "Use RealEstateIQ's free Investment Battleground tool at realestateiq.ae/compare. Select any two areas from the 77+ UAE locations, choose your investment goal (Capital Growth, Rental Yield, or Safety), and the AI engine will designate the winner based on your criteria — showing side-by-side ROI, connectivity, liquidity, and 5-year projections."
+          },
+          {
+            question: `How does ${item1.name} compare to ${item2.name} for investment?`,
+            answer: mode === 'areas'
+              ? `${item1.name} offers ${item1.roi || "competitive"} ROI vs ${item2.name}'s ${item2.roi || "competitive"} ROI. ${item1.name} scores ${item1.overallScore || "N/A"}/10 overall vs ${item2.overallScore || "N/A"}/10 for ${item2.name}. The best choice depends on your goal — use RealEstateIQ's goal selector to find your winner.`
+              : `${item1.name} has a Trust Score of ${item1.scores?.trust || "N/A"}/10 vs ${item2.name}'s ${item2.scores?.trust || "N/A"}/10. For ESG, ${item1.name} rates ${item1.esgRating || "N/A"}/10 vs ${item2.esgRating || "N/A"}/10 for ${item2.name}.`
+          }
+        ]}
       />
 
       {/* HEADER & TOGGLE */}

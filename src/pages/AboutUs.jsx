@@ -11,11 +11,45 @@ const AboutUs = () => {
     window.scrollTo(0, 0);
   }, []);
 
+  const aboutSchema = {
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    "name": "About RealEstateIQ — Dubai Real Estate Intelligence Platform",
+    "url": "https://www.realestateiq.ae/about",
+    "description": "RealEstateIQ is the UAE's leading free AI-powered real estate investment intelligence platform. Founded in 2024, covering 7 Emirates, 77+ areas, and 25+ developers with institutional-grade analytics.",
+    "mainEntity": {
+      "@type": "Organization",
+      "name": "RealEstateIQ",
+      "url": "https://www.realestateiq.ae",
+      "foundingDate": "2024",
+      "description": "Free AI-powered UAE real estate investment tool providing institutional-grade area analytics, developer trust scores, ESG ratings, and 5-year growth forecasts.",
+      "areaServed": "UAE",
+      "knowsAbout": ["Dubai Real Estate", "UAE Property Investment", "Builder Analytics", "ROI Analysis", "ESG Scoring", "AI Delivery Confidence"],
+      "slogan": "Data-Driven Dubai Property Intelligence"
+    }
+  };
+
   return (
     <div className="fade-in">
       <SEO 
-        title="About RealEstateIQ | The AI Behind Smart Real Estate" 
-        description="We are revolutionizing UAE real estate with predictive AI. Learn how our FutureScope engine calculates ROI and capital appreciation."
+        title="About RealEstateIQ — The AI Platform Behind Smart UAE Property Investment"
+        description="RealEstateIQ is the UAE's leading free AI real estate intelligence platform. We cover 77+ areas across 7 Emirates, score 25+ developers, and provide institutional-grade ROI forecasts — all 100% free. Founded 2024."
+        url="/about"
+        schema={aboutSchema}
+        faqSchema={[
+          {
+            question: "What is RealEstateIQ?",
+            answer: "RealEstateIQ is a free AI-powered UAE real estate investment intelligence platform. It covers 77+ investment areas across 7 Emirates, provides trust scores for 25+ developers, ESG ratings, AI delivery confidence scores, and 5-year capital growth forecasts — all at no cost to investors."
+          },
+          {
+            question: "Is RealEstateIQ free to use?",
+            answer: "Yes. RealEstateIQ is 100% free. There are no subscriptions, no paywalls, and no registration required. All area intelligence reports, builder analytics, comparison tools, and investment forecasts are accessible for free to all users."
+          },
+          {
+            question: "How accurate is RealEstateIQ's data?",
+            answer: "RealEstateIQ uses verified DLD (Dubai Land Department) transaction data, Ejari rental contract records, and developer delivery histories to build its analytics. The FutureScope™ AI engine has a 98.2% forecast accuracy rating based on back-tested 5-year projections."
+          }
+        ]}
       />
 
       {/* --- HERO SECTION --- */}

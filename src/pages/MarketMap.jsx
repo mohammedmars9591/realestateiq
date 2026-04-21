@@ -152,8 +152,32 @@ const MarketMap = () => {
   return (
     <div className="min-h-screen bg-[#FDFBF7] pb-20 fade-in">
       <SEO 
-        title="2026 Investor Intelligence Map | EstateIQ" 
-        description="Advanced real estate heatmap for UAE investors. Visualize ROI peaks, supply density, and transaction volume for 2026."
+        title="Dubai Real Estate ROI Heatmap 2026 — Interactive Investment Intelligence Map"
+        description="Visualize Dubai real estate investment opportunities on an interactive heatmap. Filter by ROI peaks, supply density, transaction volume, lifestyle score, and capital appreciation across 77+ UAE areas. Free 2026 data."
+        url="/heatmap"
+        schema={{
+          "@context": "https://schema.org",
+          "@type": "Map",
+          "name": "Dubai Real Estate Investment Intelligence Map 2026",
+          "description": "Interactive ROI heatmap showing investment potential, supply density, and transaction velocity across 77+ UAE areas.",
+          "url": "https://www.realestateiq.ae/heatmap",
+          "about": {
+            "@type": "Place",
+            "name": "Dubai, United Arab Emirates",
+            "geo": { "@type": "GeoCoordinates", "latitude": "25.2048", "longitude": "55.2708" }
+          },
+          "creator": { "@type": "Organization", "name": "RealEstateIQ" }
+        }}
+        faqSchema={[
+          {
+            question: "Which areas in Dubai have the highest ROI according to the investment map?",
+            answer: "According to RealEstateIQ's 2026 investment heatmap, the highest ROI areas in Dubai are JVC (9–11%), Dubai Studio City (9–10%), Sports City (8–9%), International City (9–10%), and Dubai South (8–9%). Filter the map by 'High Yield' to see all premium cash-flow zones highlighted."
+          },
+          {
+            question: "How does the RealEstateIQ ROI heatmap work?",
+            answer: "The RealEstateIQ heatmap color-codes 77+ UAE areas by investment score. Green = high ROI yield zones (>8%). Gold = high capital appreciation zones. Blue = premium lifestyle areas. Filter by metric (ROI, Supply, Lifestyle, Appreciation) to dynamically recolor the map based on your investment priority."
+          }
+        ]}
       />
 
       <div className="max-w-[1600px] mx-auto px-4 md:px-8">
