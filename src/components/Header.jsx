@@ -72,7 +72,8 @@ const Header = () => {
   ];
 
   return (
-    <header className="sticky top-0 z-[999] border-b border-[rgba(198,167,94,0.2)] bg-[rgba(248,245,239,0.88)] backdrop-blur-2xl">
+    <>
+      <header className="sticky top-0 z-[999] border-b border-[rgba(198,167,94,0.2)] bg-[rgba(248,245,239,0.88)] backdrop-blur-2xl">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 lg:px-8">
         
         {/* LOGO */}
@@ -217,8 +218,10 @@ const Header = () => {
         </div>
       )}
 
+      </header>
+
       {isMenuOpen && (
-        <div className="fixed inset-0 top-[73px] z-[990] bg-[rgba(248,245,239,0.95)] backdrop-blur-xl animate-in fade-in slide-in-from-right-4 duration-500 lg:hidden">
+        <div className="fixed inset-0 top-[73px] z-[9999] bg-[rgba(248,245,239,0.95)] backdrop-blur-xl animate-in fade-in slide-in-from-right-4 duration-500 lg:hidden">
           <div className="flex h-full flex-col p-6 overflow-y-auto">
             <nav className="flex flex-col gap-1">
               {navLinks.map((link) => (
@@ -249,7 +252,7 @@ const Header = () => {
           </div>
         </div>
       )}
-    </header>
+    </>
   );
 };
 
