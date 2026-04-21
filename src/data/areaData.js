@@ -3996,7 +3996,6 @@ export const DUBAI_AREAS = [
     priceTrend: { "2023": "AED 1.4M", "2024": "AED 1.65M", "2025": "AED 1.9M", "2026": "AED 2.2M" },
     demandSignals: { rentalDemand: "Extremely High", resaleLiquidity: "Very High", tenantProfile: "Young Professionals & Corps" },
     ownership: { type: "Freehold", eligibleFor: ["All Nationalities"], minDownPayment: "20%" },
-    scores: { cashFlow: 7.5, appreciation: 8.8, liquidity: 9.5, risk: 3.5, lifestyle: 9.0 },
     overallScore: 8.9,
 
     unitEconomics: { 
@@ -4764,7 +4763,6 @@ export const DUBAI_AREAS = [
     priceTrend: { "2023": "AED 2.2M", "2024": "AED 2.6M", "2025": "AED 2.8M", "2026": "AED 3.2M" },
     demandSignals: { rentalDemand: "Projected High", resaleLiquidity: "High (Off-plan flipping)", tenantProfile: "Families & Holiday Makers" },
     ownership: { type: "Freehold", eligibleFor: ["All Nationalities"], minDownPayment: "20%" },
-    scores: { cashFlow: 7.0, appreciation: 9.8, liquidity: 8.0, risk: 4.0, lifestyle: 10.0 },
     overallScore: 9.1,
 
     unitEconomics: { 
@@ -5122,7 +5120,6 @@ export const DUBAI_AREAS = [
     priceTrend: { "2023": "AED 2.8M", "2024": "AED 3.2M", "2025": "AED 3.6M", "2026": "AED 3.9M" },
     demandSignals: { rentalDemand: "Very High (Premium)", resaleLiquidity: "Very High", tenantProfile: "CEOs & Tourists" },
     ownership: { type: "Freehold", eligibleFor: ["All Nationalities"], minDownPayment: "20%" },
-    scores: { cashFlow: 5.5, appreciation: 9.0, liquidity: 9.5, risk: 2.0, lifestyle: 10.0 },
     overallScore: 9.2,
 
     unitEconomics: { 
@@ -5178,24 +5175,6 @@ export const DUBAI_AREAS = [
     },
     scores: { cashFlow: 5.5, appreciation: 9.0, liquidity: 9.5, risk: 2.0, lifestyle: 10.0, airbnb: 9.8 }
   },
-      { factor: "Liquidity", read: "Highest in the market. A prime unit priced correctly sells in days." }
-    ],
-
-    rentalAnalysisPoints: ["1-Beds rent for AED 150k - 180k.", "Burj View units are immune to market downturns.", "Address Residences offer the highest premiums."],
-    salesAnalysisPoints: ["Average PSF is AED 2,500 - 4,500.", "New launches (St. Regis / Opera Grand) are resetting the luxury benchmark."],
-    investorTip: "Buy the 'View'. In a downturn, non-view units suffer, but Burj Khalifa views always hold value.",
-
-    connectivity: {
-      airport: { name: "DXB Intl", km: "12 km", mins: "15 mins" },
-      school: { name: "Hartland", km: "5 km", mins: "10 mins" },
-      tourist: { name: "Burj Khalifa", km: "0 km", mins: "0 mins" },
-      metro: { name: "Burj Khalifa", km: "0.5 km", mins: "5 mins" },
-      mall: { name: "Dubai Mall", km: "0.2 km", mins: "2 mins" },
-      business: { name: "Emaar Square", km: "1 km", mins: "3 mins" },
-      hospital: { name: "Mediclinic", km: "0.5 km", mins: "2 mins" }
-    },
-    buyerPsychology: { trigger: "Iconic Status", archetype: "The Global Investor", motivation: "Owning a piece of the world's most famous skyline." }
-  },
 
   // --- DUBAI: DUBAI CREEK HARBOUR (The Future) ---
   {
@@ -5243,7 +5222,6 @@ export const DUBAI_AREAS = [
     priceTrend: { "2023": "AED 1.7M", "2024": "AED 1.95M", "2025": "AED 2.2M", "2026": "AED 2.5M" },
     demandSignals: { rentalDemand: "High", resaleLiquidity: "High", tenantProfile: "Young Families & Execs" },
     ownership: { type: "Freehold", eligibleFor: ["All Nationalities"], minDownPayment: "20%" },
-    scores: { cashFlow: 6.2, appreciation: 9.5, liquidity: 8.0, risk: 3.5, lifestyle: 9.0 },
     overallScore: 8.8,
 
     unitEconomics: { 
@@ -5512,7 +5490,6 @@ export const DUBAI_AREAS = [
     priceTrend: { "2023": "AED 1.8M", "2024": "AED 2.1M", "2025": "AED 2.4M", "2026": "AED 2.7M" },
     demandSignals: { rentalDemand: "Very High", resaleLiquidity: "Very High", tenantProfile: "Western & Arab Families" },
     ownership: { type: "Freehold", eligibleFor: ["All Nationalities"], minDownPayment: "20%" },
-    scores: { cashFlow: 6.2, appreciation: 8.8, liquidity: 9.2, risk: 2.5, lifestyle: 9.8 },
     overallScore: 8.9,
 
     unitEconomics: { 
@@ -5865,7 +5842,6 @@ export const DUBAI_AREAS = [
     priceTrend: { "2023": "AED 1.5M", "2024": "AED 1.8M", "2025": "AED 2.1M", "2026": "AED 2.4M" },
     demandSignals: { rentalDemand: "Massive", resaleLiquidity: "Very High", tenantProfile: "Western Expats & Singles" },
     ownership: { type: "Freehold", eligibleFor: ["All Nationalities"], minDownPayment: "20%" },
-    scores: { cashFlow: 6.5, appreciation: 7.0, liquidity: 10.0, risk: 2.0, lifestyle: 9.8 },
     overallScore: 8.8,
 
     unitEconomics: { 
@@ -7549,7 +7525,6 @@ export const DUBAI_AREAS = [
     minDownPayment: "20%"
   },
 
-  scores: { cashFlow: 5.5, appreciation: 8.5, liquidity: 6.5, risk: 3.0, lifestyle: 9.5 },
   overallScore: 8.3,
 
   unitEconomics: { 

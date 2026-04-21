@@ -27,14 +27,14 @@ const MapController = ({ center, zoom }) => {
 };
 
 // --- 2. PREMIUM HEATMAP LAYER ---
+const GRADIENTS = {
+  live: { 0.2: '#C6A75E', 0.4: '#D4A95F', 0.6: '#eab308', 0.8: '#f97316', 1.0: '#ef4444' },
+  roi: { 0.2: '#06b6d4', 0.4: '#0891b2', 0.6: '#10b981', 0.8: '#059669', 1.0: '#C6A75E' },
+  supply: { 0.2: '#6366f1', 0.4: '#818cf8', 0.6: '#a855f7', 0.8: '#ec4899', 1.0: '#f43f5e' }
+};
+
 const HeatmapLayer = ({ points, mode }) => {
   const map = useMap();
-
-  const gradients = {
-    live: { 0.2: '#C6A75E', 0.4: '#D4A95F', 0.6: '#eab308', 0.8: '#f97316', 1.0: '#ef4444' },
-    roi: { 0.2: '#06b6d4', 0.4: '#0891b2', 0.6: '#10b981', 0.8: '#059669', 1.0: '#C6A75E' },
-    supply: { 0.2: '#6366f1', 0.4: '#818cf8', 0.6: '#a855f7', 0.8: '#ec4899', 1.0: '#f43f5e' }
-  };
 
   useEffect(() => {
     if (!map || !L.heatLayer) return;
@@ -48,7 +48,7 @@ const HeatmapLayer = ({ points, mode }) => {
       blur: 20,
       maxZoom: 10,
       minOpacity: 0.5,
-      gradient: gradients[mode] || gradients.live
+      gradient: GRADIENTS[mode] || GRADIENTS.live
     });
     
     heat.addTo(map);
