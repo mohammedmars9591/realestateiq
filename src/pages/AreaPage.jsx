@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { 
   ArrowLeft, Download, Loader2, MessageCircle, 
-  MapPin, Crown, TrendingUp
+  MapPin, Crown, TrendingUp, PlayCircle, PauseCircle, Volume2
 } from 'lucide-react';
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
@@ -16,6 +16,7 @@ const AreaPage = () => {
   const { id } = useParams();
   const reportRef = useRef(); 
   const [isGeneratingPdf, setIsGeneratingPdf] = useState(false);
+  const [isPlayingAudio, setIsPlayingAudio] = useState(false);
 
   const area = MASTER_DB.find(a => a.id === id);
   const similarAreas = MASTER_DB.filter(a => a.id !== id && a.emirate === area?.emirate).slice(0, 3);
@@ -181,9 +182,38 @@ const AreaPage = () => {
               <h1 className="text-5xl md:text-7xl font-bold text-[#1C1C22] tracking-tighter mb-4 font-serif leading-none">
                 {area.name}
               </h1>
-              <p className="text-base md:text-xl text-[#7A6E60] font-light max-w-3xl leading-relaxed">
+              <p className="text-base md:text-xl text-[#7A6E60] font-light max-w-3xl leading-relaxed mb-6">
                 {area.description}
               </p>
+              
+              {/* AI AUDIO BRIEFING COMPONENT */}
+              <div className="flex items-center gap-4 bg-white/20 backdrop-blur-xl border border-white/30 p-2.5 pr-6 rounded-full max-w-md shadow-[0_10px_30px_rgba(0,0,0,0.1)]">
+                 <button 
+                   onClick={() => setIsPlayingAudio(!isPlayingAudio)}
+                   className="text-[#1C1C22] bg-white hover:bg-[#C6A75E] hover:text-white transition-all rounded-full p-2"
+                 >
+                   {isPlayingAudio ? <PauseCircle size={24} /> : <PlayCircle size={24} />}
+                 </button>
+                 <div className="flex-grow">
+                   <div className="flex justify-between items-center mb-1">
+                     <span className="text-[10px] font-bold uppercase tracking-widest text-[#1C1C22]">AI Market Briefing</span>
+                     <span className="text-[10px] font-bold text-[#1C1C22]/60">1:14</span>
+                   </div>
+                   <div className="w-full h-1 bg-white/30 rounded-full overflow-hidden flex items-center">
+                     {isPlayingAudio ? (
+                        <div className="w-full flex items-end gap-0.5 px-0.5 h-3">
+                           {[...Array(20)].map((_, i) => (
+                             <div key={i} className="w-full bg-[#1C1C22] animate-pulse rounded-t-sm" style={{ height: `${Math.max(20, Math.random() * 100)}%`, animationDuration: `${0.3 + Math.random() * 0.5}s` }} />
+                           ))}
+                        </div>
+                     ) : (
+                        <div className="w-1/3 h-full bg-[#1C1C22] rounded-full" />
+                     )}
+                   </div>
+                 </div>
+                 <Volume2 size={16} className="text-[#1C1C22]/60" />
+              </div>
+
             </div>
           </div>
 

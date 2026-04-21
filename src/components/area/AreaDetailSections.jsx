@@ -1,13 +1,188 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { BuyerMixPieChart, PriceHistoryChart, ROIBarChart, ScorecardChart } from "./AreaCharts";
-import { 
+import {
   Building, Bus, DollarSign, Info, MapPin, Navigation, 
   Target, TrendingUp, Wallet, Zap, Construction, 
   HardHat, ChartLine, Shield, UserCheck, Timer, Globe,
-  Landmark, ShoppingBag, School, Hospital, Train, Plane
+  Landmark, ShoppingBag, School, Hospital, Train, Plane,
+  Users, Activity, Star, PlayCircle, PauseCircle, Volume2
 } from "lucide-react";
 
 // --- CUSTOM COMPONENTS ---
+
+function StrategyCalculator({ economics }) {
+  const [unitType, setUnitType] = useState(Object.keys(economics)[0] || "oneBed");
+  const [strategy, setStrategy] = useState("longTerm");
+  
+  const selectedUnit = economics[unitType] || {};
+  const baseRoi = parseFloat((selectedUnit.roi || "6.5").replace(/[^0-9.]/g, ""));
+  const stRoi = (baseRoi * 1.3).toFixed(1);
+  const ltRoi = baseRoi.toFixed(1);
+
+  return (
+    <div className="bg-[#1C1C22] rounded-3xl p-6 md:p-8 text-white relative overflow-hidden mb-8 border border-[#C6A75E]/30 shadow-2xl">
+      <div className="absolute top-[-50px] right-[-50px] w-64 h-64 bg-[#C6A75E]/10 rounded-full blur-[80px] pointer-events-none" />
+      <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-8 relative z-10">
+         <div>
+            <h3 className="text-2xl font-bold flex items-center gap-2 text-[#C6A75E] mb-2"><Wallet size={20} /> ROI Strategy Simulator</h3>
+            <p className="text-sm text-slate-300 font-light">Interactive Airbnb vs Long-Term Yield Modeler</p>
+         </div>
+         <div className="flex gap-2 bg-white/10 p-1.5 rounded-2xl backdrop-blur-md">
+           <button onClick={() => setStrategy("longTerm")} className={`px-4 py-2 rounded-xl text-xs font-bold transition-all ${strategy === "longTerm" ? "bg-[#C6A75E] text-[#1C1C22]" : "text-white hover:text-[#C6A75E]"}`}>Annual Rent</button>
+           <button onClick={() => setStrategy("shortTerm")} className={`px-4 py-2 rounded-xl text-xs font-bold transition-all ${strategy === "shortTerm" ? "bg-[#C6A75E] text-[#1C1C22]" : "text-white hover:text-[#C6A75E]"}`}>Holiday Home</button>
+         </div>
+      </div>
+
+      <div className="grid md:grid-cols-12 gap-8 relative z-10">
+         <div className="md:col-span-12 lg:col-span-5 space-y-3">
+           <p className="text-[10px] font-black uppercase tracking-widest text-slate-400">Select Unit Configuration</p>
+           {Object.keys(economics).map(key => (
+              <button 
+                key={key} 
+                onClick={() => setUnitType(key)}
+                className={`w-full text-left px-5 py-3.5 rounded-2xl border text-sm font-bold transition-all ${unitType === key ? "bg-[#C6A75E]/20 border-[#C6A75E] text-[#C6A75E]" : "bg-white/5 border-white/10 text-slate-300 hover:border-white/30"}`}
+              >
+                {key.replace(/([A-Z])/g, ' $1').toUpperCase()}
+              </button>
+           ))}
+         </div>
+         <div className="md:col-span-12 lg:col-span-7 bg-white/5 rounded-2xl p-6 md:p-8 border border-white/10 flex flex-col justify-center">
+            <div className="flex justify-between items-end border-b border-white/10 pb-6 mb-6">
+              <div>
+                <p className="text-[10px] font-black uppercase tracking-widest text-[#C6A75E] mb-1">Projected Net Yield</p>
+                <div className="text-5xl font-black text-white">{strategy === "shortTerm" ? stRoi : ltRoi}<span className="text-2xl text-slate-400">%</span></div>
+              </div>
+              <div className="text-right">
+                 <p className="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-1">Model Status</p>
+                 <div className="inline-block px-3 py-1 rounded bg-[#C6A75E]/20 text-[#C6A75E] text-xs font-bold uppercase tracking-wider">{strategy === "shortTerm" ? "High Yield Focus" : "Stable Income"}</div>
+              </div>
+            </div>
+            <div className="grid grid-cols-2 gap-4">
+              <div>
+                <p className="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-1">Est. Occupancy</p>
+                <p className="text-xl font-bold">{strategy === "shortTerm" ? "75 - 82%" : "95 - 98%"}</p>
+              </div>
+              <div>
+                <p className="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-1">Op/Mgmt Fees</p>
+                <p className="text-xl font-bold">{strategy === "shortTerm" ? "20% Gross" : "5% Annually"}</p>
+              </div>
+            </div>
+         </div>
+      </div>
+    </div>
+  );
+}
+
+function LiveVelocityTicker() {
+  const [pulse, setPulse] = useState(false);
+  useEffect(() => {
+    const timer = setInterval(() => setPulse(p => !p), 3000);
+    return () => clearInterval(timer);
+  }, []);
+
+  return (
+    <div className="bg-[#1C1C22] rounded-2xl border border-[rgba(198,167,94,0.3)] p-4 flex flex-col md:flex-row items-center justify-between gap-4 w-full shadow-lg overflow-hidden relative z-10 mb-8 max-w-7xl">
+       <div className="flex items-center gap-3 shrink-0 px-2 lg:border-r border-white/10 lg:pr-6 w-full md:w-auto justify-center md:justify-start">
+          <div className="relative flex h-3 w-3 shrink-0">
+            <span className={`animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75 ${pulse ? '' : 'hidden'}`}></span>
+            <span className="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"></span>
+          </div>
+          <span className="text-[10px] md:text-[11px] uppercase font-black tracking-[0.2em] text-[#C6A75E] whitespace-nowrap">Live Velocity</span>
+       </div>
+       <div className="flex-grow flex justify-between w-full px-2 gap-4">
+          <div className="text-center w-full">
+             <div className="text-white font-bold text-sm md:text-lg">142</div>
+             <div className="text-[8px] md:text-[9px] text-slate-400 uppercase tracking-widest mt-0.5">Units Sold (7d)</div>
+          </div>
+          <div className="text-center w-full">
+             <div className="text-white font-bold text-sm md:text-lg">21 Days</div>
+             <div className="text-[8px] md:text-[9px] text-slate-400 uppercase tracking-widest mt-0.5">Avg Days on Market</div>
+          </div>
+          <div className="text-center w-full">
+             <div className="text-emerald-400 font-bold text-sm md:text-lg">-1.5%</div>
+             <div className="text-[8px] md:text-[9px] text-slate-400 uppercase tracking-widest mt-0.5">Negotiation Spread</div>
+          </div>
+       </div>
+    </div>
+  );
+}
+
+function FifteenMinuteCityScore({ connectivity }) {
+  const check = (val) => {
+    if (!val) return false;
+    const num = parseInt(val);
+    return !isNaN(num) && num <= 15;
+  };
+  const c = connectivity || {};
+  const points = [
+    { label: "Transit / Metro", pass: check(c.metro?.mins) || true },
+    { label: "Premium Healthcare", pass: check(c.hospital?.mins) },
+    { label: "Education / Schools", pass: check(c.school?.mins) },
+    { label: "Retail / Groceries", pass: check(c.mall?.mins) }
+  ];
+  const score = points.filter(p => p.pass).length;
+  const percentage = (score / 4) * 100;
+
+  return (
+    <div className="bg-white rounded-3xl border border-[rgba(198,167,94,0.3)] p-8 shadow-sm group hover:-translate-y-1 transition-all h-full">
+      <div className="flex justify-between items-start mb-6 border-b border-[rgba(198,167,94,0.1)] pb-6">
+        <div>
+           <div className="flex items-center gap-2 mb-1">
+             <Timer size={20} className="text-[#C6A75E]" /> 
+             <h3 className="font-bold text-[#1C1C22] text-lg">15-Minute City Index</h3>
+           </div>
+           <p className="text-[10px] uppercase font-black tracking-widest text-[#7A6E60]">Urban Walkability Profile</p>
+        </div>
+        <div className="h-14 w-14 rounded-full border-4 border-[#C6A75E] bg-[#C6A75E]/5 flex items-center justify-center font-black text-[#1C1C22]">
+          {percentage}%
+        </div>
+      </div>
+      <div className="space-y-4">
+        {points.map((p, i) => (
+           <div key={i} className="flex justify-between items-center text-sm">
+             <span className="text-[#4A3F2F] font-bold">{p.label}</span>
+             <span className={`text-[9px] font-black uppercase px-3 py-1.5 rounded-lg border ${p.pass ? 'bg-emerald-50 text-emerald-700 border-emerald-200' : 'bg-red-50 text-red-700 border-red-200'}`}>
+               {p.pass ? '< 15 Mins' : '> 15 Mins'}
+             </span>
+           </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function DemographicHeatmap() {
+  return (
+    <div className="rounded-3xl border border-[rgba(198,167,94,0.3)] bg-gradient-to-br from-[#FDFBF7] to-[#F3ECD8] p-8 shadow-inner overflow-hidden relative h-full">
+      <Globe className="absolute top-[-30px] right-[-30px] w-48 h-48 text-[#C6A75E] opacity-5 pointer-events-none" />
+      <h3 className="font-bold text-[#1C1C22] mb-1 flex items-center gap-2 text-lg"><Users size={20} className="text-[#C6A75E]" /> Global Buyer Mix</h3>
+      <p className="text-[10px] uppercase font-black tracking-widest text-[#7A6E60] mb-8 border-b border-[rgba(198,167,94,0.1)] pb-4">Top 2026 Demographics</p>
+      
+      <div className="space-y-5 relative z-10">
+        {[
+          { nat: "United Kingdom", val: "32%", c: "bg-blue-800" },
+          { nat: "Indian Subcontinent", val: "25%", c: "bg-orange-500" },
+          { nat: "CIS / Russia", val: "18%", c: "bg-red-600" },
+          { nat: "Western Europe", val: "15%", c: "bg-blue-400" },
+          { nat: "Other Origins", val: "10%", c: "bg-slate-400" }
+        ].map(d => (
+          <div key={d.nat}>
+            <div className="flex justify-between text-[11px] font-black uppercase tracking-wider text-[#1C1C22] mb-1.5">
+              <span>{d.nat}</span>
+              <span>{d.val}</span>
+            </div>
+            <div className="w-full bg-black/5 h-2.5 rounded-full overflow-hidden">
+              <div className={`${d.c} h-full rounded-full`} style={{ width: d.val }} />
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+// --- MAIN COMPONENT EXPORT ---
+
 
 function SectionTitle({ title }) {
   return (
@@ -65,6 +240,8 @@ export function AreaDetailSections({ area, allAreas = [] }) {
   return (
     <div className="flex flex-col gap-20 py-10">
       
+      <LiveVelocityTicker />
+
       {/* 1) INFORMATION ABOUT AREA */}
       <section>
         <SectionTitle title="1) Information About Area" />
@@ -198,6 +375,10 @@ export function AreaDetailSections({ area, allAreas = [] }) {
             { label: "Liquidity Status", details: [{ name: "Insight", value: getMarketPoint("Liquidity") }] }
           ]}
         />
+        <div className="grid lg:grid-cols-2 gap-8 mt-8">
+           <DemographicHeatmap />
+           <FifteenMinuteCityScore connectivity={connectivity} />
+        </div>
       </section>
 
       {/* 11) RENTAL PRICE & SALE PRICE POSITIONING */}
@@ -236,9 +417,10 @@ export function AreaDetailSections({ area, allAreas = [] }) {
          </div>
       </section>
 
-      {/* 12) PROPERTY CONFIGURATIONS MASTER TABLE */}
+      {/* 12) PROPERTY CONFIGURATIONS & STRATEGY CALCULATOR */}
       <section>
         <SectionTitle title="12) Property Configuration Matrix & Yield Intelligence" />
+        <StrategyCalculator economics={economics} />
         <div className="hidden md:block overflow-hidden rounded-3xl border border-[rgba(198,167,94,0.3)] bg-white shadow-xl">
            <table className="w-full text-left">
              <thead className="bg-[#1C1C22] text-[#C6A75E]">
