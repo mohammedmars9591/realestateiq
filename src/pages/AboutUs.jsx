@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { 
-  Target, Zap, ShieldCheck, Users, BarChart3, 
-  Cpu, Globe, ArrowRight, BrainCircuit, Map, HardHat
+  Building2, BrainCircuit, ShieldCheck, Database, 
+  TrendingUp, Activity, Globe, ArrowRight
 } from 'lucide-react';
 import SEO from '../components/SEO';
 
@@ -14,200 +14,172 @@ const AboutUs = () => {
   const aboutSchema = {
     "@context": "https://schema.org",
     "@type": "AboutPage",
-    "name": "About RealEstateIQ — Dubai Real Estate Intelligence Platform",
+    "name": "About RealEstateIQ — The 2026 UAE Property Intelligence SaaS",
     "url": "https://www.realestateiq.ae/about",
-    "description": "RealEstateIQ is the UAE's leading free AI-powered real estate investment intelligence platform. Founded in 2024, covering 7 Emirates, 77+ areas, and 25+ developers with institutional-grade analytics.",
+    "description": "RealEstateIQ is the UAE's premier AI-powered real estate investment intelligence platform, delivering institutional-grade analytics, FutureScope™ forecasts, and ESG developer ratings.",
     "mainEntity": {
       "@type": "Organization",
       "name": "RealEstateIQ",
       "url": "https://www.realestateiq.ae",
       "foundingDate": "2024",
-      "description": "Free AI-powered UAE real estate investment tool providing institutional-grade area analytics, developer trust scores, ESG ratings, and 5-year growth forecasts.",
+      "description": "A dark-luxury PropTech SaaS providing UAE real estate investment tools including area analytics, developer trust scores, and predictive modeling.",
       "areaServed": "UAE",
-      "knowsAbout": ["Dubai Real Estate", "UAE Property Investment", "Builder Analytics", "ROI Analysis", "ESG Scoring", "AI Delivery Confidence"],
-      "slogan": "Data-Driven Dubai Property Intelligence"
+      "knowsAbout": ["Dubai Real Estate", "UAE Property Investment", "Builder Analytics", "ROI Heatmaps", "ESG Scoring", "AI Delivery Confidence", "FutureScope Projections"],
+      "slogan": "Institutional Data. AI Precision."
     }
   };
 
   return (
-    <div className="fade-in">
+    <div className="min-h-screen bg-[#FDFBF7] fade-in">
       <SEO 
-        title="About RealEstateIQ — The AI Platform Behind Smart UAE Property Investment"
-        description="RealEstateIQ is the UAE's leading free AI real estate intelligence platform. We cover 77+ areas across 7 Emirates, score 25+ developers, and provide institutional-grade ROI forecasts — all 100% free. Founded 2024."
+        title="About RealEstateIQ | Institutional UAE Property Intelligence"
+        description="Discover the technology behind RealEstateIQ. We combine verified DLD data with predictive AI to deliver accurate Dubai real estate forecasts, entirely free."
         url="/about"
         schema={aboutSchema}
-        faqSchema={[
-          {
-            question: "What is RealEstateIQ?",
-            answer: "RealEstateIQ is a free AI-powered UAE real estate investment intelligence platform. It covers 77+ investment areas across 7 Emirates, provides trust scores for 25+ developers, ESG ratings, AI delivery confidence scores, and 5-year capital growth forecasts — all at no cost to investors."
-          },
-          {
-            question: "Is RealEstateIQ free to use?",
-            answer: "Yes. RealEstateIQ is 100% free. There are no subscriptions, no paywalls, and no registration required. All area intelligence reports, builder analytics, comparison tools, and investment forecasts are accessible for free to all users."
-          },
-          {
-            question: "How accurate is RealEstateIQ's data?",
-            answer: "RealEstateIQ uses verified DLD (Dubai Land Department) transaction data, Ejari rental contract records, and developer delivery histories to build its analytics. The FutureScope™ AI engine has a 98.2% forecast accuracy rating based on back-tested 5-year projections."
-          }
-        ]}
       />
 
-      {/* --- HERO SECTION --- */}
-      <div className="relative bg-slate-900 text-white py-24 overflow-hidden">
-        {/* Abstract Background Animation */}
-        <div className="absolute top-0 left-0 w-full h-full opacity-20 pointer-events-none">
-           <div className="absolute top-[-50%] left-[-20%] w-[800px] h-[800px] bg-blue-600 rounded-full blur-[120px] animate-pulse"></div>
-           <div className="absolute bottom-[-20%] right-[-10%] w-[600px] h-[600px] bg-purple-600 rounded-full blur-[100px] opacity-70"></div>
+      {/* --- PREMIUM HERO SECTION --- */}
+      <div className="relative bg-[#1C1C22] text-white pt-32 pb-24 overflow-hidden rounded-b-[3rem] md:rounded-b-[5rem] shadow-2xl">
+        <div className="absolute inset-0 opacity-20 pointer-events-none">
+           <div className="absolute top-[-20%] left-[-10%] w-[600px] h-[600px] bg-[#C6A75E] rounded-full blur-[150px] animate-pulse"></div>
+           <div className="absolute bottom-[-20%] right-[-10%] w-[500px] h-[500px] bg-[#C6A75E] rounded-full blur-[120px] opacity-60"></div>
+           <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"></div>
         </div>
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 md:px-8 text-center">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/20 border border-blue-400/30 text-blue-300 text-xs font-bold uppercase tracking-widest mb-6">
-            <BrainCircuit size={14} /> EST. 2024
+          <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-white/5 border border-white/10 backdrop-blur-xl mb-8 glow-gold-hover transition-all">
+            <Building2 className="h-8 w-8 text-[#C6A75E]" />
           </div>
-          <h1 className="text-4xl md:text-6xl font-extrabold mb-6 tracking-tight">
-            We Decode the <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">Future of Real Estate</span>
+          
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold mb-6 tracking-tighter font-serif leading-tight">
+            Decoding the <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#C6A75E] to-[#E2C98E]">Future of Real Estate.</span>
           </h1>
-          <p className="text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed">
-            RealEstateIQ is not just a listing platform. We are a data science company building the operating system for smart investors in the UAE.
+          <p className="text-lg md:text-2xl text-slate-300 max-w-4xl mx-auto leading-relaxed font-light italic">
+            RealEstateIQ is not a brokerage. We are a pure-play PropTech SaaS bridging the gap between raw UAE master-data and institutional-grade investor intelligence.
           </p>
         </div>
       </div>
 
-      {/* --- STATS ROW --- */}
-      <div className="bg-white border-b border-slate-200">
-        <div className="max-w-7xl mx-auto px-4 md:px-8 py-12">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-             <StatItem value="7" label="Emirates Covered" />
-             <StatItem value="98.2%" label="Forecast Accuracy" />
-             <StatItem value="AED 4B+" label="Property Value Tracked" />
-             <StatItem value="24/7" label="Market Monitoring" />
-          </div>
-        </div>
-      </div>
-
-      {/* --- OUR MISSION --- */}
-      <div className="py-20 max-w-7xl mx-auto px-4 md:px-8">
+      {/* --- THE 'OPERATING SYSTEM' MISSION --- */}
+      <div className="py-24 max-w-7xl mx-auto px-4 md:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-          <div>
-             <h2 className="text-3xl font-bold text-slate-900 mb-6">The "Black Box" Problem</h2>
-             <p className="text-slate-600 text-lg mb-6 leading-relaxed">
-               For decades, UAE real estate was driven by hype, whatsapp broadcasts, and aggressive sales pitches. Investors were buying based on promises, not data.
+          <div className="space-y-8">
+             <div className="inline-block px-3 py-1 rounded-full bg-[#1C1C22]/5 border border-[#C6A75E]/30 text-[#C6A75E] text-[10px] font-black uppercase tracking-[0.2em]">
+               The Core Mission
+             </div>
+             <h2 className="text-3xl md:text-5xl font-bold text-[#1C1C22] font-serif tracking-tight leading-tight">
+               Built for the Modern <br className="hidden md:block"/> 2026 Investor.
+             </h2>
+             <p className="text-[#4A3F2F] text-lg leading-relaxed font-light">
+               For decades, the UAE real estate market was driven heavily by aggressive sales tactics and opaque broker promises. The data was there, but it wasn't accessible or actionable for the everyday buyer.
              </p>
-             <p className="text-slate-600 text-lg mb-8 leading-relaxed">
-               We built <strong className="text-slate-900">RealEstateIQ</strong> to change that. We believe every dirham invested should be backed by rigorous data analysis, not just a glossy brochure.
+             <p className="text-[#4A3F2F] text-lg leading-relaxed font-light">
+               We engineered <strong className="text-[#1C1C22]">RealEstateIQ</strong> to eliminate the 'black box'. By aggregating millions of DLD data points, Ejari contracts, and master-plan timelines, we provide an algorithmic truth to property valuation.
              </p>
-             <div className="flex gap-4">
-               <div className="flex items-center gap-2 text-slate-800 font-bold bg-slate-100 px-4 py-2 rounded-lg">
-                 <ShieldCheck size={20} className="text-green-600" /> Transparent
+             
+             <div className="grid grid-cols-2 gap-6 pt-4">
+               <div className="border-l-2 border-[#C6A75E] pl-4">
+                 <p className="text-4xl font-black text-[#1C1C22]">77+</p>
+                 <p className="text-xs font-bold uppercase tracking-widest text-[#7A6E60] mt-1">Prime Hubs Analyzed</p>
                </div>
-               <div className="flex items-center gap-2 text-slate-800 font-bold bg-slate-100 px-4 py-2 rounded-lg">
-                 <Zap size={20} className="text-yellow-500" /> Data-Driven
+               <div className="border-l-2 border-[#C6A75E] pl-4">
+                 <p className="text-4xl font-black text-[#1C1C22]">98.2%</p>
+                 <p className="text-xs font-bold uppercase tracking-widest text-[#7A6E60] mt-1">AI Forecast Accuracy</p>
                </div>
              </div>
           </div>
+          
           <div className="relative">
-             <div className="absolute inset-0 bg-blue-600 rounded-3xl rotate-3 opacity-10"></div>
-             <img 
-               src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80" 
-               alt="Dubai Skyline Data" 
-               className="relative rounded-3xl shadow-2xl w-full object-cover h-[400px]"
-             />
+             <div className="absolute inset-0 bg-[#C6A75E]/10 rounded-3xl rotate-3 scale-105 transition-transform duration-700"></div>
+             <div className="relative bg-[#1C1C22] rounded-3xl p-10 shadow-2xl border border-[rgba(198,167,94,0.3)]">
+                <BrainCircuit className="w-16 h-16 text-[#C6A75E] mb-8" />
+                <h3 className="text-2xl font-bold text-white mb-4">Powered by FutureScope™</h3>
+                <p className="text-slate-300 font-light leading-relaxed mb-8">
+                  Our proprietary AI engine doesn't just look at past prices. It reads infrastructure pipelines, ESG integrations, and global demographic shifts to predict 5-year capital appreciation windows with ruthless precision.
+                </p>
+                <div className="flex gap-2">
+                  {[1, 2, 3].map(i => <div key={i} className="h-1.5 w-8 rounded-full bg-[#C6A75E]/40"></div>)}
+                  <div className="h-1.5 w-16 rounded-full bg-[#C6A75E]"></div>
+                </div>
+             </div>
           </div>
         </div>
       </div>
 
-      {/* --- THE TECHNOLOGY (FutureScope) --- */}
-      <div className="bg-slate-50 py-24">
+      {/* --- PLATFORM FEATURES GRID --- */}
+      <div className="bg-white border-y border-[rgba(198,167,94,0.1)] py-24">
         <div className="max-w-7xl mx-auto px-4 md:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 mb-4">
-              Powered by <span className="text-blue-600">FutureScope™</span>
-            </h2>
-            <p className="text-slate-500 max-w-2xl mx-auto">
-              Our proprietary AI engine doesn't just look at today's prices. It simulates future scenarios to predict capital appreciation trends for 2026 and beyond.
-            </p>
+            <h2 className="text-3xl md:text-5xl font-bold text-[#1C1C22] font-serif tracking-tight mb-4">Institutional Features</h2>
+            <p className="text-[#7A6E60] text-lg font-light">The tools we provide to give you symmetric market advantage.</p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-             <TechCard 
-               icon={<BarChart3 size={32} className="text-blue-600"/>}
-               title="Predictive ROI"
-               desc="We analyze 10 years of rental contracts (Ejari) and sales transaction (DLD) data to forecast future yields with high precision."
-             />
-             <TechCard 
-               icon={<Globe size={32} className="text-purple-600"/>}
-               title="7 Emirates Coverage"
-               desc="From Dubai's luxury towers to RAK's casino boom and Ajman's high yields—we track every major market in the UAE."
-             />
-             <TechCard 
-               icon={<Cpu size={32} className="text-emerald-600"/>}
-               title="Builder Scoring"
-               desc="We don't trust marketing. We audit developer delivery records, material quality, and resale liquidity to assign a 'Trust Score'."
-             />
+          <div className="grid md:grid-cols-3 gap-8">
+            <FeatureCard 
+              icon={<Database />}
+              title="Symmetric Data Access"
+              desc="We pull directly from government APIs, cleaning and formatting thousands of transaction logs so you see exactly what the institutions see."
+            />
+            <FeatureCard 
+              icon={<ShieldCheck />}
+              title="Developer Trust Index"
+              desc="We audit builders mathematically. Our ESG scores and AI Delivery Confidence metrics strip away the marketing to reveal actual performance."
+            />
+            <FeatureCard 
+              icon={<TrendingUp />}
+              title="Yield War-Gaming"
+              desc="Interactive calculators allow you to pit Annual Rental yields against Holiday Home (Airbnb) strategies factoring in real-world 2026 management fees."
+            />
+            <FeatureCard 
+              icon={<Activity />}
+              title="Live Velocity Mapping"
+              desc="Track the heartbeat of an area. Watch real-time negotiation spreads, days-on-market drops, and 7-day transaction volumes."
+            />
+            <FeatureCard 
+              icon={<Globe />}
+              title="Global Demographic Radars"
+              desc="Understand who you are buying next to, and who you will eventually sell to, with deep-dive breakdowns of buyer nationalities."
+            />
+            <FeatureCard 
+              icon={<BrainCircuit />}
+              title="Audio AI Briefings"
+              desc="For the investor on the move. Every area report is packaged into a concise, multimodal AI audio summary you can listen to anywhere."
+            />
           </div>
         </div>
-      </div>
-
-      {/* --- VALUES / CULTURE --- */}
-      <div className="py-24 max-w-7xl mx-auto px-4 md:px-8">
-         <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold text-slate-900">Built for Investors, by Investors</h2>
-         </div>
-         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <ValueBox title="Radical Transparency" desc="We show the bad data too. If a property has high service charges or low liquidity, we flag it." />
-            <ValueBox title="Speed of Execution" desc="Real estate moves fast. Our live market feeds update every 24 hours." />
-            <ValueBox title="Zero Hype" desc="No sales calls. No aggressive agents. Just pure, unadulterated financial data." />
-            <ValueBox title="Long-Term Vision" desc="We focus on sustainable wealth creation, not quick 'flip' schemes." />
-         </div>
       </div>
 
       {/* --- CTA SECTION --- */}
-      <div className="bg-slate-900 text-white py-20 border-t border-slate-800">
-        <div className="max-w-4xl mx-auto px-4 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">Ready to Invest with Confidence?</h2>
-          <p className="text-slate-400 text-lg mb-10">
-            Join thousands of smart investors using RealEstateIQ to find the best opportunities in the UAE.
-          </p>
-          <div className="flex flex-col sm:flex-row justify-center gap-4">
-            <Link to="/heatmap" className="px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl transition shadow-lg flex items-center justify-center gap-2">
-              View ROI Heatmap <Map size={20} />
-            </Link>
-            <Link to="/builders" className="px-8 py-4 bg-transparent border border-slate-600 hover:bg-white/10 text-white font-bold rounded-xl transition flex items-center justify-center gap-2">
-              Compare Developers <HardHat size={20} />
-            </Link>
-          </div>
-        </div>
+      <div className="py-24 max-w-4xl mx-auto px-4 text-center">
+         <div className="mb-8 inline-flex items-center justify-center p-4 bg-[#C6A75E]/10 rounded-full">
+            <Building2 className="w-10 h-10 text-[#C6A75E]" />
+         </div>
+         <h2 className="text-3xl md:text-5xl font-bold text-[#1C1C22] font-serif mb-6 tracking-tight">Ready to command the market?</h2>
+         <p className="text-lg text-[#7A6E60] font-light mb-10">
+           Join thousands of institutional buyers, family offices, and retail investors who refuse to buy blind. 
+         </p>
+         <Link to="/areas" className="inline-flex items-center gap-3 bg-[#1C1C22] text-white px-8 py-4 rounded-xl font-bold text-sm tracking-widest uppercase hover:bg-[#C6A75E] transition-all shadow-[0_10px_30px_rgba(28,28,34,0.2)]">
+            Open Area Explorer <ArrowRight size={18} />
+         </Link>
       </div>
 
     </div>
   );
 };
 
-// --- SUB-COMPONENTS ---
-
-const StatItem = ({ value, label }) => (
-  <div>
-    <div className="text-4xl md:text-5xl font-extrabold text-blue-600 mb-2">{value}</div>
-    <div className="text-sm font-bold text-slate-500 uppercase tracking-wider">{label}</div>
-  </div>
-);
-
-const TechCard = ({ icon, title, desc }) => (
-  <div className="bg-white p-8 rounded-2xl border border-slate-200 shadow-sm hover:shadow-xl transition-all hover:-translate-y-1">
-    <div className="bg-slate-50 w-16 h-16 rounded-xl flex items-center justify-center mb-6">
-      {icon}
+// Helper Component for Feature Grid
+function FeatureCard({ icon, title, desc }) {
+  return (
+    <div className="group rounded-3xl border border-[rgba(198,167,94,0.15)] bg-[#FDFBF7] p-8 hover:bg-white hover:shadow-[0_10px_40px_rgba(198,167,94,0.08)] hover:-translate-y-1 transition-all duration-500">
+      <div className="mb-6 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-[#C6A75E]/10 text-[#C6A75E] group-hover:scale-110 group-hover:bg-[#C6A75E] group-hover:text-white transition-all duration-500">
+        {React.cloneElement(icon, { size: 24, strokeWidth: 1.5 })}
+      </div>
+      <h3 className="mb-3 text-xl font-bold text-[#1C1C22] font-serif">{title}</h3>
+      <p className="text-sm leading-relaxed text-[#7A6E60] font-light">
+        {desc}
+      </p>
     </div>
-    <h3 className="text-xl font-bold text-slate-900 mb-3">{title}</h3>
-    <p className="text-slate-600 leading-relaxed">{desc}</p>
-  </div>
-);
-
-const ValueBox = ({ title, desc }) => (
-  <div className="p-6 bg-white border border-slate-100 rounded-xl shadow-sm text-center">
-    <div className="w-12 h-1 bg-blue-600 mx-auto rounded-full mb-4"></div>
-    <h3 className="font-bold text-slate-900 mb-2">{title}</h3>
-    <p className="text-sm text-slate-500">{desc}</p>
-  </div>
-);
+  );
+}
 
 export default AboutUs;

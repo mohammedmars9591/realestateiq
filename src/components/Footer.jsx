@@ -52,7 +52,7 @@ const Footer = () => {
               <li><Link to="/areas" className="text-[#7A6E60] hover:text-[#C6A75E] transition-colors">Dubai Markets</Link></li>
               <li><Link to="/areas" className="text-[#7A6E60] hover:text-[#C6A75E] transition-colors">Abu Dhabi Hubs</Link></li>
               <li><Link to="/areas" className="text-[#7A6E60] hover:text-[#C6A75E] transition-colors">Sharjah & Northern Emirates</Link></li>
-              <li><Link to="/about" className="text-[#7A6E60] hover:text-[#C6A75E] transition-colors">About the Platform</Link></li>
+              <li><Link to="/about" className="text-[#7A6E60] hover:text-[#C6A75E] transition-colors">About Us</Link></li>
             </ul>
           </div>
 
