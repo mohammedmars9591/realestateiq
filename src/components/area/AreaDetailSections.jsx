@@ -433,7 +433,6 @@ export function AreaDetailSections({ area, allAreas = [] }) {
       {/* 12 / CONFIGURATION MATRIX */}
       <section>
         <SectionTitle title="12 / Configuration Matrix" subTitle="Asset Class Breakdown & Yield Intelligence" />
- Broadway
         <StrategyCalculator economics={economics} />
         <div className="hidden md:block overflow-hidden rounded-3xl border border-white/60 bg-white/40 backdrop-blur-xl shadow-sm">
            <table className="w-full text-left">
