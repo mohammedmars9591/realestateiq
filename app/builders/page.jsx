@@ -3,7 +3,7 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import Link from 'next/link';
 import { ArrowRight, HardHat, ChevronDown, ChevronUp } from 'lucide-react';
-import { BUILDERS } from '../src/data/buildersData';
+import { BUILDERS } from '../../src/data/buildersData';
 
 const BuildersPage = () => {
   const [showAll, setShowAll] = useState(false);
@@ -109,18 +109,3 @@ const BuildersPage = () => {
 };
 
 export default BuildersPage;
- Broadway
- Broadway
- Broadway
- Broadway
- Broadway
- Broadway
- Broadway
- Broadway
- Broadway
- Broadway
- Broadway
- Broadway
- Broadway
- Broadway
- Broadway

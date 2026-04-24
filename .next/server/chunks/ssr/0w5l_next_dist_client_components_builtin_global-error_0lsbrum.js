@@ -1,0 +1,3 @@
+module.exports=[29369,(a,b,c)=>{let{createClientModuleProxy:d}=a.r(17631);a.n(d("[project]/real-estate-ai/node_modules/next/dist/client/components/builtin/global-error.js <module evaluation>"))},4117,(a,b,c)=>{let{createClientModuleProxy:d}=a.r(17631);a.n(d("[project]/real-estate-ai/node_modules/next/dist/client/components/builtin/global-error.js"))},27425,a=>{"use strict";a.i(29369);var b=a.i(4117);a.n(b)},75691,a=>{a.n(a.i(27425))}];
+
+//# sourceMappingURL=0w5l_next_dist_client_components_builtin_global-error_0lsbrum.js.map

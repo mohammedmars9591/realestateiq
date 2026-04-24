@@ -226,18 +226,3 @@ const ScoreBar = ({ label, value, color }) => (
 );
 
 export default BuilderDetailsPage;
- Broadway
- Broadway
- Broadway
- Broadway
- Broadway
- Broadway
- Broadway
- Broadway
- Broadway
- Broadway
- Broadway
- Broadway
- Broadway
- Broadway
- Broadway

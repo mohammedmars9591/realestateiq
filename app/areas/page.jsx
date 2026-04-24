@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { ArrowRight, MapPin, ChevronDown, ChevronUp } from "lucide-react";
-import { DUBAI_AREAS as MASTER_DB } from '../src/data/emiratesData';
+import { DUBAI_AREAS as MASTER_DB } from '../../src/data/emiratesData';
 
 const ExploreAreas = () => {
   const [expandedEmirates, setExpandedEmirates] = useState({});

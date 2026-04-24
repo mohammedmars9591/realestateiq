@@ -7,9 +7,9 @@ import {
   Zap, Scale, Trophy, Swords, Building2, MapPin, CheckCircle,
   Leaf, Activity, Globe, Target, ArrowRight, Crown
 } from 'lucide-react';
-import { DUBAI_AREAS } from '../src/data/emiratesData';
-import { BUILDERS } from '../src/data/buildersData';
-import WhatsAppButton from '../src/components/WhatsAppButton';
+import { DUBAI_AREAS } from '../../src/data/emiratesData';
+import { BUILDERS } from '../../src/data/buildersData';
+import WhatsAppButton from '../../src/components/WhatsAppButton';
 
 const AreaComparison = () => {
   const [mode, setMode] = useState('areas');
@@ -271,18 +271,3 @@ const StatRow = ({ label, val1, val2, highlight, isScore, inverse, suffix = '' }
 };
 
 export default AreaComparison;
- Broadway
- Broadway
- Broadway
- Broadway
- Broadway
- Broadway
- Broadway
- Broadway
- Broadway
- Broadway
- Broadway
- Broadway
- Broadway
- Broadway
- Broadway

@@ -11,7 +11,7 @@ import {
   LineChart, Line, ResponsiveContainer 
 } from 'recharts';
 
-import { DUBAI_AREAS } from '../src/data/emiratesData'; 
+import { DUBAI_AREAS } from '../../src/data/emiratesData'; 
 
 // Dynamic import for Leaflet components to prevent SSR errors
 const MapContainer = dynamic(() => import('react-leaflet').then(mod => mod.MapContainer), { ssr: false });
@@ -226,18 +226,3 @@ const MarketMap = () => {
 };
 
 export default MarketMap;
- Broadway
- Broadway
- Broadway
- Broadway
- Broadway
- Broadway
- Broadway
- Broadway
- Broadway
- Broadway
- Broadway
- Broadway
- Broadway
- Broadway
- Broadway

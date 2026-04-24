@@ -1,0 +1,12 @@
+var R=require("../../chunks/ssr/[turbopack]_runtime.js")("server/app/_not-found/page.js")
+R.c("server/chunks/ssr/[root-of-the-server]__0hrxezk._.js")
+R.c("server/chunks/ssr/0w5l_next_dist_esm_build_templates_app-page_0ycs61s.js")
+R.c("server/chunks/ssr/[root-of-the-server]__03z0i29._.js")
+R.c("server/chunks/ssr/[root-of-the-server]__0tzqtzj._.js")
+R.c("server/chunks/ssr/real-estate-ai_07tmkqg._.js")
+R.c("server/chunks/ssr/0w5l_next_dist_client_components_10qqvt~._.js")
+R.c("server/chunks/ssr/0w5l_next_dist_client_components_builtin_forbidden_1315vwt.js")
+R.c("server/chunks/ssr/0w5l_next_dist_client_components_builtin_unauthorized_0zq9cd9.js")
+R.c("server/chunks/ssr/real-estate-ai__next-internal_server_app__not-found_page_actions_11ek0l5.js")
+R.m(88110)
+module.exports=R.m(88110).exports

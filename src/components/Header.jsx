@@ -147,7 +147,7 @@ const Header = () => {
           {navLinks.map((link) => (
             <Link
               key={link.href}
-              to={link.href}
+              href={link.href}
               className={`relative rounded-lg px-4 py-2 text-sm font-medium transition-all duration-300 ${
                 pathname === link.href ? "text-[#C6A75E]" : "text-[#7A6E60] hover:text-[#1C1C22]"
               }`}
@@ -237,7 +237,7 @@ const Header = () => {
               {navLinks.map((link) => (
                 <Link
                   key={link.href}
-                  to={link.href}
+                  href={link.href}
                   onClick={() => setIsMenuOpen(false)}
                   className={`flex items-center justify-between rounded-2xl px-6 py-5 transition-all ${
                     pathname === link.href 
