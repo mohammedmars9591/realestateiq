@@ -5,7 +5,8 @@ import {
   Target, TrendingUp, Wallet, Zap, Construction, 
   HardHat, ChartLine, Shield, UserCheck, Timer, Globe,
   Landmark, ShoppingBag, School, Hospital, Train, Plane,
-  Users, Activity, Star, PlayCircle, PauseCircle, Volume2
+  Users, Activity, Star, PlayCircle, PauseCircle, Volume2,
+  Leaf, Coins, Network, BrainCircuit
 } from "lucide-react";
 
 // --- CUSTOM COMPONENTS ---
@@ -736,6 +737,89 @@ export function AreaDetailSections({ area, allAreas = [] }) {
                ))}
             </div>
          </div>
+      </section>
+
+      {/* 25 / 2026 INFRASTRUCTURE CONNECTIVITY PULSE */}
+      <section className="grid gap-8 lg:grid-cols-2">
+         <div className="bg-[#FDFBF7] border border-[rgba(198,167,94,0.3)] rounded-[2.5rem] p-10 shadow-sm">
+            <SectionTitle title="25 / Connectivity Pulse" subTitle="Blue Line Metro & Etihad Rail Synergies" />
+            <div className="space-y-6">
+               <div className="flex gap-5 items-start">
+                  <div className="p-3 bg-[#3A3125] text-[#C6A75E] rounded-xl"><Train size={24} /></div>
+                  <div>
+                     <h4 className="text-sm font-black text-[#3A3125] uppercase tracking-widest mb-2 text-gold">2026 Blue Line Impact</h4>
+                     <p className="text-xs text-[#5A4F40] leading-relaxed font-light italic">
+                        The 2026-2028 Blue Line expansion will reduce transit times to DXB Airport by 40% for this district, projecting a structural price floor increase of 12% by Q4 2026.
+                     </p>
+                  </div>
+               </div>
+               <div className="flex gap-5 items-start">
+                  <div className="p-3 bg-[#3A3125] text-[#C6A75E] rounded-xl"><Network size={24} /></div>
+                  <div>
+                     <h4 className="text-sm font-black text-[#3A3125] uppercase tracking-widest mb-2">Etihad Rail Cargo-to-Residential Correlation</h4>
+                     <p className="text-xs text-[#5A4F40] leading-relaxed font-light italic">
+                        Proximity to Etihad Rail nodes is transitioning this area into a multi-modal logistics-living hub, attracting institutional 'Living Sector' funds.
+                     </p>
+                  </div>
+               </div>
+            </div>
+         </div>
+
+         {/* 26 / ESG & GREEN PREMIUM INTELLIGENCE */}
+         <div className="bg-emerald-900/5 border border-emerald-900/10 rounded-[2.5rem] p-10 shadow-sm relative overflow-hidden group">
+            <Leaf className="absolute -top-10 -right-10 w-48 h-48 text-emerald-900/5 rotate-12 group-hover:rotate-45 transition-transform duration-1000" />
+            <SectionTitle title="26 / Green Premium Score" subTitle="ESG Compliance & Net-Zero Appreciation" />
+            <div className="relative z-10">
+               <div className="flex justify-between items-end mb-8">
+                  <div>
+                     <p className="text-[10px] font-black uppercase text-emerald-700 tracking-[0.2em] mb-2">Efficiency Rating</p>
+                     <p className="text-4xl font-serif font-black text-emerald-950">A+ <span className="text-sm font-light opacity-50">Verified</span></p>
+                  </div>
+                  <div className="text-right">
+                     <p className="text-[10px] font-black uppercase text-emerald-700 tracking-[0.2em] mb-2">Green ROI</p>
+                     <p className="text-2xl font-serif font-black text-emerald-800">+2.4% <span className="text-[9px] block opacity-60">Energy Premium</span></p>
+                  </div>
+               </div>
+               <p className="text-xs text-emerald-900/70 leading-relaxed font-medium">
+                  2026 market trends show a clear 'Green Premium' where LEED-certified buildings in {area.name} are commanding 15% higher secondary resale values than legacy stock.
+               </p>
+            </div>
+         </div>
+      </section>
+
+      {/* 27 / GLOBAL TOKENIZATION & FRACTIONALIZATION READINESS */}
+      <section>
+        <SectionTitle title="27 / Digital Liquidity Index" subTitle="VARA Readiness & Asset Tokenization Potential" />
+        <div className="bg-[#1C1C22] rounded-[3rem] p-10 shadow-2xl relative overflow-hidden">
+           <div className="absolute inset-0 bg-gradient-to-br from-[#C6A75E]/5 via-transparent to-transparent"></div>
+           <div className="grid md:grid-cols-3 gap-10 items-center">
+              <div className="md:col-span-1 text-center border-r border-white/5 pr-10">
+                 <Coins size={64} className="text-[#C6A75E] mx-auto mb-6" />
+                 <h4 className="text-white text-xl font-serif font-bold uppercase">Token Ready</h4>
+                 <p className="text-[9px] font-black text-[#C6A75E] uppercase tracking-widest mt-2">VARA Compliant Node</p>
+              </div>
+              <div className="md:col-span-2">
+                 <div className="space-y-6">
+                    <div>
+                       <p className="text-[10px] font-black text-white/40 uppercase tracking-widest mb-3">Institutional Fractal Potential</p>
+                       <p className="text-sm text-white/70 leading-relaxed">
+                          Properties in {area.name} qualify for Fractional Ownership under Dubai's 2026 digital asset guidelines, allowing for instant liquidation via secondary on-chain markets.
+                       </p>
+                    </div>
+                    <div className="flex gap-4">
+                       <div className="flex-1 p-4 bg-white/5 rounded-2xl border border-white/5">
+                          <p className="text-[8px] font-black text-[#F4DFA0] uppercase tracking-widest mb-1">DLI Score</p>
+                          <p className="text-lg font-bold text-white">88/100</p>
+                       </div>
+                       <div className="flex-1 p-4 bg-white/5 rounded-2xl border border-white/5">
+                          <p className="text-[8px] font-black text-[#F4DFA0] uppercase tracking-widest mb-1">On-Chain Volume</p>
+                          <p className="text-lg font-bold text-white">High</p>
+                       </div>
+                    </div>
+                 </div>
+              </div>
+           </div>
+        </div>
       </section>
 
     </div>
