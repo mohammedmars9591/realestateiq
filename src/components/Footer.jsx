@@ -12,12 +12,13 @@ const Footer = () => {
           {/* BRAND COLUMN */}
           <div className="col-span-1 md:col-span-1">
             <Link href="/" className="flex items-center gap-3 mb-6 group">
-              <div className="gold-gradient-bg flex h-10 w-10 items-center justify-center rounded-xl shadow-lg ring-1 ring-[rgba(198,167,94,0.3)]">
-                <Building2 className="h-5 w-5 text-[#1C1C22]" strokeWidth={1.5} />
+              <div className="relative h-12 w-auto flex items-center">
+                <img 
+                  src="/logo.png" 
+                  alt="RealEstateIQ Logo" 
+                  className="h-full w-auto object-contain transition-transform duration-500 group-hover:scale-105" 
+                />
               </div>
-              <span className="text-xl font-bold tracking-tight font-heading text-[#1C1C22]">
-                RealEstate<span className="gold-gradient">IQ</span><span className="text-[#7A6E60] font-light text-sm italic">.ae</span>
-              </span>
             </Link>
             <p className="text-sm leading-relaxed text-[#7A6E60] mb-8 font-light">
               The smartest way to analyze UAE real estate markets with data-driven insights and verified institutional intelligence.

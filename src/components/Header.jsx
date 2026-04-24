@@ -77,14 +77,14 @@ const Header = () => {
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 lg:px-8">
         
         {/* LOGO */}
-        <Link to="/" className="flex items-center gap-3 group shrink-0">
-          <div className="gold-gradient-bg flex h-10 w-10 items-center justify-center rounded-xl glow-gold-hover transition-all duration-500 shadow-lg">
-            <Building2 className="h-5 w-5 text-[#1C1C22]" strokeWidth={1.5} />
+        <Link href="/" className="flex items-center gap-3 group shrink-0">
+          <div className="relative h-12 w-auto flex items-center">
+            <img 
+              src="/logo.png" 
+              alt="RealEstateIQ Logo" 
+              className="h-full w-auto object-contain transition-transform duration-500 group-hover:scale-105" 
+            />
           </div>
-          <span className="text-xl font-bold tracking-tight font-heading text-[#1C1C22] hidden sm:inline">
-            RealEstate<span className="gold-gradient">IQ</span><span className="text-[#7A6E60] font-light text-sm italic ml-0.5">.ae</span>
-          </span>
-          <span className="sm:hidden text-lg font-bold text-[#1C1C22]">RE<span className="gold-gradient">IQ</span></span>
         </Link>
         
         {/* --- GLOBAL SEARCH BAR --- */}
