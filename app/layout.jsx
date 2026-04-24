@@ -1,5 +1,4 @@
 import './globals.css';
-import '../src/index.css'; // Import the existing Vite styles
 import Header from '../src/components/Header';
 import Footer from '../src/components/Footer';
 import AIChatWidget from '../src/components/AIChatWidget';
