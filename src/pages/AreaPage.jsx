@@ -18,8 +18,10 @@ const AreaPage = () => {
   const [isGeneratingPdf, setIsGeneratingPdf] = useState(false);
   const [isPlayingAudio, setIsPlayingAudio] = useState(false);
 
-  const area = MASTER_DB.find(a => a.id === id);
-  const similarAreas = MASTER_DB.filter(a => a.id !== id && a.emirate === area?.emirate).slice(0, 3);
+  const routeId = decodeURIComponent(id || "");
+  const db = Array.isArray(MASTER_DB) ? MASTER_DB : [];
+  const area = db.find((a) => String(a.id) === routeId);
+  const similarAreas = db.filter((a) => String(a.id) !== routeId && a.emirate === area?.emirate).slice(0, 3);
 
   useEffect(() => { window.scrollTo(0, 0); }, [id]);
 
@@ -254,8 +256,11 @@ const AreaPage = () => {
             <AreaDetailSections area={area} allAreas={MASTER_DB} />
 
             {/* NEIGHBORHOOD EXPLORER */}
-            <div className="mt-24 pt-16 border-t border-[rgba(198,167,94,0.2)] no-print">
-               <h3 className="text-3xl font-serif font-bold text-[#1C1C22] mb-12">Comparative Markets ({area.emirate})</h3>
+            <div className="mt-24 pt-16 border-t border-[rgba(198,167,94,0.1)] no-print">
+               <h3 className="text-3xl font-serif font-bold text-[#3A3125] mb-12 mb-8 inline-block relative">
+                 Comparative Markets ({area.emirate})
+                 <div className="absolute -bottom-2 left-0 w-24 h-1 bg-gradient-to-r from-[#C6A75E] to-transparent rounded-full" />
+               </h3>
                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                   {similarAreas.map(neighbor => (
                      <Link to={`/area/${neighbor.id}`} key={neighbor.id} className="group relative block h-[380px] rounded-[2rem] overflow-hidden cursor-pointer shadow-lg hover:shadow-2xl transition-all duration-700 hover:-translate-y-2 border border-[rgba(198,167,94,0.15)] bg-white">
@@ -265,18 +270,18 @@ const AreaPage = () => {
                               <Crown size={12} /> {neighbor.category}
                            </div>
                         </div>
-                        <div className="absolute inset-0 bg-gradient-to-t from-white via-white/40 to-transparent"></div>
+                        <div className="absolute inset-0 bg-gradient-to-t from-white via-white/80 to-transparent"></div>
                         <div className="absolute bottom-0 left-0 w-full p-8 z-20 flex flex-col justify-end h-full">
-                           <div className="mt-auto mb-4">
-                              <h3 className="text-3xl font-serif font-bold text-[#1C1C22] leading-tight mb-2 transition-colors">{neighbor.name}</h3>
-                              <div className="h-1 w-10 bg-[#C6A75E] rounded-full"></div>
+                           <div className="mt-auto mb-6">
+                              <h3 className="text-3xl font-serif font-bold text-[#3A3125] leading-tight mb-2 transition-colors">{neighbor.name}</h3>
+                              <div className="h-1.5 w-12 bg-[#C6A75E] rounded-full shadow-[0_0_10px_rgba(198,167,94,0.3)]"></div>
                            </div>
-                           <div className="bg-white/60 backdrop-blur-md border border-[rgba(198,167,94,0.2)] rounded-2xl p-4 flex justify-between items-center group-hover:bg-white transition-all">
+                           <div className="bg-white/60 backdrop-blur-md border border-white/60 rounded-2xl p-5 flex justify-between items-center group-hover:bg-white transition-all shadow-sm">
                               <div>
-                                 <p className="text-[10px] font-bold text-[#7A6E60] uppercase mb-0.5">Average ROI</p>
-                                 <p className="text-[#C6A75E] font-black text-lg flex items-center gap-1.5"><TrendingUp size={16} /> {neighbor.roi}</p>
+                                 <p className="text-[10px] font-black text-[#5A4F40]/40 uppercase tracking-widest mb-1">Average ROI</p>
+                                 <p className="text-[#C6A75E] font-black text-xl flex items-center gap-2"><TrendingUp size={18} /> {neighbor.roi}</p>
                               </div>
-                              <div className="h-10 w-10 rounded-full bg-[#1C1C22] text-white flex items-center justify-center transform transition-transform group-hover:rotate-45">
+                              <div className="h-11 w-11 rounded-full bg-[#3A3125] text-white flex items-center justify-center transform transition-transform group-hover:rotate-45 shadow-lg group-hover:bg-[#C6A75E]">
                                  <ArrowLeft size={20} className="rotate-180" />
                               </div>
                            </div>

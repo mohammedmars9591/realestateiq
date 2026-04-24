@@ -12,18 +12,18 @@ export function CTASection() {
  
           <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div className="text-left">
-              <h2 className="display-medium text-[#1C1C22] mb-6">
-                Ready to Make <span className="gold-gradient">Data-Driven</span> Property Decisions?
+              <h2 className="text-4xl md:text-7xl font-serif font-bold text-[#3A3125] leading-tight mb-8 tracking-tight">
+                Secure Your <span className="gold-gradient">Alpha District</span> Position
               </h2>
-              <p className="mt-4 max-w-xl text-lg text-[#7A6E60] leading-relaxed font-light">
-                Join thousands of investors, agents, and developers who use RealEstateIQ to gain a competitive edge in the UAE property market.
+              <p className="mt-4 max-w-xl text-lg text-[#5A4F40] leading-relaxed font-light">
+                Join institutional and global HNWIs who use RealEstateIQ to gain a structural competitive edge in the complex UAE property market.
               </p>
-              <div className="mt-10 flex flex-col sm:flex-row gap-4 sm:gap-6">
-                <Link to="/areas" className="btn-primary group inline-flex items-center gap-3 text-sm flex-1 sm:flex-none justify-center">
-                  Start Exploring <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+              <div className="mt-12 flex flex-col sm:flex-row gap-4 sm:gap-6">
+                <Link to="/areas" className="bg-[#3A3125] text-[#C6A75E] hover:bg-[#2A231A] px-10 py-4 rounded-full text-[10px] font-black uppercase tracking-[0.2em] shadow-xl transition-all inline-flex items-center gap-3">
+                  Start Analysis <ArrowRight className="h-4 w-4" />
                 </Link>
-                <Link to="/compare" className="btn-secondary inline-flex items-center gap-3 text-sm flex-1 sm:flex-none justify-center">
-                  Compare Markets
+                <Link to="/compare" className="bg-white/40 backdrop-blur-md border border-white/60 text-[#3A3125] hover:bg-white px-10 py-4 rounded-full text-[10px] font-black uppercase tracking-[0.2em] shadow-sm transition-all inline-flex items-center gap-3">
+                  Market Battleground
                 </Link>
               </div>
             </div>

@@ -97,34 +97,34 @@ const AreaComparison = () => {
       />
 
       {/* ─── HERO ─── */}
-      <section className="relative overflow-hidden bg-[#1C1C22] text-white py-20 md:py-28">
+      <section className="relative overflow-hidden bg-gradient-to-b from-[#F3E9D2] via-[#FDFBF7] to-[#FDFBF7] py-20 md:py-28">
         <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#C6A75E]/8 rounded-full blur-[120px] pointer-events-none" />
         <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-[#C6A75E]/5 rounded-full blur-[100px] pointer-events-none" />
         <div className="absolute inset-0 opacity-[0.04] bg-[radial-gradient(circle_at_2px_2px,_#C6A75E_1px,_transparent_0)] bg-[length:32px_32px]" />
 
         <div className="relative mx-auto max-w-7xl px-4 lg:px-8 text-center z-10">
-          <div className="inline-flex items-center gap-2 rounded-full border border-[rgba(198,167,94,0.4)] bg-[rgba(198,167,94,0.08)] px-4 py-1.5 mb-5 text-xs font-semibold uppercase tracking-[0.2em] text-[#C6A75E]">
-            <Swords size={12} /> AI Investment Battleground
+          <div className="inline-flex items-center gap-2 rounded-full border border-[rgba(198,167,94,0.3)] bg-white/40 backdrop-blur-md px-4 py-1.5 mb-5 text-[10px] font-bold uppercase tracking-[0.2em] text-[#3A3125]">
+            <Swords size={12} className="text-[#C6A75E]" /> AI Investment Battleground
           </div>
-          <h1 className="text-4xl md:text-6xl font-bold leading-tight tracking-tight mb-4">
+          <h1 className="text-5xl md:text-7xl font-serif text-[#3A3125] leading-tight mb-4 tracking-tight">
             The Investment<br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#C6A75E] to-[#E6B76A]">Battleground</span>
+            <span className="gold-gradient">Battleground</span>
           </h1>
-          <p className="text-white/60 font-light text-lg max-w-xl mx-auto mb-10">
-            Select your goal. Pick two contenders. Our AI engine will tell you which wins for your strategy.
+          <p className="text-[#5A4F40] font-light text-lg max-w-xl mx-auto mb-10">
+            Select your goal. Pick two contenders. Our AI engine will identify the alpha opportunity for your specific portfolio strategy.
           </p>
 
           {/* Mode Toggle */}
-          <div className="inline-flex bg-white/10 backdrop-blur-sm p-1.5 rounded-2xl border border-white/10">
+          <div className="inline-flex bg-white/40 backdrop-blur-md p-1.5 rounded-2xl border border-white/60 shadow-sm">
             <button
               onClick={() => setMode('areas')}
-              className={`flex items-center gap-2 px-6 py-2.5 rounded-xl text-sm font-bold transition-all ${mode === 'areas' ? 'bg-[#C6A75E] text-[#1C1C22] shadow-md' : 'text-white/70 hover:text-white'}`}
+              className={`flex items-center gap-2 px-6 py-2.5 rounded-xl text-[10px] font-bold uppercase tracking-widest transition-all ${mode === 'areas' ? 'bg-[#C6A75E] text-white shadow-md' : 'text-[#3A3125]/60 hover:text-[#3A3125]'}`}
             >
               <MapPin size={16} /> Compare Areas
             </button>
             <button
               onClick={() => setMode('builders')}
-              className={`flex items-center gap-2 px-6 py-2.5 rounded-xl text-sm font-bold transition-all ${mode === 'builders' ? 'bg-[#C6A75E] text-[#1C1C22] shadow-md' : 'text-white/70 hover:text-white'}`}
+              className={`flex items-center gap-2 px-6 py-2.5 rounded-xl text-[10px] font-bold uppercase tracking-widest transition-all ${mode === 'builders' ? 'bg-[#C6A75E] text-white shadow-md' : 'text-[#3A3125]/60 hover:text-[#3A3125]'}`}
             >
               <Building2 size={16} /> Compare Developers
             </button>
@@ -135,21 +135,21 @@ const AreaComparison = () => {
       <div className="mx-auto max-w-7xl px-4 lg:px-8 pb-24">
 
         {/* ─── GOAL SELECTOR ─── */}
-        <div className="bg-white border border-[rgba(198,167,94,0.2)] rounded-3xl p-6 -mt-8 mb-10 shadow-xl relative z-10">
+        <div className="bg-white/40 backdrop-blur-xl border border-white/60 rounded-3xl p-6 -mt-8 mb-10 shadow-xl relative z-10">
           <div className="flex flex-col md:flex-row items-center gap-4">
-            <div className="flex items-center gap-2 text-[#1C1C22] font-bold text-sm shrink-0">
+            <div className="flex items-center gap-2 text-[#3A3125] font-bold text-[10px] uppercase tracking-widest shrink-0">
               <Target size={16} className="text-[#C6A75E]" />
-              My Investment Goal:
+              Investment Goal:
             </div>
             <div className="grid grid-cols-3 gap-3 flex-grow w-full">
               {GOALS.map((goalObj) => (
                 <button
                   key={goalObj.id}
                   onClick={() => setGoal(goalObj.id)}
-                  className={`flex items-center justify-center gap-2 py-3 rounded-xl text-xs md:text-sm font-bold transition-all border ${
+                  className={`flex items-center justify-center gap-2 py-3 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all border ${
                     goal === goalObj.id
-                      ? 'bg-[#1C1C22] text-[#C6A75E] border-[#C6A75E]'
-                      : 'bg-[#F8F5EF] text-[#7A6E60] border-transparent hover:border-[rgba(198,167,94,0.4)]'
+                      ? 'bg-[#3A3125] text-[#C6A75E] border-[#3A3125]'
+                      : 'bg-white/40 text-[#5A4F40]/60 border-transparent hover:border-[rgba(198,167,94,0.2)]'
                   }`}
                 >
                   <goalObj.icon size={14} /> {goalObj.label}
@@ -160,21 +160,21 @@ const AreaComparison = () => {
         </div>
 
         {/* ─── SELECTOR ─── */}
-        <div className="bg-white border border-[rgba(198,167,94,0.2)] rounded-3xl p-8 mb-10 shadow-sm">
+        <div className="bg-white/40 backdrop-blur-md border border-white/60 rounded-3xl p-8 mb-10 shadow-sm transition-all hover:shadow-md">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center relative">
-            <div className="hidden md:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-14 h-14 bg-[#1C1C22] text-[#C6A75E] rounded-full items-center justify-center border-4 border-[#F8F5EF] shadow-xl z-20">
-              <Swords size={20} />
+            <div className="hidden md:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-14 h-14 bg-[#3A3125] text-[#C6A75E] rounded-2xl items-center justify-center border-4 border-[#FDFBF7] shadow-xl z-20 rotate-45">
+               <div className="-rotate-45 flex items-center justify-center"><Swords size={20} /></div>
             </div>
             {[
-              { label: 'Contender 1', id: mode === 'areas' ? area1Id : builder1Id, onChange: (v) => mode === 'areas' ? setArea1Id(v) : setBuilder1Id(v), color: 'text-[#C6A75E]' },
-              { label: 'Contender 2', id: mode === 'areas' ? area2Id : builder2Id, onChange: (v) => mode === 'areas' ? setArea2Id(v) : setBuilder2Id(v), color: 'text-purple-600' },
+              { label: 'Primary Contender', id: mode === 'areas' ? area1Id : builder1Id, onChange: (v) => mode === 'areas' ? setArea1Id(v) : setBuilder1Id(v), color: 'text-[#C6A75E]' },
+              { label: 'Secondary Contender', id: mode === 'areas' ? area2Id : builder2Id, onChange: (v) => mode === 'areas' ? setArea2Id(v) : setBuilder2Id(v), color: 'text-[#3A3125]/40' },
             ].map(({ label, id, onChange, color }, i) => (
               <div key={i}>
-                <label className={`block text-[10px] font-bold uppercase tracking-widest mb-2 ${color}`}>{label}</label>
+                <label className={`block text-[10px] font-black uppercase tracking-[0.2em] mb-3 ${color}`}>{label}</label>
                 <select
                   value={id}
                   onChange={e => onChange(e.target.value)}
-                  className="w-full p-4 bg-[#F8F5EF] border border-[rgba(198,167,94,0.25)] rounded-xl font-bold text-[#1C1C22] focus:ring-2 focus:ring-[#C6A75E]/40 outline-none"
+                  className="w-full p-4 bg-white/60 backdrop-blur-sm border border-[rgba(198,167,94,0.15)] rounded-2xl font-bold font-serif text-[#3A3125] focus:ring-2 focus:ring-[#C6A75E]/20 outline-none transition-all"
                 >
                   {(mode === 'areas' ? DUBAI_AREAS : BUILDERS).map(i => (
                     <option key={i.id} value={i.id}>{i.name}</option>
@@ -191,11 +191,11 @@ const AreaComparison = () => {
           <div className="lg:col-span-2 space-y-6">
 
             {/* Stats battle table */}
-            <div className="bg-white border border-[rgba(198,167,94,0.18)] rounded-3xl overflow-hidden shadow-sm">
-              <div className="grid grid-cols-3 bg-[#1C1C22] text-white text-[10px] font-bold uppercase tracking-widest py-4 text-center">
-                <div className="text-white/40 pl-6 text-left">Metric</div>
+            <div className="bg-white/40 backdrop-blur-md border border-white/60 rounded-3xl overflow-hidden shadow-sm">
+              <div className="grid grid-cols-3 bg-[#3A3125] text-white text-[9px] font-bold uppercase tracking-[0.2em] py-5 text-center">
+                <div className="text-white/30 pl-8 text-left">Intelligence Metric</div>
                 <div className="text-[#C6A75E]">{item1.name}</div>
-                <div className="text-purple-400">{item2.name}</div>
+                <div className="text-white/60">{item2.name}</div>
               </div>
               {mode === 'areas' ? (
                 <>
@@ -241,42 +241,44 @@ const AreaComparison = () => {
             )}
 
             {/* FutureScope */}
-            <div className="relative bg-[#1C1C22] text-white rounded-3xl p-8 overflow-hidden shadow-2xl">
+            <div className="relative bg-[#3A3125] text-white rounded-[2rem] p-10 overflow-hidden shadow-2xl">
               <div className="absolute top-0 right-0 w-64 h-64 bg-[#C6A75E]/10 rounded-full blur-[80px] pointer-events-none" />
-              <div className="absolute bottom-0 left-0 w-48 h-48 bg-purple-600/10 rounded-full blur-[80px] pointer-events-none" />
+              <div className="absolute bottom-0 left-0 w-48 h-48 bg-[#C6A75E]/5 rounded-full blur-[80px] pointer-events-none" />
               <div className="relative z-10">
-                <div className="flex items-center gap-2 text-[#C6A75E] font-bold uppercase tracking-widest text-xs mb-6">
-                  <Zap size={14} /> FutureScope™ Forecast (5-Year)
+                <div className="flex items-center gap-3 text-[#C6A75E] font-bold uppercase tracking-[0.2em] text-[10px] mb-8">
+                  <Zap size={16} /> FutureScope™ Forecast (5-Year Alpha)
                 </div>
 
                 {[
-                  { item: item1, sim: sim1, color: 'bg-[#C6A75E]', labelColor: 'text-[#C6A75E]' },
-                  { item: item2, sim: sim2, color: 'bg-purple-500', labelColor: 'text-purple-300' },
+                  { item: item1, sim: sim1, color: 'from-[#C6A75E] to-[#E2C98E]', labelColor: 'text-[#C6A75E]' },
+                  { item: item2, sim: sim2, color: 'from-white/40 to-white/20', labelColor: 'text-white/60' },
                 ].map(({ item, sim, color, labelColor }, i) => (
-                  <div key={i} className="mb-6">
-                    <div className="flex justify-between text-sm mb-2">
-                      <span className={`font-bold ${labelColor}`}>{item.name}</span>
-                      <span className="font-bold">+{sim.rate}%</span>
+                  <div key={i} className="mb-8">
+                    <div className="flex justify-between text-xs font-bold uppercase tracking-widest mb-3">
+                      <span className={`${labelColor}`}>{item.name}</span>
+                      <span className="text-white font-serif font-black text-lg">+{sim.rate}%</span>
                     </div>
-                    <div className="w-full bg-white/10 h-3 rounded-full overflow-hidden">
-                      <div className={`${color} h-full rounded-full transition-all duration-1000`} style={{ width: `${Math.min(Number(sim.rate) * 1.5, 100)}%` }} />
+                    <div className="w-full bg-white/5 h-3 rounded-full overflow-hidden p-[1px]">
+                      <div className={`bg-gradient-to-r ${color} h-full rounded-full transition-all duration-1000 shadow-[0_0_15px_rgba(198,167,94,0.3)]`} style={{ width: `${Math.min(Number(sim.rate) * 1.5, 100)}%` }} />
                     </div>
-                    <div className="text-xs text-white/40 mt-1.5">Proj. Profit on 1M AED investment: <span className="text-white/70">{sim.profit} AED</span></div>
+                    <div className="text-[10px] font-bold uppercase tracking-widest text-white/20 mt-3 italic">Est. Capital Delta (1M AED Principal): <span className="text-white/50">{sim.profit} AED</span></div>
                   </div>
                 ))}
 
                 {/* Winner Banner */}
-                <div className="mt-8 pt-6 border-t border-white/10 flex items-start gap-4">
-                  <Trophy size={32} className="text-[#C6A75E] shrink-0" />
+                <div className="mt-10 pt-10 border-t border-white/5 flex items-start gap-6">
+                  <div className="p-4 rounded-2xl bg-[#C6A75E]/10 border border-[#C6A75E]/20">
+                     <Trophy size={32} className="text-[#C6A75E]" />
+                  </div>
                   <div>
-                    <div className="text-[10px] font-bold uppercase tracking-widest text-white/40 mb-1">
-                      {goal === 'yield' ? 'Best for Cash Flow' : goal === 'growth' ? 'Best for Capital Growth' : 'Best for Safety'}
+                    <div className="text-[10px] font-bold uppercase tracking-[0.2em] text-white/30 mb-2">
+                       AI RECOMMENDATION: {goal === 'yield' ? 'INCOME MAXIMIZER' : goal === 'growth' ? 'APPRECIATION ALPHA' : 'INSTITUTIONAL SAFETY'}
                     </div>
-                    <h4 className="font-bold text-xl text-[#C6A75E] mb-1">{winner.name}</h4>
-                    <p className="text-sm text-white/50 font-light leading-relaxed">
-                      {goal === 'yield' ? 'Optimized for maximum rental income and periodic cash flow.'
-                        : goal === 'growth' ? 'Projected superior capital appreciation over the next 5 years.'
-                        : 'Selected for institutional backing, transparency, and long-term stability.'}
+                    <h4 className="font-serif font-bold text-2xl text-[#C6A75E] mb-2">{winner.name}</h4>
+                    <p className="text-sm text-white/40 font-medium leading-relaxed max-w-lg">
+                      {goal === 'yield' ? 'Selected for structural rental yield premiums and superior secondary market velocity.'
+                        : goal === 'growth' ? 'Identified as the high-alpha contender with a multi-year masterplan tailwind.'
+                        : 'Institutional-grade safety profile with sovereign-backed stability and delivery confidence.'}
                     </p>
                   </div>
                 </div>
@@ -287,22 +289,22 @@ const AreaComparison = () => {
           {/* ─── RIGHT: PROFILES ─── */}
           <div className="space-y-5">
             {[
-              { item: item1, color: 'border-[#C6A75E]/30 bg-gradient-to-br from-[#FDFBF7] to-[#F8F5EF]', badge: 'text-[#C6A75E] bg-[rgba(198,167,94,0.1)]' },
-              { item: item2, color: 'border-purple-200 bg-gradient-to-br from-purple-50 to-white', badge: 'text-purple-700 bg-purple-50' },
-            ].map(({ item, color, badge }) => (
-              <div key={item.id} className={`p-6 rounded-3xl border ${color} shadow-sm`}>
-                <div className={`inline-block px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest mb-3 ${badge}`}>
+              { item: item1, color: 'border-[#C6A75E]/20 bg-white/40 shadow-sm', badge: 'text-[#C6A75E] bg-[#C6A75E]/10', nameColor: 'text-[#3A3125]' },
+              { item: item2, color: 'border-[rgba(198,167,94,0.1)] bg-white/20', badge: 'text-[#3A3125]/40 bg-[#3A3125]/5', nameColor: 'text-[#3A3125]/80' },
+            ].map(({ item, color, badge, nameColor }) => (
+              <div key={item.id} className={`p-8 rounded-[2rem] border backdrop-blur-md ${color} transition-all hover:bg-white/60`}>
+                <div className={`inline-block px-3 py-1 rounded-full text-[9px] font-black uppercase tracking-[0.2em] mb-4 ${badge}`}>
                   {mode === 'areas' ? item.category : item.tier}
                 </div>
-                <h3 className="text-lg font-extrabold text-[#1C1C22] mb-3 tracking-tight">{item.name}</h3>
+                <h3 className={`text-xl font-serif font-bold mb-4 tracking-tight ${nameColor}`}>{item.name}</h3>
                 {mode === 'areas' && item.amenities && (
-                  <div className="flex flex-wrap gap-1.5 mb-3">
+                  <div className="flex flex-wrap gap-2 mb-4">
                     {item.amenities.slice(0, 3).map(am => (
-                      <span key={am} className="text-[10px] bg-white px-2 py-1 rounded-lg border border-[rgba(198,167,94,0.2)] text-[#7A6E60]">{am}</span>
+                      <span key={am} className="text-[9px] font-bold uppercase tracking-widest bg-white/40 px-2.5 py-1 rounded-lg border border-[rgba(198,167,94,0.1)] text-[#5A4F40] transition-colors hover:bg-white">{am}</span>
                     ))}
                   </div>
                 )}
-                <p className="text-xs text-[#7A6E60] leading-relaxed line-clamp-3 mb-5 font-light">
+                <p className="text-xs text-[#5A4F40] leading-relaxed line-clamp-3 mb-6 font-medium">
                   {mode === 'areas' ? item.description : item.usp}
                 </p>
                 <WhatsAppButton data={item} type={mode === 'areas' ? 'area' : 'builder'} />
@@ -310,29 +312,30 @@ const AreaComparison = () => {
             ))}
 
             {/* AI Verdict */}
-            <div className="bg-[#1C1C22] text-white p-6 rounded-3xl shadow-sm">
-              <h3 className="font-bold flex items-center gap-2 mb-5 text-[#C6A75E]">
-                <Scale size={18} /> AI Recommendation
+            <div className="bg-[#3A3125] text-white p-8 rounded-[2rem] shadow-xl relative overflow-hidden">
+               <div className="absolute top-0 right-0 w-32 h-32 bg-[#C6A75E]/5 rounded-full blur-2xl"></div>
+              <h3 className="font-serif font-bold flex items-center gap-3 mb-6 text-[#C6A75E] text-sm uppercase tracking-widest">
+                <Scale size={18} /> Signal Summary
               </h3>
-              <div className="space-y-3">
+              <div className="space-y-4">
                 <VerdictRow
-                  label="Safety First"
+                  label="Risk Management"
                   winner={mode === 'areas'
                     ? (item1.overallScore > item2.overallScore ? item1.name : item2.name)
                     : (i1Scores.trust > i2Scores.trust ? item1.name : item2.name)}
                   color="text-emerald-400"
                 />
-                <VerdictRow label="Max Growth" winner={winner.name} color="text-[#C6A75E]" />
+                <VerdictRow label="Market Alpha" winner={winner.name} color="text-[#C6A75E]" />
                 {mode === 'areas' && (
                   <VerdictRow
-                    label="Best Cash Flow"
+                    label="Yield Strength"
                     winner={parseFloat(item1.roi) > parseFloat(item2.roi) ? item1.name : item2.name}
-                    color="text-purple-400"
+                    color="text-[#C6A75E]/60"
                   />
                 )}
                 {mode === 'builders' && (
                   <VerdictRow
-                    label="Best ESG Score"
+                    label="Sustainability"
                     winner={(item1.esgRating || 0) > (item2.esgRating || 0) ? item1.name : item2.name}
                     color="text-cyan-400"
                   />
@@ -355,15 +358,15 @@ const StatRow = ({ label, val1, val2, highlight, isScore, inverse, suffix = '' }
   const isTie = v1 === v2;
 
   return (
-    <div className={`grid grid-cols-3 py-3.5 border-b border-[rgba(198,167,94,0.1)] text-sm text-center items-center transition hover:bg-[#FDFBF7] ${highlight ? 'bg-[rgba(198,167,94,0.04)]' : ''}`}>
-      <div className="font-medium text-[#7A6E60] text-left pl-6 text-xs">{label}</div>
-      <div className={`font-bold flex items-center justify-center gap-1 text-sm ${isScore && win1 ? 'text-[#C6A75E]' : 'text-[#1C1C22]'}`}>
+    <div className={`grid grid-cols-3 py-4 border-b border-[rgba(198,167,94,0.08)] text-sm text-center items-center transition-all hover:bg-white/40 ${highlight ? 'bg-[#C6A75E]/5' : ''}`}>
+      <div className="font-bold text-[#5A4F40]/60 text-left pl-8 text-[10px] uppercase tracking-widest">{label}</div>
+      <div className={`font-serif font-bold flex items-center justify-center gap-2 text-sm ${isScore && win1 ? 'text-[#C6A75E]' : 'text-[#3A3125]'}`}>
         {val1 || 'N/A'}{val1 && suffix}
         {isScore && win1 && !isTie && <Trophy size={11} className="text-[#C6A75E]" />}
       </div>
-      <div className={`font-bold flex items-center justify-center gap-1 text-sm ${isScore && !win1 && !isTie ? 'text-purple-600' : 'text-[#1C1C22]'}`}>
+      <div className={`font-serif font-bold flex items-center justify-center gap-2 text-sm ${isScore && !win1 && !isTie ? 'text-[#C6A75E]/60' : 'text-[#3A3125]'}`}>
         {val2 || 'N/A'}{val2 && suffix}
-        {isScore && !win1 && !isTie && <Trophy size={11} className="text-purple-500" />}
+        {isScore && !win1 && !isTie && <Trophy size={11} className="text-[#C6A75E]/60" />}
       </div>
     </div>
   );
@@ -377,9 +380,9 @@ const ConnItem = ({ icon, label, val }) => (
 );
 
 const VerdictRow = ({ label, winner, color }) => (
-  <div className="flex justify-between items-center py-2.5 px-3 rounded-xl bg-white/5 border border-white/10">
-    <span className="text-[10px] font-bold text-white/40 uppercase tracking-widest">{label}</span>
-    <span className={`font-bold text-sm ${color}`}>{winner}</span>
+  <div className="flex justify-between items-center py-3.5 px-4 rounded-2xl bg-white/5 border border-white/5 transition-colors hover:bg-white/10">
+    <span className="text-[9px] font-bold text-white/30 uppercase tracking-[0.2em]">{label}</span>
+    <span className={`font-serif font-bold text-sm ${color}`}>{winner}</span>
   </div>
 );
 

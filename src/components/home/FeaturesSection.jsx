@@ -17,21 +17,21 @@ export function FeaturesSection() {
     <section className="section-ivory py-16 md:py-32 relative">
       <div className="mx-auto max-w-7xl px-4 lg:px-8">
         <div className="mx-auto max-w-3xl text-center mb-12 md:mb-20">
-          <h2 className="display-medium text-[#1C1C22] mb-6">
-            Everything You Need for <span className="gold-gradient">UAE Property Intelligence</span>
+          <h2 className="text-4xl md:text-6xl font-serif font-bold text-[#3A3125] leading-tight mb-6 tracking-tight">
+            Institutional <span className="gold-gradient">Alpha Tools</span>
           </h2>
-          <p className="mt-4 text-lg text-[#7A6E60] leading-relaxed font-light">
-            Our platform combines institutional-grade data with intuitive tools to give you a competitive edge.
+          <p className="mt-4 text-lg text-[#5A4F40] leading-relaxed font-light">
+            Our platform combines cross-emirate sovereign data with AI-forecasting to give you a structural competitive edge.
           </p>
         </div>
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {features.map((feature, idx) => (
-            <div key={idx} className="glass-card-hover group p-8 flex flex-col items-start">
-              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-[rgba(198,167,94,0.12)] border border-[rgba(198,167,94,0.25)] transition-all duration-500 group-hover:bg-[rgba(198,167,94,0.22)] group-hover:scale-110 mb-6">
-                <feature.icon className="h-6 w-6 text-[#C6A75E]" strokeWidth={1.5} />
+            <div key={idx} className="group p-8 flex flex-col items-start bg-white/40 backdrop-blur-md border border-white/60 rounded-[2rem] transition-all duration-300 hover:bg-white/80 hover:shadow-2xl hover:-translate-y-2">
+              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-[#3A3125]/5 border border-[#3A3125]/10 transition-all duration-500 group-hover:bg-[#C6A75E] group-hover:text-white mb-6">
+                <feature.icon className="h-6 w-6 text-[#C6A75E] transition-colors group-hover:text-white" strokeWidth={1.5} />
               </div>
-              <h3 className="text-lg font-bold text-[#1C1C22] mb-3 tracking-tight">{feature.title}</h3>
-              <p className="text-sm leading-relaxed text-[#7A6E60] font-light">{feature.description}</p>
+              <h3 className="text-lg font-serif font-bold text-[#3A3125] mb-3 tracking-tight">{feature.title}</h3>
+              <p className="text-xs leading-relaxed text-[#5A4F40] font-medium opacity-80">{feature.description}</p>
             </div>
           ))}
         </div>

@@ -80,7 +80,7 @@ const HOME_BREADCRUMB = {
 const HomePage = () => {
 
   return (
-    <div className="fade-in bg-[#F8F5EF] font-sans text-[#1C1C22]">
+    <div className="fade-in bg-gradient-to-b from-[#F3E9D2] via-[#FDFBF7] to-[#FDFBF7] font-sans text-[#3A3125]">
       <SEO 
         title="Free AI Dubai Real Estate Investment Tool 2026" 
         description="Stop guessing. Access 100% free verified rental yields, ROI forecasts, and compare top Dubai builders. The ultimate platform for Indian, European, and Global investors in UAE. Zero property tax, golden visa eligible zones."
@@ -95,15 +95,15 @@ const HomePage = () => {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(HOME_BREADCRUMB) }} />
 
       {/* --- 1. LIVE MARKET TICKER --- */}
-      <div className="bg-[#1C1C22] text-[#F8F5EF]/60 text-[10px] md:text-xs py-2 overflow-hidden border-b border-[rgba(198,167,94,0.3)]">
+      <div className="bg-[#3A3125] text-white/40 text-[10px] md:text-xs py-2.5 overflow-hidden border-b border-[rgba(198,167,94,0.1)]">
         <div className="max-w-7xl mx-auto px-4 flex justify-between items-center">
-          <div className="flex items-center gap-4 animate-pulse">
-            <span className="flex items-center gap-1 text-[#C6A75E] font-bold"><div className="w-1.5 h-1.5 rounded-full bg-[#E6B76A]"></div> Market Active</span>
-            <span className="hidden md:inline">Dubai Transactions (24h): <span className="text-white">AED 1.2B</span></span>
-            <span className="hidden md:inline">Top Gainer: <span className="text-[#C6A75E]">Palm Jebel Ali (+4.2%)</span></span>
+          <div className="flex items-center gap-6">
+            <span className="flex items-center gap-2 text-[#C6A75E] font-black uppercase tracking-widest"><div className="w-1.5 h-1.5 rounded-full bg-[#C6A75E] animate-pulse"></div> Market Active</span>
+            <span className="hidden md:inline uppercase tracking-widest font-bold opacity-80">Dubai Transactions (24h): <span className="text-white text-xs">AED 1.2B</span></span>
+            <span className="hidden md:inline uppercase tracking-widest font-bold opacity-80">Top Gainer: <span className="text-[#C6A75E] text-xs">Palm Jebel Ali (+4.2%)</span></span>
           </div>
-          <div className="flex gap-4">
-             <span>Data updated: <span className="text-white">Live</span></span>
+          <div className="flex gap-4 uppercase tracking-widest font-black text-[9px]">
+             <span className="opacity-40 text-white">Data updated: <span className="text-[#C5A367]">Live</span></span>
           </div>
         </div>
       </div>

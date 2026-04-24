@@ -16,12 +16,12 @@ export function HeroSection() {
           
           {/* Left - Content */}
           <div className="flex flex-col gap-8">
-            <div className="inline-flex items-center gap-2 self-start rounded-full border border-[rgba(198,167,94,0.4)] bg-[rgba(198,167,94,0.08)] px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.2em] text-[#C6A75E]">
+            <div className="inline-flex items-center gap-2 self-start rounded-full border border-[rgba(198,167,94,0.3)] bg-white/40 backdrop-blur-md px-4 py-1.5 text-[10px] font-black uppercase tracking-[0.2em] text-[#3A3125]">
               <span className="h-1.5 w-1.5 rounded-full bg-[#C6A75E] animate-pulse" />
-              UAE Property Market Intelligence
+              Sovereign Market Intelligence
             </div>
 
-            <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-bold leading-[1.1] tracking-tight text-[#1C1C22]">
+            <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-serif font-bold leading-[1.1] tracking-tight text-[#3A3125]">
               <span>Make Smarter <span className="sm:hidden"><br /></span>Real</span>
               <br className="hidden sm:block" />
               <span>Estate Decisions</span>
@@ -29,7 +29,7 @@ export function HeroSection() {
               <span>in the <span className="gold-gradient">UAE</span></span>
             </h1>
 
-            <p className="text-lg md:text-xl leading-relaxed text-[#7A6E60] font-light max-w-lg">
+            <p className="text-lg md:text-xl leading-relaxed text-[#5A4F40] font-light max-w-lg">
               Access institutional-grade market intelligence for every area, builder, and property type across all seven emirates.
             </p>
 
@@ -43,29 +43,29 @@ export function HeroSection() {
               </Link>
             </div>
 
-            <p className="text-xs font-semibold uppercase tracking-widest text-[#7A6E60]/60">
-              Trusted by 2,000+ investors across the UAE
+            <p className="text-[10px] font-black uppercase tracking-[0.2em] text-[#5A4F40]/30">
+              Trusted by 2,000+ institutional and global investors
             </p>
           </div>
 
           {/* Right - Glass Cards */}
           <div className="flex flex-col gap-5">
             {[
-              { icon: BarChart3, title: "Market Analytics", desc: "Real-time trends & ROI data.", stat: "7.2%", label: "Avg Yield" },
-              { icon: Map, title: "Area Intelligence", desc: "Deep insights for 7 Emirates.", stat: "500+", label: "Areas" },
-              { icon: TrendingUp, title: "Investment Scores", desc: "AI-powered scorecards.", stat: "92/100", label: "Airbnb Score" },
+              { icon: BarChart3, title: "Market Alpha", desc: "Real-time trends & ROI data.", stat: "7.2%", label: "Alpha Yield" },
+              { icon: Map, title: "Area Intelligence", desc: "Deep insights for 7 Emirates.", stat: "500+", label: "Analytic Nodes" },
+              { icon: TrendingUp, title: "Investment Scores", desc: "AI-powered scorecards.", stat: "92/100", label: "Alpha Score" },
             ].map((item, idx) => (
-              <div key={idx} className="glass-card-hover group flex items-center gap-4 md:gap-5 p-5 md:p-6 transition-all">
-                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-[rgba(198,167,94,0.12)] border border-[rgba(198,167,94,0.25)] transition-all duration-500 group-hover:bg-[rgba(198,167,94,0.2)]">
-                  <item.icon className="h-6 w-6 text-[#C6A75E]" strokeWidth={1.5} />
+              <div key={idx} className="group flex items-center gap-4 md:gap-6 p-6 md:p-8 bg-white/40 backdrop-blur-md border border-white/60 rounded-[2rem] transition-all duration-300 hover:bg-white/80 hover:shadow-2xl hover:-translate-y-1">
+                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-[#3A3125]/5 border border-[#3A3125]/10 transition-all duration-500 group-hover:bg-[#C6A75E] group-hover:text-white">
+                  <item.icon className="h-6 w-6 text-[#C6A75E] transition-colors group-hover:text-white" strokeWidth={1.5} />
                 </div>
                 <div className="flex-1 min-w-0">
-                  <h3 className="text-base font-bold text-[#1C1C22] tracking-tight">{item.title}</h3>
-                  <p className="text-sm text-[#7A6E60] font-light leading-snug">{item.desc}</p>
+                  <h3 className="text-base font-serif font-bold text-[#3A3125] tracking-tight">{item.title}</h3>
+                  <p className="text-xs text-[#5A4F40] font-medium leading-snug">{item.desc}</p>
                 </div>
                 <div className="text-right shrink-0">
-                  <p className="text-xl font-bold gold-gradient tracking-tighter">{item.stat}</p>
-                  <p className="text-[10px] uppercase tracking-widest text-[#7A6E60]/60">{item.label}</p>
+                  <p className="text-2xl font-serif font-bold text-[#3A3125] tracking-tighter transition-colors group-hover:text-[#C6A75E]">{item.stat}</p>
+                  <p className="text-[9px] font-black uppercase tracking-widest text-[#5A4F40]/40">{item.label}</p>
                 </div>
               </div>
             ))}

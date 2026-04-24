@@ -14,10 +14,10 @@ export function StatsSection() {
         <div className="grid grid-cols-2 gap-y-10 gap-x-6 md:gap-12 md:grid-cols-4">
           {stats.map((stat, idx) => (
             <div key={idx} className="text-center group">
-              <p className="text-4xl md:text-5xl font-bold gold-gradient tracking-tighter transition-transform duration-500 group-hover:scale-110">
+              <p className="text-5xl md:text-6xl font-serif font-bold text-[#3A3125] group-hover:text-[#C6A75E] tracking-tighter transition-all duration-700">
                 {stat.value}
               </p>
-              <p className="mt-2 text-xs font-semibold uppercase tracking-[0.2em] text-[#7A6E60]">{stat.label}</p>
+              <p className="mt-3 text-[10px] font-black uppercase tracking-[0.2em] text-[#5A4F40]/40 group-hover:text-[#5A4F40] transition-colors">{stat.label}</p>
             </div>
           ))}
         </div>
