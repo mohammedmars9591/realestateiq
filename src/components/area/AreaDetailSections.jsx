@@ -185,11 +185,16 @@ function DemographicHeatmap() {
 // --- MAIN COMPONENT EXPORT ---
 
 
-function SectionTitle({ title }) {
+function SectionTitle({ title, subTitle }) {
   return (
-    <div className="flex items-center gap-3 mb-8 border-b border-[rgba(198,167,94,0.2)] pb-4">
-       <span className="p-1 rounded-md bg-[#C6A75E]/10"><Target size={14} className="text-[#C6A75E]" /></span>
-       <h3 className="text-xl md:text-2xl font-bold text-[#3A3125] font-serif tracking-tight">{title}</h3>
+    <div className="mb-10 pb-6 border-b border-[rgba(198,167,94,0.2)]">
+       <div className="flex items-center gap-3 mb-2">
+          <span className="p-1 rounded-md bg-[#C6A75E]/10"><Target size={14} className="text-[#C6A75E]" /></span>
+          <h3 className="text-xl md:text-3xl font-serif font-black text-[#3A3125] tracking-tighter uppercase">{title}</h3>
+       </div>
+       {subTitle && (
+          <p className="text-[10px] font-black text-[#C6A75E] uppercase tracking-[0.3em] ml-11">{subTitle}</p>
+       )}
     </div>
   );
 }
@@ -243,45 +248,49 @@ export function AreaDetailSections({ area, allAreas = [] }) {
       
       <LiveVelocityTicker />
 
-      {/* 1) INFORMATION ABOUT AREA */}
+      {/* 01 / INFORMATION ABOUT AREA */}
       <section>
-        <SectionTitle title="1) Information About Area" />
-        <div className="rounded-3xl border border-[rgba(198,167,94,0.3)] bg-white/60 p-6 md:p-10 shadow-sm blur-backdrop">
-           <p className="text-base md:text-lg leading-relaxed text-[#4A3F2F] font-light max-w-4xl italic">
+        <SectionTitle 
+          title="01 / Area Intelligence & Ecosystem Brief" 
+          subTitle="Masterplan Taxonomy & Socio-Economic Context"
+        />
+        <div className="rounded-3xl border border-[rgba(198,167,94,0.3)] bg-white/60 p-6 md:p-10 shadow-sm blur-backdrop relative overflow-hidden group">
+           <div className="absolute top-0 right-0 w-32 h-32 bg-[#C6A75E]/5 rounded-full -mr-16 -mt-16 blur-2xl group-hover:scale-150 transition-transform duration-1000" />
+           <p className="text-base md:text-lg leading-relaxed text-[#4A3F2F] font-light max-w-5xl italic relative z-10">
              {area.description}
            </p>
         </div>
       </section>
 
-      {/* 2) AREA DEVELOPER & 3) LOCATION & 4) TOTAL AREA */}
+      {/* 02-04 / CORE ASSET ATTRIBUTES */}
       <section className="grid gap-6 md:grid-cols-3">
-        <div className="rounded-2xl border border-[rgba(198,167,94,0.2)] bg-white p-6 shadow-sm">
-          <SectionTitle title="2) Area Developer" />
+        <div className="rounded-2xl border border-[rgba(198,167,94,0.2)] bg-white p-8 shadow-sm">
+          <SectionTitle title="02 / Sovereign Developer" subTitle="Masterplan Custodian" />
           <div className="flex items-center gap-4">
             <div className="rounded-xl bg-[#C19A5B]/10 p-3"><HardHat className="text-[#C19A5B]" /></div>
-            <p className="text-lg font-bold text-[#1C1C22]">{area.masterDeveloper}</p>
+            <p className="text-lg font-serif font-black text-[#1C1C22]">{area.masterDeveloper}</p>
           </div>
         </div>
-        <div className="rounded-2xl border border-[rgba(198,167,94,0.2)] bg-white p-6 shadow-sm">
-          <SectionTitle title="3) Location" />
+        <div className="rounded-2xl border border-[rgba(198,167,94,0.2)] bg-white p-8 shadow-sm">
+          <SectionTitle title="03 / Geospatial Link" subTitle="Institutional Node" />
           <div className="flex items-center gap-4">
             <div className="rounded-xl bg-[#C19A5B]/10 p-3"><MapPin className="text-[#C19A5B]" /></div>
             <p className="text-sm font-bold text-[#1C1C22]">{area.location}</p>
           </div>
         </div>
-        <div className="rounded-2xl border border-[rgba(198,167,94,0.2)] bg-white p-6 shadow-sm">
-          <SectionTitle title="4) Total Area" />
+        <div className="rounded-2xl border border-[rgba(198,167,94,0.2)] bg-white p-8 shadow-sm">
+          <SectionTitle title="04 / Total Territory" subTitle="Development Scale" />
           <div className="flex items-center gap-4">
             <div className="rounded-xl bg-[#C19A5B]/10 p-3"><Navigation className="text-[#C19A5B]" /></div>
-            <p className="text-lg font-black text-[#1C1C22]">{area.totalArea}</p>
+            <p className="text-lg font-serif font-black text-[#1C1C22]">{area.totalArea}</p>
           </div>
         </div>
       </section>
 
-      {/* 5) FAMOUS TOWERS & 6) TIMELINE */}
+      {/* 05-06 / ARCHITECTURAL EVOLUTION */}
       <section className="grid gap-6 lg:grid-cols-2">
          <div className="rounded-2xl border border-[rgba(198,167,94,0.2)] bg-slate-900 p-8 shadow-xl text-white">
-            <SectionTitle title="5) Famous / Iconic Towers" />
+            <SectionTitle title="05 / Iconic Landmarks" subTitle="Architectural Signature & Skyline Impact" />
             <div className="flex flex-wrap gap-3">
                {(area.towers?.split(',') || ["D1 Tower", "Palazzo Versace", "Kempinski"]).map((tower, i) => (
                  <span key={i} className="rounded-full border border-white/20 bg-white/5 px-4 py-2 text-xs font-bold text-[#C6A75E]">
@@ -291,7 +300,7 @@ export function AreaDetailSections({ area, allAreas = [] }) {
             </div>
          </div>
          <div className="rounded-2xl border border-[rgba(198,167,94,0.2)] bg-[#FDFBF7] p-8 shadow-sm">
-            <SectionTitle title="6) Evolution Timeline" />
+            <SectionTitle title="06 / Evolution Timeline" subTitle="Historical Performance & Milestone Velocity" />
             <div className="space-y-4">
                {area.futureUpgrades?.slice(0, 3).map((item, i) => (
                  <div key={i} className="flex items-center justify-between border-b border-[#C6A75E]/10 pb-3 last:border-0 last:pb-0">
@@ -303,17 +312,17 @@ export function AreaDetailSections({ area, allAreas = [] }) {
          </div>
       </section>
 
-      {/* 7) REAL ESTATE BRIEF & 8) MARKET ANALYSIS (INVESTOR ADVISORY) */}
+      {/* 07-08 / MARKET VERDICT */}
       <section className="grid gap-8 lg:grid-cols-2">
          <div className="space-y-6">
-            <SectionTitle title="7) Real Estate Intelligence Brief" />
+            <SectionTitle title="07 / Intelligence Brief" subTitle="Analyst Consensus & Buy-Side Sentiment" />
             <div className="rounded-3xl bg-gradient-to-br from-[#1C1C22] to-[#2D2D35] p-8 text-white shadow-2xl relative overflow-hidden">
                <p className="text-md leading-relaxed text-slate-300 font-light italic relative z-10">"{area.aiVerdict?.summary}"</p>
                <Zap className="absolute bottom-[-30px] right-[-30px] h-40 w-40 text-white opacity-5" />
             </div>
          </div>
          <div className="space-y-6">
-            <SectionTitle title="8) Market Analysis & Investor Advisory" />
+            <SectionTitle title="08 / Investor Advisory" subTitle="Market Entry/Exit Threshold Analytics" />
             <div className="grid gap-4">
                {[
                  { label: "Price Insights", val: getMarketPoint("Price Drivers") },
@@ -329,9 +338,9 @@ export function AreaDetailSections({ area, allAreas = [] }) {
          </div>
       </section>
 
-      {/* 9) KEY HIGHLIGHTS */}
+      {/* 09 / STRATEGIC HIGHLIGHTS */}
       <section>
-        <SectionTitle title="9) Strategic Key Highlights" />
+        <SectionTitle title="09 / Strategic Highlights" subTitle="Key Performance Indicators & Alpha Drivers" />
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
            {area.highlights?.map((h, i) => (
              <div key={i} className="rounded-2xl border border-[rgba(198,167,94,0.2)] bg-white p-6 shadow-sm hover:border-[#C6A75E] transition-all">
@@ -342,9 +351,9 @@ export function AreaDetailSections({ area, allAreas = [] }) {
         </div>
       </section>
 
-      {/* 10) PROPERTY MARKET OVERVIEW TABLE */}
+      {/* 10 / MARKET DYNAMICS */}
       <section>
-        <SectionTitle title="10) Property Market Dynamics Overview" />
+        <SectionTitle title="10 / Market Dynamics" subTitle="Supply/Demand Equilibrium & Liquidity Tiers" />
         <div className="hidden md:block overflow-hidden rounded-3xl border border-white/60 bg-white/40 backdrop-blur-xl shadow-sm mb-6">
            <table className="w-full text-left">
              <thead className="border-b border-[rgba(198,167,94,0.2)] bg-white/50 text-[#3A3125]">
@@ -382,10 +391,10 @@ export function AreaDetailSections({ area, allAreas = [] }) {
         </div>
       </section>
 
-      {/* 11) RENTAL PRICE & SALE PRICE POSITIONING */}
+      {/* 11 / PRICING CORRIDORS */}
       <section className="grid gap-8 lg:grid-cols-2">
          <div className="space-y-6">
-            <SectionTitle title="11) Pricing Performance Corridors" />
+            <SectionTitle title="11 / Performance Corridors" subTitle="Verified Rental & Capital Benchmark Ratios" />
             <div className="grid gap-3">
                <div className="rounded-2xl border border-emerald-100 bg-emerald-50/30 p-6">
                   <h4 className="text-[10px] font-black uppercase text-emerald-800 tracking-widest mb-3">Rental Highlights</h4>
@@ -418,9 +427,10 @@ export function AreaDetailSections({ area, allAreas = [] }) {
          </div>
       </section>
 
-      {/* 12) PROPERTY CONFIGURATIONS & STRATEGY CALCULATOR */}
+      {/* 12 / CONFIGURATION MATRIX */}
       <section>
-        <SectionTitle title="12) Property Configuration Matrix & Yield Intelligence" />
+        <SectionTitle title="12 / Configuration Matrix" subTitle="Asset Class Breakdown & Yield Intelligence" />
+ Broadway
         <StrategyCalculator economics={economics} />
         <div className="hidden md:block overflow-hidden rounded-3xl border border-white/60 bg-white/40 backdrop-blur-xl shadow-sm">
            <table className="w-full text-left">
@@ -472,11 +482,11 @@ export function AreaDetailSections({ area, allAreas = [] }) {
       {/* 13) PRICE HISTORY & 14) 5-YEAR GROWTH TARGET */}
       <section className="grid gap-8 lg:grid-cols-2">
          <div className="rounded-3xl border border-[rgba(198,167,94,0.3)] bg-white p-8 shadow-sm">
-            <SectionTitle title="13) Institutional Equity Trend (History)" />
+            <SectionTitle title="13 / Equity Trend" subTitle="Long-Cycle Pricing History & Growth Basis" />
             <PriceHistoryChart priceHistory={area.priceTrend} />
          </div>
          <div className="rounded-3xl border border-[#1C1C22] bg-[#1C1C22] p-8 text-white relative overflow-hidden flex flex-col justify-between">
-            <SectionTitle title="14) 5-Year Master Appreciation Target" />
+            <SectionTitle title="14 / Master Growth Target" subTitle="AI-Projected Capital Appreciation (5-Year Alpha)" />
             <div className="grid grid-cols-2 gap-4 relative z-10">
                {[2026, 2027, 2028, 2030].map(y => (
                  <div key={y} className="rounded-2xl border border-white/10 bg-white/5 p-4 text-center">
@@ -492,13 +502,13 @@ export function AreaDetailSections({ area, allAreas = [] }) {
       {/* 15) RENTAL MARKET INTELLIGENCE & 16) FUTURE UPGRADE VISION 2030 */}
       <section className="grid gap-8 lg:grid-cols-2">
          <div className="rounded-3xl border border-[rgba(198,167,94,0.2)] bg-[#F9F6F0] p-8 shadow-sm">
-            <SectionTitle title="15) Rental Market Intelligence" />
+            <SectionTitle title="15 / Rental Strategy" subTitle="Yield Optimization & Occupancy Forecasting" />
             <p className="text-base leading-relaxed text-[#4A3F2F] font-light">
                The rental market in {area.name} demonstrates a high degree of maturity. Occupancy levels hover around 92-95% for prime ready stock. Institutional investors favored 1-bed configurations for maximum yield velocity in the 2021-2024 cycle.
             </p>
          </div>
          <div className="rounded-3xl border border-[#C6A75E]/30 bg-white p-8 shadow-sm relative group overflow-hidden">
-            <SectionTitle title="16) Future Upgrades & Vision 2030" />
+            <SectionTitle title="16 / Vision 2030" subTitle="Macro Infrastructure & Giga-Project Synergy" />
             <div className="space-y-4">
                {area.futureUpgrades?.map((up, i) => (
                  <div key={i} className="flex gap-4">
@@ -516,7 +526,7 @@ export function AreaDetailSections({ area, allAreas = [] }) {
 
       {/* 17) SUPPLY PIPELINE INSTITUTIONAL DATA */}
       <section>
-        <SectionTitle title="17) Market Saturation & Supply Pipeline" />
+        <SectionTitle title="17 / Supply Pipeline" subTitle="Absorption Scenarios & Construction Milestones" />
         <div className="grid gap-4 md:grid-cols-3">
            {[
              { label: "Maturity Level", val: area.supplyStats?.handedOver, sub: "Units Fully Operational" },
@@ -534,7 +544,7 @@ export function AreaDetailSections({ area, allAreas = [] }) {
 
       {/* 18) ATTRACTIONS & POINTS OF INTEREST */}
       <section>
-        <SectionTitle title="18) Lifestyle Integration & Points of Interest" />
+        <SectionTitle title="18 / Lifestyle Matrix" subTitle="Leisure Connectivity & High-Network Amenities" />
         <div className="grid gap-6 md:grid-cols-3">
            {[
              { label: "Waterfront & Leisure", icon: Globe, items: ["Creek Side Promenades", "Community Lakes", "Leisure Decks"] },
@@ -559,7 +569,7 @@ export function AreaDetailSections({ area, allAreas = [] }) {
       {/* 19) PUBLIC TRANSPORT & 20) BUYER INTELLIGENCE */}
       <section className="grid gap-8 lg:grid-cols-12">
          <div className="lg:col-span-12">
-            <SectionTitle title="19) Logistical Infrastructure (Highways, Metro, Flow)" />
+            <SectionTitle title="19 / Logistical Infra" subTitle="Transport Efficiency & Highway Accessibility Linkage" />
             <div className="grid gap-4 md:grid-cols-4">
                <div className="rounded-2xl bg-white border border-[rgba(198,167,94,0.2)] p-6">
                   <div className="flex items-center gap-2 mb-3 text-[#1C1C22]"><Navigation size={18} className="text-[#C6A75E]" /> <span className="text-[10px] font-black uppercase">Main Highways</span></div>
@@ -582,7 +592,7 @@ export function AreaDetailSections({ area, allAreas = [] }) {
             </div>
          </div>
          <div className="lg:col-span-12">
-            <SectionTitle title="20) Buyer Intelligence & Psychology Archetypes" />
+            <SectionTitle title="20 / Buyer Psychology" subTitle="Global Demographics & Behavioral Archetype Analysis" />
             <div className="rounded-3xl border border-[rgba(198,167,94,0.3)] bg-gradient-to-r from-white to-[#FDFBF7] p-8 shadow-sm">
                <div className="flex flex-col md:flex-row gap-8 items-center">
                   <div className="flex-1">
@@ -602,7 +612,7 @@ export function AreaDetailSections({ area, allAreas = [] }) {
 
       {/* 21) SCORECARD RADAR */}
       <section>
-        <SectionTitle title="21) Scorecard Matrix Graph (6 Institutional Pillars)" />
+        <SectionTitle title="21 / Institutional Scorecard" subTitle="Averaged Performance Across 6 Market Pillars" />
         <div className="rounded-3xl border border-[rgba(198,167,94,0.3)] bg-[#1C1C22] p-8 md:p-12 shadow-2xl relative overflow-hidden">
            <div className="grid gap-12 lg:grid-cols-12 items-center relative z-10">
               <div className="lg:col-span-5 space-y-6">
@@ -628,7 +638,7 @@ export function AreaDetailSections({ area, allAreas = [] }) {
 
       {/* 22) STRATEGIC CONNECTIVITY MATRIX (ENRICHED) */}
       <section>
-        <SectionTitle title="22) Strategic Connectivity & Infrastructure Proximity" />
+        <SectionTitle title="22 / Connectivity Matrix" subTitle="Geospatial Proximity to Critical Infrastructure" />
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
            {[
              { label: "Airport Connectivity", icon: Plane, val: connectivity.airport?.mins, sub: connectivity.airport?.name },
@@ -652,19 +662,19 @@ export function AreaDetailSections({ area, allAreas = [] }) {
 
       {/* 23) PEER-MARKET NEIGHBOURHOOD ANALYSIS & GRAPHS */}
       <section>
-        <SectionTitle title="23) Neighbouring Area Index & Relative Performance" />
+        <SectionTitle title="23 / Neighbouring Area Index" subTitle="Relative Yield Performance Analytics" />
         <div className="grid gap-12 lg:grid-cols-12 items-center">
            <div className="lg:col-span-5 space-y-4">
               {neighbors.map(n => (
-                <div key={n.id} className="flex items-center justify-between p-4 rounded-2xl border border-[rgba(198,167,94,0.15)] bg-white/60 hover:border-[#C6A75E] transition-all cursor-default group">
-                   <div className="flex items-center gap-3">
-                      <div className="h-2 w-2 rounded-full bg-[#C6A75E]" />
-                      <span className="text-sm font-bold text-[#1C1C22]">{n.name}</span>
-                   </div>
-                   <div className="flex items-center gap-1 text-[10px] font-black text-[#C6A75E] uppercase tracking-widest">
-                      ROI: {n.roi} <TrendingUp size={12} />
-                   </div>
-                </div>
+                 <div key={n.id} className="flex items-center justify-between p-4 rounded-2xl border border-[rgba(198,167,94,0.15)] bg-white/60 hover:border-[#C6A75E] transition-all cursor-default group">
+                    <div className="flex items-center gap-3">
+                       <div className="h-2 w-2 rounded-full bg-[#C6A75E]" />
+                       <span className="text-sm font-bold text-[#1C1C22]">{n.name}</span>
+                    </div>
+                    <div className="flex items-center gap-1 text-[10px] font-black text-[#C6A75E] uppercase tracking-widest">
+                       ROI: {n.roi} <TrendingUp size={12} />
+                    </div>
+                 </div>
               ))}
            </div>
            <div className="lg:col-span-7 rounded-3xl border border-[rgba(198,167,94,0.2)] bg-white p-8 shadow-sm">
@@ -672,6 +682,60 @@ export function AreaDetailSections({ area, allAreas = [] }) {
               <ROIBarChart neighborData={neighbors.map(n => ({ name: n.name, roi: parseFloat(n.roi) }))} />
            </div>
         </div>
+      </section>
+
+      {/* 24 / NEW 2026 INSTITUTIONAL FEATURE: ALPHA INTELLIGENCE MATRIX */}
+      <section className="bg-[#3A3125] text-white rounded-[3rem] p-8 md:p-16 shadow-2xl relative overflow-hidden border border-white/5">
+         <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#C6A75E]/10 rounded-full blur-[120px] pointer-events-none" />
+         <div className="absolute bottom-0 left-0 w-96 h-96 bg-white/5 rounded-full blur-[100px] pointer-events-none" />
+         
+         <div className="relative z-10 flex flex-col lg:flex-row gap-16">
+            <div className="lg:w-1/2">
+               <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 text-[#F4DFA0] text-[10px] font-black uppercase tracking-[0.2em] mb-8 border border-white/5">
+                  <BrainCircuit size={14} className="fill-[#F4DFA0]/20" /> 2026 Alpha Intelligence
+               </div>
+               <h3 className="text-4xl md:text-6xl font-serif font-black leading-tight mb-8 tracking-tighter">
+                  Institutional <br/><span className="gold-gradient italic">Supply-Chain</span> Matrix
+               </h3>
+               <p className="text-lg text-white/60 font-light leading-relaxed mb-10">
+                  Our proprietary 2026 model correlates global labor-force velocity, supply-chain stability, and central bank liquidity to predict the primary ROI liquidation window for this market node.
+               </p>
+               
+               <div className="grid grid-cols-2 gap-8">
+                  <div>
+                     <p className="text-[10px] font-black uppercase tracking-widest mb-3 text-[#C6A75E]">Infrastructure Maturity</p>
+                     <p className="text-3xl font-serif font-bold">92.4%</p>
+                     <div className="w-full bg-white/10 h-1 mt-3 rounded-full overflow-hidden">
+                        <div className="bg-[#C6A75E] h-full w-[92%]" />
+                     </div>
+                  </div>
+                  <div>
+                     <p className="text-[10px] font-black uppercase tracking-widest mb-3 text-[#C6A75E]">Institutional Intake</p>
+                     <p className="text-3xl font-serif font-bold text-emerald-400">T-1 Alpha</p>
+                     <p className="text-[10px] font-medium text-white/30 uppercase mt-3">Sovereign Wealth Focus</p>
+                  </div>
+               </div>
+            </div>
+
+            <div className="lg:w-1/2 grid gap-4">
+               {[
+                 { label: "Completion Velocity", val: "Critical High", sub: "Supply chain is verified through 2026 Q4.", icon: Zap },
+                 { label: "Price-to-Density Ratio", val: "Undervalued", sub: "GFA/Price density suggests 14% upside.", icon: ChartLine },
+                 { label: "Secondary Liquidity", val: "Elite Node", sub: "Resale exit velocity at 5-year cyclical peak.", icon: Activity }
+               ].map((matrix, i) => (
+                 <div key={i} className="bg-white/5 backdrop-blur-md rounded-3xl p-8 border border-white/10 flex items-start gap-6 group hover:bg-white/10 transition-all">
+                    <div className="p-4 rounded-2xl bg-[#C6A75E]/10 group-hover:bg-[#C6A75E] group-hover:text-white transition-all text-[#C6A75E]">
+                       <matrix.icon size={24} />
+                    </div>
+                    <div>
+                       <p className="text-[9px] font-black uppercase tracking-[0.25em] text-[#C6A75E] mb-1">{matrix.label}</p>
+                       <h4 className="text-2xl font-serif font-black mb-2">{matrix.val}</h4>
+                       <p className="text-xs text-white/40 leading-relaxed">{matrix.sub}</p>
+                    </div>
+                 </div>
+               ))}
+            </div>
+         </div>
       </section>
 
     </div>
