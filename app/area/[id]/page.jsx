@@ -155,10 +155,18 @@ const AreaPage = () => {
                <div className="absolute inset-0 bg-gradient-to-t from-[#FDFBF7] via-[#FDFBF7]/80 to-transparent"></div>
             </div>
             
-            <div className="relative z-10 p-6 md:p-14 w-full md:w-2/3">
-              <h1 className="text-5xl md:text-7xl font-serif text-[#3A3125] leading-tight mb-2 tracking-tight">
-                {area.name}
+            <div className="relative z-10 p-6 md:p-14 w-full md:w-full">
+              <div className="flex items-center gap-3 mb-6">
+                 <div className="h-[1px] w-12 bg-[#C6A75E]"></div>
+                 <span className="text-[10px] font-black uppercase tracking-[0.4em] text-[#C6A75E]">Institutional Intelligence Report</span>
+              </div>
+              <h1 className="text-6xl md:text-9xl font-serif font-black text-[#3A3125] leading-[0.9] tracking-tighter mb-8">
+                {area.name} <span className="text-[#C6A75E] font-sans text-3xl md:text-5xl align-top">®</span>
               </h1>
+              <p className="text-[#5A4F40] text-xl md:text-2xl font-light max-w-3xl leading-relaxed mb-6">
+                Deep market node analysis and predictive yield forecasts for <span className="font-bold underline decoration-[#C6A75E] decoration-2 underline-offset-4">{area.name}</span>, curated for institutional real estate decision-making in the 2026 market cycle.
+              </p>
+            </div>
               <div className="flex items-center gap-2 mb-6">
                  <span className="text-lg md:text-xl text-[#3A3125] font-light">{area.emirate},</span>
                  <span className="text-lg md:text-xl text-[#C6A75E] font-medium tracking-wide">UAE</span>
