@@ -118,3 +118,21 @@
 .ai-badge {
   @apply absolute top-3 left-3 px-3 py-1 rounded-full text-xs font-bold uppercase text-white shadow-sm backdrop-blur-md;
 }
+
+
+/* ─── LEAFLET PREMIUM THEME ──────────────────────── */
+.leaflet-popup-content-wrapper {
+  @apply !bg-[#FDFBF7]/90 !backdrop-blur-xl !border !border-[rgba(198,167,94,0.3)] !rounded-[1.5rem] !shadow-2xl;
+}
+
+.leaflet-popup-tip {
+  @apply !bg-[#FDFBF7];
+}
+
+.leaflet-popup-content {
+  @apply !m-0 !p-0;
+}
+
+.leaflet-tooltip {
+  @apply !bg-[#3A3125] !text-white !border-none !rounded-lg !px-3 !py-1 !text-[10px] !font-black !uppercase !tracking-widest !shadow-xl;
+}

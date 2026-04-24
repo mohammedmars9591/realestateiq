@@ -110,13 +110,18 @@ const Header = () => {
                  <div className="p-2">
                    <div className="text-[10px] font-bold text-[#A69785] uppercase px-3 mb-1 tracking-widest">Premium Locations</div>
                    {searchResults.areas.map(a => (
-                     <button key={a.id} onClick={() => handleNavigate(`/area/${a.id}`)} className="w-full flex items-center gap-4 p-3 hover:bg-[#FDFBF7] rounded-xl text-left transition-colors group">
-                       <MapPin size={16} className="text-[#C6A75E] group-hover:scale-110 transition-transform" />
-                       <div className="flex flex-col">
-                         <span className="text-sm font-bold text-[#1C1C22] leading-none">{a.name}</span>
-                         <span className="text-[10px] text-[#A69785] uppercase mt-1 tracking-wider">{a.emirate}</span>
-                       </div>
-                     </button>
+                      <button key={a.id} onClick={() => handleNavigate(`/area/${a.id}`)} className="w-full flex items-center gap-4 p-3 hover:bg-[#FDFBF7] rounded-xl text-left transition-colors group">
+                        <MapPin size={16} className="text-[#C6A75E] group-hover:scale-110 transition-transform" />
+                        <div className="flex-grow flex justify-between items-center">
+                           <div className="flex flex-col">
+                             <span className="text-sm font-bold text-[#1C1C22] leading-none">{a.name}</span>
+                             <span className="text-[10px] text-[#A69785] uppercase mt-1 tracking-wider">{a.emirate}</span>
+                           </div>
+                           <div className="bg-[#3A3125] text-[#C6A75E] text-[10px] font-black px-2 py-1 rounded-lg">
+                              {a.roi || "7.2%"}
+                           </div>
+                        </div>
+                      </button>
                    ))}
                  </div>
                )}
@@ -192,13 +197,18 @@ const Header = () => {
                    {searchResults.areas.length > 0 && (
                      <div className="p-2">
                        {searchResults.areas.map(a => (
-                         <button key={a.id} onClick={() => { handleNavigate(`/area/${a.id}`); setIsMobileSearchOpen(false); }} className="w-full flex items-center gap-4 p-4 hover:bg-[#FDFBF7] rounded-xl text-left">
-                           <MapPin size={18} className="text-[#C6A75E]" />
-                           <div className="flex flex-col">
-                             <span className="text-base font-bold text-[#1C1C22]">{a.name}</span>
-                             <span className="text-xs text-[#A69785] uppercase tracking-wider">{a.emirate}</span>
-                           </div>
-                         </button>
+                          <button key={a.id} onClick={() => { handleNavigate(`/area/${a.id}`); setIsMobileSearchOpen(false); }} className="w-full flex items-center gap-4 p-4 hover:bg-[#FDFBF7] rounded-xl text-left group">
+                            <MapPin size={18} className="text-[#C6A75E]" />
+                            <div className="flex-grow flex justify-between items-center">
+                               <div className="flex flex-col">
+                                 <span className="text-base font-bold text-[#1C1C22]">{a.name}</span>
+                                 <span className="text-xs text-[#A69785] uppercase tracking-wider">{a.emirate}</span>
+                               </div>
+                               <div className="bg-[#3A3125] text-[#C6A75E] text-[10px] font-black px-3 py-1 rounded-lg">
+                                 {a.roi || "7.2%"}
+                               </div>
+                            </div>
+                          </button>
                        ))}
                      </div>
                    )}

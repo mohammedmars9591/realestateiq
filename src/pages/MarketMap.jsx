@@ -322,22 +322,26 @@ const MarketMap = () => {
               </MapContainer>
 
               {/* OVERLAY LEGEND */}
-              <div className="absolute top-8 left-8 z-[1000] p-8 bg-white/80 backdrop-blur-2xl border border-[rgba(198,167,94,0.2)] rounded-[2.5rem] shadow-[0_40px_80px_rgba(58,49,37,0.15)] max-w-[280px]">
-                 <h4 className="text-xs font-black text-[#3A3125] uppercase tracking-[0.2em] mb-6 flex items-center gap-3">
-                    <Layers size={18} className="text-[#C6A75E]" /> Map Context
-                 </h4>
+              <div className="absolute top-8 left-8 z-[1000] p-8 bg-[#FDFBF7]/95 backdrop-blur-3xl border border-[rgba(198,167,94,0.4)] rounded-[2.5rem] shadow-[0_40px_80px_rgba(58,49,37,0.2)] max-w-[280px]">
+                 <div className="flex items-center gap-3 mb-6">
+                    <div className="p-2 rounded-xl bg-[#3A3125] text-[#C6A75E]"><Layers size={18} /></div>
+                    <h4 className="text-[11px] font-black text-[#3A3125] uppercase tracking-[0.25em]">Map Command</h4>
+                 </div>
                  <div className="space-y-6">
                     <div className="flex flex-col gap-3">
-                       <p className="text-[10px] font-black text-[#A69785] uppercase tracking-widest">Intensity Score</p>
-                       <div className="h-2 w-full rounded-full bg-gradient-to-r from-[#F3E9D2] via-[#C6A75E] to-[#3A3125]"></div>
-                       <div className="flex justify-between text-[9px] font-black text-[#7A6E60] uppercase tracking-tighter">
-                          <span>Neutral</span>
-                          <span>Institutional Peak</span>
+                       <p className="text-[9px] font-black text-[#7A6E60] uppercase tracking-widest flex justify-between">
+                          <span>Alpha Intensity Index</span>
+                          <span className="text-[#C6A75E]">2026 Pulse</span>
+                       </p>
+                       <div className="h-1.5 w-full rounded-full bg-gradient-to-r from-[#F3E9D2] via-[#C6A75E] to-[#3A3125] shadow-inner"></div>
+                       <div className="flex justify-between text-[8px] font-black text-[#A69785] uppercase tracking-tighter">
+                          <span>Baseline</span>
+                          <span>Cap Capital Peak</span>
                        </div>
                     </div>
-                    <div className="pt-6 border-t border-[rgba(198,167,94,0.1)]">
+                    <div className="pt-6 border-t border-[rgba(198,167,94,0.15)]">
                        <p className="text-[11px] leading-relaxed text-[#5A4F40] font-medium italic">
-                          Displaying <span className="text-[#3A3125] font-black">{viewMode === 'live' ? 'Capital Velocity' : viewMode === 'roi' ? 'Yield Hotspots' : 'Handover Pipeline'}</span> in {activeEmirate}.
+                          Currently analyzing the <span className="text-[#3A3125] font-black underline decoration-[#C6A75E] decoration-2 underline-offset-4">{viewMode === 'live' ? 'Capital Velocity Corridor' : viewMode === 'roi' ? 'Yield Extraction Nodes' : 'Inventory Absorption Map'}</span> in the {activeEmirate} sector.
                        </p>
                     </div>
                  </div>
