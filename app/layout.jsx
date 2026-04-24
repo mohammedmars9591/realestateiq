@@ -6,8 +6,12 @@ import AIChatWidget from '../src/components/AIChatWidget';
 export const metadata = {
   title: 'RealEstateIQ | Premium UAE Property Intelligence 2026',
   description: 'The UAE\'s premier AI-powered real estate investment intelligence platform. Institutional-grade analytics, FutureScope forecasts, and ROI heatmaps.',
-  viewport: 'width=device-width, initial-scale=1',
   robots: 'index, follow',
+};
+
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1,
 };
 
 export default function RootLayout({ children }) {
