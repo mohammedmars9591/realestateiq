@@ -6,10 +6,10 @@ export function HeroSection() {
   return (
     <section className="relative overflow-hidden min-h-[90vh] flex items-center bg-[#FDFBF7]">
       {/* Background and Overlays */}
-      <div className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-[0.85]" style={{ backgroundImage: "url('/hero-bg.png')" }} />
-      <div className="absolute inset-0 bg-gradient-to-r from-[#FDFBF7] via-[#FDFBF7]/80 to-transparent" />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_rgba(244,223,160,0.35)_0%,_transparent_60%)] mix-blend-multiply pointer-events-none" />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,_rgba(212,169,95,0.12)_0%,_transparent_60%)] mix-blend-multiply pointer-events-none" />
+      <div className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-[0.92]" style={{ backgroundImage: "url('/hero-main.png')" }} />
+      <div className="absolute inset-0 bg-gradient-to-r from-[#FDFBF7] via-[#FDFBF7]/90 to-[#FDFBF7]/40" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_rgba(244,223,160,0.4)_0%,_transparent_60%)] mix-blend-multiply pointer-events-none" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,_rgba(212,169,95,0.15)_0%,_transparent_60%)] mix-blend-multiply pointer-events-none" />
 
       <div className="relative mx-auto max-w-7xl px-4 py-16 md:py-24 lg:px-8 w-full z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">

@@ -139,11 +139,11 @@ const BuilderDetailsPage = () => {
 
           <div className="relative z-10 p-6 md:p-14 w-full md:w-2/3">
             <div className="flex flex-wrap items-center gap-3 mb-4">
-              <span className="bg-white/40 backdrop-blur-md border border-white/60 px-4 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest text-[#3A3125]">
-                {builder.tier}
+              <span className="bg-white/40 backdrop-blur-md border border-white/60 px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-[0.2em] text-[#3A3125]">
+                Institutional Intelligence Node
               </span>
-              <div className="flex items-center gap-1 bg-[#C6A75E] text-white px-3 py-1 rounded-full text-[10px] font-bold shadow-sm">
-                <Crown size={12} /> Overall Score: {builder.overallDeveloperScore}/10
+              <div className="flex items-center gap-2 bg-[#C6A75E] text-white px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest shadow-lg">
+                <Crown size={12} /> Market Grade: AAA
               </div>
             </div>
             <h1 className="text-5xl md:text-7xl font-serif text-[#3A3125] leading-tight mb-4 tracking-tight">
