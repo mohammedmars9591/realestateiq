@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { 
-  ArrowLeft, Download, Loader2, MessageCircle, 
+  ArrowLeft, Download, Loader2, MessageCircle, HardHat,
   MapPin, Crown, TrendingUp, PlayCircle, PauseCircle, Volume2
 } from 'lucide-react';
 import html2canvas from 'html2canvas';
@@ -18,7 +18,7 @@ const AreaPage = () => {
   const [isGeneratingPdf, setIsGeneratingPdf] = useState(false);
   const [isPlayingAudio, setIsPlayingAudio] = useState(false);
 
-  const routeId = decodeURIComponent(id || "");
+  const routeId = decodeURIComponent(id || "").replace(/\/$/, "");
   const db = Array.isArray(MASTER_DB) ? MASTER_DB : [];
   const area = db.find((a) => String(a.id) === routeId);
   const similarAreas = db.filter((a) => String(a.id) !== routeId && a.emirate === area?.emirate).slice(0, 3);
@@ -26,9 +26,17 @@ const AreaPage = () => {
   useEffect(() => { window.scrollTo(0, 0); }, [id]);
 
   if (!area) return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-[#F8F5EF]">
-      <h1 className="text-3xl font-bold text-[#1C1C22] mb-4">Area Intelligence Not Found</h1>
-      <Link to="/areas" className="btn-secondary text-sm">Return to National Map</Link>
+    <div className="min-h-screen flex flex-col items-center justify-center bg-[#FDFBF7]">
+      <div className="p-4 rounded-3xl bg-[#3A3125]/5 mb-8">
+         <Loader2 size={64} className="text-[#C6A75E] opacity-20" />
+      </div>
+      <h1 className="text-4xl font-serif font-black text-[#3A3125] mb-4 uppercase tracking-tighter">Area Intelligence Not Found</h1>
+      <p className="text-[#5A4F40] mb-10 max-w-md font-medium text-sm leading-relaxed uppercase tracking-widest opacity-60">
+        We couldn't locate the specified market node in our 2026 intelligence database.
+      </p>
+      <Link to="/areas" className="bg-[#3A3125] text-[#C6A75E] px-10 py-4 rounded-full text-[10px] font-black uppercase tracking-[0.2em] shadow-xl transition-all hover:bg-[#2A231A] active:scale-95">
+        Return to National Map
+      </Link>
     </div>
   );
 
@@ -168,11 +176,11 @@ const AreaPage = () => {
           <div className="relative w-full min-h-[500px] md:h-[650px] flex items-end">
             <div className="absolute inset-0 w-full h-full">
                <img 
-                 src={`https://source.unsplash.com/1600x900/?dubai,${area.name.replace(/\s+/g, ',')},buildings`} 
+                 src={`https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&q=80&w=1600&q=20`} 
                  alt={area.name}
-                 className="w-full h-full object-cover"
+                 className="w-full h-full object-cover grayscale-[20%] brightness-[70%]"
                  onError={(e) => {
-                    e.target.src = 'https://source.unsplash.com/1600x900/?dubai,skyline,downtown';
+                    e.target.src = 'https://images.unsplash.com/photo-1546410531-bb4caa6b424d?auto=format&fit=crop&q=80&w=1600';
                  }}
                />
                <div className="absolute inset-0 bg-gradient-to-t from-[#FDFBF7] via-[#FDFBF7]/80 to-transparent"></div>
@@ -192,25 +200,18 @@ const AreaPage = () => {
                 {area.description}
               </p>
 
-              {/* MAJOR DEVELOPERS GLASS CARD */}
               <div className="bg-white/40 backdrop-blur-md border border-white/60 rounded-2xl p-6 shadow-sm mb-6 max-w-xl">
                  <div className="flex items-center gap-2 mb-4">
                     <span className="p-1 rounded-md bg-[#C6A75E]/10"><HardHat size={14} className="text-[#C6A75E]" /></span>
                     <h3 className="text-sm font-serif font-bold text-[#3A3125]">Major Developers</h3>
                  </div>
                  <div className="grid grid-cols-2 gap-y-3 gap-x-4">
-                    {area.masterDeveloper?.split(',').map((dev, idx) => (
+                    {(area.masterDeveloper || "Emaar Properties, Nakheel, DAMAC").split(',').map((dev, idx) => (
                       <div key={idx} className="flex items-center gap-2 text-xs text-[#5A4F40] font-medium">
                          <div className="w-1 h-3 rounded-full bg-gradient-to-b from-[#C6A75E] to-[#E2C98E]"></div>
                          {dev.trim()}
                       </div>
-                    )) || (
-                      <>
-                        <div className="flex items-center gap-2 text-xs text-[#5A4F40] font-medium"><div className="w-1 h-3 rounded-full bg-gradient-to-b from-[#C6A75E] to-[#E2C98E]"></div>Emaar Properties</div>
-                        <div className="flex items-center gap-2 text-xs text-[#5A4F40] font-medium"><div className="w-1 h-3 rounded-full bg-gradient-to-b from-[#C6A75E] to-[#E2C98E]"></div>DAMAC Properties</div>
-                        <div className="flex items-center gap-2 text-xs text-[#5A4F40] font-medium"><div className="w-1 h-3 rounded-full bg-gradient-to-b from-[#C6A75E] to-[#E2C98E]"></div>Select Group</div>
-                      </>
-                    )}
+                    ))}
                  </div>
               </div>
               
@@ -257,7 +258,7 @@ const AreaPage = () => {
 
             {/* NEIGHBORHOOD EXPLORER */}
             <div className="mt-24 pt-16 border-t border-[rgba(198,167,94,0.1)] no-print">
-               <h3 className="text-3xl font-serif font-bold text-[#3A3125] mb-12 mb-8 inline-block relative">
+               <h3 className="text-3xl font-serif font-bold text-[#3A3125] mb-12 inline-block relative">
                  Comparative Markets ({area.emirate})
                  <div className="absolute -bottom-2 left-0 w-24 h-1 bg-gradient-to-r from-[#C6A75E] to-transparent rounded-full" />
                </h3>
