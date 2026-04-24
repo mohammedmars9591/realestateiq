@@ -1,7 +1,17 @@
 User-agent: *
 Allow: /
-
-# Exclude dynamic areas that might cause infinite crawling without actual links, though SPA router handles it.
 Disallow: /api/
+
+# GEO: Explicitly Allow AI Crawlers
+User-agent: GPTBot
+Allow: /
+User-agent: ChatGPT-User
+Allow: /
+User-agent: Claude-Web
+Allow: /
+User-agent: anthropic-ai
+Allow: /
+User-agent: PerplexityBot
+Allow: /
 
 Sitemap: https://www.realestateiq.ae/sitemap.xml

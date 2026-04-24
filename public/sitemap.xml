@@ -30,9 +30,57 @@
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
+  <!-- Priority Area Intelligence Nodes -->
   <url>
-    <loc>https://www.realestateiq.ae/compare</loc>
+    <loc>https://www.realestateiq.ae/area/dubai-marina</loc>
     <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.realestateiq.ae/area/jvc</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.realestateiq.ae/area/business-bay</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.realestateiq.ae/area/downtown-dubai</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.realestateiq.ae/area/al-marjan-island</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Priority Builder Intelligence Nodes -->
+  <url>
+    <loc>https://www.realestateiq.ae/builder/emaar-properties</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.realestateiq.ae/builder/damac-properties</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.realestateiq.ae/builder/sobha-realty</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.realestateiq.ae/builder/nakheel</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.realestateiq.ae/builder/binghatti-developers</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
   </url>
 </urlset>

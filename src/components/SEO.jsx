@@ -137,6 +137,23 @@ const SEO = ({ title, description, image, url, schema, faqSchema, articleSchema 
         </script>
       )}
 
+      {/* === JSON-LD: DATASET SCHEMA (GEO: AI Data Source Signal) === */}
+      <script type="application/ld+json">
+        {JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Dataset",
+          "name": `RealEstateIQ ${title || 'UAE'} Property Intelligence Dataset 2026`,
+          "description": description || defaultDescription,
+          "url": currentUrl,
+          "hasPart": [
+            { "@type": "Dataset", "name": "UAE Area ROI Records", "description": "Verified rental yields and capital appreciation data across 77+ UAE areas." },
+            { "@type": "Dataset", "name": "Developer Trust Scores", "description": "AI-calculated reliability and delivery confidence scores for 25+ UAE builders." }
+          ],
+          "creator": { "@type": "Organization", "name": "RealEstateIQ" },
+          "license": "https://www.realestateiq.ae/terms"
+        })}
+      </script>
+
       {/* === JSON-LD: ARTICLE SCHEMA (GEO: Citability Signal) === */}
       {articleSchema && (
         <script type="application/ld+json">
@@ -160,7 +177,8 @@ const SEO = ({ title, description, image, url, schema, faqSchema, articleSchema 
             },
             "datePublished": articleSchema.datePublished || "2026-01-01",
             "dateModified": articleSchema.dateModified || new Date().toISOString().split('T')[0],
-            "mainEntityOfPage": currentUrl
+            "mainEntityOfPage": currentUrl,
+            "citation": "Dubai Land Department (DLD) Transaction Records, 2024-2026"
           })}
         </script>
       )}

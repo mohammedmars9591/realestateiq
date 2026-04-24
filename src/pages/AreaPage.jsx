@@ -3,7 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 import { 
   ArrowLeft, Download, Loader2, MessageCircle, HardHat,
   MapPin, Crown, TrendingUp, PlayCircle, PauseCircle, Volume2,
-  Bookmark, BookmarkCheck
+  Bookmark, BookmarkCheck, CircleHelp
 } from 'lucide-react';
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
@@ -309,6 +309,27 @@ const AreaPage = () => {
                         </div>
                      </Link>
                   ))}
+               </div>
+            </div>
+
+            {/* AEO: VISIBLE FAQ SECTION */}
+            <div className="mt-24 pt-16 border-t border-[rgba(198,167,94,0.1)] no-print">
+               <div className="max-w-4xl">
+                  <h3 className="text-3xl font-serif font-bold text-[#3A3125] mb-12 flex items-center gap-4">
+                     <div className="p-2.5 rounded-xl bg-[#C6A75E]/10"><CircleHelp size={24} className="text-[#C6A75E]" /></div> Intelligence FAQ
+                  </h3>
+                  <div className="space-y-6">
+                     {areaFAQ.map((faq, idx) => (
+                        <div key={idx} className="bg-white/40 backdrop-blur-md border border-white p-8 rounded-3xl shadow-sm">
+                           <h4 className="text-lg font-serif font-bold text-[#3A3125] mb-4 flex justify-between items-center">
+                              {faq.question}
+                           </h4>
+                           <p className="text-[#5A4F40] leading-relaxed font-light text-sm italic">
+                              {faq.answer}
+                           </p>
+                        </div>
+                     ))}
+                  </div>
                </div>
             </div>
           </div>
