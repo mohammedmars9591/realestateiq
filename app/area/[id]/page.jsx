@@ -28,8 +28,8 @@ const AreaPage = () => {
 
   const routeId = decodeURIComponent(id || "").replace(/\/$/, "");
   const db = Array.isArray(MASTER_DB) ? MASTER_DB : [];
-  const area = db.find((a) => String(a.id) === routeId);
-  const similarAreas = db.filter((a) => String(a.id) !== routeId && a.emirate === area?.emirate).slice(0, 3);
+  const area = db.find((a) => String(a.id).toLowerCase() === routeId.toLowerCase());
+  const similarAreas = db.filter((a) => String(a.id).toLowerCase() !== routeId.toLowerCase() && a.emirate === area?.emirate).slice(0, 3);
 
   useEffect(() => { 
     window.scrollTo(0, 0); 

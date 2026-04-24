@@ -20,7 +20,7 @@ const BuilderDetailsPage = () => {
   const id = params.id;
   const [isSaved, setIsSaved] = useState(false);
   
-  const builder = BUILDERS.find(b => b.id === id);
+  const builder = BUILDERS.find(b => String(b.id).toLowerCase() === String(id).toLowerCase());
 
   useEffect(() => {
     window.scrollTo(0, 0);

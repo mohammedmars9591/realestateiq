@@ -13,6 +13,7 @@ import {
 // --- CUSTOM COMPONENTS ---
 
 function StrategyCalculator({ economics }) {
+  if (!economics || typeof economics !== 'object') return null;
   const [unitType, setUnitType] = useState(Object.keys(economics)[0] || "oneBed");
   const [strategy, setStrategy] = useState("longTerm");
   

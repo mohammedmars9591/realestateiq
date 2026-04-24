@@ -1,13 +1,22 @@
 "use client";
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { ArrowRight, BarChart3, Map, TrendingUp } from 'lucide-react';
 
 export function HeroSection() {
   return (
     <section className="relative overflow-hidden min-h-[90vh] flex items-center bg-[#FDFBF7]">
       {/* Background and Overlays */}
-      <div className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-[0.92]" style={{ backgroundImage: "url('/hero-main.png')" }} />
+      <div className="absolute inset-0 z-0">
+        <Image 
+           src="/hero-main.png" 
+           alt="Premium UAE Real Estate" 
+           fill 
+           priority 
+           className="object-cover opacity-[0.92]"
+        />
+      </div>
       <div className="absolute inset-0 bg-gradient-to-r from-[#FDFBF7] via-[#FDFBF7]/90 to-[#FDFBF7]/40" />
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_rgba(244,223,160,0.4)_0%,_transparent_60%)] mix-blend-multiply pointer-events-none" />
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,_rgba(212,169,95,0.15)_0%,_transparent_60%)] mix-blend-multiply pointer-events-none" />
