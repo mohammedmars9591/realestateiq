@@ -166,7 +166,6 @@ const AreaPage = () => {
               <p className="text-[#5A4F40] text-xl md:text-2xl font-light max-w-3xl leading-relaxed mb-6">
                 Deep market node analysis and predictive yield forecasts for <span className="font-bold underline decoration-[#C6A75E] decoration-2 underline-offset-4">{area.name}</span>, curated for institutional real estate decision-making in the 2026 market cycle.
               </p>
-            </div>
               <div className="flex items-center gap-2 mb-6">
                  <span className="text-lg md:text-xl text-[#3A3125] font-light">{area.emirate},</span>
                  <span className="text-lg md:text-xl text-[#C6A75E] font-medium tracking-wide">UAE</span>
