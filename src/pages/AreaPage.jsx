@@ -3,7 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 import { 
   ArrowLeft, Download, Loader2, MessageCircle, HardHat,
   MapPin, Crown, TrendingUp, PlayCircle, PauseCircle, Volume2,
-  Bookmark, BookmarkCheck, CircleHelp
+  Bookmark, BookmarkCheck, CircleHelp, Zap, Activity
 } from 'lucide-react';
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
@@ -268,12 +268,41 @@ const AreaPage = () => {
           
           {/* CONTENT RECEPTACLE FOR SECTIONS */}
           <div className="px-4 md:px-14 pb-20">
-            {/* INVESTMENT METRICS DECK */}
+            {/* 2026 EXECUTIVE INTELLIGENCE BAR (ZERO-SCROLL SUMMARY) */}
             <div className="mb-16 -mt-8 relative z-20">
+               <div className="bg-[#3A3125] text-white rounded-3xl p-8 shadow-2xl flex flex-col md:flex-row items-center justify-between gap-10 border border-white/10 relative overflow-hidden">
+                  <div className="absolute top-0 right-0 w-64 h-64 bg-[#C6A75E]/10 rounded-full blur-[80px] pointer-events-none" />
+                  
+                  <div className="flex items-center gap-6 w-full md:w-auto border-b md:border-b-0 md:border-r border-white/10 pb-6 md:pb-0 md:pr-10">
+                     <div className="p-4 rounded-2xl bg-[#C6A75E]/20 text-[#C6A75E]"><Zap size={24} /></div>
+                     <div>
+                        <p className="text-[10px] font-black uppercase text-[#C6A75E] tracking-[0.2em] mb-1">Market Stance</p>
+                        <h4 className="text-xl font-serif font-black text-white uppercase tracking-tighter">Aggressive Growth</h4>
+                     </div>
+                  </div>
+
+                  <div className="grid grid-cols-2 lg:grid-cols-3 gap-10 w-full">
+                     <div className="group">
+                        <p className="text-[9px] font-black uppercase text-white/40 tracking-widest mb-2 flex items-center gap-2 group-hover:text-[#C6A75E] transition-colors"><Activity size={12} /> Price Basis</p>
+                        <p className="text-sm font-bold text-white leading-tight">Cyclical Bottom / Undervalued</p>
+                     </div>
+                     <div className="group">
+                        <p className="text-[9px] font-black uppercase text-white/40 tracking-widest mb-2 flex items-center gap-2 group-hover:text-[#C6A75E] transition-colors"><TrendingUp size={12} /> Top Alpha Driver</p>
+                        <p className="text-sm font-bold text-white leading-tight">{area.highlights?.[0] || "Infrastructure Maturity"}</p>
+                     </div>
+                     <div className="group hidden lg:block">
+                        <p className="text-[9px] font-black uppercase text-white/40 tracking-widest mb-2 flex items-center gap-2 group-hover:text-[#C6A75E] transition-colors"><CircleHelp size={12} /> Liquidation Readiness</p>
+                        <p className="text-sm font-bold text-white leading-tight">High (Institutional Tier)</p>
+                     </div>
+                  </div>
+               </div>
+            </div>
+
+            {/* INVESTMENT METRICS DECK */}
+            <div className="mb-16">
               <MetricInsightCharts metrics={metricCharts} />
             </div>
 
-            {/* STRIPPED OUT HEADER TITLES, LETTING THE FROSTED CARDS SHINE */}
             <AreaDetailSections area={area} allAreas={MASTER_DB} />
 
             {/* NEIGHBORHOOD EXPLORER */}
