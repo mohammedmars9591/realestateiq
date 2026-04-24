@@ -1,7 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // Resetting to standard config to resolve lucide-react resolution errors
-  serverExternalPackages: ['jspdf', 'html2canvas'],
+  // --- NEXT.JS 14 STABILIZATION ---
+  experimental: {
+    serverComponentsExternalPackages: ['jspdf', 'html2canvas'],
+  },
   eslint: {
     ignoreDuringBuilds: true,
   },
