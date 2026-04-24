@@ -1,7 +1,7 @@
 "use client";
 import React from 'react';
 import Link from 'next/link';
-import { Building2, Twitter, Linkedin, Instagram, Mail } from 'lucide-react';
+import { Building2, X, Circle, Square, Mail } from 'lucide-react';
 
 const Footer = () => {
   return (
@@ -25,13 +25,13 @@ const Footer = () => {
             </p>
             <div className="flex gap-4">
               <a href="#" className="h-10 w-10 flex items-center justify-center rounded-full bg-white border border-[rgba(198,167,94,0.2)] text-[#7A6E60] hover:text-[#C6A75E] hover:border-[#C6A75E] transition-all shadow-sm">
-                <Twitter size={18} />
+                <X size={18} />
               </a>
               <a href="#" className="h-10 w-10 flex items-center justify-center rounded-full bg-white border border-[rgba(198,167,94,0.2)] text-[#7A6E60] hover:text-[#C6A75E] hover:border-[#C6A75E] transition-all shadow-sm">
-                <Linkedin size={18} />
+                <Circle size={18} />
               </a>
               <a href="#" className="h-10 w-10 flex items-center justify-center rounded-full bg-white border border-[rgba(198,167,94,0.2)] text-[#7A6E60] hover:text-[#C6A75E] hover:border-[#C6A75E] transition-all shadow-sm">
-                <Instagram size={18} />
+                <Square size={18} />
               </a>
             </div>
           </div>

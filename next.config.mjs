@@ -1,7 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // Disabling experimental and forcing transpilation for stability
-  transpilePackages: ['lucide-react', 'recharts', 'react-leaflet', 'leaflet'],
+  // Resetting to standard config to resolve lucide-react resolution errors
   serverExternalPackages: ['jspdf', 'html2canvas'],
   eslint: {
     ignoreDuringBuilds: true,
