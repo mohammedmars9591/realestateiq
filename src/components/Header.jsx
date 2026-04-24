@@ -1,5 +1,7 @@
+"use client";
 import React, { useState, useEffect, useRef } from 'react';
-import { Link, useNavigate, useLocation } from 'react-router-dom';
+import Link from 'next/link';
+import { useRouter, usePathname } from 'next/navigation';
 import { Menu, X, Building2, Search, MapPin, HardHat } from 'lucide-react';
 
 // --- DATA IMPORTS ---
@@ -13,11 +15,9 @@ const Header = () => {
   const [showResults, setShowResults] = useState(false);
   const [isMobileSearchOpen, setIsMobileSearchOpen] = useState(false);
   
-  const navigate = useNavigate();
-  const location = useLocation();
+  const router = useRouter();
+  const pathname = usePathname();
   const searchRef = useRef(null);
-
-  const pathname = location.pathname;
 
   // --- SEARCH ENGINE LOGIC ---
   useEffect(() => {
@@ -57,7 +57,7 @@ const Header = () => {
   }, []);
 
   const handleNavigate = (path) => {
-    navigate(path);
+    router.push(path);
     setShowResults(false);
     setSearchQuery("");
     setIsMenuOpen(false);

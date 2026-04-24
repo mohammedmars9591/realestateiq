@@ -1,3 +1,4 @@
+"use client";
 import React, { useState, useRef, useEffect } from 'react';
 import { MessageSquare, X, Send, Bot, Sparkles, ChevronRight } from 'lucide-react';
 import { DUBAI_AREAS } from '../data/areaData';

@@ -1,5 +1,6 @@
+"use client";
 import React from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { Building2, Twitter, Linkedin, Instagram, Mail } from 'lucide-react';
 
 const Footer = () => {
@@ -10,7 +11,7 @@ const Footer = () => {
           
           {/* BRAND COLUMN */}
           <div className="col-span-1 md:col-span-1">
-            <Link to="/" className="flex items-center gap-3 mb-6 group">
+            <Link href="/" className="flex items-center gap-3 mb-6 group">
               <div className="gold-gradient-bg flex h-10 w-10 items-center justify-center rounded-xl shadow-lg ring-1 ring-[rgba(198,167,94,0.3)]">
                 <Building2 className="h-5 w-5 text-[#1C1C22]" strokeWidth={1.5} />
               </div>
@@ -38,10 +39,10 @@ const Footer = () => {
           <div>
             <h4 className="mb-6 text-[10px] font-bold uppercase tracking-[0.2em] text-[#1C1C22]">Market Intelligence</h4>
             <ul className="flex flex-col gap-3 text-sm font-medium">
-              <li><Link to="/areas" className="text-[#7A6E60] hover:text-[#C6A75E] transition-colors">Area Explorer</Link></li>
-              <li><Link to="/builders" className="text-[#7A6E60] hover:text-[#C6A75E] transition-colors">Builder Ratings</Link></li>
-              <li><Link to="/heatmap" className="text-[#7A6E60] hover:text-[#C6A75E] transition-colors">ROI Heatmap</Link></li>
-              <li><Link to="/compare" className="text-[#7A6E60] hover:text-[#C6A75E] transition-colors">Comparison Engine</Link></li>
+              <li><Link href="/areas" className="text-[#7A6E60] hover:text-[#C6A75E] transition-colors">Area Explorer</Link></li>
+              <li><Link href="/builders" className="text-[#7A6E60] hover:text-[#C6A75E] transition-colors">Builder Ratings</Link></li>
+              <li><Link href="/heatmap" className="text-[#7A6E60] hover:text-[#C6A75E] transition-colors">ROI Heatmap</Link></li>
+              <li><Link href="/compare" className="text-[#7A6E60] hover:text-[#C6A75E] transition-colors">Comparison Engine</Link></li>
             </ul>
           </div>
 
@@ -49,10 +50,10 @@ const Footer = () => {
           <div>
             <h4 className="mb-6 text-[10px] font-bold uppercase tracking-[0.2em] text-[#1C1C22]">Strategic Hubs</h4>
             <ul className="flex flex-col gap-3 text-sm font-medium">
-              <li><Link to="/areas" className="text-[#7A6E60] hover:text-[#C6A75E] transition-colors">Dubai Markets</Link></li>
-              <li><Link to="/areas" className="text-[#7A6E60] hover:text-[#C6A75E] transition-colors">Abu Dhabi Hubs</Link></li>
-              <li><Link to="/areas" className="text-[#7A6E60] hover:text-[#C6A75E] transition-colors">Sharjah & Northern Emirates</Link></li>
-              <li><Link to="/about" className="text-[#7A6E60] hover:text-[#C6A75E] transition-colors">About Us</Link></li>
+              <li><Link href="/areas" className="text-[#7A6E60] hover:text-[#C6A75E] transition-colors">Dubai Markets</Link></li>
+              <li><Link href="/areas" className="text-[#7A6E60] hover:text-[#C6A75E] transition-colors">Abu Dhabi Hubs</Link></li>
+              <li><Link href="/areas" className="text-[#7A6E60] hover:text-[#C6A75E] transition-colors">Sharjah & Northern Emirates</Link></li>
+              <li><Link href="/about" className="text-[#7A6E60] hover:text-[#C6A75E] transition-colors">About Us</Link></li>
             </ul>
           </div>
 
@@ -79,9 +80,9 @@ const Footer = () => {
         <div className="mt-20 border-t border-[rgba(198,167,94,0.1)] pt-10 flex flex-col md:flex-row justify-between items-center gap-6 text-[10px] font-bold uppercase tracking-widest text-[#A69785]">
           <p>© 2026 RealEstateIQ.ae. Reserved Institutional Property Data.</p>
           <div className="flex gap-8">
-            <Link to="#" className="hover:text-[#1C1C22] transition-colors">Privacy Charter</Link>
-            <Link to="#" className="hover:text-[#1C1C22] transition-colors">Terms of Engagement</Link>
-            <Link to="#" className="hover:text-[#1C1C22] transition-colors">Data Governance</Link>
+            <Link href="#" className="hover:text-[#1C1C22] transition-colors">Privacy Charter</Link>
+            <Link href="#" className="hover:text-[#1C1C22] transition-colors">Terms of Engagement</Link>
+            <Link href="#" className="hover:text-[#1C1C22] transition-colors">Data Governance</Link>
           </div>
         </div>
 
