@@ -150,7 +150,7 @@ const MarketMap = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-[#FDFBF7] pb-20 fade-in">
+    <div className="min-h-screen bg-gradient-to-b from-[#F3E9D2] via-[#FDFBF7] to-[#FDFBF7] pb-20 fade-in">
       <SEO 
         title="Dubai Real Estate ROI Heatmap 2026 — Interactive Investment Intelligence Map"
         description="Visualize Dubai real estate investment opportunities on an interactive heatmap. Filter by ROI peaks, supply density, transaction volume, lifestyle score, and capital appreciation across 77+ UAE areas. Free 2026 data."
@@ -180,35 +180,43 @@ const MarketMap = () => {
         ]}
       />
 
-      <div className="max-w-[1600px] mx-auto px-4 md:px-8">
+      {/* --- BACKGROUND ACCENTS --- */}
+      <div className="absolute inset-0 pointer-events-none opacity-[0.03]">
+        <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-[#C6A75E] rounded-full blur-[150px]"></div>
+      </div>
+
+      <div className="max-w-[1600px] mx-auto px-4 md:px-8 relative z-10">
         
         {/* TOP HEADER & CONTROLS */}
-        <div className="py-10">
-          <div className="flex flex-col lg:flex-row justify-between items-start lg:items-end gap-6 mb-10">
-            <div>
-              <div className="flex items-center gap-2 text-[#C6A75E] font-bold uppercase tracking-widest text-xs mb-3">
-                <div className="w-8 h-[1px] bg-[#C6A75E]"></div>
-                2026 Institutional Intel
+        <div className="py-12">
+          <div className="flex flex-col lg:flex-row justify-between items-start lg:items-end gap-10 mb-12">
+            <div className="max-w-2xl">
+              <div className="flex items-center gap-3 text-[#C6A75E] font-black uppercase tracking-[0.4em] text-[10px] mb-4">
+                <div className="w-12 h-[1px] bg-[#C6A75E]/30"></div>
+                Sovereign Heatmap Engine
               </div>
-              <h1 className="text-4xl md:text-6xl font-bold text-[#1C1C22] tracking-tight">
-                Market <span className="gold-gradient">Intelligence</span> Map
+              <h1 className="text-5xl md:text-8xl font-serif font-bold text-[#3A3125] leading-none tracking-tighter mb-4">
+                Market <span className="gold-gradient">Alpha Map</span>
               </h1>
+              <p className="text-lg md:text-xl text-[#5A4F40] font-light leading-relaxed">
+                Aggregating 2026 institutional volume and yield signals across 77+ nodes.
+              </p>
             </div>
 
             <div className="flex flex-wrap items-center gap-4">
                {/* Fly-To Selector */}
-               <div className="relative group">
+               <div className="relative group min-w-[200px]">
                   <select 
                     onChange={handleEmirateChange}
-                    className="appearance-none bg-white border border-[rgba(198,167,94,0.3)] text-[#1C1C22] px-6 py-3.5 rounded-2xl text-sm font-bold focus:ring-2 focus:ring-[#C6A75E] outline-none shadow-lg pr-12 cursor-pointer transition-all hover:border-[#C6A75E]"
+                    className="w-full appearance-none bg-white/60 backdrop-blur-md border border-[rgba(198,167,94,0.3)] text-[#3A3125] px-8 py-4 rounded-2xl text-xs font-black uppercase tracking-widest focus:ring-2 focus:ring-[#C6A75E] outline-none shadow-xl pr-14 cursor-pointer transition-all hover:bg-white"
                   >
                     {EMIRATES.map(e => <option key={e.name} value={e.name}>{e.name}</option>)}
                   </select>
-                  <MapIcon className="absolute right-4 top-1/2 -translate-y-1/2 text-[#C6A75E]" size={18} />
+                  <MapIcon className="absolute right-6 top-1/2 -translate-y-1/2 text-[#C6A75E]" size={18} />
                </div>
 
                {/* View Mode Toggle */}
-               <div className="flex bg-white/80 backdrop-blur-md p-1.5 rounded-2xl border border-[rgba(198,167,94,0.2)] shadow-xl">
+               <div className="flex bg-white/40 backdrop-blur-md p-1.5 rounded-2xl border border-white shadow-xl">
                   {[
                     { id: 'live', label: 'Volume', icon: Activity },
                     { id: 'roi', label: 'Yields', icon: Percent },
@@ -217,13 +225,13 @@ const MarketMap = () => {
                     <button
                       key={mode.id}
                       onClick={() => setViewMode(mode.id)}
-                      className={`flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-bold transition-all ${
+                      className={`flex items-center gap-2 px-6 py-3 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all ${
                         viewMode === mode.id 
-                        ? 'bg-[#1C1C22] text-[#F4DFA0] shadow-xl scale-[1.02]' 
-                        : 'text-[#7A6E60] hover:text-[#1C1C22] hover:bg-[#FDFBF7]'
+                        ? 'bg-[#3A3125] text-[#F4DFA0] shadow-2xl scale-[1.02]' 
+                        : 'text-[#7A6E60] hover:text-[#3A3125] hover:bg-white/50'
                       }`}
                     >
-                      <mode.icon size={16} /> {mode.label}
+                      <mode.icon size={14} /> {mode.label}
                     </button>
                   ))}
                </div>
@@ -231,20 +239,21 @@ const MarketMap = () => {
           </div>
 
           {/* DASHBOARD TICKER */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
             {dashboardMetrics.map((m, i) => (
-              <div key={i} className="glass-card-hover bg-white/40 p-5 border border-white/60 flex items-center justify-between">
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-2xl bg-[rgba(198,167,94,0.1)] flex items-center justify-center border border-[rgba(198,167,94,0.2)]">
-                    <m.icon className="text-[#C6A75E]" size={22} />
+              <div key={i} className="flex items-center justify-between p-6 bg-white/40 backdrop-blur-md border border-white rounded-[2rem] shadow-sm transition-all hover:shadow-xl hover:-translate-y-1">
+                <div className="flex items-center gap-5">
+                  <div className="w-14 h-14 rounded-2xl bg-[#3A3125]/5 flex items-center justify-center border border-[#3A3125]/10">
+                    <m.icon className="text-[#C6A75E]" size={24} strokeWidth={1.5} />
                   </div>
                   <div>
-                    <p className="text-[10px] font-bold text-[#A69785] uppercase tracking-widest">{m.label}</p>
-                    <p className="text-xl font-bold text-[#1C1C22]">{m.value} <span className="text-xs font-light text-[#7A6E60]">in {m.area}</span></p>
+                    <p className="text-[9px] font-black text-[#A69785] uppercase tracking-[0.2em] mb-1">{m.label}</p>
+                    <p className="text-2xl font-serif font-black text-[#3A3125] leading-none mb-1">{m.value}</p>
+                    <p className="text-[10px] font-bold text-[#5A4F40]/60 uppercase">{m.area}</p>
                   </div>
                 </div>
                 <div className="text-right">
-                   <div className="flex items-center gap-1 text-emerald-600 font-bold text-xs bg-emerald-50 px-2 py-1 rounded-lg">
+                   <div className="flex items-center gap-1 text-emerald-600 font-black text-[10px] bg-emerald-50/50 border border-emerald-100 px-3 py-1.5 rounded-full">
                      <ArrowUpRight size={14} /> {m.trend}
                    </div>
                 </div>
@@ -256,11 +265,11 @@ const MarketMap = () => {
           <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
             
             {/* LEFT: THE MAP ENGINE */}
-            <div className="lg:col-span-3 h-[700px] rounded-[2.5rem] overflow-hidden shadow-[0_40px_100px_rgba(0,0,0,0.12)] border border-white relative z-0 group">
+            <div className="lg:col-span-3 h-[750px] rounded-[3rem] overflow-hidden shadow-[0_60px_120px_rgba(58,49,37,0.15)] border border-white relative z-0 group">
               <MapContainer center={mapCenter} zoom={mapZoom} className="h-full w-full">
                 <TileLayer
                   attribution='&copy; CARTO'
-                  url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
+                  url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png"
                 />
                 <MapController center={mapCenter} zoom={mapZoom} />
                 <HeatmapLayer points={heatmapPoints} mode={viewMode} />
@@ -274,36 +283,38 @@ const MarketMap = () => {
                     <CircleMarker 
                       key={id} 
                       center={pos} 
-                      radius={viewMode === 'live' ? 10 : 8}
+                      radius={viewMode === 'live' ? 12 : 9}
                       pathOptions={{ 
                         color: 'white', 
                         fillColor: viewMode === 'roi' ? '#10b981' : '#C6A75E', 
-                        fillOpacity: 0.8,
-                        weight: 2
+                        fillOpacity: 0.9,
+                        weight: 3
                       }}
                     >
                       <Popup className="premium-popup">
-                         <div className="p-1 w-48 font-sans">
-                            <div className="flex items-center gap-2 mb-2">
-                               <div className="w-2 h-2 rounded-full bg-[#C6A75E] animate-pulse"></div>
-                               <h4 className="text-sm font-bold text-slate-900">{areaData.name}</h4>
+                         <div className="p-2 w-52 font-sans">
+                            <div className="flex items-center gap-2 mb-3">
+                               <div className="w-2.5 h-2.5 rounded-full bg-[#C6A75E] shadow-[0_0_8px_rgba(198,167,94,0.6)] animate-pulse"></div>
+                               <h4 className="text-sm font-serif font-black text-[#3A3125] uppercase tracking-tight">{areaData.name}</h4>
                             </div>
-                            <div className="grid grid-cols-2 gap-2 mb-3">
-                               <div className="bg-slate-50 p-2 rounded-lg border border-slate-100">
-                                  <p className="text-[10px] text-slate-400 font-bold uppercase">ROI</p>
-                                  <p className="text-sm font-bold text-emerald-600">{areaData.roi}</p>
+                            <div className="grid grid-cols-2 gap-2 mb-4">
+                               <div className="bg-[#FDFBF7] p-2.5 rounded-xl border border-[rgba(198,167,94,0.15)]">
+                                  <p className="text-[9px] text-[#A69785] font-black uppercase tracking-widest mb-1">ROI</p>
+                                  <p className="text-sm font-black text-emerald-600">{areaData.roi}</p>
                                </div>
-                               <div className="bg-slate-50 p-2 rounded-lg border border-slate-100">
-                                  <p className="text-[10px] text-slate-400 font-bold uppercase">Price</p>
-                                  <p className="text-sm font-bold text-slate-800">{areaData.avgPrice}</p>
+                               <div className="bg-[#FDFBF7] p-2.5 rounded-xl border border-[rgba(198,167,94,0.15)]">
+                                  <p className="text-[9px] text-[#A69785] font-black uppercase tracking-widest mb-1">Price</p>
+                                  <p className="text-sm font-black text-[#3A3125]">{areaData.avgPrice}</p>
                                </div>
                             </div>
-                            <p className="text-[10px] text-slate-400 font-bold uppercase mb-1">3-Year Trend</p>
-                            <MiniTrend data={[{value: 10}, {value: 15}, {value: 12}, {value: 20}, {value: 18}]} />
+                            <div className="flex items-center justify-between border-t border-[rgba(198,167,94,0.08)] pt-3">
+                               <p className="text-[10px] text-[#5A4F40]/60 font-black uppercase tracking-widest">3Y Momentum</p>
+                               <MiniTrend data={[{value: 10}, {value: 15}, {value: 12}, {value: 20}, {value: 18}]} />
+                            </div>
                          </div>
                       </Popup>
                       <Tooltip direction="top" offset={[0, -10]} opacity={1}>
-                        <div className="text-[10px] font-bold">{areaData.name}</div>
+                        <div className="text-[10px] font-black uppercase tracking-widest text-[#3A3125] bg-white/90 backdrop-blur-md px-2 py-1 rounded shadow-sm border border-[rgba(198,167,94,0.1)]">{areaData.name}</div>
                       </Tooltip>
                     </CircleMarker>
                   );
@@ -311,23 +322,22 @@ const MarketMap = () => {
               </MapContainer>
 
               {/* OVERLAY LEGEND */}
-              <div className="absolute top-6 left-6 z-[1000] p-6 bg-white/90 backdrop-blur-xl border border-white/50 rounded-3xl shadow-2xl max-w-[240px]">
-                 <h4 className="text-sm font-bold text-[#1C1C22] mb-4 flex items-center gap-2">
-                    <Layers size={16} className="text-[#C6A75E]" /> Map Context
+              <div className="absolute top-8 left-8 z-[1000] p-8 bg-white/80 backdrop-blur-2xl border border-[rgba(198,167,94,0.2)] rounded-[2.5rem] shadow-[0_40px_80px_rgba(58,49,37,0.15)] max-w-[280px]">
+                 <h4 className="text-xs font-black text-[#3A3125] uppercase tracking-[0.2em] mb-6 flex items-center gap-3">
+                    <Layers size={18} className="text-[#C6A75E]" /> Map Context
                  </h4>
-                 <div className="space-y-4">
-                    <div className="flex flex-col gap-2">
-                       <p className="text-[10px] font-bold text-[#A69785] uppercase tracking-widest">Intensity</p>
-                       <div className="h-2 w-full rounded-full bg-gradient-to-r from-blue-500 via-yellow-400 to-red-600"></div>
-                       <div className="flex justify-between text-[9px] font-bold text-[#7A6E60]">
-                          <span>Low</span>
-                          <span>Moderate</span>
-                          <span>Critical</span>
+                 <div className="space-y-6">
+                    <div className="flex flex-col gap-3">
+                       <p className="text-[10px] font-black text-[#A69785] uppercase tracking-widest">Intensity Score</p>
+                       <div className="h-2 w-full rounded-full bg-gradient-to-r from-[#F3E9D2] via-[#C6A75E] to-[#3A3125]"></div>
+                       <div className="flex justify-between text-[9px] font-black text-[#7A6E60] uppercase tracking-tighter">
+                          <span>Neutral</span>
+                          <span>Institutional Peak</span>
                        </div>
                     </div>
-                    <div className="pt-4 border-t border-[rgba(198,167,94,0.1)]">
-                       <p className="text-[11px] leading-relaxed text-[#7A6E60]">
-                          Showing <span className="text-[#1C1C22] font-bold">{viewMode === 'live' ? 'Real-Time Volume' : viewMode === 'roi' ? '2026 Yield Hotspots' : '2026 Supply Pipeline'}</span> across {activeEmirate}.
+                    <div className="pt-6 border-t border-[rgba(198,167,94,0.1)]">
+                       <p className="text-[11px] leading-relaxed text-[#5A4F40] font-medium italic">
+                          Displaying <span className="text-[#3A3125] font-black">{viewMode === 'live' ? 'Capital Velocity' : viewMode === 'roi' ? 'Yield Hotspots' : 'Handover Pipeline'}</span> in {activeEmirate}.
                        </p>
                     </div>
                  </div>
@@ -338,32 +348,32 @@ const MarketMap = () => {
             <div className="lg:col-span-1 flex flex-col gap-6">
                
                {/* SIDEBAR HEADER */}
-               <div className="p-8 bg-[#1C1C22] rounded-[2.2rem] shadow-2xl border border-[#333] relative overflow-hidden group">
-                  <div className="absolute top-0 right-0 w-32 h-32 bg-yellow-500/10 rounded-full -mr-16 -mt-16 blur-3xl group-hover:bg-yellow-500/20 transition-all duration-700"></div>
+               <div className="p-10 bg-[#3A3125] rounded-[3rem] shadow-2xl border border-white/5 relative overflow-hidden group">
+                  <div className="absolute top-0 right-0 w-40 h-40 bg-[#C6A75E]/10 rounded-full -mr-20 -mt-20 blur-3xl group-hover:scale-125 transition-transform duration-1000"></div>
                   <div className="relative z-10">
-                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 text-yellow-400 text-[10px] font-bold uppercase mb-4 border border-white/5">
-                       <Zap size={10} className="fill-yellow-400" /> Hot Movers
+                    <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 text-[#F4DFA0] text-[10px] font-black uppercase tracking-widest mb-6 border border-white/5">
+                       <Zap size={10} className="fill-[#F4DFA0]" /> Buy Signals
                     </div>
-                    <h3 className="text-xl font-bold text-white mb-2">Watchlist 2026</h3>
-                    <p className="text-sm text-slate-400 font-light">Areas showing institutional accumulation signals.</p>
+                    <h3 className="text-2xl font-serif font-black text-white leading-tight mb-2 uppercase tracking-tighter">Growth <br/>Watchlist</h3>
+                    <p className="text-sm text-white/40 font-medium">Accumulation signals in target market nodes.</p>
                   </div>
                </div>
 
                {/* AREA LIST */}
-               <div className="flex-1 overflow-y-auto space-y-4 pr-1 custom-scrollbar luxury-scroll min-h-[400px]">
+               <div className="flex-1 overflow-y-auto space-y-4 pr-2 custom-scrollbar luxury-scroll min-h-[400px]">
                   {DUBAI_AREAS.filter(a => ['jvc', 'al-marjan-island', 'dubai-south', 'business-bay', 'saadiyat-island'].includes(a.id)).map((area) => (
-                    <div key={area.id} className="glass-card-hover bg-white group p-6 border border-white shadow-sm cursor-pointer hover:border-[#F4DFA0]">
-                       <div className="flex justify-between items-start mb-3">
+                    <div key={area.id} className="group p-6 bg-white/40 backdrop-blur-md border border-white rounded-[2rem] shadow-sm cursor-pointer hover:bg-white hover:shadow-xl transition-all duration-300">
+                       <div className="flex justify-between items-start mb-4">
                           <div>
-                            <p className="text-[9px] font-bold text-[#C6A75E] uppercase tracking-widest mb-1">{area.emirate}</p>
-                            <h4 className="text-lg font-bold text-[#1C1C22] group-hover:text-[#C6A75E] transition-colors">{area.name}</h4>
+                            <p className="text-[9px] font-black text-[#C6A75E] uppercase tracking-[0.2em] mb-1">{area.emirate}</p>
+                            <h4 className="text-lg font-serif font-black text-[#3A3125] tracking-tight group-hover:text-[#C6A75E] transition-colors leading-none">{area.name}</h4>
                           </div>
-                          <div className={`w-10 h-10 rounded-xl flex items-center justify-center ${area.overallScore > 8 ? 'bg-emerald-50 text-emerald-600' : 'bg-blue-50 text-blue-600'} border border-current opacity-20`}>
-                             <p className="text-[10px] font-bold">{area.overallScore}</p>
+                          <div className={`w-10 h-10 rounded-2xl flex items-center justify-center ${area.overallScore > 8 ? 'bg-emerald-50 text-emerald-600' : 'bg-[#FDFBF7] text-[#C6A75E]'} border border-current opacity-20`}>
+                             <p className="text-[10px] font-black">{area.overallScore}</p>
                           </div>
                        </div>
-                       <div className="flex items-center justify-between text-xs pt-4 border-t border-[rgba(198,167,94,0.1)] text-[#7A6E60]">
-                          <span className="flex items-center gap-1.5 font-bold"><Percent size={14}/> {area.roi} Yield</span>
+                       <div className="flex items-center justify-between text-[10px] pt-4 border-t border-[rgba(198,167,94,0.08)] text-[#7A6E60] font-black uppercase tracking-widest">
+                          <span className="flex items-center gap-1.5 text-emerald-600"><Percent size={14}/> {area.roi} Yield</span>
                           <ChevronRight size={16} className="text-[#A69785] group-hover:translate-x-1 transition-transform" />
                        </div>
                     </div>
@@ -371,17 +381,17 @@ const MarketMap = () => {
                </div>
 
                {/* AI BOT VERDICT */}
-               <div className="bg-gradient-to-br from-[#1C1C22] to-[#2A2A33] p-8 rounded-[2.2rem] shadow-2xl relative group overflow-hidden border border-white/5">
-                  <div className="absolute bottom-0 right-0 w-32 h-32 bg-[#C6A75E]/10 rounded-full -br-16 -mb-16 blur-2xl"></div>
-                   <h4 className="text-[#F4DFA0] font-bold text-xs uppercase tracking-widest mb-4 flex items-center gap-2">
-                     <Target size={16} /> Analyst Verdict
+               <div className="bg-[#FDFBF7] p-8 rounded-[2.5rem] shadow-xl relative group overflow-hidden border border-[rgba(198,167,94,0.2)]">
+                  <div className="absolute bottom-0 right-0 w-32 h-32 bg-[#C6A75E]/5 rounded-full -br-16 -mb-16 blur-2xl"></div>
+                   <h4 className="text-[#C6A75E] font-black text-[10px] uppercase tracking-[0.3em] mb-5 flex items-center gap-3">
+                     <Target size={18} /> Market Verdict
                    </h4>
-                   <p className="text-sm text-white/80 leading-relaxed font-light">
+                   <p className="text-[13px] text-[#5A4F40] leading-relaxed font-light italic">
                      {viewMode === 'live' 
-                        ? "Accumulation in Business Bay is at a 5-year high. Expect supply squeeze in Q3 2026." 
+                        ? "Institutional accumulation in Business Bay is at a 5-year cyclical high. Expect structural supply squeeze by Q3 2026." 
                         : viewMode === 'roi' 
-                        ? "JVC and Reem Island are the ROI champions for the next cycle with projected yields > 8.5%."
-                        : "Watch Al Marjan and Dubai South. The 2026 handover cycle will drive massive secondary market activity."
+                        ? "JVC and Reem Island remain the primary yield generators for the next cycle with verified ROIs exceeding 8.5% net."
+                        : "Focus on Al Marjan and Dubai South. Handover milestones will drive secondary market velocity to record levels."
                      }
                    </p>
                </div>

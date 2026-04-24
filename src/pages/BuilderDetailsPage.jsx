@@ -3,22 +3,32 @@ import { useParams, Link } from 'react-router-dom';
 import { 
   ArrowLeft, TrendingUp, AlertTriangle, 
   Crown, Clock, Wallet, BarChart, ShieldCheck, Building2, MapPin, CheckCircle,
-  Leaf, Activity, Globe, Zap, Database, BrainCircuit
+  Leaf, Activity, Globe, Zap, Database, BrainCircuit,
+  Bookmark, BookmarkCheck
 } from 'lucide-react';
 import { BUILDERS } from '../data/buildersData';
 import SEO from '../components/SEO';
 import WhatsAppButton from '../components/WhatsAppButton';
+import { isInWatchlist, toggleWatchlist } from '../utils/watchlist';
 
 const BuilderDetailsPage = () => {
-  // 🟢 FIXED: Changed 'builderId' to 'id' to match App.jsx
   const { id } = useParams(); 
+  const [isSaved, setIsSaved] = React.useState(false);
   
   // 1. Find the builder using the correct ID
   const builder = BUILDERS.find(b => b.id === id);
 
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, [id]);
+    if (builder) {
+      setIsSaved(isInWatchlist('builders', builder.id));
+    }
+  }, [id, builder]);
+
+  const handleToggleWatchlist = () => {
+    toggleWatchlist('builders', builder.id);
+    setIsSaved(!isSaved);
+  };
 
   // 2. Safety Check
   if (!builder) {
@@ -112,12 +122,26 @@ const BuilderDetailsPage = () => {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(builderBreadcrumb) }} />
 
       <div className="mx-auto max-w-7xl px-4 pt-8 lg:px-8">
-        <Link to="/builders" className="group flex items-center gap-3 text-[#7A6E60] hover:text-[#C6A75E] font-bold text-xs uppercase tracking-widest transition-all mb-10">
-          <div className="p-2 rounded-full border border-[rgba(198,167,94,0.2)] group-hover:bg-[#C6A75E] group-hover:text-white transition-all">
-             <ArrowLeft size={14} />
-          </div>
-          Back to Developers
-        </Link>
+        <div className="flex justify-between items-center mb-10">
+          <Link to="/builders" className="group flex items-center gap-3 text-[#7A6E60] hover:text-[#C6A75E] font-bold text-xs uppercase tracking-widest transition-all">
+            <div className="p-2 rounded-full border border-[rgba(198,167,94,0.2)] group-hover:bg-[#C6A75E] group-hover:text-white transition-all">
+               <ArrowLeft size={14} />
+            </div>
+            Back to Developers
+          </Link>
+          
+          <button 
+            onClick={handleToggleWatchlist} 
+            className={`flex items-center gap-2 text-[10px] md:text-xs py-2.5 px-6 rounded-full font-black uppercase tracking-widest transition-all shadow-lg active:scale-95 ${
+              isSaved 
+              ? 'bg-[#C6A75E] text-white border border-[#C6A75E]' 
+              : 'bg-white text-[#7A6E60] border border-[rgba(198,167,94,0.2)] hover:border-[#C6A75E] hover:text-[#C6A75E]'
+            }`}
+          >
+            {isSaved ? <BookmarkCheck size={16} fill="currentColor" /> : <Bookmark size={16} />}
+            {isSaved ? 'In Watchlist' : 'Watch Developer'}
+          </button>
+        </div>
       </div>
 
       <div className="mx-auto max-w-7xl px-4 lg:px-8">

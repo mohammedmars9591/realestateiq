@@ -2,7 +2,8 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { 
   ArrowLeft, Download, Loader2, MessageCircle, HardHat,
-  MapPin, Crown, TrendingUp, PlayCircle, PauseCircle, Volume2
+  MapPin, Crown, TrendingUp, PlayCircle, PauseCircle, Volume2,
+  Bookmark, BookmarkCheck
 } from 'lucide-react';
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
@@ -11,21 +12,29 @@ import SEO from '../components/SEO';
 import { DUBAI_AREAS as MASTER_DB } from '../data/emiratesData'; 
 import { AreaDetailSections } from '../components/area/AreaDetailSections';
 import { MetricInsightCharts } from '../components/area/AreaCharts';
+import { isInWatchlist, toggleWatchlist } from '../utils/watchlist';
 
 const AreaPage = () => {
   const { id } = useParams();
   const reportRef = useRef(); 
   const [isGeneratingPdf, setIsGeneratingPdf] = useState(false);
   const [isPlayingAudio, setIsPlayingAudio] = useState(false);
+  const [isSaved, setIsSaved] = useState(false);
 
   const routeId = decodeURIComponent(id || "").replace(/\/$/, "");
   const db = Array.isArray(MASTER_DB) ? MASTER_DB : [];
   const area = db.find((a) => String(a.id) === routeId);
   const similarAreas = db.filter((a) => String(a.id) !== routeId && a.emirate === area?.emirate).slice(0, 3);
 
-  useEffect(() => { window.scrollTo(0, 0); }, [id]);
+  useEffect(() => { 
+    window.scrollTo(0, 0); 
+    if (area) {
+      setIsSaved(isInWatchlist('areas', area.id));
+    }
+  }, [id, area]);
 
   if (!area) return (
+// ... existing not found code ...
     <div className="min-h-screen flex flex-col items-center justify-center bg-[#FDFBF7]">
       <div className="p-4 rounded-3xl bg-[#3A3125]/5 mb-8">
          <Loader2 size={64} className="text-[#C6A75E] opacity-20" />
@@ -158,10 +167,21 @@ const AreaPage = () => {
             Back to National Map
           </Link>
           
-          <div className="flex gap-4 w-full sm:w-auto">
+          <div className="flex flex-wrap gap-4 w-full sm:w-auto">
+            <button 
+              onClick={handleToggleWatchlist} 
+              className={`flex-1 sm:flex-none flex items-center justify-center gap-2 text-[10px] md:text-xs py-2.5 px-6 rounded-full font-black uppercase tracking-widest transition-all shadow-lg active:scale-95 ${
+                isSaved 
+                ? 'bg-[#C6A75E] text-white border border-[#C6A75E]' 
+                : 'bg-white text-[#7A6E60] border border-[rgba(198,167,94,0.2)] hover:border-[#C6A75E] hover:text-[#C6A75E]'
+              }`}
+            >
+              {isSaved ? <BookmarkCheck size={16} fill="currentColor" /> : <Bookmark size={16} />}
+              {isSaved ? 'In Watchlist' : 'Watch Area'}
+            </button>
             <button onClick={handleDownloadPDF} disabled={isGeneratingPdf} className="btn-secondary flex-1 sm:flex-none flex items-center justify-center gap-2 text-[10px] md:text-xs py-2.5">
               {isGeneratingPdf ? <Loader2 size={14} className="animate-spin" /> : <Download size={14} />} 
-              Download Market Brief
+              Market Brief
             </button>
             <button onClick={handleWhatsAppClick} className="btn-primary flex-1 sm:flex-none flex items-center justify-center gap-3 text-[10px] md:text-xs py-2.5">
               <MessageCircle size={16} /> Contact Advisor
