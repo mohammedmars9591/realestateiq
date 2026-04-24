@@ -1,5 +1,0 @@
-1:"$Sreact.fragment"
-2:I[56585,["/_next/static/chunks/043md57toe8ti.js","/_next/static/chunks/02dzd02iye9e_.js","/_next/static/chunks/0mqiw58i4o5rt.js"],"ViewportBoundary"]
-3:I[56585,["/_next/static/chunks/043md57toe8ti.js","/_next/static/chunks/02dzd02iye9e_.js","/_next/static/chunks/0mqiw58i4o5rt.js"],"MetadataBoundary"]
-4:"$Sreact.suspense"
-0:{"rsc":["$","$1","h",{"children":[["$","meta",null,{"name":"robots","content":"noindex"}],["$","$L2",null,{"children":[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]}],["$","div",null,{"hidden":true,"children":["$","$L3",null,{"children":["$","$4",null,{"name":"Next.Metadata","children":[["$","title","0",{"children":"RealEstateIQ | Premium UAE Property Intelligence 2026"}],["$","meta","1",{"name":"description","content":"The UAE's premier AI-powered real estate investment intelligence platform. Institutional-grade analytics, FutureScope forecasts, and ROI heatmaps."}],["$","meta","2",{"name":"robots","content":"index, follow"}]]}]}]}],null]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"3-lLsPxTvChwPFpFhmcWs"}

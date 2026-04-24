@@ -1,3 +1,0 @@
-module.exports=[5499,(a,b,c)=>{"use strict";c._=function(a){return a&&a.__esModule?a:{default:a}}},32637,a=>{"use strict";let b=(0,a.i(75282).default)("map",[["path",{d:"M14.106 5.553a2 2 0 0 0 1.788 0l3.659-1.83A1 1 0 0 1 21 4.619v12.764a1 1 0 0 1-.553.894l-4.553 2.277a2 2 0 0 1-1.788 0l-4.212-2.106a2 2 0 0 0-1.788 0l-3.659 1.83A1 1 0 0 1 3 19.381V6.618a1 1 0 0 1 .553-.894l4.553-2.277a2 2 0 0 1 1.788 0z",key:"169xi5"}],["path",{d:"M15 5.764v15",key:"1pn4in"}],["path",{d:"M9 3.236v15",key:"1uimfh"}]]);a.s(["Map",0,b],32637)}];
-
-//# sourceMappingURL=0w5l_0kmkpa1._.js.map
