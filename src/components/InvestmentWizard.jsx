@@ -1,6 +1,7 @@
+"use client";
 import React, { useState } from 'react';
 import { Search, Zap, TrendingUp, ShieldCheck, Wallet, ArrowRight, Clock, MapPin, HardHat, Home, Building, Crown } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 
 const InvestmentWizard = () => {
   // --- 1. USER INPUT STATE ---
@@ -164,7 +165,7 @@ const InvestmentWizard = () => {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               
               {/* CARD 1: BEST AREA */}
-              <Link to={`/area/${result.area.id}`} className="block group">
+              <Link href={`/area/${result.area.id}`} className="block group">
                 <div className="bg-slate-50 border border-slate-200 p-4 rounded-xl hover:border-blue-500 transition-colors h-full">
                    <div className="text-xs font-bold text-slate-400 uppercase mb-2 flex items-center gap-1">
                      <MapPin size={14} /> Best Area
@@ -177,7 +178,7 @@ const InvestmentWizard = () => {
               </Link>
 
               {/* CARD 2: BEST BUILDER */}
-              <Link to={`/builders/${result.builder.id}`} className="block group">
+              <Link href={`/builders/${result.builder.id}`} className="block group">
                 <div className="bg-slate-50 border border-slate-200 p-4 rounded-xl hover:border-blue-500 transition-colors h-full">
                    <div className="text-xs font-bold text-slate-400 uppercase mb-2 flex items-center gap-1">
                      <HardHat size={14} /> Best Builder

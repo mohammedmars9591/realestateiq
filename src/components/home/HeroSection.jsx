@@ -1,5 +1,6 @@
+"use client";
 import React from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { ArrowRight, BarChart3, Map, TrendingUp } from 'lucide-react';
 
 export function HeroSection() {
@@ -34,11 +35,11 @@ export function HeroSection() {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 pt-2">
-              <Link to="/heatmap" className="btn-primary group inline-flex items-center justify-center gap-3 text-sm">
+              <Link href="/heatmap" className="btn-primary group inline-flex items-center justify-center gap-3 text-sm">
                 Open Heatmap
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
               </Link>
-              <Link to="/compare" className="btn-secondary inline-flex items-center justify-center gap-3 text-sm">
+              <Link href="/compare" className="btn-secondary inline-flex items-center justify-center gap-3 text-sm">
                 Compare Markets
               </Link>
             </div>

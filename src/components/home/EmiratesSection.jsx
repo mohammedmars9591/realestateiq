@@ -1,5 +1,6 @@
+"use client";
 import React from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 
 const emirates = [
@@ -26,7 +27,7 @@ export function EmiratesSection() {
         </div>
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {emirates.map((emirate, idx) => (
-            <Link key={idx} to={`/areas`} className="group flex flex-col justify-between p-8 min-h-[260px] bg-white/40 backdrop-blur-md border border-white/60 rounded-[2rem] transition-all duration-300 hover:bg-white hover:shadow-2xl hover:-translate-y-2">
+            <Link key={idx} href={`/areas`} className="group flex flex-col justify-between p-8 min-h-[260px] bg-white/40 backdrop-blur-md border border-white/60 rounded-[2rem] transition-all duration-300 hover:bg-white hover:shadow-2xl hover:-translate-y-2">
               <div>
                 <h3 className="text-2xl font-serif font-bold text-[#3A3125] mb-2 tracking-tight">{emirate.name}</h3>
                 <p className="text-[10px] font-black uppercase tracking-[0.2em] text-[#C6A75E] mb-6">{emirate.areas}</p>

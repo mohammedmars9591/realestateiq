@@ -1,5 +1,6 @@
+"use client";
 import React from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { ArrowRight } from "lucide-react";
 
 export function CTASection() {
@@ -19,10 +20,10 @@ export function CTASection() {
                 Join institutional and global HNWIs who use RealEstateIQ to gain a structural competitive edge in the complex UAE property market.
               </p>
               <div className="mt-12 flex flex-col sm:flex-row gap-4 sm:gap-6">
-                <Link to="/areas" className="bg-[#3A3125] text-[#C6A75E] hover:bg-[#2A231A] px-10 py-4 rounded-full text-[10px] font-black uppercase tracking-[0.2em] shadow-xl transition-all inline-flex items-center gap-3">
+                <Link href="/areas" className="bg-[#3A3125] text-[#C6A75E] hover:bg-[#2A231A] px-10 py-4 rounded-full text-[10px] font-black uppercase tracking-[0.2em] shadow-xl transition-all inline-flex items-center gap-3">
                   Start Analysis <ArrowRight className="h-4 w-4" />
                 </Link>
-                <Link to="/compare" className="bg-white/40 backdrop-blur-md border border-white/60 text-[#3A3125] hover:bg-white px-10 py-4 rounded-full text-[10px] font-black uppercase tracking-[0.2em] shadow-sm transition-all inline-flex items-center gap-3">
+                <Link href="/compare" className="bg-white/40 backdrop-blur-md border border-white/60 text-[#3A3125] hover:bg-white px-10 py-4 rounded-full text-[10px] font-black uppercase tracking-[0.2em] shadow-sm transition-all inline-flex items-center gap-3">
                   Market Battleground
                 </Link>
               </div>

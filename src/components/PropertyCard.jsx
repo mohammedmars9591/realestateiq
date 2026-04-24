@@ -1,6 +1,7 @@
+"use client";
 import React from 'react';
 import { MapPin, TrendingUp, ArrowRight, BarChart3 } from 'lucide-react'; // Added BarChart3 for Area stats
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import InvestmentScore from './InvestmentScore';
 
 // --- 1. IMPORT ALL THREE DATA SOURCES ---
@@ -50,7 +51,7 @@ const PropertyCard = ({ property }) => {
   const scoreValue = developerData?.scores?.trust || property.developer?.trustScore || 7.5;
 
   return (
-    <Link to={`/property/${property.id}`} className="block h-full group hover:no-underline">
+    <Link href={`/property/${property.id}`} className="block h-full group hover:no-underline">
       <div className="bg-white border border-slate-200 rounded-2xl overflow-hidden hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 h-full flex flex-col relative">
         
         {/* IMAGE HEADER */}
