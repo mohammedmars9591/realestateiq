@@ -6,6 +6,12 @@ import "leaflet/dist/leaflet.css";
 import { DUBAI_AREAS } from "../../data/emiratesData";
 
 const HeatmapMap = ({ center, zoom }) => {
+  const [mounted, setMounted] = React.useState(false);
+
+  React.useEffect(() => {
+    setMounted(true);
+  }, []);
+
   const LOCATIONS = useMemo(() => ({
     'dubai-marina': [25.0805, 55.1403],
     'business-bay': [25.1850, 55.2750],
@@ -18,8 +24,11 @@ const HeatmapMap = ({ center, zoom }) => {
     'jlt': [25.0673, 55.1458],
   }), []);
 
+  if (!mounted || typeof window === 'undefined') return null;
+
   return (
     <MapContainer 
+      key={`${center[0]}-${center[1]}`}
       center={center} 
       zoom={zoom} 
       className="h-full w-full"
