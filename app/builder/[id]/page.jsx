@@ -125,86 +125,200 @@ const BuilderDetailsPage = () => {
         </div>
 
         <div className="mx-auto max-w-7xl px-4 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
         
-        <div className="lg:col-span-2 space-y-8">
-           <div className="bg-white/40 backdrop-blur-md border border-white/60 rounded-3xl p-8 shadow-sm">
-             <h3 className="text-lg font-serif font-bold text-[#3A3125] mb-8 flex items-center gap-3">
-               <div className="p-2 rounded-xl bg-[#C6A75E]/10"><BarChart size={18} className="text-[#C6A75E]" /></div> Performance Scores
+        <div className="lg:col-span-2 space-y-12">
+           {/* --- 1. SPECIALTY & DNA --- */}
+           <div className="bg-white/40 backdrop-blur-md border border-white/60 rounded-[3rem] p-10 shadow-sm relative overflow-hidden">
+             <div className="absolute top-0 right-0 p-8 opacity-5">
+                <Crown size={120} />
+             </div>
+             <h3 className="text-xl font-serif font-black text-[#3A3125] mb-8 flex items-center gap-4 uppercase tracking-[0.2em]">
+               <div className="p-3 rounded-2xl bg-[#3A3125] text-[#C6A75E]"><BarChart size={20} /></div> 
+               Development DNA
              </h3>
-             <div className="space-y-6">
-               <ScoreBar label="Market Trust & Reputation" value={scores.trust} color="from-[#C6A75E] to-[#E2C98E]" />
-               <ScoreBar label="Delivery Reliability" value={scores.deliveryReliability} color="from-emerald-500 to-emerald-400" />
-               <ScoreBar label="Construction Quality" value={scores.constructionQuality} color="from-blue-500 to-blue-400" />
+             <div className="space-y-10">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                   <div>
+                      <p className="text-[10px] font-black text-[#A69785] uppercase tracking-widest mb-4">Core Specialty</p>
+                      <p className="text-2xl font-serif font-bold text-[#3A3125] leading-tight">{builder.usp}</p>
+                   </div>
+                   <div>
+                      <p className="text-[10px] font-black text-[#A69785] uppercase tracking-widest mb-4">Market Tier</p>
+                      <p className="text-2xl font-serif font-bold text-[#C6A75E]">{builder.tier}</p>
+                   </div>
+                </div>
+                <div className="pt-8 border-t border-[rgba(198,167,94,0.1)]">
+                   <p className="text-[10px] font-black text-[#A69785] uppercase tracking-widest mb-6">Track Record Audit</p>
+                   <div className="grid grid-cols-3 gap-4">
+                      <div className="p-4 bg-[#3A3125]/5 rounded-2xl text-center border border-white/60">
+                         <p className="text-[10px] font-bold text-[#7A6E60] mb-1">On Time</p>
+                         <p className="text-xl font-black text-emerald-600">{trackRecord.onTime}</p>
+                      </div>
+                      <div className="p-4 bg-[#3A3125]/5 rounded-2xl text-center border border-white/60">
+                         <p className="text-[10px] font-bold text-[#7A6E60] mb-1">Delayed</p>
+                         <p className="text-xl font-black text-amber-600">{trackRecord.delayed}</p>
+                      </div>
+                      <div className="p-4 bg-[#3A3125]/5 rounded-2xl text-center border border-white/60">
+                         <p className="text-[10px] font-bold text-[#7A6E60] mb-1">Cancelled</p>
+                         <p className="text-xl font-black text-[#3A3125]">{trackRecord.cancelled}</p>
+                      </div>
+                   </div>
+                </div>
              </div>
            </div>
 
-           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-             <div className="bg-white/40 backdrop-blur-md border border-white/60 p-7 rounded-3xl shadow-sm">
-                <div className="text-[10px] font-bold text-[#C6A75E] uppercase tracking-[0.1em] mb-3 flex items-center gap-2">
-                  <TrendingUp size={14}/> 5-Year Appreciation
-                </div>
-                <div className="text-3xl font-serif font-black text-[#3A3125] mb-1">
-                  {perf.avgCapitalAppreciation5Y}
-                </div>
-             </div>
-             <div className="bg-white/40 backdrop-blur-md border border-white/60 p-7 rounded-3xl shadow-sm">
-                <div className="text-[10px] font-bold text-[#C6A75E] uppercase tracking-[0.1em] mb-3 flex items-center gap-2">
-                  <Wallet size={14}/> Rental Yields
-                </div>
-                <div className="text-3xl font-serif font-black text-[#3A3125] mb-1">
-                  {perf.avgRentalYield}
-                </div>
-             </div>
-           </div>
-
-           <div className="bg-[#3A3125] text-white rounded-[2rem] p-10 shadow-2xl relative overflow-hidden">
-              <div className="relative z-10">
-                 <h3 className="text-xl font-serif font-bold mb-10 flex items-center gap-4 uppercase tracking-[0.2em]">
-                    <Database className="text-[#C6A75E]" /> Intelligence <span className="text-[10px] bg-[#C6A75E] text-white px-3 py-1 rounded-full">2026 EXCLUSIVE</span>
-                 </h3>
-                 <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-                    <div className="space-y-4">
-                       <div className="flex items-center justify-between">
-                          <div className="flex items-center gap-3 text-[#C6A75E] font-bold uppercase tracking-widest text-[10px]">
-                             <Leaf size={16} /> ESG PERFORMANCE
-                          </div>
-                          <div className="text-3xl font-serif font-black">{builder.esgRating || "N/A"}</div>
-                       </div>
+           {/* --- 2. RISK & PERFORMANCE MATRIX --- */}
+           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div className="bg-[#3A3125] text-white rounded-[2.5rem] p-10 shadow-2xl relative group overflow-hidden">
+                 <div className="absolute bottom-0 right-0 p-6 text-[#C6A75E]/10 group-hover:scale-110 transition-transform duration-700">
+                    <ShieldCheck size={140} />
+                 </div>
+                 <p className="text-[9px] font-black uppercase text-[#C6A75E] tracking-[0.3em] mb-4">Risk Profile Audit</p>
+                 <h4 className="text-2xl font-serif font-bold mb-8 italic">Safety Assessment</h4>
+                 <div className="space-y-6 relative z-10">
+                    <div>
+                       <p className="text-[10px] font-bold text-white/40 uppercase tracking-widest mb-1">Off-Plan Safety</p>
+                       <p className="text-xl font-black text-[#C6A75E] tracking-tighter">{risk.offPlanRisk}</p>
                     </div>
-                    <div className="space-y-4">
-                       <div className="flex items-center justify-between">
-                          <div className="flex items-center gap-3 text-[#C6A75E] font-bold uppercase tracking-widest text-[10px]">
-                             <Activity size={16} /> AI CONFIDENCE
-                          </div>
-                          <div className="text-3xl font-serif font-black">{builder.aiConfidence || "N/A"}%</div>
+                    <div>
+                       <p className="text-[10px] font-bold text-white/40 uppercase tracking-widest mb-1">Handover Compliance</p>
+                       <p className="text-xl font-black text-white tracking-tighter">{risk.handoverRisk}</p>
+                    </div>
+                    <div className="pt-4">
+                       <p className="text-[10px] font-bold text-white/40 uppercase tracking-widest mb-1">Funding Stability</p>
+                       <p className="text-xs font-bold leading-relaxed">{builder.fundingStability || "Institutional Growth Capital"}</p>
+                    </div>
+                 </div>
+              </div>
+
+              <div className="bg-white border border-[#C6A75E]/20 rounded-[2.5rem] p-10 shadow-xl overflow-hidden">
+                 <p className="text-[9px] font-black uppercase text-[#C6A75E] tracking-[0.3em] mb-4">Capital Yield View</p>
+                 <h4 className="text-2xl font-serif font-bold text-[#3A3125] mb-8">Intelligence Delta</h4>
+                 <div className="space-y-8">
+                    <div className="flex justify-between items-end border-b border-gray-100 pb-4">
+                       <div>
+                          <p className="text-[10px] font-bold text-[#A69785] uppercase tracking-widest mb-1">5Y Appreciation</p>
+                          <p className="text-3xl font-serif font-black text-[#3A3125]">{perf.avgCapitalAppreciation5Y}</p>
                        </div>
+                       <TrendingUp className="text-emerald-500 mb-1" />
+                    </div>
+                    <div className="flex justify-between items-end border-b border-gray-100 pb-4">
+                       <div>
+                          <p className="text-[10px] font-bold text-[#A69785] uppercase tracking-widest mb-1">Avg Rental Yield</p>
+                          <p className="text-3xl font-serif font-black text-[#C6A75E]">{perf.avgRentalYield}</p>
+                       </div>
+                       <BarChart className="text-[#C6A75E] mb-1" />
                     </div>
                  </div>
               </div>
            </div>
-        </div>
 
-        <div className="space-y-8">
-           <div className="bg-white/40 backdrop-blur-md border border-white/60 rounded-3xl p-8 shadow-sm text-center">
-             <h3 className="font-serif font-bold text-[#3A3125] mb-2 text-lg">Interested in {builder.name}?</h3>
-             <WhatsAppButton text="Get Inventory List" message={`Hi, I'm interested in projects by ${builder.name}.`} />
-           </div>
-
-           <div className="bg-white/40 backdrop-blur-md border border-white/60 rounded-3xl p-8 shadow-sm">
-             <h3 className="font-serif font-bold text-lg mb-6 text-[#3A3125]">Investor Verdict</h3>
-             <div className="mb-8">
-                <div className="text-[10px] font-bold text-emerald-600 uppercase tracking-widest mb-4 flex items-center gap-2">
-                   <CheckCircle size={14}/> IDEAL FOR
+           {/* --- 3. EMPIRE FOOTPRINT --- */}
+           <div className="bg-white border border-[rgba(198,167,94,0.1)] rounded-[3rem] p-10 shadow-sm">
+             <h3 className="text-xl font-serif font-black text-[#3A3125] mb-10 flex items-center gap-4 uppercase tracking-[0.2em]">
+               <div className="p-3 rounded-2xl bg-[#C6A75E]/10 text-[#C6A75E]"><MapPin size={20} /></div> 
+               Empire Footprint
+             </h3>
+             <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+                <div>
+                   <p className="text-[10px] font-black text-[#A69785] uppercase tracking-widest mb-4">Signature Project</p>
+                   <div className="p-6 bg-gradient-to-br from-[#3A3125] to-[#4A4135] text-white rounded-3xl shadow-xl">
+                      <p className="text-2xl font-serif font-black text-[#C6A75E] mb-2">{builder.signatureProject}</p>
+                      <p className="text-[10px] font-bold text-white/40 uppercase tracking-widest">Iconic Market Marker</p>
+                   </div>
                 </div>
-                <div className="flex flex-wrap gap-2">
-                   {builder.bestFor?.map(item => (
-                     <span key={item} className="px-3 py-1.5 bg-emerald-50/50 border border-emerald-100 rounded-lg text-[10px] font-bold text-emerald-800 uppercase tracking-wider">
-                       {item}
-                     </span>
-                   ))}
+                <div>
+                   <p className="text-[10px] font-black text-[#A69785] uppercase tracking-widest mb-4">Flagship Communities</p>
+                   <div className="flex flex-wrap gap-2">
+                      {builder.flagshipCommunities?.map(comm => (
+                         <span key={comm} className="px-4 py-2 bg-[#FDFBF7] border border-[rgba(198,167,94,0.2)] rounded-xl text-[10px] font-bold text-[#3A3125] uppercase tracking-widest">
+                            {comm}
+                         </span>
+                      ))}
+                   </div>
                 </div>
              </div>
+             <div className="mt-10 p-6 bg-[#FDFBF7] rounded-3xl border border-[#C6A75E]/10">
+                <p className="text-[10px] font-black text-[#C6A75E] uppercase tracking-widest mb-2 italic">Institutional Note</p>
+                <p className="text-sm italic font-serif leading-relaxed text-[#5A4F40]">"{builder.records}"</p>
+             </div>
+           </div>
+        </div>
+
+        <div className="space-y-12">
+           <div className="bg-[#FDFBF7] border border-[#C6A75E]/30 rounded-[3rem] p-10 shadow-2xl relative overflow-hidden">
+              <h3 className="text-[10px] font-black mb-8 uppercase tracking-[0.2em] text-[#3A3125] bg-[#C6A75E] text-white inline-block px-4 py-1.5 rounded-full">Investment Verdict</h3>
+              <div className="space-y-10">
+                 <div>
+                    <p className="text-[10px] font-bold text-[#C6A75E] uppercase tracking-widest mb-4 flex items-center gap-2 underline underline-offset-4 decoration-wavy">
+                       <ShieldCheck size={14} /> Strategic Fit
+                    </p>
+                    <div className="flex flex-wrap gap-2">
+                       {builder.idealFor?.map(item => (
+                         <span key={item} className="px-4 py-2 bg-[#3A3125] text-white rounded-xl text-[9px] font-black uppercase tracking-widest">
+                           {item}
+                         </span>
+                       ))}
+                    </div>
+                 </div>
+                 <div className="pt-8 border-t border-gray-100">
+                    <p className="text-[10px] font-bold text-rose-500 uppercase tracking-widest mb-5 flex items-center gap-2">
+                       <AlertTriangle size={14} /> Risk Exclusion
+                    </p>
+                    <div className="flex flex-wrap gap-2">
+                       {builder.notIdealFor?.map(item => (
+                         <span key={item} className="px-4 py-2 bg-rose-50 border border-rose-100 text-rose-800 rounded-xl text-[9px] font-black uppercase tracking-widest">
+                           {item}
+                         </span>
+                       ))}
+                    </div>
+                 </div>
+                 <div className="pt-8 border-t border-gray-100">
+                    <p className="text-[10px] font-bold text-[#A69785] shadow-sm uppercase tracking-widest mb-4">Financial Terms</p>
+                    <div className="flex flex-wrap gap-2">
+                       {payment.commonPlans?.map(plan => (
+                          <span key={plan} className="px-4 py-2 bg-white border border-[#C6A75E]/20 rounded-xl text-[10px] font-black text-[#C6A75E] uppercase tracking-widest">
+                             {plan}
+                          </span>
+                       ))}
+                    </div>
+                 </div>
+              </div>
+           </div>
+
+           <div className="bg-white/40 backdrop-blur-md border border-white/60 rounded-[3rem] p-10 shadow-sm text-center">
+             <div className="w-20 h-20 bg-[#3A3125] rounded-full flex items-center justify-center mx-auto mb-6 text-[#C6A75E] shadow-xl">
+               <Database size={32} />
+             </div>
+             <p className="text-[10px] font-black text-[#A69785] uppercase tracking-widest mb-2">Portfolio Access</p>
+             <h3 className="font-serif font-black text-[#3A3125] mb-8 text-xl leading-snug tracking-tighter">Secure {builder.name} Private Inventory</h3>
+             <WhatsAppButton text="Request Full Dossier" message={`Hi RealEstateIQ, please send the latest investor portfolio for ${builder.name}.`} />
+           </div>
+
+           <div className="bg-[#3A3125] text-white rounded-[3rem] p-10 shadow-2xl relative overflow-hidden">
+              <div className="absolute top-0 right-0 p-8 text-[#C6A75E]/5"><BrainCircuit size={100} /></div>
+              <div className="flex items-center gap-3 mb-10 border-b border-white/5 pb-6">
+                 <div className="p-3 rounded-2xl bg-[#C6A75E] text-white"><Activity size={20} /></div>
+                 <p className="text-[10px] font-black uppercase text-[#C6A75E] tracking-[0.3em]">AI Delta 2026</p>
+              </div>
+              <div className="space-y-10">
+                 <div>
+                    <div className="flex justify-between items-center mb-3">
+                       <span className="text-[10px] font-bold text-white/40 uppercase tracking-widest">ESG Alpha Rating</span>
+                       <span className="text-3xl font-serif font-black text-[#C6A75E]">{builder.esgRating || "8.5"}</span>
+                    </div>
+                    <div className="w-full bg-white/5 h-1.5 rounded-full overflow-hidden">
+                       <div className="h-full bg-[#C6A75E] transition-all duration-1000" style={{ width: `${(builder.esgRating || 8.5) * 10}%` }}></div>
+                    </div>
+                 </div>
+                 <div>
+                    <div className="flex justify-between items-center mb-3">
+                       <span className="text-[10px] font-bold text-white/40 uppercase tracking-widest">Confidence Delta</span>
+                       <span className="text-3xl font-serif font-black text-emerald-400">{builder.aiConfidence || "94"}%</span>
+                    </div>
+                 </div>
+              </div>
            </div>
         </div>
 
