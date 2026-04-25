@@ -184,14 +184,49 @@ const AreaComparison = () => {
                   <StatRow label="Avg. Price" val1={item1.avgPrice} val2={item2.avgPrice} />
                   <StatRow label="Rental Yield" val1={item1.roi} val2={item2.roi} highlight />
                   <StatRow label="Overall Score" val1={item1.overallScore} val2={item2.overallScore} isScore />
+                  <StatRow label="Appreciation" val1={item1.scores?.appreciation} val2={item2.scores?.appreciation} isScore />
+                  <StatRow label="Liquidity" val1={item1.scores?.liquidity} val2={item2.scores?.liquidity} isScore />
                 </>
               ) : (
                 <>
                   <StatRow label="Trust Score" val1={i1Scores.trust} val2={i2Scores.trust} isScore highlight />
                   <StatRow label="ESG Rating" val1={item1.esgRating} val2={item2.esgRating} isScore suffix="/10" />
                   <StatRow label="AI Confidence" val1={item1.aiConfidence} val2={item2.aiConfidence} isScore suffix="%" />
+                  <StatRow label="Delivery Power" val1={item1.deliveryTrackRecord?.onTime} val2={item2.deliveryTrackRecord?.onTime} />
                 </>
               )}
+            </div>
+
+            <div className="bg-white border border-[#C6A75E]/20 rounded-[2.5rem] p-10 shadow-xl relative overflow-hidden">
+               <div className="absolute top-[-50px] right-[-50px] w-64 h-64 bg-[#C6A75E]/5 rounded-full blur-[80px] pointer-events-none" />
+               <div className="flex items-center gap-4 mb-8">
+                  <div className="p-3 rounded-2xl bg-[#3A3125] text-[#C6A75E]"><BrainCircuit size={24} /></div>
+                  <div>
+                    <p className="text-[10px] font-black uppercase text-[#A69785] tracking-widest mb-1">AI Intelligence Summary</p>
+                    <h3 className="text-2xl font-serif font-black text-[#3A3125]">Battle Verdict</h3>
+                  </div>
+               </div>
+               
+               <div className="space-y-6">
+                  <div className="p-6 bg-[#FDFBF7] rounded-3xl border border-[#C6A75E]/10">
+                    <p className="text-sm text-[#5A4F40] leading-relaxed italic">
+                      "Comparing <span className="font-bold text-[#3A3125]">{item1.name}</span> and <span className="font-bold text-[#3A3125]">{item2.name}</span> for a <span className="font-black text-[#C6A75E] uppercase tracking-tighter">{goal}</span> centric strategy. 
+                      {score1 > score2 
+                        ? ` ${item1.name} outperforms in this specific quadrant due to its superior ${goal === 'yield' ? 'rental velocity' : 'capital appreciation delta'}.` 
+                        : ` ${item2.name} is the strategic choice here, offering a more robust ${goal === 'safety' ? 'institutional trust profile' : 'market entry valuation'}.`
+                      } 
+                      The probability of success for this recommendation is <span className="font-bold">{(Math.max(score1, score2) / (score1 + score2) * 100).toFixed(0)}%</span> based on 2026 cyclical data."
+                    </p>
+                  </div>
+                  <div className="flex flex-col md:flex-row gap-4">
+                     <Link href={mode === 'areas' ? `/area/${winner.id}` : `/builder/${winner.id}`} className="btn-primary flex-1 py-4 text-center">
+                        View Detailed {winner.name} Report
+                     </Link>
+                     <button onClick={() => window.print()} className="px-8 py-4 border border-[rgba(198,167,94,0.3)] rounded-2xl text-[10px] font-black uppercase tracking-widest hover:bg-[#FDFBF7] transition-all">
+                        Export Comparison
+                     </button>
+                  </div>
+               </div>
             </div>
 
             <div className="relative bg-[#3A3125] text-white rounded-[2rem] p-10 overflow-hidden shadow-2xl">

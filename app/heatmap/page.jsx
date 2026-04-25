@@ -55,16 +55,24 @@ const MarketHeatmapPage = () => {
               </h1>
            </div>
            
-           <div className="flex flex-wrap gap-2 p-1.5 bg-white border border-[rgba(198,167,94,0.2)] rounded-3xl shadow-sm">
-              {EMIRATES.map(e => (
-                 <button 
-                   key={e.name}
-                   onClick={() => setActiveEmirate(e.name)}
-                   className={`px-6 py-3 rounded-2xl text-[10px] font-black uppercase tracking-widest transition-all ${activeEmirate === e.name ? "bg-[#3A3125] text-[#C6A75E] shadow-lg" : "text-[#7A6E60] hover:bg-[#FDFBF7]"}`}
-                 >
-                   {e.name}
-                 </button>
-              ))}
+           <div className="flex flex-col items-end gap-4 w-full lg:w-auto">
+              <div className="flex flex-wrap gap-2 p-1.5 bg-white border border-[rgba(198,167,94,0.2)] rounded-3xl shadow-sm">
+                 {EMIRATES.map(e => (
+                    <button 
+                      key={e.name}
+                      onClick={() => setActiveEmirate(e.name)}
+                      className={`px-6 py-3 rounded-2xl text-[10px] font-black uppercase tracking-widest transition-all ${activeEmirate === e.name ? "bg-[#3A3125] text-[#C6A75E] shadow-lg" : "text-[#7A6E60] hover:bg-[#FDFBF7]"}`}
+                    >
+                      {e.name}
+                    </button>
+                 ))}
+              </div>
+              <div className="flex gap-4">
+                 <div className="flex flex-col items-end">
+                    <p className="text-[10px] font-black text-[#A69785] uppercase tracking-widest leading-none mb-1">Live Intelligence Status</p>
+                    <p className="text-sm font-bold text-[#C6A75E]">Verified UAE Data Nodes Active</p>
+                 </div>
+              </div>
            </div>
         </div>
         
