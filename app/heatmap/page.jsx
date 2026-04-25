@@ -1,8 +1,5 @@
-"use client";
-
 import React, { useEffect, useState } from 'react';
 import dynamic from 'next/dynamic';
-import 'leaflet/dist/leaflet.css';
 import { 
   TrendingUp, Map as MapIcon, Zap, Loader2, Info
 } from 'lucide-react';
@@ -11,22 +8,15 @@ import { DUBAI_AREAS } from '../../src/data/emiratesData';
 // Dynamic Map Component (SSR: false is critical for Leaflet)
 const HeatmapMap = dynamic(() => import('../../src/components/heatmap/HeatmapMap'), { 
   ssr: false, 
-  loading: () => (
-    <div className="h-full w-full bg-[#1C1C22]/5 animate-pulse rounded-[3rem] flex items-center justify-center flex-col gap-4">
-       <Loader2 className="animate-spin text-[#C6A75E] h-12 w-12" />
-       <p className="text-[10px] font-black uppercase tracking-[0.2em] text-[#C6A75E]">Initializing Intelligence Node...</p>
-    </div>
-  )
+  loading: () => <div className="h-full w-full bg-[#3A3125]/5 rounded-[3rem] animate-pulse flex items-center justify-center"><Loader2 className="animate-spin text-[#C6A75E]" /></div>
 });
 
 const MarketHeatmapPage = () => {
   const [isMounted, setIsMounted] = useState(false);
-  const [viewMode, setViewMode] = useState('roi');
   const [activeEmirate, setActiveEmirate] = useState('Dubai');
 
   useEffect(() => {
     setIsMounted(true);
-    window.scrollTo(0, 0);
   }, []);
 
   const EMIRATES = [
@@ -67,21 +57,18 @@ const MarketHeatmapPage = () => {
                     </button>
                  ))}
               </div>
-              <div className="flex gap-4">
-                 <div className="flex flex-col items-end">
-                    <p className="text-[10px] font-black text-[#A69785] uppercase tracking-widest leading-none mb-1">Live Intelligence Status</p>
-                    <p className="text-sm font-bold text-[#C6A75E]">Verified UAE Data Nodes Active</p>
-                 </div>
-              </div>
            </div>
         </div>
         
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
           {/* --- MAP CONTAINER --- */}
           <div className="lg:col-span-3 h-[700px] md:h-[800px] rounded-[3rem] overflow-hidden border border-[#C6A75E]/30 shadow-2xl relative z-0">
-             <HeatmapMap center={currentEmirate.center} zoom={currentEmirate.zoom} />
+             <HeatmapMap 
+               center={currentEmirate.center} 
+               zoom={currentEmirate.zoom} 
+               data={DUBAI_AREAS}
+             />
              
-             {/* Map Controls / Widgets */}
              <div className="absolute top-8 right-8 z-10 flex flex-col gap-3">
                 <div className="bg-white/90 backdrop-blur-md border border-[rgba(198,167,94,0.3)] p-6 rounded-3xl shadow-2xl min-w-[200px]">
                    <p className="text-[9px] font-black text-[#C6A75E] uppercase tracking-widest mb-4 flex items-center gap-2">
@@ -96,41 +83,21 @@ const MarketHeatmapPage = () => {
                       ))}
                    </div>
                 </div>
-                
-                <div className="bg-[#3A3125] text-white p-6 rounded-3xl shadow-2xl flex items-center gap-4">
-                   <div className="p-2 rounded-xl bg-[#C6A75E]/20 text-[#C6A75E]">
-                      <Zap size={20} />
-                   </div>
-                   <div>
-                      <p className="text-[9px] font-black text-[#C6A75E] uppercase tracking-widest mb-0.5">Coverage Status</p>
-                      <p className="text-xs font-bold">100% Active</p>
-                   </div>
-                </div>
              </div>
           </div>
           
-          {/* --- SIDEBAR INTELLIGENCE --- */}
           <div className="lg:col-span-1 space-y-6">
-             <div className="p-8 bg-white border border-[rgba(198,167,94,0.3)] rounded-[2.5rem] shadow-sm relative overflow-hidden">
-                <div className="absolute top-[-20px] right-[-20px] w-32 h-32 bg-[#C6A75E]/5 rounded-full blur-3xl pointer-events-none" />
+             <div className="p-8 bg-white border border-[rgba(198,167,94,0.3)] rounded-[2.5rem] shadow-sm">
                 <h3 className="text-lg font-serif font-black mb-4 uppercase tracking-widest text-[#3A3125] flex items-center gap-3">
-                  <Info size={18} className="text-[#C6A75E]" /> Map Guide
+                   <Info size={18} className="text-[#C6A75E]" /> Map Guide
                 </h3>
-                <p className="text-sm text-[#5A4F40] leading-relaxed font-light mb-6">
-                  Interactive nodes represent high-velocity market micro-zones. Hover to reveal yield benchmarks and institutional liquidity scores.
+                <p className="text-sm text-[#5A4F40] leading-relaxed font-light">
+                   Interactive nodes represent high-velocity market micro-zones. Hover to reveal yield benchmarks and institutional liquidity scores.
                 </p>
-                <div className="space-y-3">
-                   <div className="flex items-center gap-3 text-[10px] font-bold text-[#7A6E60] uppercase">
-                      <div className="w-3 h-3 rounded-full bg-[#C6A75E]" /> High ROI Corridor
-                   </div>
-                   <div className="flex items-center gap-3 text-[10px] font-bold text-[#7A6E60] uppercase">
-                      <div className="w-3 h-3 rounded-full bg-[#3A3125]/10" /> Planned Node
-                   </div>
-                </div>
              </div>
 
              <div className="p-8 bg-[#3A3125] text-white rounded-[2.5rem] shadow-xl">
-                <p className="text-[10px] font-black uppercase tracking-[0.2em] text-[#C6A75E] mb-2 text-center underline decoration-wavy underline-offset-4 decoration-[#C6A75E]/30">Elite Market Feed</p>
+                <p className="text-[10px] font-black uppercase tracking-[0.2em] text-[#C6A75E] mb-2 text-center underline decoration-wavy underline-offset-4 decoration-[#C6A75E]/30 text-white">Elite Market Feed</p>
                 <div className="space-y-6 mt-8">
                    {DUBAI_AREAS.filter(a => a.roi && parseFloat(String(a.roi).replace('%', '')) > 7.5).slice(0, 4).map(a => (
                      <div key={a.id} className="border-b border-white/5 pb-4 last:border-0 hover:translate-x-1 transition-transform cursor-pointer group">
@@ -138,7 +105,7 @@ const MarketHeatmapPage = () => {
                            <h4 className="text-xs font-black uppercase text-white group-hover:text-[#C6A75E] transition-colors">{a.name}</h4>
                            <span className="text-[10px] font-black text-[#C6A75E]">{a.roi}</span>
                         </div>
-                        <p className="text-[9px] text-[#A69785] tracking-wide">{a.category || "Strategic Opportunity"}</p>
+                        <p className="text-[9px] text-[#A69785] tracking-wide">{String(a.category).split('/')[0]}</p>
                      </div>
                    ))}
                 </div>

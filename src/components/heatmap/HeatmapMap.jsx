@@ -1,11 +1,8 @@
 "use client";
-
 import React, { useMemo } from "react";
 import { MapContainer, TileLayer, CircleMarker, Popup } from "react-leaflet";
-import "leaflet/dist/leaflet.css";
-import { DUBAI_AREAS } from "../../data/emiratesData";
 
-const HeatmapMap = ({ center, zoom }) => {
+const HeatmapMap = ({ center, zoom, data }) => {
   const [mounted, setMounted] = React.useState(false);
 
   React.useEffect(() => {
@@ -39,7 +36,7 @@ const HeatmapMap = ({ center, zoom }) => {
         url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png"
       />
       {Object.entries(LOCATIONS).map(([id, pos]) => {
-        const areaData = DUBAI_AREAS.find(a => String(a.id).toLowerCase() === id.toLowerCase());
+        const areaData = (data || []).find(a => String(a.id).toLowerCase() === id.toLowerCase());
         if (!areaData) return null;
         
         return (
