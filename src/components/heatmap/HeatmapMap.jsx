@@ -60,15 +60,15 @@ const HeatmapMap = ({ center, zoom }) => {
                    <div className="w-1.5 h-1.5 rounded-full bg-[#C6A75E] animate-pulse"></div>
                    <span className="text-[9px] font-black uppercase text-[#C6A75E] tracking-widest">Active Market Node</span>
                 </div>
-                <h4 className="text-sm font-serif font-bold text-[#3A3125] mb-1">{areaData.name}</h4>
+                <h4 className="text-sm font-serif font-bold text-[#3A3125] mb-1">{areaData.name || "Institutional Node"}</h4>
                 <div className="flex justify-between items-end">
                    <div>
                       <p className="text-[10px] font-bold text-[#A69785] uppercase tracking-wide">Net Yield</p>
-                      <p className="text-xl font-black text-[#3A3125]">{areaData.roi}</p>
+                      <p className="text-xl font-black text-[#3A3125]">{areaData.roi || "TBD"}</p>
                    </div>
                    <div className="text-right">
                       <p className="text-[10px] font-bold text-[#A69785] uppercase tracking-wide">Category</p>
-                      <p className="text-[10px] font-bold text-[#3A3125]">{areaData.category?.split('/')[0] || "Luxury"}</p>
+                      <p className="text-[10px] font-bold text-[#3A3125]">{String(areaData.category || "Luxury").split('/')[0]}</p>
                    </div>
                 </div>
               </div>

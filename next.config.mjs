@@ -1,6 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   // --- NEXT.JS 14 STABILIZATION ---
+  transpilePackages: ['react-leaflet', 'leaflet'],
   experimental: {
     serverComponentsExternalPackages: ['jspdf', 'html2canvas'],
   },

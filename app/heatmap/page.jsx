@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import dynamic from 'next/dynamic';
+import 'leaflet/dist/leaflet.css';
 import { 
   TrendingUp, Map as MapIcon, Zap, Loader2, Info
 } from 'lucide-react';
@@ -123,7 +124,7 @@ const MarketHeatmapPage = () => {
              <div className="p-8 bg-[#3A3125] text-white rounded-[2.5rem] shadow-xl">
                 <p className="text-[10px] font-black uppercase tracking-[0.2em] text-[#C6A75E] mb-2 text-center underline decoration-wavy underline-offset-4 decoration-[#C6A75E]/30">Elite Market Feed</p>
                 <div className="space-y-6 mt-8">
-                   {DUBAI_AREAS.filter(a => a.roi && parseFloat(a.roi) > 7.5).slice(0, 4).map(a => (
+                   {DUBAI_AREAS.filter(a => a.roi && parseFloat(String(a.roi).replace('%', '')) > 7.5).slice(0, 4).map(a => (
                      <div key={a.id} className="border-b border-white/5 pb-4 last:border-0 hover:translate-x-1 transition-transform cursor-pointer group">
                         <div className="flex justify-between items-start mb-1">
                            <h4 className="text-xs font-black uppercase text-white group-hover:text-[#C6A75E] transition-colors">{a.name}</h4>
