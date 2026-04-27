@@ -1,4 +1,4 @@
-export const BUILDERS = [
+export const BUILDERS_DATA = [
   // ==========================================================
   // TIER 1: THE ULTRA-LUXURY & GOVERNMENT GIANTS
   // ==========================================================
@@ -1208,8 +1208,7 @@ export const BUILDERS = [
     usp: "Quiet consistency",
     records: "40+ years presence",
     description: "Condor delivers dependable mid-market projects in strong locations."
-  }
-
+  },
   {
     id: "darglobal",
     name: "DarGlobal",
@@ -1336,7 +1335,7 @@ export const BUILDERS = [
     notIdealFor: ["Luxury Purists"],
     signatureProject: "Tiger Sky Tower (World Record)",
     flagshipCommunities: ["Business Bay", "JVC", "Dubai Marina"],
-    portfolio: { totalProjects: 200+, activeProjects: 30 },
+    portfolio: { totalProjects: "200+", activeProjects: 30 },
     deliveryTrackRecord: { onTime: "96%", delayed: "4%", cancelled: "0%" },
     paymentFlexibility: { score: 9.0, commonPlans: ["1% Monthly", "Post-Handover Available"], postHandoverAvailable: true },
     marketPerformance: { avgCapitalAppreciation5Y: "+25%", avgRentalYield: "8.0% - 9.0%", resaleLiquidity: "Medium-High" },

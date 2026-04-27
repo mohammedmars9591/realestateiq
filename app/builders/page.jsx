@@ -13,7 +13,7 @@ const BuildersPage = () => {
   }, []);
 
   const sortedBuilders = useMemo(() => {
-    const list = Array.isArray(BUILDERS) ? BUILDERS : [];
+    const list = Array.isArray(BUILDERS_DATA) ? BUILDERS_DATA : [];
     return [...list].sort((a, b) => Number(b?.overallDeveloperScore ?? 0) - Number(a?.overallDeveloperScore ?? 0));
   }, []);
 

@@ -11,7 +11,7 @@ import {
   Leaf, Activity, Globe, Zap, Database, BrainCircuit,
   Bookmark, BookmarkCheck
 } from 'lucide-react';
-import { BUILDERS } from '../../../src/data/buildersData';
+import { BUILDERS_DATA as BUILDERS } from '../../../src/data/developerIntelligence';
 import WhatsAppButton from '../../../src/components/WhatsAppButton';
 import { isInWatchlist, toggleWatchlist } from '../../../src/utils/watchlist';
 

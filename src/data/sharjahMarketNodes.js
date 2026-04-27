@@ -408,57 +408,7 @@ export const SHARJAH_DATA = [
     }
   },
 
-  // --- 9. AL MAMSHA ---
-  {
-    id: "al-mamsha",
-    name: "Al Mamsha",
-    emirate: "Sharjah",
-    category: "Walkable / Modern",
-    roi: "6.5%", 
-    avgPrice: "AED 750k",
-    imageColor: "bg-amber-600",
-    amenities: ["Car-Free Zone", "Retail Walk", "University City"],
-
-    investorTags: ["Car-Free Living", "Millennial Appeal", "Growth"],
-    aiVerdict: {
-      title: "Sharjah's First Walkable Community",
-      summary: "A unique car-free concept appealing to millennials and students. High growth potential as the lifestyle concept gains traction."
-    },
-    demandSignals: { rentalDemand: "High", resaleLiquidity: "Medium", tenantProfile: "Students & Young Pros" },
-    ownership: { type: "Freehold", eligibleFor: ["All Nationalities"], minDownPayment: "20%" },
-
-    scores: { cashFlow: 7.0, appreciation: 7.5, liquidity: 6.5, risk: 5.5, lifestyle: 8.5 },
-    overallScore: 8.1,
-
-    unitEconomics: { 
-      studio: { roi: "7.0%", rent: "AED 30k" }, 
-      oneBed: { roi: "6.8%", rent: "AED 45k" }, 
-      twoBed: { roi: "6.2%", rent: "AED 65k" } 
-    },
-
-    shortTermScore: 6.0,
-    shortTermRental: { allowed: false, avgDailyRate: "N/A", occupancy: "90%", tenantType: "Students" },
-
-    futureUpgrades: [
-      { name: "Retail Zone Completion", status: "Ongoing" },
-      { name: "Bridge to University", status: "Planned" }
-    ],
-
-    priceTrend: { "2022": "AED 600k", "2023": "AED 650k", "2024": "AED 700k", "2025": "AED 750k" },
-
-    description: "A pedestrian-friendly community offering a modern, car-free lifestyle near University City.",
-    connectivity: {
-      airport: { name: "Sharjah Airport", km: "6 km", mins: "8 mins" },
-      school: { name: "Wesgreen Int School", km: "2 km", mins: "4 mins" },
-      tourist: { name: "06 Mall", km: "2 km", mins: "4 mins" },
-      metro: { name: "N/A", km: "N/A", mins: "N/A" },
-      mall: { name: "Al Mamsha Souks", km: "0.1 km", mins: "1 min" },
-      business: { name: "Muwaileh Comm", km: "1 km", mins: "2 mins" },
-      hospital: { name: "University Hospital", km: "3 km", mins: "5 mins" }
-    }
-  },
-
-  // --- 10. HAYYAN (BARASHI) ---
+  // --- 9. HAYYAN (BARASHI) ---
   {
     id: "hayyan",
     name: "Hayyan",
@@ -501,10 +451,33 @@ export const SHARJAH_DATA = [
       airport: { name: "Sharjah Airport", km: "10 km", mins: "10 mins" },
       school: { name: "GEMS Founders", km: "5 km", mins: "8 mins" },
       tourist: { name: "Barashi Park", km: "1 km", mins: "2 mins" },
+      hospital: { name: "University Hospital", km: "5 km", mins: "8 mins" }
+    }
+  },
+
+  // --- 10. AL QASIMIA ---
+  {
+    id: "al-qasimia",
+    name: "Al Qasimia",
+    emirate: "Sharjah",
+    category: "High Yield / Established",
+    roi: "7.2%", 
+    avgPrice: "AED 420k",
+    imageColor: "bg-amber-600",
+    amenities: ["Mega Mall", "Central Souq", "Schools"],
+    investorTags: ["High ROI", "Rental Demand", "City Center"],
+    aiVerdict: {
+      title: "The Yield Anchor",
+      summary: "One of Sharjah's most established residential districts. Offers consistent rental demand and high occupancy rates for apartment investors."
+    },
+    demandSignals: { rentalDemand: "Extreme", resaleLiquidity: "High", tenantProfile: "Families & Professionals" },
+    ownership: { type: "Leasehold/Investment", eligibleFor: ["Arab Nationalities/Expats"], minDownPayment: "20%" },
+    scores: { cashFlow: 9.0, appreciation: 6.5, liquidity: 8.5, risk: 4.0, lifestyle: 7.5 },
+    overallScore: 8.1,
     unitEconomics: { 
       studio: { roi: "7.5%", rent: "AED 24k" }, 
-      oneBed: { roi: "7.0%", rent: "AED 35k" },
-      twoBed: { roi: "6.5%", rent: "AED 48k" }
+      oneBed: { roi: "7.2%", rent: "AED 34k" }, 
+      twoBed: { roi: "6.8%", rent: "AED 45k" } 
     },
     shortTermScore: 3.5,
     shortTermRental: { allowed: false, avgDailyRate: "N/A", occupancy: "98%", tenantType: "Long-term" },
