@@ -1,12 +1,34 @@
 "use client";
-import React, { useMemo } from "react";
-import { MapContainer, TileLayer, CircleMarker, Popup } from "react-leaflet";
+import React, { useEffect, useState, useMemo } from "react";
+// We import Leaflet CSS here for the browser
+import "leaflet/dist/leaflet.css";
 
-const HeatmapMap = ({ center, zoom, data }) => {
-  const [mounted, setMounted] = React.useState(false);
+// The core problem in Next.js 14 is often the top-level import of Leaflet-dependent libs.
+// We will dynamically import react-leaflet components inside the component to ensure total SSR isolation.
+let MapComponents = null;
 
-  React.useEffect(() => {
-    setMounted(true);
+const GeospatialEngine = ({ center, zoom, data }) => {
+  const [isReady, setIsReady] = useState(false);
+
+  useEffect(() => {
+    // Load react-leaflet only on the client
+    const loadLeaflet = async () => {
+      const L = await import("leaflet");
+      const ReactLeaflet = await import("react-leaflet");
+      
+      // Fix for Leaflet default icons in Next.js
+      delete L.Icon.Default.prototype._getIconUrl;
+      L.Icon.Default.mergeOptions({
+        iconRetinaUrl: "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon-2x.png",
+        iconUrl: "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon.png",
+        shadowUrl: "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png",
+      });
+
+      MapComponents = ReactLeaflet;
+      setIsReady(true);
+    };
+
+    loadLeaflet();
   }, []);
 
   const LOCATIONS = useMemo(() => ({
@@ -21,7 +43,15 @@ const HeatmapMap = ({ center, zoom, data }) => {
     'jlt': [25.0673, 55.1458],
   }), []);
 
-  if (!mounted || typeof window === 'undefined') return null;
+  if (!isReady || !MapComponents) {
+    return (
+      <div className="h-full w-full bg-[#3A3125]/5 animate-pulse flex items-center justify-center">
+         <p className="text-[10px] font-black uppercase tracking-widest text-[#C6A75E]">Initializing Canvas...</p>
+      </div>
+    );
+  }
+
+  const { MapContainer, TileLayer, CircleMarker, Popup } = MapComponents;
 
   return (
     <MapContainer 
@@ -43,29 +73,29 @@ const HeatmapMap = ({ center, zoom, data }) => {
           <CircleMarker 
             key={id} 
             center={pos} 
-            radius={15} 
+            radius={20} 
             pathOptions={{ 
               color: '#C6A75E', 
               fillColor: '#C6A75E', 
-              fillOpacity: 0.6,
-              weight: 3
+              fillOpacity: 0.8,
+              weight: 4
             }}
           >
             <Popup className="premium-popup">
-              <div className="p-3 min-w-[180px]">
-                <div className="flex items-center gap-2 mb-2">
-                   <div className="w-1.5 h-1.5 rounded-full bg-[#C6A75E] animate-pulse"></div>
-                   <span className="text-[9px] font-black uppercase text-[#C6A75E] tracking-widest">Active Market Node</span>
+              <div className="p-3 min-w-[200px]">
+                <div className="flex items-center gap-2 mb-3">
+                   <div className="w-2 h-2 rounded-full bg-[#C6A75E] animate-ping"></div>
+                   <span className="text-[10px] font-black uppercase text-[#C6A75E] tracking-tighter">Live Market Node</span>
                 </div>
-                <h4 className="text-sm font-serif font-bold text-[#3A3125] mb-1">{areaData.name || "Institutional Node"}</h4>
-                <div className="flex justify-between items-end">
+                <h4 className="text-md font-serif font-bold text-[#3A3125] mb-2">{areaData.name}</h4>
+                <div className="grid grid-cols-2 gap-4 border-t border-[#C6A75E]/10 pt-3">
                    <div>
-                      <p className="text-[10px] font-bold text-[#A69785] uppercase tracking-wide">Net Yield</p>
-                      <p className="text-xl font-black text-[#3A3125]">{areaData.roi || "TBD"}</p>
+                      <p className="text-[9px] font-black text-[#A69785] uppercase tracking-widest mb-1">Yield</p>
+                      <p className="text-lg font-black text-[#3A3125]">{areaData.roi}</p>
                    </div>
                    <div className="text-right">
-                      <p className="text-[10px] font-bold text-[#A69785] uppercase tracking-wide">Category</p>
-                      <p className="text-[10px] font-bold text-[#3A3125]">{String(areaData.category || "Luxury").split('/')[0]}</p>
+                      <p className="text-[9px] font-black text-[#A69785] uppercase tracking-widest mb-1">Status</p>
+                      <p className="text-[11px] font-bold text-[#C6A75E] uppercase tracking-tighter">Alpha Zone</p>
                    </div>
                 </div>
               </div>
@@ -77,4 +107,4 @@ const HeatmapMap = ({ center, zoom, data }) => {
   );
 };
 
-export default HeatmapMap;
+export default GeospatialEngine;
