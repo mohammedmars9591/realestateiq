@@ -5,8 +5,8 @@ import { useRouter, usePathname } from 'next/navigation';
 import { Menu, X, Building2, Search, MapPin, HardHat } from 'lucide-react';
 
 // --- DATA IMPORTS ---
-import { DUBAI_AREAS } from '../data/emiratesData'; 
-import { BUILDERS } from '../data/buildersData';
+import { DUBAI_AREAS } from '../data/nationalIntelligenceFeed';
+import { BUILDERS_DATA } from '../data/developerIntelligence';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);

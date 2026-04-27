@@ -2326,4 +2326,179 @@
       hospital: { name: "Healthpoint", km: "10 km", mins: "12 mins" }
     }
   },
-]
+
+  // --- ABU DHABI 11: SAADIYAT GROVE ---
+  {
+    id: "saadiyat-grove",
+    name: "Saadiyat Grove",
+    emirate: "Abu Dhabi",
+    category: "Culture / Ultra-Luxury",
+    roi: "5.5%", 
+    avgPrice: "AED 3.8M",
+    imageColor: "bg-stone-900",
+    amenities: ["Louvre View", "Cultural Walk", "Sustainable Retail"],
+    investorTags: ["Cultural Capital", "Highest Status", "Long Term Appreciation"],
+    aiVerdict: {
+      title: "The Heart of Culture",
+      summary: "Located at the doorstep of the Zayed National Museum and Guggenheim. Represents the pinnacle of cultural real estate in the MENA region."
+    },
+    demandSignals: { rentalDemand: "High (Executive)", resaleLiquidity: "Medium", tenantProfile: "Global Elite & HNWIs" },
+    ownership: { type: "Freehold", eligibleFor: ["All Nationalities"], minDownPayment: "20%" },
+    scores: { cashFlow: 5.5, appreciation: 9.8, liquidity: 7.0, risk: 3.5, lifestyle: 10.0 },
+    overallScore: 9.2,
+    unitEconomics: { oneBed: { roi: "6.0%", rent: "AED 180k" }, twoBed: { roi: "5.5%", rent: "AED 280k" } },
+    shortTermScore: 9.5,
+    shortTermRental: { allowed: true, avgDailyRate: "AED 1800", occupancy: "65%", tenantType: "Cultural Tourists" },
+    futureUpgrades: [{ name: "Guggenheim Completion", status: "2026" }],
+    priceTrend: { "2024": "AED 3.2M", "2025": "AED 3.8M" },
+    description: "A luxury mixed-use community centered around Abu Dhabi’s world-class museums.",
+    connectivity: {
+      airport: { name: "AUH Intl", km: "25 km", mins: "25 mins" },
+      school: { name: "Cranleigh", km: "1 km", mins: "3 mins" },
+      tourist: { name: "Louvre Abu Dhabi", km: "0.1 km", mins: "1 min" },
+      mall: { name: "The Grove Retail", km: "0.1 km", mins: "1 min" },
+      business: { name: "ADGM", km: "8 km", mins: "10 mins" },
+      hospital: { name: "Cleveland Clinic", km: "8 km", mins: "10 mins" }
+    }
+  },
+
+  // --- ABU DHABI 12: MASDAR CITY EXTENSION ---
+  {
+    id: "masdar-north",
+    name: "Masdar North",
+    emirate: "Abu Dhabi",
+    category: "Tech / Sustainable",
+    roi: "7.8%", 
+    avgPrice: "AED 1.1M",
+    imageColor: "bg-orange-600",
+    amenities: ["Pod Transport", "Eco-Design", "Tech University"],
+    investorTags: ["Green Future", "Strong Rentals", "High Demand"],
+    aiVerdict: {
+      title: "The Net-Zero Investment",
+      summary: "Global hub for clean energy and technology. Exceptionally high occupancy rates due to thousands of researchers and tech professionals."
+    },
+    demandSignals: { rentalDemand: "Extreme", resaleLiquidity: "High", tenantProfile: "Researchers & Tech Staff" },
+    ownership: { type: "Freehold", eligibleFor: ["All Nationalities"], minDownPayment: "10%" },
+    scores: { cashFlow: 9.0, appreciation: 7.5, liquidity: 8.5, risk: 4.0, lifestyle: 7.8 },
+    overallScore: 8.4,
+    unitEconomics: { studio: { roi: "8.2%", rent: "AED 55k" }, oneBed: { roi: "7.8%", rent: "AED 85k" } },
+    shortTermScore: 6.0,
+    shortTermRental: { allowed: true, avgDailyRate: "AED 450", occupancy: "85%", tenantType: "Visiting Scientists" },
+    futureUpgrades: [{ name: "Masdar Link Road", status: "Complete" }],
+    priceTrend: { "2023": "AED 850k", "2024": "AED 980k", "2025": "AED 1.1M" },
+    description: "One of the world's most sustainable urban developments and a growing freezone hub.",
+    connectivity: {
+      airport: { name: "AUH Intl", km: "5 km", mins: "5 mins" },
+      school: { name: "MBZUAI", km: "0.1 km", mins: "1 min" },
+      tourist: { name: "Masdar Park", km: "0.2 km", mins: "2 mins" },
+      mall: { name: "Masdar City Mall", km: "0.1 km", mins: "1 min" },
+      business: { name: "IRENA HQ", km: "0.1 km", mins: "1 min" },
+      hospital: { name: "Healthpoint", km: "10 km", mins: "10 mins" }
+    }
+  },
+
+  // --- ABU DHABI 13: YAS PARK VIEW ---
+  {
+    id: "yas-park-view",
+    name: "Yas Park View",
+    emirate: "Abu Dhabi",
+    category: "Family / Adventure",
+    roi: "6.5%", 
+    avgPrice: "AED 2.9M (Villa)",
+    imageColor: "bg-green-700",
+    amenities: ["Yas Park", "Theme Parks", "Golf Access"],
+    investorTags: ["Family Fun", "High Yield Villas", "Yas Prestige"],
+    aiVerdict: {
+      title: "The Ultimate Family Asset",
+      summary: "Located in the greenest part of Yas Island. High demand for holiday homes and long-term family leases near theme parks."
+    },
+    demandSignals: { rentalDemand: "High", resaleLiquidity: "High", tenantProfile: "Active Families" },
+    ownership: { type: "Freehold", eligibleFor: ["All Nationalities"], minDownPayment: "20%" },
+    scores: { cashFlow: 7.0, appreciation: 8.8, liquidity: 8.0, risk: 4.5, lifestyle: 9.5 },
+    overallScore: 8.6,
+    unitEconomics: { villa: { roi: "6.5%", rent: "AED 220k" } },
+    shortTermScore: 8.8,
+    shortTermRental: { allowed: true, avgDailyRate: "AED 1500", occupancy: "70%", tenantType: "Leisure Families" },
+    futureUpgrades: [{ name: "Yas Park Completion", status: "2025" }],
+    priceTrend: { "2024": "AED 2.6M", "2025": "AED 2.9M" },
+    description: "Gated villa community focusing on active outdoor lifestyle and family recreation.",
+    connectivity: {
+      airport: { name: "AUH Intl", km: "10 km", mins: "12 mins" },
+      school: { name: "Sabis", km: "5 km", mins: "8 mins" },
+      tourist: { name: "Yas Waterworld", km: "2 km", mins: "4 mins" },
+      mall: { name: "Yas Mall", km: "3 km", mins: "6 mins" },
+      business: { name: "TwoFour54", km: "5 km", mins: "8 mins" },
+      hospital: { name: "Burjeel", km: "8 km", mins: "10 mins" }
+    }
+  },
+
+  // --- ABU DHABI 14: AL RAHA GARDENS ENCLAVE ---
+  {
+    id: "al-raha-enclave",
+    name: "Al Raha Enclave",
+    emirate: "Abu Dhabi",
+    category: "Established Family / Villa",
+    roi: "6.2%", 
+    avgPrice: "AED 3.5M",
+    imageColor: "bg-amber-800",
+    amenities: ["International Schools", "Garden Plazas", "Golf Proximity"],
+    investorTags: ["Safe Asset", "Proven Performance", "End-User Core"],
+    aiVerdict: {
+      title: "The Gold Standard for Families",
+      summary: "Deeply established community. The first choice for expat and local families in Abu Dhabi due to the density of top-tier schools."
+    },
+    demandSignals: { rentalDemand: "Very High", resaleLiquidity: "High", tenantProfile: "Schooling Families" },
+    ownership: { type: "Exclusive / Investment", eligibleFor: ["GCC & Selective Expats"], minDownPayment: "30%" },
+    scores: { cashFlow: 6.5, appreciation: 6.8, liquidity: 8.5, risk: 3.0, lifestyle: 9.0 },
+    overallScore: 8.0,
+    unitEconomics: { villa: { roi: "6.2%", rent: "AED 250k" } },
+    shortTermScore: 2.0,
+    shortTermRental: { allowed: false },
+    futureUpgrades: [{ name: "Community Plaza Upgrade", status: "Planned" }],
+    priceTrend: { "2023": "AED 3.1M", "2024": "AED 3.3M", "2025": "AED 3.52M" },
+    description: "Peaceful villa enclave known for its lush landscaping and family-centric atmosphere.",
+    connectivity: {
+      airport: { name: "AUH Intl", km: "8 km", mins: "10 mins" },
+      school: { name: "Raha Intl", km: "0.2 km", mins: "1 min" },
+      tourist: { name: "Al Raha Beach", km: "2 km", mins: "5 mins" },
+      mall: { name: "Al Raha Mall", km: "5 km", mins: "8 mins" },
+      business: { name: "Khalifa City", km: "2 km", mins: "4 mins" },
+      hospital: { name: "NMC Royal", km: "5 km", mins: "8 mins" }
+    }
+  },
+
+  // --- ABU DHABI 15: NAREEL ISLAND ---
+  {
+    id: "nareel-island",
+    name: "Nareel Island",
+    emirate: "Abu Dhabi",
+    category: "Ultra-Prime / Waterfront Island",
+    roi: "5.0%", 
+    avgPrice: "AED 12M+ (Land/Villa)",
+    imageColor: "bg-blue-900",
+    amenities: ["Private Marinas", "Exclusive Access", "Sea Views"],
+    investorTags: ["Billionaire Row", "Capital Preservation", "Privacy"],
+    aiVerdict: {
+      title: "The Ultimate Sanctuary",
+      summary: "Most exclusive private island in Abu Dhabi. Built for extreme privacy and custom architectural masterpieces."
+    },
+    demandSignals: { rentalDemand: "N/A (Owner Occupied)", resaleLiquidity: "Low (Rare)", tenantProfile: "Ultra-HNWIs" },
+    ownership: { type: "Freehold / Local Preferential", eligibleFor: ["Selective HNWIs"], minDownPayment: "50%+" },
+    scores: { cashFlow: 4.5, appreciation: 8.5, liquidity: 5.0, risk: 4.0, lifestyle: 11.0 },
+    overallScore: 8.3,
+    unitEconomics: { mansion: { roi: "5.0%", rent: "AED 600k+" } },
+    shortTermScore: 1.0,
+    shortTermRental: { allowed: false },
+    futureUpgrades: [{ name: "Island Marina Completion", status: "2026" }],
+    priceTrend: { "2023": "AED 9M (Land)", "2024": "AED 10.5M", "2025": "AED 12M" },
+    description: "An exclusive beachfront destination offering a limited number of plots for bespoke mansions.",
+    connectivity: {
+      airport: { name: "AUH Intl", km: "25 km", mins: "30 mins" },
+      school: { name: "British Intl", km: "8 km", mins: "10 mins" },
+      tourist: { name: "Emirates Palace", km: "3 km", mins: "6 mins" },
+      mall: { name: "Marina Mall", km: "5 km", mins: "8 mins" },
+      business: { name: "ADGM", km: "12 km", mins: "15 mins" },
+      hospital: { name: "Cleveland", km: "12 km", mins: "15 mins" }
+    }
+  }
+];

@@ -5,8 +5,8 @@ import Link from 'next/link';
 import InvestmentScore from './InvestmentScore';
 
 // --- 1. IMPORT ALL THREE DATA SOURCES ---
-import { BUILDERS } from '../data/buildersData'; 
-import { DUBAI_AREAS } from '../data/areaData';
+import { BUILDERS_DATA } from '../data/developerIntelligence';
+import { DUBAI_AREAS } from '../data/dubaiMarketNodes';
 import { DUBAI_PROPERTIES } from '../data/dubaiArea';
 
 const PropertyCard = ({ property }) => {

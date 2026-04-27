@@ -13,7 +13,8 @@ import {
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
 
-import { DUBAI_AREAS as MASTER_DB } from '../../../src/data/emiratesData'; 
+import { DUBAI_AREAS as MASTER_DB } from '../../src/data/nationalIntelligenceFeed';
+import { BUILDERS_DATA } from '../../src/data/developerIntelligence';
 import { AreaDetailSections } from '../../../src/components/area/AreaDetailSections';
 import { MetricInsightCharts } from '../../../src/components/area/AreaCharts';
 import { isInWatchlist, toggleWatchlist } from '../../../src/utils/watchlist';

@@ -5,10 +5,10 @@ import dynamic from 'next/dynamic';
 import { 
   TrendingUp, Map as MapIcon, Zap, Loader2, Info, Search, Activity
 } from 'lucide-react';
-import { DUBAI_AREAS } from '../../src/data/emiratesData'; 
+import { DUBAI_AREAS } from '../../src/data/nationalIntelligenceFeed'; 
 
 // Dynamic Map Component (SSR: false is critical for Leaflet)
-const HeatmapMap = dynamic(() => import('../../src/components/heatmap/HeatmapMap'), { 
+const HeatmapMap = dynamic(() => import('../../src/components/heatmap/GeospatialEngine'), { 
   ssr: false, 
   loading: () => <div className="h-full w-full bg-[#3A3125]/5 rounded-[3rem] animate-pulse flex items-center justify-center flex-col gap-4">
      <Activity className="animate-spin text-[#C6A75E] h-12 w-12" />

@@ -502,10 +502,46 @@ export const AJMAN_DATA = [
       airport: { name: "Sharjah Airport", km: "15 km", mins: "18 mins" },
       school: { name: "Ajman University", km: "1 km", mins: "2 mins" },
       tourist: { name: "China Mall", km: "0.5 km", mins: "2 mins" },
-      metro: { name: "N/A", km: "N/A", mins: "N/A" },
-      mall: { name: "China Mall", km: "0.5 km", mins: "1 min" },
-      business: { name: "Industrial Area", km: "1 km", mins: "2 mins" },
-      hospital: { name: "Sheikh Khalifa", km: "2 km", mins: "4 mins" }
+      school: { name: "City School", km: "3 km", mins: "6 mins" },
+      tourist: { name: "Al Helio Park", km: "5 km", mins: "10 mins" },
+      mall: { name: "The Mall", km: "1 km", mins: "2 mins" },
+      business: { name: "Hamriyah Freezone", km: "12 km", mins: "15 mins" },
+      hospital: { name: "Saudi German", km: "5 km", mins: "8 mins" }
+    }
+  },
+
+  // --- 15. AL MOWAIHAT 2 ---
+  {
+    id: "al-mowaihat-2",
+    name: "Al Mowaihat 2",
+    emirate: "Ajman",
+    category: "Luxury Villa Corridor",
+    roi: "6.0%", 
+    avgPrice: "AED 2.1M (Villa)",
+    imageColor: "bg-emerald-900",
+    amenities: ["Custom Architecture", "Large Plots", "Quiet Zones"],
+    investorTags: ["Prestige Asset", "End User Focus", "Capital Preservation"],
+    aiVerdict: {
+      title: "The Executive Enclave",
+      summary: "Most prestigious villa sub-zone in Ajman. Lower ROI but highest resale stability for luxury assets in the Northern Emirates."
+    },
+    demandSignals: { rentalDemand: "Medium", resaleLiquidity: "Moderate", tenantProfile: "Business Owners" },
+    ownership: { type: "Freehold", eligibleFor: ["All Nationalities"], minDownPayment: "25%" },
+    scores: { cashFlow: 6.0, appreciation: 8.5, liquidity: 6.0, risk: 3.5, lifestyle: 9.5 },
+    overallScore: 8.0,
+    unitEconomics: { villa: { roi: "6.0%", rent: "AED 150k" } },
+    shortTermScore: 1.5,
+    shortTermRental: { allowed: false },
+    futureUpgrades: [{ name: "Elite Community Park", status: "Planning" }],
+    priceTrend: { "2023": "AED 1.7M", "2024": "AED 1.9M", "2025": "AED 2.1M" },
+    description: "Quiet, high-end residential pocket for those seeking luxury villas with quick highway access.",
+    connectivity: {
+      airport: { name: "DXB Intl", km: "20 km", mins: "22 mins" },
+      school: { name: "GEMS", km: "4 km", mins: "8 mins" },
+      tourist: { name: "Ajman Beach", km: "12 km", mins: "15 mins" },
+      mall: { name: "City Centre", km: "6 km", mins: "10 mins" },
+      business: { name: "Sharjah CBD", km: "12 km", mins: "15 mins" },
+      hospital: { name: "Thumbay", km: "8 km", mins: "10 mins" }
     }
   }
 ];

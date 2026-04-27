@@ -3,7 +3,7 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import Link from 'next/link';
 import { ArrowRight, HardHat, ChevronDown, ChevronUp } from 'lucide-react';
-import { BUILDERS } from '../../src/data/buildersData';
+import { BUILDERS_DATA } from '../../src/data/developerIntelligence';
 
 const BuildersPage = () => {
   const [showAll, setShowAll] = useState(false);

@@ -5,10 +5,10 @@ import Link from 'next/link';
 import {
   TrendingUp, ShieldCheck, Wallet, Plane, ShoppingBag,
   Zap, Scale, Trophy, Swords, Building2, MapPin, CheckCircle,
-  Leaf, Activity, Globe, Target, ArrowRight, Crown
+  Leaf, Activity, Globe, Target, ArrowRight, Crown, BrainCircuit
 } from 'lucide-react';
-import { DUBAI_AREAS } from '../../src/data/emiratesData';
-import { BUILDERS } from '../../src/data/buildersData';
+import { DUBAI_AREAS } from '../../src/data/nationalIntelligenceFeed';
+import { BUILDERS_DATA as BUILDERS } from '../../src/data/developerIntelligence';
 import WhatsAppButton from '../../src/components/WhatsAppButton';
 
 const AreaComparison = () => {

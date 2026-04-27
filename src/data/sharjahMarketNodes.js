@@ -501,10 +501,24 @@ export const SHARJAH_DATA = [
       airport: { name: "Sharjah Airport", km: "10 km", mins: "10 mins" },
       school: { name: "GEMS Founders", km: "5 km", mins: "8 mins" },
       tourist: { name: "Barashi Park", km: "1 km", mins: "2 mins" },
+    unitEconomics: { 
+      studio: { roi: "7.5%", rent: "AED 24k" }, 
+      oneBed: { roi: "7.0%", rent: "AED 35k" },
+      twoBed: { roi: "6.5%", rent: "AED 48k" }
+    },
+    shortTermScore: 3.5,
+    shortTermRental: { allowed: false, avgDailyRate: "N/A", occupancy: "98%", tenantType: "Long-term" },
+    futureUpgrades: [{ name: "Park Beautification", status: "Complete" }],
+    priceTrend: { "2023": "AED 380k", "2024": "AED 405k", "2025": "AED 420k" },
+    description: "Centrally located district known for its accessibility and family-friendly infrastructure.",
+    connectivity: {
+      airport: { name: "Sharjah Airport", km: "15 km", mins: "18 mins" },
+      school: { name: "The Emirates School", km: "1 km", mins: "3 mins" },
+      tourist: { name: "Central Souq", km: "2 km", mins: "5 mins" },
       metro: { name: "N/A", km: "N/A", mins: "N/A" },
-      mall: { name: "City Centre Zahia", km: "10 km", mins: "12 mins" },
-      business: { name: "Sharjah Airport Freezone", km: "10 km", mins: "12 mins" },
-      hospital: { name: "University Hospital", km: "12 km", mins: "15 mins" }
+      mall: { name: "Mega Mall", km: "1 km", mins: "3 mins" },
+      business: { name: "Immigration Road", km: "0.5 km", mins: "2 mins" },
+      hospital: { name: "Medcare", km: "2 km", mins: "5 mins" }
     }
   }
 ];
